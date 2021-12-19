@@ -1,0 +1,33 @@
+package constant
+
+type TransactionTypeEnum int
+
+const (
+	TRANSACTIONTYPEENUM_OTC_NUM TransactionTypeEnum = iota
+	TRANSACTIONTYPEENUM_OTC_MONEY
+	TRANSACTIONTYPEENUM_EXCHANGE
+	TRANSACTIONTYPEENUM_EXCHANGE_COIN
+	TRANSACTIONTYPEENUM_EXCHANGE_BASE
+	TRANSACTIONTYPEENUM_RECHARGE
+	TRANSACTIONTYPEENUM_WITHDRAW
+)
+
+func (this TransactionTypeEnum) String() string {
+	switch this {
+	case TRANSACTIONTYPEENUM_OTC_NUM:
+		return "法币成交量"
+	case TRANSACTIONTYPEENUM_OTC_MONEY:
+		return "法币成交额"
+	case TRANSACTIONTYPEENUM_EXCHANGE:
+		return "币币交易手续费统计"
+	case TRANSACTIONTYPEENUM_EXCHANGE_COIN:
+		return "币币交易成交量统计"
+	case TRANSACTIONTYPEENUM_EXCHANGE_BASE:
+		return "币币交易成交额统计"
+	case TRANSACTIONTYPEENUM_RECHARGE:
+		return "充币"
+	case TRANSACTIONTYPEENUM_WITHDRAW:
+		return "提币"
+	}
+	return ""
+}
