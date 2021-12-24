@@ -36,8 +36,8 @@ func (this *PageModel) SetSort() {
 		list.Add("id")
 		var directions []Sort.Direction = make([]Sort.Direction, 0)
 		directions.Add(Sort.Direction.DESC)
-		this.property = list
-		this.direction = directions
+		this.Property = list
+		this.Direction = directions
 	}
 }
 func (this *PageModel) GetSort() (result domain.Sort) {
