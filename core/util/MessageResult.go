@@ -69,12 +69,10 @@ func (this *MessageResult) SetTotal(total int64) {
 	this.Total = total
 }
 
-func (this *MessageResult) GetData() (result interface {
-}) {
+func (this *MessageResult) GetData() (result interface{}) {
 	return this.Data
 }
-func (this *MessageResult) SetData(data interface {
-}) {
+func (this *MessageResult) SetData(data interface{}) {
 	this.Data = data
 }
 
