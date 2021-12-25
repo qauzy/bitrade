@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CommonStatus"
 	"github.com/qauzy/math"
 	"time"
 )
@@ -41,11 +41,11 @@ func (this *BusinessAuthDeposit) SetAdmin(admin Admin) (result *BusinessAuthDepo
 func (this *BusinessAuthDeposit) GetAdmin() (admin Admin) {
 	return this.Admin
 }
-func (this *BusinessAuthDeposit) SetStatus(status constant.CommonStatus) (result *BusinessAuthDeposit) {
+func (this *BusinessAuthDeposit) SetStatus(status CommonStatus.CommonStatus) (result *BusinessAuthDeposit) {
 	this.Status = status
 	return this
 }
-func (this *BusinessAuthDeposit) GetStatus() (status constant.CommonStatus) {
+func (this *BusinessAuthDeposit) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 
@@ -55,5 +55,5 @@ type BusinessAuthDeposit struct {
 	Amount     math.BigDecimal
 	CreateTime time.Time
 	Admin      Admin
-	Status     constant.CommonStatus
+	Status     CommonStatus.CommonStatus
 }

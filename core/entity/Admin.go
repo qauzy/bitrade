@@ -1,7 +1,8 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CommonStatus"
+	constant "bitrade/core/constant/CommonStatus"
 	"time"
 )
 
@@ -26,11 +27,11 @@ func (this *Admin) SetPassword(password string) (result *Admin) {
 func (this *Admin) GetPassword() (password string) {
 	return this.Password
 }
-func (this *Admin) SetEnable(enable constant.CommonStatus) (result *Admin) {
+func (this *Admin) SetEnable(enable CommonStatus.CommonStatus) (result *Admin) {
 	this.Enable = enable
 	return this
 }
-func (this *Admin) GetEnable() (enable constant.CommonStatus) {
+func (this *Admin) GetEnable() (enable CommonStatus.CommonStatus) {
 	return this.Enable
 }
 func (this *Admin) SetLastLoginTime(lastLoginTime time.Time) (result *Admin) {

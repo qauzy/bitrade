@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/CommonStatus"
+	"bitrade/core/constant/SysAdvertiseLocation"
+	"time"
+)
+
 func (this *SysAdvertise) SetSerialNumber(serialNumber string) (result *SysAdvertise) {
 	this.SerialNumber = serialNumber
 	return this
@@ -14,11 +20,11 @@ func (this *SysAdvertise) SetName(name string) (result *SysAdvertise) {
 func (this *SysAdvertise) GetName() (name string) {
 	return this.Name
 }
-func (this *SysAdvertise) SetSysAdvertiseLocation(sysAdvertiseLocation constant.SysAdvertiseLocation) (result *SysAdvertise) {
+func (this *SysAdvertise) SetSysAdvertiseLocation(sysAdvertiseLocation SysAdvertiseLocation.SysAdvertiseLocation) (result *SysAdvertise) {
 	this.SysAdvertiseLocation = sysAdvertiseLocation
 	return this
 }
-func (this *SysAdvertise) GetSysAdvertiseLocation() (sysAdvertiseLocation constant.SysAdvertiseLocation) {
+func (this *SysAdvertise) GetSysAdvertiseLocation() (sysAdvertiseLocation SysAdvertiseLocation.SysAdvertiseLocation) {
 	return this.SysAdvertiseLocation
 }
 func (this *SysAdvertise) SetStartTime(startTime string) (result *SysAdvertise) {
@@ -56,11 +62,11 @@ func (this *SysAdvertise) SetRemark(remark string) (result *SysAdvertise) {
 func (this *SysAdvertise) GetRemark() (remark string) {
 	return this.Remark
 }
-func (this *SysAdvertise) SetStatus(status constant.CommonStatus) (result *SysAdvertise) {
+func (this *SysAdvertise) SetStatus(status CommonStatus.CommonStatus) (result *SysAdvertise) {
 	this.Status = status
 	return this
 }
-func (this *SysAdvertise) GetStatus() (status constant.CommonStatus) {
+func (this *SysAdvertise) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *SysAdvertise) SetCreateTime(createTime time.Time) (result *SysAdvertise) {
@@ -95,13 +101,13 @@ func (this *SysAdvertise) GetSort() (sort int) {
 type SysAdvertise struct {
 	SerialNumber         string
 	Name                 string
-	SysAdvertiseLocation constant.SysAdvertiseLocation
+	SysAdvertiseLocation SysAdvertiseLocation.SysAdvertiseLocation
 	StartTime            string
 	EndTime              string
 	Url                  string
 	LinkUrl              string
 	Remark               string
-	Status               constant.CommonStatus
+	Status               CommonStatus.CommonStatus
 	CreateTime           time.Time
 	Content              string
 	Author               string

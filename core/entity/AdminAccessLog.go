@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/AdminModule"
 	"time"
 )
 
@@ -33,11 +33,11 @@ func (this *AdminAccessLog) SetUri(uri string) (result *AdminAccessLog) {
 func (this *AdminAccessLog) GetUri() (uri string) {
 	return this.Uri
 }
-func (this *AdminAccessLog) SetModule(module constant.AdminModule) (result *AdminAccessLog) {
+func (this *AdminAccessLog) SetModule(module AdminModule.AdminModule) (result *AdminAccessLog) {
 	this.Module = module
 	return this
 }
-func (this *AdminAccessLog) GetModule() (module constant.AdminModule) {
+func (this *AdminAccessLog) GetModule() (module AdminModule.AdminModule) {
 	return this.Module
 }
 func (this *AdminAccessLog) SetOperation(operation string) (result *AdminAccessLog) {
@@ -74,7 +74,7 @@ type AdminAccessLog struct {
 	AdminId      int64
 	AdminName    string
 	Uri          string
-	Module       constant.AdminModule
+	Module       AdminModule.AdminModule
 	Operation    string
 	AccessIp     string
 	AccessMethod string
