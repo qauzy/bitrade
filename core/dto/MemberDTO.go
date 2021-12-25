@@ -1,7 +1,5 @@
 package dto
 
-import "bitrade/core/entity"
-
 func (this *MemberDTO) SetMember(member entity.Member) (result *MemberDTO) {
 	this.Member = member
 	return this

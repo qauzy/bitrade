@@ -1,7 +1,5 @@
 package dto
 
-import "github.com/qauzy/math"
-
 func (this *MemberWalletDTO) SetId(id int64) (result *MemberWalletDTO) {
 	this.Id = id
 	return this

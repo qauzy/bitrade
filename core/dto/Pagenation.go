@@ -36,13 +36,14 @@ func NewPagenation(pageNo int, pageSize int) (this *Pagenation) {
 }
 func NewPagenation(pageParam PageParam) (this *Pagenation) {
 	this = new(Pagenation)
-	if len(pageParam.GetOrders()) < 1 {
+	if pageParam.GetOrders().Size() < 1 {
 		pageParam.GetOrders().Add("id")
 	}
 	this.PageParam = pageParam
 	return
 }
-func (this *Pagenation) SetData(list []interface{}, totalCount int64, totalPage int64) (result *Pagenation) {
+func (this *Pagenation) SetData(list []interface {
+}, totalCount int64, totalPage int64) (result Pagenation) {
 	this.List = list
 	this.TotalCount = totalCount
 	this.TotalPage = totalPage

@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *Order) SetId(id int64) (result *Order) {
 	this.Id = id
 	return this

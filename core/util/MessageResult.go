@@ -1,17 +1,13 @@
 package util
 
+func NewMessageResult() (this *MessageResult) {
+	this = new(MessageResult)
+	return
+}
 func NewMessageResultV2(code int, msg string) (this *MessageResult) {
 	this = new(MessageResult)
 	this.Code = code
 	this.Message = msg
-	return
-}
-func NewMessageResultV4(code int, msg string, object interface{}, total int64) (this *MessageResult) {
-	this = new(MessageResult)
-	this.Code = code
-	this.Message = msg
-	this.Total = total
-	this.Data = object
 	return
 }
 func NewMessageResultV3(code int, msg string, object interface{}) (this *MessageResult) {
@@ -21,9 +17,12 @@ func NewMessageResultV3(code int, msg string, object interface{}) (this *Message
 	this.Data = object
 	return
 }
-func NewMessageResult() (this *MessageResult) {
+func NewMessageResultV4(code int, msg string, object interface{}, total int64) (this *MessageResult) {
 	this = new(MessageResult)
-	// TODO Auto-generated constructor stub
+	this.Code = code
+	this.Message = msg
+	this.Total = total
+	this.Data = object
 	return
 }
 func Success() (result *MessageResult) {
@@ -38,12 +37,19 @@ func SuccessV2(msg string, data interface{}) (result *MessageResult) {
 func SuccessDataAndTotal(object interface{}, total int64) (result *MessageResult) {
 	return NewMessageResultV4(0, "SUCCESS", object, total)
 }
-func ErrorV2(code int, msg string) (result *MessageResult) {
-	return NewMessageResultV2(code, msg)
+func GetSuccessInstance(message string, data interface{}) (result *MessageResult) {
+	result = SuccessV1(message)
+	result.SetData(data)
+	return result
 }
+
 func Error(msg string) (result *MessageResult) {
 	return NewMessageResultV2(500, msg)
 }
+func ErrorV2(code int, msg string) (result *MessageResult) {
+	return NewMessageResultV2(code, msg)
+}
+
 func (this *MessageResult) GetCode() (result int) {
 	return this.Code
 }
@@ -70,11 +76,6 @@ func (this *MessageResult) GetData() (result interface {
 func (this *MessageResult) SetData(data interface {
 }) {
 	this.Data = data
-}
-func GetSuccessInstance(message string, data interface{}) (result *MessageResult) {
-	result = SuccessV1(message)
-	result.SetData(data)
-	return result
 }
 
 type MessageResult struct {
