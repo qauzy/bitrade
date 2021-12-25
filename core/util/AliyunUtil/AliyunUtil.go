@@ -42,23 +42,23 @@ func HMACSha1(data string, keyStr string) (result string) {
 	return result
 }
 func DoPost(uri string, body []byte, accessId string, accessKey string) (result []byte, err error) {
-	var method string = "POST"
-	var accept string = "application/json"
-	var content_type string = "application/json"
+	var method = "POST"
+	var accept = "application/json"
+	var content_type = "application/json"
 	var u *url.URL
 	u, err = url.Parse(uri)
 	if err != nil {
 		return
 	}
 	var path = u.Path
-	var date string = dateutils.ToGMTString(time.Now())
+	var date = dateutils.ToGMTString(time.Now())
 	// 1.对body做MD5+BASE64加密
-	var bodyMd5 string = MD5Base64(body)
-	var stringToSign string = method + "\n" + accept + "\n" + bodyMd5 + "\n" + content_type + "\n" + date + "\n" + path
+	var bodyMd5 = MD5Base64(body)
+	var stringToSign = method + "\n" + accept + "\n" + bodyMd5 + "\n" + content_type + "\n" + date + "\n" + path
 	// 2.计算 HMAC-SHA1
-	var signature string = HMACSha1(stringToSign, accessKey)
+	var signature = HMACSha1(stringToSign, accessKey)
 	// 3.得到 authorization header
-	var authHeader string = "Dataplus " + accessId + ":" + signature
+	var authHeader = "Dataplus " + accessId + ":" + signature
 
 	result, err = unirest.New().Post().SetURL(uri).Header("accept", accept).Header("content-type", content_type).Header("date", date).Header("Authorization", authHeader).SetJSONBody(body).Send().AsBytes()
 	if err != nil {

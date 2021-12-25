@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant"
+	"time"
+)
+
 func (this *SysHelp) SetId(id int64) (result *SysHelp) {
 	this.Id = id
 	return this
