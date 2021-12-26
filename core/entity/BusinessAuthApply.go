@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CertifiedBusinessStatus"
+	"github.com/qauzy/fastjson"
 	"github.com/qauzy/math"
-	"github.com/valyala/fastjson"
 	"time"
 )
 
@@ -21,11 +21,11 @@ func (this *BusinessAuthApply) SetMember(member Member) (result *BusinessAuthApp
 func (this *BusinessAuthApply) GetMember() (member Member) {
 	return this.Member
 }
-func (this *BusinessAuthApply) SetCertifiedBusinessStatus(certifiedBusinessStatus constant.CertifiedBusinessStatus) (result *BusinessAuthApply) {
+func (this *BusinessAuthApply) SetCertifiedBusinessStatus(certifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus) (result *BusinessAuthApply) {
 	this.CertifiedBusinessStatus = certifiedBusinessStatus
 	return this
 }
-func (this *BusinessAuthApply) GetCertifiedBusinessStatus() (certifiedBusinessStatus constant.CertifiedBusinessStatus) {
+func (this *BusinessAuthApply) GetCertifiedBusinessStatus() (certifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus) {
 	return this.CertifiedBusinessStatus
 }
 func (this *BusinessAuthApply) SetDetail(detail string) (result *BusinessAuthApply) {
@@ -84,18 +84,18 @@ func (this *BusinessAuthApply) SetUpdateTime(updateTime time.Time) (result *Busi
 func (this *BusinessAuthApply) GetUpdateTime() (updateTime time.Time) {
 	return this.UpdateTime
 }
-func (this *BusinessAuthApply) SetInfo(info fastjson.Object) (result *BusinessAuthApply) {
+func (this *BusinessAuthApply) SetInfo(info fastjson.JSONObject) (result *BusinessAuthApply) {
 	this.Info = info
 	return this
 }
-func (this *BusinessAuthApply) GetInfo() (info fastjson.Object) {
+func (this *BusinessAuthApply) GetInfo() (info fastjson.JSONObject) {
 	return this.Info
 }
 
 type BusinessAuthApply struct {
 	Id                      int64
 	Member                  Member
-	CertifiedBusinessStatus constant.CertifiedBusinessStatus
+	CertifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus
 	Detail                  string
 	CreateTime              time.Time
 	AuditingTime            time.Time
@@ -104,5 +104,5 @@ type BusinessAuthApply struct {
 	DepositRecordId         string
 	Amount                  math.BigDecimal
 	UpdateTime              time.Time
-	Info                    fastjson.Object
+	Info                    fastjson.JSONObject
 }

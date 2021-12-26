@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *GiftConfig) SetId(id int64) (result *GiftConfig) {
 	this.Id = id
 	return this

@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *PoundageConvertEth) SetId(id int64) (result *PoundageConvertEth) {
 	this.Id = id
 	return this

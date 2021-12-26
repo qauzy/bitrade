@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"github.com/qauzy/math"
-)
-
 func (this *OtcCoin) SetId(id int64) (result *OtcCoin) {
 	this.Id = id
 	return this
@@ -33,11 +28,11 @@ func (this *OtcCoin) SetUnit(unit string) (result *OtcCoin) {
 func (this *OtcCoin) GetUnit() (unit string) {
 	return this.Unit
 }
-func (this *OtcCoin) SetStatus(status constant.CommonStatus) (result *OtcCoin) {
+func (this *OtcCoin) SetStatus(status CommonStatus.CommonStatus) (result *OtcCoin) {
 	this.Status = status
 	return this
 }
-func (this *OtcCoin) GetStatus() (status constant.CommonStatus) {
+func (this *OtcCoin) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *OtcCoin) SetJyRate(jyRate math.BigDecimal) (result *OtcCoin) {
@@ -68,11 +63,11 @@ func (this *OtcCoin) SetSort(sort int) (result *OtcCoin) {
 func (this *OtcCoin) GetSort() (sort int) {
 	return this.Sort
 }
-func (this *OtcCoin) SetIsPlatformCoin(isPlatformCoin constant.BooleanEnum) (result *OtcCoin) {
+func (this *OtcCoin) SetIsPlatformCoin(isPlatformCoin BooleanEnum.BooleanEnum) (result *OtcCoin) {
 	this.IsPlatformCoin = isPlatformCoin
 	return this
 }
-func (this *OtcCoin) GetIsPlatformCoin() (isPlatformCoin constant.BooleanEnum) {
+func (this *OtcCoin) GetIsPlatformCoin() (isPlatformCoin BooleanEnum.BooleanEnum) {
 	return this.IsPlatformCoin
 }
 func (this *OtcCoin) SetCoinScale(coinScale int64) (result *OtcCoin) {
@@ -102,12 +97,12 @@ type OtcCoin struct {
 	Name           string
 	NameCn         string
 	Unit           string
-	Status         constant.CommonStatus
+	Status         CommonStatus.CommonStatus
 	JyRate         math.BigDecimal
 	SellMinAmount  math.BigDecimal
 	BuyMinAmount   math.BigDecimal
 	Sort           int
-	IsPlatformCoin constant.BooleanEnum
+	IsPlatformCoin BooleanEnum.BooleanEnum
 	CoinScale      int64
 	MaxTradingTime int64
 	MaxVolume      int64

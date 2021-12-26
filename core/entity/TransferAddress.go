@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/CommonStatus"
+	"github.com/qauzy/math"
+)
+
 func (this *TransferAddress) SetId(id int64) (result *TransferAddress) {
 	this.Id = id
 	return this
@@ -35,11 +40,11 @@ func (this *TransferAddress) SetMinAmount(minAmount math.BigDecimal) (result *Tr
 func (this *TransferAddress) GetMinAmount() (minAmount math.BigDecimal) {
 	return this.MinAmount
 }
-func (this *TransferAddress) SetStatus(status constant.CommonStatus) (result *TransferAddress) {
+func (this *TransferAddress) SetStatus(status CommonStatus.CommonStatus) (result *TransferAddress) {
 	this.Status = status
 	return this
 }
-func (this *TransferAddress) GetStatus() (status constant.CommonStatus) {
+func (this *TransferAddress) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 
@@ -49,5 +54,5 @@ type TransferAddress struct {
 	Address     string
 	TransferFee math.BigDecimal
 	MinAmount   math.BigDecimal
-	Status      constant.CommonStatus
+	Status      CommonStatus.CommonStatus
 }

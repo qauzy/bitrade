@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/Platform"
 	"time"
 )
 
@@ -40,11 +40,11 @@ func (this *AppRevision) SetDownloadUrl(downloadUrl string) (result *AppRevision
 func (this *AppRevision) GetDownloadUrl() (downloadUrl string) {
 	return this.DownloadUrl
 }
-func (this *AppRevision) SetPlatform(platform constant.Platform) (result *AppRevision) {
+func (this *AppRevision) SetPlatform(platform Platform.Platform) (result *AppRevision) {
 	this.Platform = platform
 	return this
 }
-func (this *AppRevision) GetPlatform() (platform constant.Platform) {
+func (this *AppRevision) GetPlatform() (platform Platform.Platform) {
 	return this.Platform
 }
 
@@ -54,5 +54,5 @@ type AppRevision struct {
 	Remark      string
 	Version     string
 	DownloadUrl string
-	Platform    constant.Platform
+	Platform    Platform.Platform
 }

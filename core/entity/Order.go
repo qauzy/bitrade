@@ -1,11 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *Order) SetId(id int64) (result *Order) {
 	this.Id = id
 	return this
@@ -27,11 +21,11 @@ func (this *Order) SetReferenceNumber(referenceNumber string) (result *Order) {
 func (this *Order) GetReferenceNumber() (referenceNumber string) {
 	return this.ReferenceNumber
 }
-func (this *Order) SetAdvertiseType(advertiseType constant.AdvertiseType) (result *Order) {
+func (this *Order) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *Order) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *Order) GetAdvertiseType() (advertiseType constant.AdvertiseType) {
+func (this *Order) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
 func (this *Order) SetCreateTime(createTime time.Time) (result *Order) {
@@ -153,11 +147,11 @@ func (this *Order) SetCommission(commission math.BigDecimal) (result *Order) {
 func (this *Order) GetCommission() (commission math.BigDecimal) {
 	return this.Commission
 }
-func (this *Order) SetStatus(status constant.OrderStatus) (result *Order) {
+func (this *Order) SetStatus(status OrderStatus.OrderStatus) (result *Order) {
 	this.Status = status
 	return this
 }
-func (this *Order) GetStatus() (status constant.OrderStatus) {
+func (this *Order) GetStatus() (status OrderStatus.OrderStatus) {
 	return this.Status
 }
 func (this *Order) SetPayTime(payTime time.Time) (result *Order) {
@@ -228,7 +222,7 @@ type Order struct {
 	Id               int64
 	OrderSn          string
 	ReferenceNumber  string
-	AdvertiseType    constant.AdvertiseType
+	AdvertiseType    AdvertiseType.AdvertiseType
 	CreateTime       time.Time
 	MemberId         int64
 	MemberName       string
@@ -246,7 +240,7 @@ type Order struct {
 	Money            math.BigDecimal
 	Number           math.BigDecimal
 	Commission       math.BigDecimal
-	Status           constant.OrderStatus
+	Status           OrderStatus.OrderStatus
 	PayTime          time.Time
 	PayMode          string
 	AdvertiseId      int64

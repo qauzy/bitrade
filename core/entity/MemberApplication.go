@@ -49,11 +49,11 @@ func (this *MemberApplication) SetIdentityCardImgInHand(identityCardImgInHand st
 func (this *MemberApplication) GetIdentityCardImgInHand() (identityCardImgInHand string) {
 	return this.IdentityCardImgInHand
 }
-func (this *MemberApplication) SetAuditStatus(auditStatus constant.AuditStatus) (result *MemberApplication) {
+func (this *MemberApplication) SetAuditStatus(auditStatus AuditStatus.AuditStatus) (result *MemberApplication) {
 	this.AuditStatus = auditStatus
 	return this
 }
-func (this *MemberApplication) GetAuditStatus() (auditStatus constant.AuditStatus) {
+func (this *MemberApplication) GetAuditStatus() (auditStatus AuditStatus.AuditStatus) {
 	return this.AuditStatus
 }
 func (this *MemberApplication) SetMember(member Member) (result *MemberApplication) {
@@ -114,7 +114,7 @@ type MemberApplication struct {
 	IdentityCardImgFront   string
 	IdentityCardImgReverse string
 	IdentityCardImgInHand  string
-	AuditStatus            constant.AuditStatus
+	AuditStatus            AuditStatus.AuditStatus
 	Member                 Member
 	RejectReason           string
 	CreateTime             time.Time

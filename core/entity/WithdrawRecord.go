@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/WithdrawStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *WithdrawRecord) SetId(id int64) (result *WithdrawRecord) {
 	this.Id = id
 	return this
@@ -56,18 +63,18 @@ func (this *WithdrawRecord) SetDealTime(dealTime time.Time) (result *WithdrawRec
 func (this *WithdrawRecord) GetDealTime() (dealTime time.Time) {
 	return this.DealTime
 }
-func (this *WithdrawRecord) SetStatus(status constant.WithdrawStatus) (result *WithdrawRecord) {
+func (this *WithdrawRecord) SetStatus(status WithdrawStatus.WithdrawStatus) (result *WithdrawRecord) {
 	this.Status = status
 	return this
 }
-func (this *WithdrawRecord) GetStatus() (status constant.WithdrawStatus) {
+func (this *WithdrawRecord) GetStatus() (status WithdrawStatus.WithdrawStatus) {
 	return this.Status
 }
-func (this *WithdrawRecord) SetIsAuto(isAuto constant.BooleanEnum) (result *WithdrawRecord) {
+func (this *WithdrawRecord) SetIsAuto(isAuto BooleanEnum.BooleanEnum) (result *WithdrawRecord) {
 	this.IsAuto = isAuto
 	return this
 }
-func (this *WithdrawRecord) GetIsAuto() (isAuto constant.BooleanEnum) {
+func (this *WithdrawRecord) GetIsAuto() (isAuto BooleanEnum.BooleanEnum) {
 	return this.IsAuto
 }
 func (this *WithdrawRecord) SetAdmin(admin Admin) (result *WithdrawRecord) {
@@ -77,11 +84,11 @@ func (this *WithdrawRecord) SetAdmin(admin Admin) (result *WithdrawRecord) {
 func (this *WithdrawRecord) GetAdmin() (admin Admin) {
 	return this.Admin
 }
-func (this *WithdrawRecord) SetCanAutoWithdraw(canAutoWithdraw constant.BooleanEnum) (result *WithdrawRecord) {
+func (this *WithdrawRecord) SetCanAutoWithdraw(canAutoWithdraw BooleanEnum.BooleanEnum) (result *WithdrawRecord) {
 	this.CanAutoWithdraw = canAutoWithdraw
 	return this
 }
-func (this *WithdrawRecord) GetCanAutoWithdraw() (canAutoWithdraw constant.BooleanEnum) {
+func (this *WithdrawRecord) GetCanAutoWithdraw() (canAutoWithdraw BooleanEnum.BooleanEnum) {
 	return this.CanAutoWithdraw
 }
 func (this *WithdrawRecord) SetTransactionNumber(transactionNumber string) (result *WithdrawRecord) {
@@ -115,10 +122,10 @@ type WithdrawRecord struct {
 	ArrivedAmount     math.BigDecimal
 	CreateTime        time.Time
 	DealTime          time.Time
-	Status            constant.WithdrawStatus
-	IsAuto            constant.BooleanEnum
+	Status            WithdrawStatus.WithdrawStatus
+	IsAuto            BooleanEnum.BooleanEnum
 	Admin             Admin
-	CanAutoWithdraw   constant.BooleanEnum
+	CanAutoWithdraw   BooleanEnum.BooleanEnum
 	TransactionNumber string
 	Address           string
 	Remark            string

@@ -1,11 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"bitrade/core/vo"
-	"time"
-)
-
 func (this *Member) SetId(id int64) (result *Member) {
 	this.Id = id
 	return this
@@ -104,18 +98,18 @@ func (this *Member) SetLocation(location Location) (result *Member) {
 func (this *Member) GetLocation() (location Location) {
 	return this.Location
 }
-func (this *Member) SetMemberLevel(memberLevel constant.MemberLevelEnum) (result *Member) {
+func (this *Member) SetMemberLevel(memberLevel MemberLevelEnum) (result *Member) {
 	this.MemberLevel = memberLevel
 	return this
 }
-func (this *Member) GetMemberLevel() (memberLevel constant.MemberLevelEnum) {
+func (this *Member) GetMemberLevel() (memberLevel MemberLevelEnum) {
 	return this.MemberLevel
 }
-func (this *Member) SetStatus(status constant.CommonStatus) (result *Member) {
+func (this *Member) SetStatus(status CommonStatus) (result *Member) {
 	this.Status = status
 	return this
 }
-func (this *Member) GetStatus() (status constant.CommonStatus) {
+func (this *Member) GetStatus() (status CommonStatus) {
 	return this.Status
 }
 func (this *Member) SetRegistrationTime(registrationTime time.Time) (result *Member) {
@@ -223,11 +217,11 @@ func (this *Member) SetCountry(country Country) (result *Member) {
 func (this *Member) GetCountry() (country Country) {
 	return this.Country
 }
-func (this *Member) SetRealNameStatus(realNameStatus constant.RealNameStatus) (result *Member) {
+func (this *Member) SetRealNameStatus(realNameStatus RealNameStatus) (result *Member) {
 	this.RealNameStatus = realNameStatus
 	return this
 }
-func (this *Member) GetRealNameStatus() (realNameStatus constant.RealNameStatus) {
+func (this *Member) GetRealNameStatus() (realNameStatus RealNameStatus) {
 	return this.RealNameStatus
 }
 func (this *Member) SetLoginCount(loginCount int) (result *Member) {
@@ -237,11 +231,11 @@ func (this *Member) SetLoginCount(loginCount int) (result *Member) {
 func (this *Member) GetLoginCount() (loginCount int) {
 	return this.LoginCount
 }
-func (this *Member) SetCertifiedBusinessStatus(certifiedBusinessStatus constant.CertifiedBusinessStatus) (result *Member) {
+func (this *Member) SetCertifiedBusinessStatus(certifiedBusinessStatus CertifiedBusinessStatus) (result *Member) {
 	this.CertifiedBusinessStatus = certifiedBusinessStatus
 	return this
 }
-func (this *Member) GetCertifiedBusinessStatus() (certifiedBusinessStatus constant.CertifiedBusinessStatus) {
+func (this *Member) GetCertifiedBusinessStatus() (certifiedBusinessStatus CertifiedBusinessStatus) {
 	return this.CertifiedBusinessStatus
 }
 func (this *Member) SetCertifiedBusinessApplyTime(certifiedBusinessApplyTime time.Time) (result *Member) {
@@ -279,18 +273,18 @@ func (this *Member) SetTokenExpireTime(tokenExpireTime time.Time) (result *Membe
 func (this *Member) GetTokenExpireTime() (tokenExpireTime time.Time) {
 	return this.TokenExpireTime
 }
-func (this *Member) SetPublishAdvertise(publishAdvertise constant.BooleanEnum) (result *Member) {
+func (this *Member) SetPublishAdvertise(publishAdvertise BooleanEnum) (result *Member) {
 	this.PublishAdvertise = publishAdvertise
 	return this
 }
-func (this *Member) GetPublishAdvertise() (publishAdvertise constant.BooleanEnum) {
+func (this *Member) GetPublishAdvertise() (publishAdvertise BooleanEnum) {
 	return this.PublishAdvertise
 }
-func (this *Member) SetTransactionStatus(transactionStatus constant.BooleanEnum) (result *Member) {
+func (this *Member) SetTransactionStatus(transactionStatus BooleanEnum) (result *Member) {
 	this.TransactionStatus = transactionStatus
 	return this
 }
-func (this *Member) GetTransactionStatus() (transactionStatus constant.BooleanEnum) {
+func (this *Member) GetTransactionStatus() (transactionStatus BooleanEnum) {
 	return this.TransactionStatus
 }
 func (this *Member) SetSignInAbility(signInAbility bool) (result *Member) {
@@ -314,11 +308,11 @@ func (this *Member) SetChannelId(channelId int64) (result *Member) {
 func (this *Member) GetChannelId() (channelId int64) {
 	return this.ChannelId
 }
-func (this *Member) SetIsChannel(isChannel constant.BooleanEnum) (result *Member) {
+func (this *Member) SetIsChannel(isChannel BooleanEnum) (result *Member) {
 	this.IsChannel = isChannel
 	return this
 }
-func (this *Member) GetIsChannel() (isChannel constant.BooleanEnum) {
+func (this *Member) GetIsChannel() (isChannel BooleanEnum) {
 	return this.IsChannel
 }
 func (this *Member) SetChannelVO(channelVO vo.ChannelVO) (result *Member) {
@@ -328,11 +322,11 @@ func (this *Member) SetChannelVO(channelVO vo.ChannelVO) (result *Member) {
 func (this *Member) GetChannelVO() (channelVO vo.ChannelVO) {
 	return this.ChannelVO
 }
-func (this *Member) SetLoginLock(loginLock constant.BooleanEnum) (result *Member) {
+func (this *Member) SetLoginLock(loginLock BooleanEnum) (result *Member) {
 	this.LoginLock = loginLock
 	return this
 }
-func (this *Member) GetLoginLock() (loginLock constant.BooleanEnum) {
+func (this *Member) GetLoginLock() (loginLock BooleanEnum) {
 	return this.LoginLock
 }
 func (this *Member) SetIntegration(integration int64) (result *Member) {
@@ -386,8 +380,8 @@ type Member struct {
 	Email                      string
 	MobilePhone                string
 	Location                   Location
-	MemberLevel                constant.MemberLevelEnum
-	Status                     constant.CommonStatus
+	MemberLevel                MemberLevelEnum
+	Status                     CommonStatus
 	RegistrationTime           time.Time
 	LastLoginTime              time.Time
 	Token                      string
@@ -403,22 +397,22 @@ type Member struct {
 	SecondLevel                int
 	ThirdLevel                 int
 	Country                    Country
-	RealNameStatus             constant.RealNameStatus
+	RealNameStatus             RealNameStatus
 	LoginCount                 int
-	CertifiedBusinessStatus    constant.CertifiedBusinessStatus
+	CertifiedBusinessStatus    CertifiedBusinessStatus
 	CertifiedBusinessApplyTime time.Time
 	ApplicationTime            time.Time
 	CertifiedBusinessCheckTime time.Time
 	Avatar                     string
 	TokenExpireTime            time.Time
-	PublishAdvertise           constant.BooleanEnum
-	TransactionStatus          constant.BooleanEnum
+	PublishAdvertise           BooleanEnum
+	TransactionStatus          BooleanEnum
 	SignInAbility              bool
 	TransactionTime            time.Time
 	ChannelId                  int64
-	IsChannel                  constant.BooleanEnum
+	IsChannel                  BooleanEnum
 	ChannelVO                  vo.ChannelVO
-	LoginLock                  constant.BooleanEnum
+	LoginLock                  BooleanEnum
 	Integration                int64
 	MemberGradeId              int64
 	KycStatus                  int64

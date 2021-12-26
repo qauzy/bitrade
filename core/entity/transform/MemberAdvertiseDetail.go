@@ -1,7 +1,10 @@
 package transform
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/AdvertiseControlStatus"
+	"bitrade/core/constant/AdvertiseType"
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/PriceType"
 	"bitrade/core/entity"
 	"github.com/qauzy/math"
 )
@@ -48,11 +51,11 @@ func (this *MemberAdvertiseDetail) SetCountry(country entity.Country) (result *M
 func (this *MemberAdvertiseDetail) GetCountry() (country entity.Country) {
 	return this.Country
 }
-func (this *MemberAdvertiseDetail) SetPriceType(priceType constant.PriceType) (result *MemberAdvertiseDetail) {
+func (this *MemberAdvertiseDetail) SetPriceType(priceType PriceType.PriceType) (result *MemberAdvertiseDetail) {
 	this.PriceType = priceType
 	return this
 }
-func (this *MemberAdvertiseDetail) GetPriceType() (priceType constant.PriceType) {
+func (this *MemberAdvertiseDetail) GetPriceType() (priceType PriceType.PriceType) {
 	return this.PriceType
 }
 func (this *MemberAdvertiseDetail) SetPrice(price math.BigDecimal) (result *MemberAdvertiseDetail) {
@@ -62,11 +65,11 @@ func (this *MemberAdvertiseDetail) SetPrice(price math.BigDecimal) (result *Memb
 func (this *MemberAdvertiseDetail) GetPrice() (price math.BigDecimal) {
 	return this.Price
 }
-func (this *MemberAdvertiseDetail) SetAdvertiseType(advertiseType constant.AdvertiseType) (result *MemberAdvertiseDetail) {
+func (this *MemberAdvertiseDetail) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *MemberAdvertiseDetail) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *MemberAdvertiseDetail) GetAdvertiseType() (advertiseType constant.AdvertiseType) {
+func (this *MemberAdvertiseDetail) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
 func (this *MemberAdvertiseDetail) SetMinLimit(minLimit math.BigDecimal) (result *MemberAdvertiseDetail) {
@@ -111,11 +114,11 @@ func (this *MemberAdvertiseDetail) SetPayMode(payMode string) (result *MemberAdv
 func (this *MemberAdvertiseDetail) GetPayMode() (payMode string) {
 	return this.PayMode
 }
-func (this *MemberAdvertiseDetail) SetStatus(status constant.AdvertiseControlStatus) (result *MemberAdvertiseDetail) {
+func (this *MemberAdvertiseDetail) SetStatus(status AdvertiseControlStatus.AdvertiseControlStatus) (result *MemberAdvertiseDetail) {
 	this.Status = status
 	return this
 }
-func (this *MemberAdvertiseDetail) GetStatus() (status constant.AdvertiseControlStatus) {
+func (this *MemberAdvertiseDetail) GetStatus() (status AdvertiseControlStatus.AdvertiseControlStatus) {
 	return this.Status
 }
 func (this *MemberAdvertiseDetail) SetNumber(number math.BigDecimal) (result *MemberAdvertiseDetail) {
@@ -132,11 +135,11 @@ func (this *MemberAdvertiseDetail) SetMarketPrice(marketPrice math.BigDecimal) (
 func (this *MemberAdvertiseDetail) GetMarketPrice() (marketPrice math.BigDecimal) {
 	return this.MarketPrice
 }
-func (this *MemberAdvertiseDetail) SetAuto(auto constant.BooleanEnum) (result *MemberAdvertiseDetail) {
+func (this *MemberAdvertiseDetail) SetAuto(auto BooleanEnum.BooleanEnum) (result *MemberAdvertiseDetail) {
 	this.Auto = auto
 	return this
 }
-func (this *MemberAdvertiseDetail) GetAuto() (auto constant.BooleanEnum) {
+func (this *MemberAdvertiseDetail) GetAuto() (auto BooleanEnum.BooleanEnum) {
 	return this.Auto
 }
 func (this *MemberAdvertiseDetail) SetAutoword(autoword string) (result *MemberAdvertiseDetail) {
@@ -146,7 +149,7 @@ func (this *MemberAdvertiseDetail) SetAutoword(autoword string) (result *MemberA
 func (this *MemberAdvertiseDetail) GetAutoword() (autoword string) {
 	return this.Autoword
 }
-func ToMemberAdvertiseDetail(advertise *entity.Advertise) (result *MemberAdvertiseDetail) {
+func ToMemberAdvertiseDetail(advertise entity.Advertise) (result MemberAdvertiseDetail) {
 	return new(MemberAdvertiseDetail).SetId(advertise.GetId()).SetAdvertiseType(advertise.GetAdvertiseType()).SetCoinId(advertise.GetCoin().GetId()).SetCoinName(advertise.GetCoin().GetName()).SetCoinNameCn(advertise.GetCoin().GetNameCn()).SetCoinUnit(advertise.GetCoin().GetUnit()).SetCountry(advertise.GetCountry()).SetAuto(advertise.GetAuto()).SetMaxLimit(advertise.GetMaxLimit()).SetMinLimit(advertise.GetMinLimit()).SetNumber(advertise.GetNumber()).SetPayMode(advertise.GetPayMode()).SetPremiseRate(advertise.GetPremiseRate()).SetPrice(advertise.GetPrice()).SetPriceType(advertise.GetPriceType()).SetRemark(advertise.GetRemark()).SetStatus(advertise.GetStatus()).SetTimeLimit(advertise.GetTimeLimit()).SetAutoword(advertise.GetAutoword())
 }
 
@@ -157,18 +160,18 @@ type MemberAdvertiseDetail struct {
 	CoinNameCn    string
 	CoinUnit      string
 	Country       entity.Country
-	PriceType     constant.PriceType
+	PriceType     PriceType.PriceType
 	Price         math.BigDecimal
-	AdvertiseType constant.AdvertiseType
+	AdvertiseType AdvertiseType.AdvertiseType
 	MinLimit      math.BigDecimal
 	MaxLimit      math.BigDecimal
 	Remark        string
 	TimeLimit     int64
 	PremiseRate   math.BigDecimal
 	PayMode       string
-	Status        constant.AdvertiseControlStatus
+	Status        AdvertiseControlStatus.AdvertiseControlStatus
 	Number        math.BigDecimal
 	MarketPrice   math.BigDecimal
-	Auto          constant.BooleanEnum
+	Auto          BooleanEnum.BooleanEnum
 	Autoword      string
 }

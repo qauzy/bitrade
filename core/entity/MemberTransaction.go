@@ -28,11 +28,11 @@ func (this *MemberTransaction) SetCreateTime(createTime time.Time) (result *Memb
 func (this *MemberTransaction) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *MemberTransaction) SetType(oType constant.TransactionType) (result *MemberTransaction) {
+func (this *MemberTransaction) SetType(oType TransactionType.TransactionType) (result *MemberTransaction) {
 	this.Type = oType
 	return this
 }
-func (this *MemberTransaction) GetType() (oType constant.TransactionType) {
+func (this *MemberTransaction) GetType() (oType TransactionType.TransactionType) {
 	return this.Type
 }
 func (this *MemberTransaction) SetSymbol(symbol string) (result *MemberTransaction) {
@@ -76,7 +76,7 @@ type MemberTransaction struct {
 	MemberId   int64
 	Amount     math.BigDecimal
 	CreateTime time.Time
-	Type       constant.TransactionType
+	Type       TransactionType.TransactionType
 	Symbol     string
 	Address    string
 	Fee        math.BigDecimal

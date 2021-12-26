@@ -1,7 +1,5 @@
 package entity
 
-import "time"
-
 func (this *Feedback) SetId(id int64) (result *Feedback) {
 	this.Id = id
 	return this

@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/ActivityRewardType"
+	"bitrade/core/constant/BooleanEnum"
+	"time"
+)
+
 func (this *RewardActivitySetting) SetId(id int64) (result *RewardActivitySetting) {
 	this.Id = id
 	return this
@@ -14,18 +20,18 @@ func (this *RewardActivitySetting) SetCoin(coin Coin) (result *RewardActivitySet
 func (this *RewardActivitySetting) GetCoin() (coin Coin) {
 	return this.Coin
 }
-func (this *RewardActivitySetting) SetStatus(status constant.BooleanEnum) (result *RewardActivitySetting) {
+func (this *RewardActivitySetting) SetStatus(status BooleanEnum.BooleanEnum) (result *RewardActivitySetting) {
 	this.Status = status
 	return this
 }
-func (this *RewardActivitySetting) GetStatus() (status constant.BooleanEnum) {
+func (this *RewardActivitySetting) GetStatus() (status BooleanEnum.BooleanEnum) {
 	return this.Status
 }
-func (this *RewardActivitySetting) SetType(oType constant.ActivityRewardType) (result *RewardActivitySetting) {
+func (this *RewardActivitySetting) SetType(oType ActivityRewardType.ActivityRewardType) (result *RewardActivitySetting) {
 	this.Type = oType
 	return this
 }
-func (this *RewardActivitySetting) GetType() (oType constant.ActivityRewardType) {
+func (this *RewardActivitySetting) GetType() (oType ActivityRewardType.ActivityRewardType) {
 	return this.Type
 }
 func (this *RewardActivitySetting) SetInfo(info string) (result *RewardActivitySetting) {
@@ -53,8 +59,8 @@ func (this *RewardActivitySetting) GetAdmin() (admin Admin) {
 type RewardActivitySetting struct {
 	Id         int64
 	Coin       Coin
-	Status     constant.BooleanEnum
-	Type       constant.ActivityRewardType
+	Status     BooleanEnum.BooleanEnum
+	Type       ActivityRewardType.ActivityRewardType
 	Info       string
 	UpdateTime time.Time
 	Admin      Admin

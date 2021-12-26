@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"github.com/qauzy/math"
-)
-
 func (this *Coin) SetName(name string) (result *Coin) {
 	this.Name = name
 	return this
@@ -26,11 +21,11 @@ func (this *Coin) SetUnit(unit string) (result *Coin) {
 func (this *Coin) GetUnit() (unit string) {
 	return this.Unit
 }
-func (this *Coin) SetStatus(status constant.CommonStatus) (result *Coin) {
+func (this *Coin) SetStatus(status CommonStatus.CommonStatus) (result *Coin) {
 	this.Status = status
 	return this
 }
-func (this *Coin) GetStatus() (status constant.CommonStatus) {
+func (this *Coin) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *Coin) SetMinTxFee(minTxFee float64) (result *Coin) {
@@ -68,11 +63,11 @@ func (this *Coin) SetSgdRate(sgdRate math.BigDecimal) (result *Coin) {
 func (this *Coin) GetSgdRate() (sgdRate math.BigDecimal) {
 	return this.SgdRate
 }
-func (this *Coin) SetEnableRpc(enableRpc constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetEnableRpc(enableRpc BooleanEnum.BooleanEnum) (result *Coin) {
 	this.EnableRpc = enableRpc
 	return this
 }
-func (this *Coin) GetEnableRpc() (enableRpc constant.BooleanEnum) {
+func (this *Coin) GetEnableRpc() (enableRpc BooleanEnum.BooleanEnum) {
 	return this.EnableRpc
 }
 func (this *Coin) SetSort(sort int) (result *Coin) {
@@ -82,32 +77,32 @@ func (this *Coin) SetSort(sort int) (result *Coin) {
 func (this *Coin) GetSort() (sort int) {
 	return this.Sort
 }
-func (this *Coin) SetCanWithdraw(canWithdraw constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetCanWithdraw(canWithdraw BooleanEnum.BooleanEnum) (result *Coin) {
 	this.CanWithdraw = canWithdraw
 	return this
 }
-func (this *Coin) GetCanWithdraw() (canWithdraw constant.BooleanEnum) {
+func (this *Coin) GetCanWithdraw() (canWithdraw BooleanEnum.BooleanEnum) {
 	return this.CanWithdraw
 }
-func (this *Coin) SetCanRecharge(canRecharge constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetCanRecharge(canRecharge BooleanEnum.BooleanEnum) (result *Coin) {
 	this.CanRecharge = canRecharge
 	return this
 }
-func (this *Coin) GetCanRecharge() (canRecharge constant.BooleanEnum) {
+func (this *Coin) GetCanRecharge() (canRecharge BooleanEnum.BooleanEnum) {
 	return this.CanRecharge
 }
-func (this *Coin) SetCanTransfer(canTransfer constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetCanTransfer(canTransfer BooleanEnum.BooleanEnum) (result *Coin) {
 	this.CanTransfer = canTransfer
 	return this
 }
-func (this *Coin) GetCanTransfer() (canTransfer constant.BooleanEnum) {
+func (this *Coin) GetCanTransfer() (canTransfer BooleanEnum.BooleanEnum) {
 	return this.CanTransfer
 }
-func (this *Coin) SetCanAutoWithdraw(canAutoWithdraw constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetCanAutoWithdraw(canAutoWithdraw BooleanEnum.BooleanEnum) (result *Coin) {
 	this.CanAutoWithdraw = canAutoWithdraw
 	return this
 }
-func (this *Coin) GetCanAutoWithdraw() (canAutoWithdraw constant.BooleanEnum) {
+func (this *Coin) GetCanAutoWithdraw() (canAutoWithdraw BooleanEnum.BooleanEnum) {
 	return this.CanAutoWithdraw
 }
 func (this *Coin) SetWithdrawThreshold(withdrawThreshold math.BigDecimal) (result *Coin) {
@@ -131,11 +126,11 @@ func (this *Coin) SetMaxWithdrawAmount(maxWithdrawAmount math.BigDecimal) (resul
 func (this *Coin) GetMaxWithdrawAmount() (maxWithdrawAmount math.BigDecimal) {
 	return this.MaxWithdrawAmount
 }
-func (this *Coin) SetIsPlatformCoin(isPlatformCoin constant.BooleanEnum) (result *Coin) {
+func (this *Coin) SetIsPlatformCoin(isPlatformCoin BooleanEnum.BooleanEnum) (result *Coin) {
 	this.IsPlatformCoin = isPlatformCoin
 	return this
 }
-func (this *Coin) GetIsPlatformCoin() (isPlatformCoin constant.BooleanEnum) {
+func (this *Coin) GetIsPlatformCoin() (isPlatformCoin BooleanEnum.BooleanEnum) {
 	return this.IsPlatformCoin
 }
 func (this *Coin) SetHasLegal(hasLegal bool) (result *Coin) {
@@ -206,22 +201,22 @@ type Coin struct {
 	Name                 string
 	NameCn               string
 	Unit                 string
-	Status               constant.CommonStatus
+	Status               CommonStatus.CommonStatus
 	MinTxFee             float64
 	CnyRate              math.BigDecimal
 	MaxTxFee             float64
 	UsdRate              math.BigDecimal
 	SgdRate              math.BigDecimal
-	EnableRpc            constant.BooleanEnum
+	EnableRpc            BooleanEnum.BooleanEnum
 	Sort                 int
-	CanWithdraw          constant.BooleanEnum
-	CanRecharge          constant.BooleanEnum
-	CanTransfer          constant.BooleanEnum
-	CanAutoWithdraw      constant.BooleanEnum
+	CanWithdraw          BooleanEnum.BooleanEnum
+	CanRecharge          BooleanEnum.BooleanEnum
+	CanTransfer          BooleanEnum.BooleanEnum
+	CanAutoWithdraw      BooleanEnum.BooleanEnum
 	WithdrawThreshold    math.BigDecimal
 	MinWithdrawAmount    math.BigDecimal
 	MaxWithdrawAmount    math.BigDecimal
-	IsPlatformCoin       constant.BooleanEnum
+	IsPlatformCoin       BooleanEnum.BooleanEnum
 	HasLegal             bool
 	AllBalance           math.BigDecimal
 	ColdWalletAddress    string

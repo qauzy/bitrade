@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"time"
-)
-
 func (this *IntegrationRecord) SetId(id int64) (result *IntegrationRecord) {
 	this.Id = id
 	return this
@@ -19,11 +14,11 @@ func (this *IntegrationRecord) SetMemberId(memberId int64) (result *IntegrationR
 func (this *IntegrationRecord) GetMemberId() (memberId int64) {
 	return this.MemberId
 }
-func (this *IntegrationRecord) SetType(oType constant.IntegrationRecordType) (result *IntegrationRecord) {
+func (this *IntegrationRecord) SetType(oType IntegrationRecordType.IntegrationRecordType) (result *IntegrationRecord) {
 	this.Type = oType
 	return this
 }
-func (this *IntegrationRecord) GetType() (oType constant.IntegrationRecordType) {
+func (this *IntegrationRecord) GetType() (oType IntegrationRecordType.IntegrationRecordType) {
 	return this.Type
 }
 func (this *IntegrationRecord) SetAmount(amount int64) (result *IntegrationRecord) {
@@ -44,7 +39,7 @@ func (this *IntegrationRecord) GetCreateTime() (createTime time.Time) {
 type IntegrationRecord struct {
 	Id         int64
 	MemberId   int64
-	Type       constant.IntegrationRecordType
+	Type       IntegrationRecordType.IntegrationRecordType
 	Amount     int64
 	CreateTime time.Time
 }

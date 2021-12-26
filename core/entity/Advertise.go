@@ -1,7 +1,6 @@
 package entity
 
 import (
-	"bitrade/core/constant"
 	"github.com/qauzy/math"
 	"time"
 )
@@ -20,11 +19,11 @@ func (this *Advertise) SetPrice(price math.BigDecimal) (result *Advertise) {
 func (this *Advertise) GetPrice() (price math.BigDecimal) {
 	return this.Price
 }
-func (this *Advertise) SetAdvertiseType(advertiseType constant.AdvertiseType) (result *Advertise) {
+func (this *Advertise) SetAdvertiseType(advertiseType AdvertiseType) (result *Advertise) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *Advertise) GetAdvertiseType() (advertiseType constant.AdvertiseType) {
+func (this *Advertise) GetAdvertiseType() (advertiseType AdvertiseType) {
 	return this.AdvertiseType
 }
 func (this *Advertise) SetMember(member Member) (result *Advertise) {
@@ -48,11 +47,11 @@ func (this *Advertise) SetUpdateTime(updateTime time.Time) (result *Advertise) {
 func (this *Advertise) GetUpdateTime() (updateTime time.Time) {
 	return this.UpdateTime
 }
-func (this *Advertise) SetCoin(coin *OtcCoin) (result *Advertise) {
+func (this *Advertise) SetCoin(coin OtcCoin) (result *Advertise) {
 	this.Coin = coin
 	return this
 }
-func (this *Advertise) GetCoin() (coin *OtcCoin) {
+func (this *Advertise) GetCoin() (coin OtcCoin) {
 	return this.Coin
 }
 func (this *Advertise) SetCountry(country Country) (result *Advertise) {
@@ -97,11 +96,11 @@ func (this *Advertise) SetPremiseRate(premiseRate math.BigDecimal) (result *Adve
 func (this *Advertise) GetPremiseRate() (premiseRate math.BigDecimal) {
 	return this.PremiseRate
 }
-func (this *Advertise) SetLevel(level constant.AdvertiseLevel) (result *Advertise) {
+func (this *Advertise) SetLevel(level AdvertiseLevel) (result *Advertise) {
 	this.Level = level
 	return this
 }
-func (this *Advertise) GetLevel() (level constant.AdvertiseLevel) {
+func (this *Advertise) GetLevel() (level AdvertiseLevel) {
 	return this.Level
 }
 func (this *Advertise) SetPayMode(payMode string) (result *Advertise) {
@@ -118,18 +117,18 @@ func (this *Advertise) SetVersion(version int64) (result *Advertise) {
 func (this *Advertise) GetVersion() (version int64) {
 	return this.Version
 }
-func (this *Advertise) SetStatus(status constant.AdvertiseControlStatus) (result *Advertise) {
+func (this *Advertise) SetStatus(status AdvertiseControlStatus) (result *Advertise) {
 	this.Status = status
 	return this
 }
-func (this *Advertise) GetStatus() (status constant.AdvertiseControlStatus) {
+func (this *Advertise) GetStatus() (status AdvertiseControlStatus) {
 	return this.Status
 }
-func (this *Advertise) SetPriceType(priceType constant.PriceType) (result *Advertise) {
+func (this *Advertise) SetPriceType(priceType PriceType) (result *Advertise) {
 	this.PriceType = priceType
 	return this
 }
-func (this *Advertise) GetPriceType() (priceType constant.PriceType) {
+func (this *Advertise) GetPriceType() (priceType PriceType) {
 	return this.PriceType
 }
 func (this *Advertise) SetNumber(number math.BigDecimal) (result *Advertise) {
@@ -153,11 +152,11 @@ func (this *Advertise) SetRemainAmount(remainAmount math.BigDecimal) (result *Ad
 func (this *Advertise) GetRemainAmount() (remainAmount math.BigDecimal) {
 	return this.RemainAmount
 }
-func (this *Advertise) SetAuto(auto constant.BooleanEnum) (result *Advertise) {
+func (this *Advertise) SetAuto(auto BooleanEnum) (result *Advertise) {
 	this.Auto = auto
 	return this
 }
-func (this *Advertise) GetAuto() (auto constant.BooleanEnum) {
+func (this *Advertise) GetAuto() (auto BooleanEnum) {
 	return this.Auto
 }
 func (this *Advertise) SetMarketPrice(marketPrice math.BigDecimal) (result *Advertise) {
@@ -199,26 +198,26 @@ func (this *Advertise) GetCoinUnit() (coinUnit string) {
 type Advertise struct {
 	Id            int64
 	Price         math.BigDecimal
-	AdvertiseType constant.AdvertiseType
+	AdvertiseType AdvertiseType
 	Member        Member
 	CreateTime    time.Time
 	UpdateTime    time.Time
-	Coin          *OtcCoin
+	Coin          OtcCoin
 	Country       Country
 	MinLimit      math.BigDecimal
 	MaxLimit      math.BigDecimal
 	Remark        string
 	TimeLimit     int64
 	PremiseRate   math.BigDecimal
-	Level         constant.AdvertiseLevel
+	Level         AdvertiseLevel
 	PayMode       string
 	Version       int64
-	Status        constant.AdvertiseControlStatus
-	PriceType     constant.PriceType
+	Status        AdvertiseControlStatus
+	PriceType     PriceType
 	Number        math.BigDecimal
 	DealAmount    math.BigDecimal
 	RemainAmount  math.BigDecimal
-	Auto          constant.BooleanEnum
+	Auto          BooleanEnum
 	MarketPrice   math.BigDecimal
 	Autoword      string
 	LimitMoney    string

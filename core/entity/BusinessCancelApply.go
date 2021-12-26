@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CertifiedBusinessStatus"
 	"time"
 )
 
@@ -19,11 +19,11 @@ func (this *BusinessCancelApply) SetMember(member Member) (result *BusinessCance
 func (this *BusinessCancelApply) GetMember() (member Member) {
 	return this.Member
 }
-func (this *BusinessCancelApply) SetStatus(status constant.CertifiedBusinessStatus) (result *BusinessCancelApply) {
+func (this *BusinessCancelApply) SetStatus(status CertifiedBusinessStatus.CertifiedBusinessStatus) (result *BusinessCancelApply) {
 	this.Status = status
 	return this
 }
-func (this *BusinessCancelApply) GetStatus() (status constant.CertifiedBusinessStatus) {
+func (this *BusinessCancelApply) GetStatus() (status CertifiedBusinessStatus.CertifiedBusinessStatus) {
 	return this.Status
 }
 func (this *BusinessCancelApply) SetDepositRecordId(depositRecordId string) (result *BusinessCancelApply) {
@@ -76,7 +76,7 @@ func NewBusinessCancelApply() (this *BusinessCancelApply) {
 type BusinessCancelApply struct {
 	Id              int64
 	Member          Member
-	Status          constant.CertifiedBusinessStatus
+	Status          CertifiedBusinessStatus.CertifiedBusinessStatus
 	DepositRecordId string
 	CancelApplyTime time.Time
 	HandleTime      time.Time

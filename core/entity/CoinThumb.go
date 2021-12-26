@@ -1,7 +1,5 @@
 package entity
 
-import "github.com/qauzy/math"
-
 func (this *CoinThumb) SetSymbol(symbol string) (result *CoinThumb) {
 	this.Symbol = symbol
 	return this

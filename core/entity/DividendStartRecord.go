@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *DividendStartRecord) SetId(id int64) (result *DividendStartRecord) {
 	this.Id = id
 	return this

@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 func (this *Statistics) SetDate(date time.Time) (result *Statistics) {
 	this.Date = date
 	return this

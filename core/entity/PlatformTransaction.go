@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *PlatformTransaction) SetId(id int64) (result *PlatformTransaction) {
 	this.Id = id
 	return this

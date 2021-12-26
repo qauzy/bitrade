@@ -1,7 +1,8 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CommonStatus"
+	"bitrade/core/constant/SysHelpClassification"
 	"time"
 )
 
@@ -19,11 +20,11 @@ func (this *SysHelp) SetTitle(title string) (result *SysHelp) {
 func (this *SysHelp) GetTitle() (title string) {
 	return this.Title
 }
-func (this *SysHelp) SetSysHelpClassification(sysHelpClassification constant.SysHelpClassification) (result *SysHelp) {
+func (this *SysHelp) SetSysHelpClassification(sysHelpClassification SysHelpClassification.SysHelpClassification) (result *SysHelp) {
 	this.SysHelpClassification = sysHelpClassification
 	return this
 }
-func (this *SysHelp) GetSysHelpClassification() (sysHelpClassification constant.SysHelpClassification) {
+func (this *SysHelp) GetSysHelpClassification() (sysHelpClassification SysHelpClassification.SysHelpClassification) {
 	return this.SysHelpClassification
 }
 func (this *SysHelp) SetImgUrl(imgUrl string) (result *SysHelp) {
@@ -40,11 +41,11 @@ func (this *SysHelp) SetCreateTime(createTime time.Time) (result *SysHelp) {
 func (this *SysHelp) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *SysHelp) SetStatus(status constant.CommonStatus) (result *SysHelp) {
+func (this *SysHelp) SetStatus(status CommonStatus.CommonStatus) (result *SysHelp) {
 	this.Status = status
 	return this
 }
-func (this *SysHelp) GetStatus() (status constant.CommonStatus) {
+func (this *SysHelp) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *SysHelp) SetContent(content string) (result *SysHelp) {
@@ -79,10 +80,10 @@ func (this *SysHelp) GetIsTop() (isTop string) {
 type SysHelp struct {
 	Id                    int64
 	Title                 string
-	SysHelpClassification constant.SysHelpClassification
+	SysHelpClassification SysHelpClassification.SysHelpClassification
 	ImgUrl                string
 	CreateTime            time.Time
-	Status                constant.CommonStatus
+	Status                CommonStatus.CommonStatus
 	Content               string
 	Author                string
 	Sort                  int

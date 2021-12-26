@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/TransactionTypeEnum"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *TurnoverStatistics) SetDate(date time.Time) (result *TurnoverStatistics) {
 	this.Date = date
 	return this
@@ -28,11 +34,11 @@ func (this *TurnoverStatistics) SetDay(day int) (result *TurnoverStatistics) {
 func (this *TurnoverStatistics) GetDay() (day int) {
 	return this.Day
 }
-func (this *TurnoverStatistics) SetType(oType constant.TransactionTypeEnum) (result *TurnoverStatistics) {
+func (this *TurnoverStatistics) SetType(oType TransactionTypeEnum.TransactionTypeEnum) (result *TurnoverStatistics) {
 	this.Type = oType
 	return this
 }
-func (this *TurnoverStatistics) GetType() (oType constant.TransactionTypeEnum) {
+func (this *TurnoverStatistics) GetType() (oType TransactionTypeEnum.TransactionTypeEnum) {
 	return this.Type
 }
 func (this *TurnoverStatistics) SetUnit(unit string) (result *TurnoverStatistics) {
@@ -62,7 +68,7 @@ type TurnoverStatistics struct {
 	Year   int
 	Month  int
 	Day    int
-	Type   constant.TransactionTypeEnum
+	Type   TransactionTypeEnum.TransactionTypeEnum
 	Unit   string
 	Amount math.BigDecimal
 	Fee    math.BigDecimal

@@ -10,9 +10,9 @@ const (
 func (this BooleanEnum) String() string {
 	switch this {
 	case IS_FALSE:
-		return false
+		return "否"
 	case IS_TRUE:
-		return true
+		return "是"
 	}
 	return ""
 }

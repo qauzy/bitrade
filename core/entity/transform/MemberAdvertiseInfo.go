@@ -1,7 +1,7 @@
 package transform
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/BooleanEnum"
 	"time"
 )
 
@@ -33,25 +33,25 @@ func (this *MemberAdvertiseInfo) SetAvatar(avatar string) (result *MemberAdverti
 func (this *MemberAdvertiseInfo) GetAvatar() (avatar string) {
 	return this.Avatar
 }
-func (this *MemberAdvertiseInfo) SetRealVerified(realVerified constant.BooleanEnum) (result *MemberAdvertiseInfo) {
+func (this *MemberAdvertiseInfo) SetRealVerified(realVerified BooleanEnum.BooleanEnum) (result *MemberAdvertiseInfo) {
 	this.RealVerified = realVerified
 	return this
 }
-func (this *MemberAdvertiseInfo) GetRealVerified() (realVerified constant.BooleanEnum) {
+func (this *MemberAdvertiseInfo) GetRealVerified() (realVerified BooleanEnum.BooleanEnum) {
 	return this.RealVerified
 }
-func (this *MemberAdvertiseInfo) SetEmailVerified(emailVerified constant.BooleanEnum) (result *MemberAdvertiseInfo) {
+func (this *MemberAdvertiseInfo) SetEmailVerified(emailVerified BooleanEnum.BooleanEnum) (result *MemberAdvertiseInfo) {
 	this.EmailVerified = emailVerified
 	return this
 }
-func (this *MemberAdvertiseInfo) GetEmailVerified() (emailVerified constant.BooleanEnum) {
+func (this *MemberAdvertiseInfo) GetEmailVerified() (emailVerified BooleanEnum.BooleanEnum) {
 	return this.EmailVerified
 }
-func (this *MemberAdvertiseInfo) SetPhoneVerified(phoneVerified constant.BooleanEnum) (result *MemberAdvertiseInfo) {
+func (this *MemberAdvertiseInfo) SetPhoneVerified(phoneVerified BooleanEnum.BooleanEnum) (result *MemberAdvertiseInfo) {
 	this.PhoneVerified = phoneVerified
 	return this
 }
-func (this *MemberAdvertiseInfo) GetPhoneVerified() (phoneVerified constant.BooleanEnum) {
+func (this *MemberAdvertiseInfo) GetPhoneVerified() (phoneVerified BooleanEnum.BooleanEnum) {
 	return this.PhoneVerified
 }
 func (this *MemberAdvertiseInfo) SetTransactions(transactions int) (result *MemberAdvertiseInfo) {
@@ -74,9 +74,9 @@ type MemberAdvertiseInfo struct {
 	Sell          []ScanAdvertise
 	Username      string
 	Avatar        string
-	RealVerified  constant.BooleanEnum
-	EmailVerified constant.BooleanEnum
-	PhoneVerified constant.BooleanEnum
+	RealVerified  BooleanEnum.BooleanEnum
+	EmailVerified BooleanEnum.BooleanEnum
+	PhoneVerified BooleanEnum.BooleanEnum
 	Transactions  int
 	CreateTime    time.Time
 }

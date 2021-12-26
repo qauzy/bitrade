@@ -21,11 +21,11 @@ func (this *MemberPromotion) SetInviteesId(inviteesId int64) (result *MemberProm
 func (this *MemberPromotion) GetInviteesId() (inviteesId int64) {
 	return this.InviteesId
 }
-func (this *MemberPromotion) SetLevel(level constant.PromotionLevel) (result *MemberPromotion) {
+func (this *MemberPromotion) SetLevel(level PromotionLevel.PromotionLevel) (result *MemberPromotion) {
 	this.Level = level
 	return this
 }
-func (this *MemberPromotion) GetLevel() (level constant.PromotionLevel) {
+func (this *MemberPromotion) GetLevel() (level PromotionLevel.PromotionLevel) {
 	return this.Level
 }
 
@@ -33,5 +33,5 @@ type MemberPromotion struct {
 	Id         int64
 	InviterId  int64
 	InviteesId int64
-	Level      constant.PromotionLevel
+	Level      PromotionLevel.PromotionLevel
 }

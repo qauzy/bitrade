@@ -1,7 +1,7 @@
 package transform
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/AdvertiseType"
 	"github.com/qauzy/math"
 	"time"
 )
@@ -111,11 +111,11 @@ func (this *ScanAdvertise) SetLevel(level int) (result *ScanAdvertise) {
 func (this *ScanAdvertise) GetLevel() (level int) {
 	return this.Level
 }
-func (this *ScanAdvertise) SetAdvertiseType(advertiseType constant.AdvertiseType) (result *ScanAdvertise) {
+func (this *ScanAdvertise) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *ScanAdvertise) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *ScanAdvertise) GetAdvertiseType() (advertiseType constant.AdvertiseType) {
+func (this *ScanAdvertise) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
 func (this *ScanAdvertise) SetAdvType(advType int) (result *ScanAdvertise) {
@@ -149,7 +149,7 @@ type ScanAdvertise struct {
 	CoinName      string
 	CoinNameCn    string
 	Level         int
-	AdvertiseType constant.AdvertiseType
+	AdvertiseType AdvertiseType.AdvertiseType
 	AdvType       int
 	PremiseRate   math.BigDecimal
 }

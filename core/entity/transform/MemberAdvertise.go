@@ -1,7 +1,8 @@
 package transform
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/AdvertiseControlStatus"
+	"bitrade/core/constant/AdvertiseType"
 	"bitrade/core/entity"
 	"github.com/qauzy/math"
 	"time"
@@ -14,11 +15,11 @@ func (this *MemberAdvertise) SetId(id int64) (result *MemberAdvertise) {
 func (this *MemberAdvertise) GetId() (id int64) {
 	return this.Id
 }
-func (this *MemberAdvertise) SetAdvertiseType(advertiseType constant.AdvertiseType) (result *MemberAdvertise) {
+func (this *MemberAdvertise) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *MemberAdvertise) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *MemberAdvertise) GetAdvertiseType() (advertiseType constant.AdvertiseType) {
+func (this *MemberAdvertise) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
 func (this *MemberAdvertise) SetMinLimit(minLimit math.BigDecimal) (result *MemberAdvertise) {
@@ -35,11 +36,11 @@ func (this *MemberAdvertise) SetMaxLimit(maxLimit math.BigDecimal) (result *Memb
 func (this *MemberAdvertise) GetMaxLimit() (maxLimit math.BigDecimal) {
 	return this.MaxLimit
 }
-func (this *MemberAdvertise) SetStatus(status constant.AdvertiseControlStatus) (result *MemberAdvertise) {
+func (this *MemberAdvertise) SetStatus(status AdvertiseControlStatus.AdvertiseControlStatus) (result *MemberAdvertise) {
 	this.Status = status
 	return this
 }
-func (this *MemberAdvertise) GetStatus() (status constant.AdvertiseControlStatus) {
+func (this *MemberAdvertise) GetStatus() (status AdvertiseControlStatus.AdvertiseControlStatus) {
 	return this.Status
 }
 func (this *MemberAdvertise) SetRemainAmount(remainAmount math.BigDecimal) (result *MemberAdvertise) {
@@ -70,16 +71,16 @@ func (this *MemberAdvertise) SetCountry(country entity.Country) (result *MemberA
 func (this *MemberAdvertise) GetCountry() (country entity.Country) {
 	return this.Country
 }
-func ToMemberAdvertise(x *entity.Advertise) (result *MemberAdvertise) {
+func ToMemberAdvertise(x entity.Advertise) (result MemberAdvertise) {
 	return new(MemberAdvertise).SetId(x.GetId()).SetAdvertiseType(x.GetAdvertiseType()).SetCoinUnit(x.GetCoin().GetUnit()).SetCreateTime(x.GetCreateTime()).SetMinLimit(x.GetMinLimit()).SetMaxLimit(x.GetMaxLimit()).SetRemainAmount(x.GetRemainAmount()).SetStatus(x.GetStatus()).SetCountry(x.GetCountry())
 }
 
 type MemberAdvertise struct {
 	Id            int64
-	AdvertiseType constant.AdvertiseType
+	AdvertiseType AdvertiseType.AdvertiseType
 	MinLimit      math.BigDecimal
 	MaxLimit      math.BigDecimal
-	Status        constant.AdvertiseControlStatus
+	Status        AdvertiseControlStatus.AdvertiseControlStatus
 	RemainAmount  math.BigDecimal
 	CoinUnit      string
 	CreateTime    time.Time

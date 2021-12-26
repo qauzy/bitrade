@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CertifiedBusinessStatus"
+	"github.com/qauzy/fastjson"
 	"github.com/qauzy/math"
-	"github.com/valyala/fastjson"
 	"time"
 )
 
@@ -14,18 +14,18 @@ func (this *BusinessAuthApplyDetailVO) SetId(id int64) (result *BusinessAuthAppl
 func (this *BusinessAuthApplyDetailVO) GetId() (id int64) {
 	return this.Id
 }
-func (this *BusinessAuthApplyDetailVO) SetInfo(info fastjson.Object) (result *BusinessAuthApplyDetailVO) {
+func (this *BusinessAuthApplyDetailVO) SetInfo(info fastjson.JSONObject) (result *BusinessAuthApplyDetailVO) {
 	this.Info = info
 	return this
 }
-func (this *BusinessAuthApplyDetailVO) GetInfo() (info fastjson.Object) {
+func (this *BusinessAuthApplyDetailVO) GetInfo() (info fastjson.JSONObject) {
 	return this.Info
 }
-func (this *BusinessAuthApplyDetailVO) SetStatus(status constant.CertifiedBusinessStatus) (result *BusinessAuthApplyDetailVO) {
+func (this *BusinessAuthApplyDetailVO) SetStatus(status CertifiedBusinessStatus.CertifiedBusinessStatus) (result *BusinessAuthApplyDetailVO) {
 	this.Status = status
 	return this
 }
-func (this *BusinessAuthApplyDetailVO) GetStatus() (status constant.CertifiedBusinessStatus) {
+func (this *BusinessAuthApplyDetailVO) GetStatus() (status CertifiedBusinessStatus.CertifiedBusinessStatus) {
 	return this.Status
 }
 func (this *BusinessAuthApplyDetailVO) SetCheckTime(checkTime time.Time) (result *BusinessAuthApplyDetailVO) {
@@ -66,8 +66,8 @@ func (this *BusinessAuthApplyDetailVO) GetAuthInfo() (authInfo string) {
 
 type BusinessAuthApplyDetailVO struct {
 	Id        int64
-	Info      fastjson.Object
-	Status    constant.CertifiedBusinessStatus
+	Info      fastjson.JSONObject
+	Status    CertifiedBusinessStatus.CertifiedBusinessStatus
 	CheckTime time.Time
 	RealName  string
 	Detail    string

@@ -1,11 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *LegalWalletWithdraw) SetId(id int64) (result *LegalWalletWithdraw) {
 	this.Id = id
 	return this
@@ -41,11 +35,11 @@ func (this *LegalWalletWithdraw) SetDealTime(dealTime time.Time) (result *LegalW
 func (this *LegalWalletWithdraw) GetDealTime() (dealTime time.Time) {
 	return this.DealTime
 }
-func (this *LegalWalletWithdraw) SetStatus(status constant.WithdrawStatus) (result *LegalWalletWithdraw) {
+func (this *LegalWalletWithdraw) SetStatus(status WithdrawStatus.WithdrawStatus) (result *LegalWalletWithdraw) {
 	this.Status = status
 	return this
 }
-func (this *LegalWalletWithdraw) GetStatus() (status constant.WithdrawStatus) {
+func (this *LegalWalletWithdraw) GetStatus() (status WithdrawStatus.WithdrawStatus) {
 	return this.Status
 }
 func (this *LegalWalletWithdraw) SetAdmin(admin Admin) (result *LegalWalletWithdraw) {
@@ -62,11 +56,11 @@ func (this *LegalWalletWithdraw) SetRemark(remark string) (result *LegalWalletWi
 func (this *LegalWalletWithdraw) GetRemark() (remark string) {
 	return this.Remark
 }
-func (this *LegalWalletWithdraw) SetPayMode(payMode constant.PayMode) (result *LegalWalletWithdraw) {
+func (this *LegalWalletWithdraw) SetPayMode(payMode PayMode.PayMode) (result *LegalWalletWithdraw) {
 	this.PayMode = payMode
 	return this
 }
-func (this *LegalWalletWithdraw) GetPayMode() (payMode constant.PayMode) {
+func (this *LegalWalletWithdraw) GetPayMode() (payMode PayMode.PayMode) {
 	return this.PayMode
 }
 func (this *LegalWalletWithdraw) SetCoin(coin Coin) (result *LegalWalletWithdraw) {
@@ -104,10 +98,10 @@ type LegalWalletWithdraw struct {
 	Amount            math.BigDecimal
 	CreateTime        time.Time
 	DealTime          time.Time
-	Status            constant.WithdrawStatus
+	Status            WithdrawStatus.WithdrawStatus
 	Admin             Admin
 	Remark            string
-	PayMode           constant.PayMode
+	PayMode           PayMode.PayMode
 	Coin              Coin
 	PaymentInstrument string
 	RemitTime         time.Time

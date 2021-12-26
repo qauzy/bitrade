@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/PromotionRewardType"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *RewardPromotionSetting) SetId(id int64) (result *RewardPromotionSetting) {
 	this.Id = id
 	return this
@@ -14,18 +21,18 @@ func (this *RewardPromotionSetting) SetCoin(coin Coin) (result *RewardPromotionS
 func (this *RewardPromotionSetting) GetCoin() (coin Coin) {
 	return this.Coin
 }
-func (this *RewardPromotionSetting) SetStatus(status constant.BooleanEnum) (result *RewardPromotionSetting) {
+func (this *RewardPromotionSetting) SetStatus(status BooleanEnum.BooleanEnum) (result *RewardPromotionSetting) {
 	this.Status = status
 	return this
 }
-func (this *RewardPromotionSetting) GetStatus() (status constant.BooleanEnum) {
+func (this *RewardPromotionSetting) GetStatus() (status BooleanEnum.BooleanEnum) {
 	return this.Status
 }
-func (this *RewardPromotionSetting) SetType(oType constant.PromotionRewardType) (result *RewardPromotionSetting) {
+func (this *RewardPromotionSetting) SetType(oType PromotionRewardType.PromotionRewardType) (result *RewardPromotionSetting) {
 	this.Type = oType
 	return this
 }
-func (this *RewardPromotionSetting) GetType() (oType constant.PromotionRewardType) {
+func (this *RewardPromotionSetting) GetType() (oType PromotionRewardType.PromotionRewardType) {
 	return this.Type
 }
 func (this *RewardPromotionSetting) SetInfo(info string) (result *RewardPromotionSetting) {
@@ -74,8 +81,8 @@ func (this *RewardPromotionSetting) GetTwo() (two math.BigDecimal) {
 type RewardPromotionSetting struct {
 	Id            int64
 	Coin          Coin
-	Status        constant.BooleanEnum
-	Type          constant.PromotionRewardType
+	Status        BooleanEnum.BooleanEnum
+	Type          PromotionRewardType.PromotionRewardType
 	Info          string
 	EffectiveTime int
 	UpdateTime    time.Time

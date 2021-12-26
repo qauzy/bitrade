@@ -1,4 +1,4 @@
-package constant
+package SysConstant
 
 var (
 	SESSION_ADMIN                                  string = "ADMIN_MEMBER"

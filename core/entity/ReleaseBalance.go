@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *ReleaseBalance) SetId(id int64) (result *ReleaseBalance) {
 	this.Id = id
 	return this

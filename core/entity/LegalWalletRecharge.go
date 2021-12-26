@@ -1,11 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *LegalWalletRecharge) SetId(id int64) (result *LegalWalletRecharge) {
 	this.Id = id
 	return this
@@ -41,18 +35,18 @@ func (this *LegalWalletRecharge) SetCoin(coin Coin) (result *LegalWalletRecharge
 func (this *LegalWalletRecharge) GetCoin() (coin Coin) {
 	return this.Coin
 }
-func (this *LegalWalletRecharge) SetState(state constant.LegalWalletState) (result *LegalWalletRecharge) {
+func (this *LegalWalletRecharge) SetState(state LegalWalletState.LegalWalletState) (result *LegalWalletRecharge) {
 	this.State = state
 	return this
 }
-func (this *LegalWalletRecharge) GetState() (state constant.LegalWalletState) {
+func (this *LegalWalletRecharge) GetState() (state LegalWalletState.LegalWalletState) {
 	return this.State
 }
-func (this *LegalWalletRecharge) SetPayMode(payMode constant.PayMode) (result *LegalWalletRecharge) {
+func (this *LegalWalletRecharge) SetPayMode(payMode PayMode.PayMode) (result *LegalWalletRecharge) {
 	this.PayMode = payMode
 	return this
 }
-func (this *LegalWalletRecharge) GetPayMode() (payMode constant.PayMode) {
+func (this *LegalWalletRecharge) GetPayMode() (payMode PayMode.PayMode) {
 	return this.PayMode
 }
 func (this *LegalWalletRecharge) SetRemark(remark string) (result *LegalWalletRecharge) {
@@ -97,8 +91,8 @@ type LegalWalletRecharge struct {
 	Amount            math.BigDecimal
 	PaymentInstrument string
 	Coin              Coin
-	State             constant.LegalWalletState
-	PayMode           constant.PayMode
+	State             LegalWalletState.LegalWalletState
+	PayMode           PayMode.PayMode
 	Remark            string
 	CreationTime      time.Time
 	DealTime          time.Time

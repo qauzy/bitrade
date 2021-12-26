@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/RewardRecordType"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *RewardRecord) SetId(id int64) (result *RewardRecord) {
 	this.Id = id
 	return this
@@ -21,11 +27,11 @@ func (this *RewardRecord) SetRemark(remark string) (result *RewardRecord) {
 func (this *RewardRecord) GetRemark() (remark string) {
 	return this.Remark
 }
-func (this *RewardRecord) SetType(oType constant.RewardRecordType) (result *RewardRecord) {
+func (this *RewardRecord) SetType(oType RewardRecordType.RewardRecordType) (result *RewardRecord) {
 	this.Type = oType
 	return this
 }
-func (this *RewardRecord) GetType() (oType constant.RewardRecordType) {
+func (this *RewardRecord) GetType() (oType RewardRecordType.RewardRecordType) {
 	return this.Type
 }
 func (this *RewardRecord) SetAmount(amount math.BigDecimal) (result *RewardRecord) {
@@ -54,7 +60,7 @@ type RewardRecord struct {
 	Id         int64
 	Coin       Coin
 	Remark     string
-	Type       constant.RewardRecordType
+	Type       RewardRecordType.RewardRecordType
 	Amount     math.BigDecimal
 	Member     Member
 	CreateTime time.Time

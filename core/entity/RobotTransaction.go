@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/TransactionType"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *RobotTransaction) SetId(id int64) (result *RobotTransaction) {
 	this.Id = id
 	return this
@@ -28,11 +34,11 @@ func (this *RobotTransaction) SetCreateTime(createTime time.Time) (result *Robot
 func (this *RobotTransaction) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *RobotTransaction) SetType(oType constant.TransactionType) (result *RobotTransaction) {
+func (this *RobotTransaction) SetType(oType TransactionType.TransactionType) (result *RobotTransaction) {
 	this.Type = oType
 	return this
 }
-func (this *RobotTransaction) GetType() (oType constant.TransactionType) {
+func (this *RobotTransaction) GetType() (oType TransactionType.TransactionType) {
 	return this.Type
 }
 func (this *RobotTransaction) SetSymbol(symbol string) (result *RobotTransaction) {
@@ -55,7 +61,7 @@ type RobotTransaction struct {
 	MemberId   int64
 	Amount     math.BigDecimal
 	CreateTime time.Time
-	Type       constant.TransactionType
+	Type       TransactionType.TransactionType
 	Symbol     string
 	Fee        math.BigDecimal
 }

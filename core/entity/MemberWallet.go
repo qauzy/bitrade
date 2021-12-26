@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"github.com/qauzy/math"
+)
+
 func (this *MemberWallet) SetId(id int64) (result *MemberWallet) {
 	this.Id = id
 	return this
@@ -63,11 +68,11 @@ func (this *MemberWallet) SetVersion(version int) (result *MemberWallet) {
 func (this *MemberWallet) GetVersion() (version int) {
 	return this.Version
 }
-func (this *MemberWallet) SetIsLock(isLock constant.BooleanEnum) (result *MemberWallet) {
+func (this *MemberWallet) SetIsLock(isLock BooleanEnum.BooleanEnum) (result *MemberWallet) {
 	this.IsLock = isLock
 	return this
 }
-func (this *MemberWallet) GetIsLock() (isLock constant.BooleanEnum) {
+func (this *MemberWallet) GetIsLock() (isLock BooleanEnum.BooleanEnum) {
 	return this.IsLock
 }
 func (this *MemberWallet) SetReleaseBalance(releaseBalance math.BigDecimal) (result *MemberWallet) {
@@ -88,6 +93,6 @@ type MemberWallet struct {
 	Token          string
 	Contract       string
 	Version        int
-	IsLock         constant.BooleanEnum
+	IsLock         BooleanEnum.BooleanEnum
 	ReleaseBalance math.BigDecimal
 }

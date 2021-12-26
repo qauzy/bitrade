@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/SignStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *Sign) SetId(id int64) (result *Sign) {
 	this.Id = id
 	return this
@@ -35,11 +41,11 @@ func (this *Sign) SetCreationTime(creationTime time.Time) (result *Sign) {
 func (this *Sign) GetCreationTime() (creationTime time.Time) {
 	return this.CreationTime
 }
-func (this *Sign) SetStatus(status constant.SignStatus) (result *Sign) {
+func (this *Sign) SetStatus(status SignStatus.SignStatus) (result *Sign) {
 	this.Status = status
 	return this
 }
-func (this *Sign) GetStatus() (status constant.SignStatus) {
+func (this *Sign) GetStatus() (status SignStatus.SignStatus) {
 	return this.Status
 }
 
@@ -49,5 +55,5 @@ type Sign struct {
 	Amount       math.BigDecimal
 	EndDate      time.Time
 	CreationTime time.Time
-	Status       constant.SignStatus
+	Status       SignStatus.SignStatus
 }

@@ -1,5 +1,7 @@
 package entity
 
+import "github.com/qauzy/math"
+
 func (this *OtcWallet) SetId(id int64) (result *OtcWallet) {
 	this.Id = id
 	return this

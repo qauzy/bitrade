@@ -1,7 +1,8 @@
 package transform
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/CommonStatus"
+	"bitrade/core/constant/MemberLevelEnum"
 	"bitrade/core/entity"
 )
 
@@ -47,18 +48,18 @@ func (this *AuthMember) SetEmail(email string) (result *AuthMember) {
 func (this *AuthMember) GetEmail() (email string) {
 	return this.Email
 }
-func (this *AuthMember) SetMemberLevel(memberLevel constant.MemberLevelEnum) (result *AuthMember) {
+func (this *AuthMember) SetMemberLevel(memberLevel MemberLevelEnum.MemberLevelEnum) (result *AuthMember) {
 	this.MemberLevel = memberLevel
 	return this
 }
-func (this *AuthMember) GetMemberLevel() (memberLevel constant.MemberLevelEnum) {
+func (this *AuthMember) GetMemberLevel() (memberLevel MemberLevelEnum.MemberLevelEnum) {
 	return this.MemberLevel
 }
-func (this *AuthMember) SetStatus(status constant.CommonStatus) (result *AuthMember) {
+func (this *AuthMember) SetStatus(status CommonStatus.CommonStatus) (result *AuthMember) {
 	this.Status = status
 	return this
 }
-func (this *AuthMember) GetStatus() (status constant.CommonStatus) {
+func (this *AuthMember) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *AuthMember) SetMemberGradeId(memberGradeId int64) (result *AuthMember) {
@@ -75,7 +76,7 @@ func (this *AuthMember) GetMemberGradeId() (memberGradeId int64) {
  * @param member
  * @return
  */
-func ToAuthMember(member *entity.Member) (result *AuthMember) {
+func ToAuthMember(member entity.Member) (result AuthMember) {
 	return new(AuthMember).SetId(member.GetId()).SetName(member.GetUsername()).SetRealName(member.GetRealName()).SetLocation(member.GetLocation()).SetMobilePhone(member.GetMobilePhone()).SetEmail(member.GetEmail()).SetMemberLevel(member.GetMemberLevel()).SetStatus(member.GetStatus()).SetMemberGradeId(member.GetMemberGradeId())
 }
 
@@ -86,7 +87,7 @@ type AuthMember struct {
 	Location      entity.Location
 	MobilePhone   string
 	Email         string
-	MemberLevel   constant.MemberLevelEnum
-	Status        constant.CommonStatus
+	MemberLevel   MemberLevelEnum.MemberLevelEnum
+	Status        CommonStatus.CommonStatus
 	MemberGradeId int64
 }

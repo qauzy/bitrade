@@ -1,7 +1,8 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/AppealStatus"
+	"bitrade/core/constant/BooleanEnum"
 	"time"
 )
 
@@ -54,18 +55,18 @@ func (this *Appeal) SetAssociateId(associateId int64) (result *Appeal) {
 func (this *Appeal) GetAssociateId() (associateId int64) {
 	return this.AssociateId
 }
-func (this *Appeal) SetIsSuccess(isSuccess constant.BooleanEnum) (result *Appeal) {
+func (this *Appeal) SetIsSuccess(isSuccess BooleanEnum.BooleanEnum) (result *Appeal) {
 	this.IsSuccess = isSuccess
 	return this
 }
-func (this *Appeal) GetIsSuccess() (isSuccess constant.BooleanEnum) {
+func (this *Appeal) GetIsSuccess() (isSuccess BooleanEnum.BooleanEnum) {
 	return this.IsSuccess
 }
-func (this *Appeal) SetStatus(status constant.AppealStatus) (result *Appeal) {
+func (this *Appeal) SetStatus(status AppealStatus.AppealStatus) (result *Appeal) {
 	this.Status = status
 	return this
 }
-func (this *Appeal) GetStatus() (status constant.AppealStatus) {
+func (this *Appeal) GetStatus() (status AppealStatus.AppealStatus) {
 	return this.Status
 }
 func (this *Appeal) SetAdmin(admin Admin) (result *Appeal) {
@@ -91,8 +92,8 @@ type Appeal struct {
 	Remark       string
 	InitiatorId  int64
 	AssociateId  int64
-	IsSuccess    constant.BooleanEnum
-	Status       constant.AppealStatus
+	IsSuccess    BooleanEnum.BooleanEnum
+	Status       AppealStatus.AppealStatus
 	Admin        Admin
 	ImgUrls      string
 }

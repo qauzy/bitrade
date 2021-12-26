@@ -1,10 +1,5 @@
 package entity
 
-import (
-	"bitrade/core/constant"
-	"time"
-)
-
 func (this *MemberAddress) SetId(id int64) (result *MemberAddress) {
 	this.Id = id
 	return this
@@ -40,11 +35,11 @@ func (this *MemberAddress) SetAddress(address string) (result *MemberAddress) {
 func (this *MemberAddress) GetAddress() (address string) {
 	return this.Address
 }
-func (this *MemberAddress) SetStatus(status constant.CommonStatus) (result *MemberAddress) {
+func (this *MemberAddress) SetStatus(status CommonStatus.CommonStatus) (result *MemberAddress) {
 	this.Status = status
 	return this
 }
-func (this *MemberAddress) GetStatus() (status constant.CommonStatus) {
+func (this *MemberAddress) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *MemberAddress) SetMemberId(memberId int64) (result *MemberAddress) {
@@ -68,7 +63,7 @@ type MemberAddress struct {
 	DeleteTime time.Time
 	Coin       Coin
 	Address    string
-	Status     constant.CommonStatus
+	Status     CommonStatus.CommonStatus
 	MemberId   int64
 	Remark     string
 }
