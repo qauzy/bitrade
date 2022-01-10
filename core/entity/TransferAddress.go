@@ -12,11 +12,11 @@ func (this *TransferAddress) SetId(id int64) (result *TransferAddress) {
 func (this *TransferAddress) GetId() (id int64) {
 	return this.Id
 }
-func (this *TransferAddress) SetCoin(coin Coin) (result *TransferAddress) {
+func (this *TransferAddress) SetCoin(coin *Coin) (result *TransferAddress) {
 	this.Coin = coin
 	return this
 }
-func (this *TransferAddress) GetCoin() (coin Coin) {
+func (this *TransferAddress) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *TransferAddress) SetAddress(address string) (result *TransferAddress) {
@@ -50,7 +50,7 @@ func (this *TransferAddress) GetStatus() (status CommonStatus.CommonStatus) {
 
 type TransferAddress struct {
 	Id          int64
-	Coin        Coin
+	Coin        *Coin
 	Address     string
 	TransferFee math.BigDecimal
 	MinAmount   math.BigDecimal

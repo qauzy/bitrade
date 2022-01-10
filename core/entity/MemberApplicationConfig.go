@@ -1,5 +1,7 @@
 package entity
 
+import "bitrade/core/constant/BooleanEnum"
+
 func (this *MemberApplicationConfig) SetId(id int64) (result *MemberApplicationConfig) {
 	this.Id = id
 	return this

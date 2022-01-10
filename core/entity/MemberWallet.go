@@ -19,11 +19,11 @@ func (this *MemberWallet) SetMemberId(memberId int64) (result *MemberWallet) {
 func (this *MemberWallet) GetMemberId() (memberId int64) {
 	return this.MemberId
 }
-func (this *MemberWallet) SetCoin(coin Coin) (result *MemberWallet) {
+func (this *MemberWallet) SetCoin(coin *Coin) (result *MemberWallet) {
 	this.Coin = coin
 	return this
 }
-func (this *MemberWallet) GetCoin() (coin Coin) {
+func (this *MemberWallet) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *MemberWallet) SetBalance(balance math.BigDecimal) (result *MemberWallet) {
@@ -86,7 +86,7 @@ func (this *MemberWallet) GetReleaseBalance() (releaseBalance math.BigDecimal) {
 type MemberWallet struct {
 	Id             int64
 	MemberId       int64
-	Coin           Coin
+	Coin           *Coin
 	Balance        math.BigDecimal
 	FrozenBalance  math.BigDecimal
 	Address        string

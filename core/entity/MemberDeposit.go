@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *MemberDeposit) SetId(id int64) (result *MemberDeposit) {
 	this.Id = id
 	return this

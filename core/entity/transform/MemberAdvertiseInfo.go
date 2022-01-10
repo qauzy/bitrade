@@ -1,10 +1,5 @@
 package transform
 
-import (
-	"bitrade/core/constant/BooleanEnum"
-	"time"
-)
-
 func (this *MemberAdvertiseInfo) SetBuy(buy []ScanAdvertise) (result *MemberAdvertiseInfo) {
 	this.Buy = buy
 	return this

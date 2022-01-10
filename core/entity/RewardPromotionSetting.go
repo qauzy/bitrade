@@ -14,11 +14,11 @@ func (this *RewardPromotionSetting) SetId(id int64) (result *RewardPromotionSett
 func (this *RewardPromotionSetting) GetId() (id int64) {
 	return this.Id
 }
-func (this *RewardPromotionSetting) SetCoin(coin Coin) (result *RewardPromotionSetting) {
+func (this *RewardPromotionSetting) SetCoin(coin *Coin) (result *RewardPromotionSetting) {
 	this.Coin = coin
 	return this
 }
-func (this *RewardPromotionSetting) GetCoin() (coin Coin) {
+func (this *RewardPromotionSetting) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *RewardPromotionSetting) SetStatus(status BooleanEnum.BooleanEnum) (result *RewardPromotionSetting) {
@@ -56,11 +56,11 @@ func (this *RewardPromotionSetting) SetUpdateTime(updateTime time.Time) (result 
 func (this *RewardPromotionSetting) GetUpdateTime() (updateTime time.Time) {
 	return this.UpdateTime
 }
-func (this *RewardPromotionSetting) SetAdmin(admin Admin) (result *RewardPromotionSetting) {
+func (this *RewardPromotionSetting) SetAdmin(admin *Admin) (result *RewardPromotionSetting) {
 	this.Admin = admin
 	return this
 }
-func (this *RewardPromotionSetting) GetAdmin() (admin Admin) {
+func (this *RewardPromotionSetting) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *RewardPromotionSetting) SetOne(one math.BigDecimal) (result *RewardPromotionSetting) {
@@ -80,13 +80,13 @@ func (this *RewardPromotionSetting) GetTwo() (two math.BigDecimal) {
 
 type RewardPromotionSetting struct {
 	Id            int64
-	Coin          Coin
+	Coin          *Coin
 	Status        BooleanEnum.BooleanEnum
 	Type          PromotionRewardType.PromotionRewardType
 	Info          string
 	EffectiveTime int
 	UpdateTime    time.Time
-	Admin         Admin
+	Admin         *Admin
 	One           math.BigDecimal
 	Two           math.BigDecimal
 }

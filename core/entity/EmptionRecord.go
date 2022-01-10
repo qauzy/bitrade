@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *EmptionRecord) SetId(id int64) (result *EmptionRecord) {
 	this.Id = id
 	return this

@@ -28,20 +28,20 @@ func (this *SysRole) SetPermissions(permissions []SysPermission) (result *SysRol
 func (this *SysRole) GetPermissions() (permissions []SysPermission) {
 	return this.Permissions
 }
-func NewSysRole(id int64, role string) (this *SysRole) {
+func NewSysRoleV2(id int64, role string) (this *SysRole) {
 	this = new(SysRole)
 	this.Id = id
 	this.Role = role
 	return
 }
-func NewSysRole(id int64, role string, description string) (this *SysRole) {
+func NewSysRoleV3(id int64, role string, description string) (this *SysRole) {
 	this = new(SysRole)
 	this.Id = id
 	this.Role = role
 	this.Description = description
 	return
 }
-func NewSysRole() (this *SysRole) {
+func NewSysRoleV0() (this *SysRole) {
 	this = new(SysRole)
 	return
 }

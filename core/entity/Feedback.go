@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 func (this *Feedback) SetId(id int64) (result *Feedback) {
 	this.Id = id
 	return this
@@ -21,11 +23,11 @@ func (this *Feedback) SetRemark(remark string) (result *Feedback) {
 func (this *Feedback) GetRemark() (remark string) {
 	return this.Remark
 }
-func (this *Feedback) SetMember(member Member) (result *Feedback) {
+func (this *Feedback) SetMember(member *Member) (result *Feedback) {
 	this.Member = member
 	return this
 }
-func (this *Feedback) GetMember() (member Member) {
+func (this *Feedback) GetMember() (member *Member) {
 	return this.Member
 }
 
@@ -33,5 +35,5 @@ type Feedback struct {
 	Id         int64
 	CreateTime time.Time
 	Remark     string
-	Member     Member
+	Member     *Member
 }

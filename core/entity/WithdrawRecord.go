@@ -21,11 +21,11 @@ func (this *WithdrawRecord) SetMemberId(memberId int64) (result *WithdrawRecord)
 func (this *WithdrawRecord) GetMemberId() (memberId int64) {
 	return this.MemberId
 }
-func (this *WithdrawRecord) SetCoin(coin Coin) (result *WithdrawRecord) {
+func (this *WithdrawRecord) SetCoin(coin *Coin) (result *WithdrawRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *WithdrawRecord) GetCoin() (coin Coin) {
+func (this *WithdrawRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *WithdrawRecord) SetTotalAmount(totalAmount math.BigDecimal) (result *WithdrawRecord) {
@@ -77,11 +77,11 @@ func (this *WithdrawRecord) SetIsAuto(isAuto BooleanEnum.BooleanEnum) (result *W
 func (this *WithdrawRecord) GetIsAuto() (isAuto BooleanEnum.BooleanEnum) {
 	return this.IsAuto
 }
-func (this *WithdrawRecord) SetAdmin(admin Admin) (result *WithdrawRecord) {
+func (this *WithdrawRecord) SetAdmin(admin *Admin) (result *WithdrawRecord) {
 	this.Admin = admin
 	return this
 }
-func (this *WithdrawRecord) GetAdmin() (admin Admin) {
+func (this *WithdrawRecord) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *WithdrawRecord) SetCanAutoWithdraw(canAutoWithdraw BooleanEnum.BooleanEnum) (result *WithdrawRecord) {
@@ -116,7 +116,7 @@ func (this *WithdrawRecord) GetRemark() (remark string) {
 type WithdrawRecord struct {
 	Id                int64
 	MemberId          int64
-	Coin              Coin
+	Coin              *Coin
 	TotalAmount       math.BigDecimal
 	Fee               math.BigDecimal
 	ArrivedAmount     math.BigDecimal
@@ -124,7 +124,7 @@ type WithdrawRecord struct {
 	DealTime          time.Time
 	Status            WithdrawStatus.WithdrawStatus
 	IsAuto            BooleanEnum.BooleanEnum
-	Admin             Admin
+	Admin             *Admin
 	CanAutoWithdraw   BooleanEnum.BooleanEnum
 	TransactionNumber string
 	Address           string

@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *DividendStartRecord) SetId(id int64) (result *DividendStartRecord) {
 	this.Id = id
 	return this
@@ -63,11 +68,11 @@ func (this *DividendStartRecord) SetAmount(amount math.BigDecimal) (result *Divi
 func (this *DividendStartRecord) GetAmount() (amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *DividendStartRecord) SetAdmin(admin Admin) (result *DividendStartRecord) {
+func (this *DividendStartRecord) SetAdmin(admin *Admin) (result *DividendStartRecord) {
 	this.Admin = admin
 	return this
 }
-func (this *DividendStartRecord) GetAdmin() (admin Admin) {
+func (this *DividendStartRecord) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 
@@ -81,5 +86,5 @@ type DividendStartRecord struct {
 	Unit      string
 	Rate      math.BigDecimal
 	Amount    math.BigDecimal
-	Admin     Admin
+	Admin     *Admin
 }

@@ -51,11 +51,11 @@ func (this *OtcWallet) SetVersion(version int64) (result *OtcWallet) {
 func (this *OtcWallet) GetVersion() (version int64) {
 	return this.Version
 }
-func (this *OtcWallet) SetCoin(coin Coin) (result *OtcWallet) {
+func (this *OtcWallet) SetCoin(coin *Coin) (result *OtcWallet) {
 	this.Coin = coin
 	return this
 }
-func (this *OtcWallet) GetCoin() (coin Coin) {
+func (this *OtcWallet) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 
@@ -67,5 +67,5 @@ type OtcWallet struct {
 	IsLock         int64
 	MemberId       int64
 	Version        int64
-	Coin           Coin
+	Coin           *Coin
 }

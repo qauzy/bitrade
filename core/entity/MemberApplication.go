@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/AuditStatus"
+	"time"
+)
+
 func (this *MemberApplication) SetId(id int64) (result *MemberApplication) {
 	this.Id = id
 	return this
@@ -21,11 +26,11 @@ func (this *MemberApplication) SetIdCard(idCard string) (result *MemberApplicati
 func (this *MemberApplication) GetIdCard() (idCard string) {
 	return this.IdCard
 }
-func (this *MemberApplication) SetType(oType enums.CredentialsType) (result *MemberApplication) {
+func (this *MemberApplication) SetType(oType CredentialsType.CredentialsType) (result *MemberApplication) {
 	this.Type = oType
 	return this
 }
-func (this *MemberApplication) GetType() (oType enums.CredentialsType) {
+func (this *MemberApplication) GetType() (oType CredentialsType.CredentialsType) {
 	return this.Type
 }
 func (this *MemberApplication) SetIdentityCardImgFront(identityCardImgFront string) (result *MemberApplication) {
@@ -56,11 +61,11 @@ func (this *MemberApplication) SetAuditStatus(auditStatus AuditStatus.AuditStatu
 func (this *MemberApplication) GetAuditStatus() (auditStatus AuditStatus.AuditStatus) {
 	return this.AuditStatus
 }
-func (this *MemberApplication) SetMember(member Member) (result *MemberApplication) {
+func (this *MemberApplication) SetMember(member *Member) (result *MemberApplication) {
 	this.Member = member
 	return this
 }
-func (this *MemberApplication) GetMember() (member Member) {
+func (this *MemberApplication) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *MemberApplication) SetRejectReason(rejectReason string) (result *MemberApplication) {
@@ -110,12 +115,12 @@ type MemberApplication struct {
 	Id                     int64
 	RealName               string
 	IdCard                 string
-	Type                   enums.CredentialsType
+	Type                   CredentialsType.CredentialsType
 	IdentityCardImgFront   string
 	IdentityCardImgReverse string
 	IdentityCardImgInHand  string
 	AuditStatus            AuditStatus.AuditStatus
-	Member                 Member
+	Member                 *Member
 	RejectReason           string
 	CreateTime             time.Time
 	UpdateTime             time.Time

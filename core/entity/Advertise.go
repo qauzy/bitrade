@@ -1,6 +1,11 @@
 package entity
 
 import (
+	"bitrade/core/constant/AdvertiseControlStatus"
+	"bitrade/core/constant/AdvertiseLevel"
+	"bitrade/core/constant/AdvertiseType"
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/PriceType"
 	"github.com/qauzy/math"
 	"time"
 )
@@ -19,18 +24,18 @@ func (this *Advertise) SetPrice(price math.BigDecimal) (result *Advertise) {
 func (this *Advertise) GetPrice() (price math.BigDecimal) {
 	return this.Price
 }
-func (this *Advertise) SetAdvertiseType(advertiseType AdvertiseType) (result *Advertise) {
+func (this *Advertise) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *Advertise) {
 	this.AdvertiseType = advertiseType
 	return this
 }
-func (this *Advertise) GetAdvertiseType() (advertiseType AdvertiseType) {
+func (this *Advertise) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
-func (this *Advertise) SetMember(member Member) (result *Advertise) {
+func (this *Advertise) SetMember(member *Member) (result *Advertise) {
 	this.Member = member
 	return this
 }
-func (this *Advertise) GetMember() (member Member) {
+func (this *Advertise) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *Advertise) SetCreateTime(createTime time.Time) (result *Advertise) {
@@ -47,18 +52,18 @@ func (this *Advertise) SetUpdateTime(updateTime time.Time) (result *Advertise) {
 func (this *Advertise) GetUpdateTime() (updateTime time.Time) {
 	return this.UpdateTime
 }
-func (this *Advertise) SetCoin(coin OtcCoin) (result *Advertise) {
+func (this *Advertise) SetCoin(coin *OtcCoin) (result *Advertise) {
 	this.Coin = coin
 	return this
 }
-func (this *Advertise) GetCoin() (coin OtcCoin) {
+func (this *Advertise) GetCoin() (coin *OtcCoin) {
 	return this.Coin
 }
-func (this *Advertise) SetCountry(country Country) (result *Advertise) {
+func (this *Advertise) SetCountry(country *Country) (result *Advertise) {
 	this.Country = country
 	return this
 }
-func (this *Advertise) GetCountry() (country Country) {
+func (this *Advertise) GetCountry() (country *Country) {
 	return this.Country
 }
 func (this *Advertise) SetMinLimit(minLimit math.BigDecimal) (result *Advertise) {
@@ -96,11 +101,11 @@ func (this *Advertise) SetPremiseRate(premiseRate math.BigDecimal) (result *Adve
 func (this *Advertise) GetPremiseRate() (premiseRate math.BigDecimal) {
 	return this.PremiseRate
 }
-func (this *Advertise) SetLevel(level AdvertiseLevel) (result *Advertise) {
+func (this *Advertise) SetLevel(level AdvertiseLevel.AdvertiseLevel) (result *Advertise) {
 	this.Level = level
 	return this
 }
-func (this *Advertise) GetLevel() (level AdvertiseLevel) {
+func (this *Advertise) GetLevel() (level AdvertiseLevel.AdvertiseLevel) {
 	return this.Level
 }
 func (this *Advertise) SetPayMode(payMode string) (result *Advertise) {
@@ -117,18 +122,18 @@ func (this *Advertise) SetVersion(version int64) (result *Advertise) {
 func (this *Advertise) GetVersion() (version int64) {
 	return this.Version
 }
-func (this *Advertise) SetStatus(status AdvertiseControlStatus) (result *Advertise) {
+func (this *Advertise) SetStatus(status AdvertiseControlStatus.AdvertiseControlStatus) (result *Advertise) {
 	this.Status = status
 	return this
 }
-func (this *Advertise) GetStatus() (status AdvertiseControlStatus) {
+func (this *Advertise) GetStatus() (status AdvertiseControlStatus.AdvertiseControlStatus) {
 	return this.Status
 }
-func (this *Advertise) SetPriceType(priceType PriceType) (result *Advertise) {
+func (this *Advertise) SetPriceType(priceType PriceType.PriceType) (result *Advertise) {
 	this.PriceType = priceType
 	return this
 }
-func (this *Advertise) GetPriceType() (priceType PriceType) {
+func (this *Advertise) GetPriceType() (priceType PriceType.PriceType) {
 	return this.PriceType
 }
 func (this *Advertise) SetNumber(number math.BigDecimal) (result *Advertise) {
@@ -152,11 +157,11 @@ func (this *Advertise) SetRemainAmount(remainAmount math.BigDecimal) (result *Ad
 func (this *Advertise) GetRemainAmount() (remainAmount math.BigDecimal) {
 	return this.RemainAmount
 }
-func (this *Advertise) SetAuto(auto BooleanEnum) (result *Advertise) {
+func (this *Advertise) SetAuto(auto BooleanEnum.BooleanEnum) (result *Advertise) {
 	this.Auto = auto
 	return this
 }
-func (this *Advertise) GetAuto() (auto BooleanEnum) {
+func (this *Advertise) GetAuto() (auto BooleanEnum.BooleanEnum) {
 	return this.Auto
 }
 func (this *Advertise) SetMarketPrice(marketPrice math.BigDecimal) (result *Advertise) {
@@ -198,26 +203,26 @@ func (this *Advertise) GetCoinUnit() (coinUnit string) {
 type Advertise struct {
 	Id            int64
 	Price         math.BigDecimal
-	AdvertiseType AdvertiseType
-	Member        Member
+	AdvertiseType AdvertiseType.AdvertiseType
+	Member        *Member
 	CreateTime    time.Time
 	UpdateTime    time.Time
-	Coin          OtcCoin
-	Country       Country
+	Coin          *OtcCoin
+	Country       *Country
 	MinLimit      math.BigDecimal
 	MaxLimit      math.BigDecimal
 	Remark        string
 	TimeLimit     int64
 	PremiseRate   math.BigDecimal
-	Level         AdvertiseLevel
+	Level         AdvertiseLevel.AdvertiseLevel
 	PayMode       string
 	Version       int64
-	Status        AdvertiseControlStatus
-	PriceType     PriceType
+	Status        AdvertiseControlStatus.AdvertiseControlStatus
+	PriceType     PriceType.PriceType
 	Number        math.BigDecimal
 	DealAmount    math.BigDecimal
 	RemainAmount  math.BigDecimal
-	Auto          BooleanEnum
+	Auto          BooleanEnum.BooleanEnum
 	MarketPrice   math.BigDecimal
 	Autoword      string
 	LimitMoney    string

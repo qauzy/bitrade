@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *HotTransferRecord) SetId(id int64) (result *HotTransferRecord) {
 	this.Id = id
 	return this

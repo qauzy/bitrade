@@ -14,11 +14,11 @@ func (this *BusinessAuthApply) SetId(id int64) (result *BusinessAuthApply) {
 func (this *BusinessAuthApply) GetId() (id int64) {
 	return this.Id
 }
-func (this *BusinessAuthApply) SetMember(member Member) (result *BusinessAuthApply) {
+func (this *BusinessAuthApply) SetMember(member *Member) (result *BusinessAuthApply) {
 	this.Member = member
 	return this
 }
-func (this *BusinessAuthApply) GetMember() (member Member) {
+func (this *BusinessAuthApply) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *BusinessAuthApply) SetCertifiedBusinessStatus(certifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus) (result *BusinessAuthApply) {
@@ -56,11 +56,11 @@ func (this *BusinessAuthApply) SetAuthInfo(authInfo string) (result *BusinessAut
 func (this *BusinessAuthApply) GetAuthInfo() (authInfo string) {
 	return this.AuthInfo
 }
-func (this *BusinessAuthApply) SetBusinessAuthDeposit(businessAuthDeposit BusinessAuthDeposit) (result *BusinessAuthApply) {
+func (this *BusinessAuthApply) SetBusinessAuthDeposit(businessAuthDeposit *BusinessAuthDeposit) (result *BusinessAuthApply) {
 	this.BusinessAuthDeposit = businessAuthDeposit
 	return this
 }
-func (this *BusinessAuthApply) GetBusinessAuthDeposit() (businessAuthDeposit BusinessAuthDeposit) {
+func (this *BusinessAuthApply) GetBusinessAuthDeposit() (businessAuthDeposit *BusinessAuthDeposit) {
 	return this.BusinessAuthDeposit
 }
 func (this *BusinessAuthApply) SetDepositRecordId(depositRecordId string) (result *BusinessAuthApply) {
@@ -94,13 +94,13 @@ func (this *BusinessAuthApply) GetInfo() (info fastjson.JSONObject) {
 
 type BusinessAuthApply struct {
 	Id                      int64
-	Member                  Member
+	Member                  *Member
 	CertifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus
 	Detail                  string
 	CreateTime              time.Time
 	AuditingTime            time.Time
 	AuthInfo                string
-	BusinessAuthDeposit     BusinessAuthDeposit
+	BusinessAuthDeposit     *BusinessAuthDeposit
 	DepositRecordId         string
 	Amount                  math.BigDecimal
 	UpdateTime              time.Time

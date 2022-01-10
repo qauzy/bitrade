@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/DepositStatusEnum"
+	"github.com/qauzy/math"
+)
+
 func (this *DepositRecord) SetId(id string) (result *DepositRecord) {
 	this.Id = id
 	return this
@@ -7,18 +12,18 @@ func (this *DepositRecord) SetId(id string) (result *DepositRecord) {
 func (this *DepositRecord) GetId() (id string) {
 	return this.Id
 }
-func (this *DepositRecord) SetMember(member Member) (result *DepositRecord) {
+func (this *DepositRecord) SetMember(member *Member) (result *DepositRecord) {
 	this.Member = member
 	return this
 }
-func (this *DepositRecord) GetMember() (member Member) {
+func (this *DepositRecord) GetMember() (member *Member) {
 	return this.Member
 }
-func (this *DepositRecord) SetCoin(coin Coin) (result *DepositRecord) {
+func (this *DepositRecord) SetCoin(coin *Coin) (result *DepositRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *DepositRecord) GetCoin() (coin Coin) {
+func (this *DepositRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *DepositRecord) SetAmount(amount math.BigDecimal) (result *DepositRecord) {
@@ -38,8 +43,8 @@ func (this *DepositRecord) GetStatus() (status DepositStatusEnum.DepositStatusEn
 
 type DepositRecord struct {
 	Id     string
-	Member Member
-	Coin   Coin
+	Member *Member
+	Coin   *Coin
 	Amount math.BigDecimal
 	Status DepositStatusEnum.DepositStatusEnum
 }

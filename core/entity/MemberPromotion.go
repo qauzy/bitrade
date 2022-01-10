@@ -1,5 +1,7 @@
 package entity
 
+import "bitrade/core/constant/PromotionLevel"
+
 func (this *MemberPromotion) SetId(id int64) (result *MemberPromotion) {
 	this.Id = id
 	return this

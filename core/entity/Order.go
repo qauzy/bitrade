@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/AdvertiseType"
+	"bitrade/core/constant/OrderStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *Order) SetId(id int64) (result *Order) {
 	this.Id = id
 	return this
@@ -77,11 +84,11 @@ func (this *Order) SetCustomerRealName(customerRealName string) (result *Order) 
 func (this *Order) GetCustomerRealName() (customerRealName string) {
 	return this.CustomerRealName
 }
-func (this *Order) SetCoin(coin OtcCoin) (result *Order) {
+func (this *Order) SetCoin(coin *OtcCoin) (result *Order) {
 	this.Coin = coin
 	return this
 }
-func (this *Order) GetCoin() (coin OtcCoin) {
+func (this *Order) GetCoin() (coin *OtcCoin) {
 	return this.Coin
 }
 func (this *Order) SetPrice(price math.BigDecimal) (result *Order) {
@@ -189,25 +196,25 @@ func (this *Order) SetReleaseTime(releaseTime time.Time) (result *Order) {
 func (this *Order) GetReleaseTime() (releaseTime time.Time) {
 	return this.ReleaseTime
 }
-func (this *Order) SetAlipay(alipay Alipay) (result *Order) {
+func (this *Order) SetAlipay(alipay *Alipay) (result *Order) {
 	this.Alipay = alipay
 	return this
 }
-func (this *Order) GetAlipay() (alipay Alipay) {
+func (this *Order) GetAlipay() (alipay *Alipay) {
 	return this.Alipay
 }
-func (this *Order) SetBankInfo(bankInfo BankInfo) (result *Order) {
+func (this *Order) SetBankInfo(bankInfo *BankInfo) (result *Order) {
 	this.BankInfo = bankInfo
 	return this
 }
-func (this *Order) GetBankInfo() (bankInfo BankInfo) {
+func (this *Order) GetBankInfo() (bankInfo *BankInfo) {
 	return this.BankInfo
 }
-func (this *Order) SetWechatPay(wechatPay WechatPay) (result *Order) {
+func (this *Order) SetWechatPay(wechatPay *WechatPay) (result *Order) {
 	this.WechatPay = wechatPay
 	return this
 }
-func (this *Order) GetWechatPay() (wechatPay WechatPay) {
+func (this *Order) GetWechatPay() (wechatPay *WechatPay) {
 	return this.WechatPay
 }
 func (this *Order) SetVersion(version int64) (result *Order) {
@@ -230,7 +237,7 @@ type Order struct {
 	CustomerId       int64
 	CustomerName     string
 	CustomerRealName string
-	Coin             OtcCoin
+	Coin             *OtcCoin
 	Price            math.BigDecimal
 	MaxLimit         math.BigDecimal
 	Country          string
@@ -246,8 +253,8 @@ type Order struct {
 	AdvertiseId      int64
 	CancelTime       time.Time
 	ReleaseTime      time.Time
-	Alipay           Alipay
-	BankInfo         BankInfo
-	WechatPay        WechatPay
+	Alipay           *Alipay
+	BankInfo         *BankInfo
+	WechatPay        *WechatPay
 	Version          int64
 }

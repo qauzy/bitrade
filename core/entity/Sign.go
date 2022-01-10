@@ -13,11 +13,11 @@ func (this *Sign) SetId(id int64) (result *Sign) {
 func (this *Sign) GetId() (id int64) {
 	return this.Id
 }
-func (this *Sign) SetCoin(coin Coin) (result *Sign) {
+func (this *Sign) SetCoin(coin *Coin) (result *Sign) {
 	this.Coin = coin
 	return this
 }
-func (this *Sign) GetCoin() (coin Coin) {
+func (this *Sign) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *Sign) SetAmount(amount math.BigDecimal) (result *Sign) {
@@ -51,7 +51,7 @@ func (this *Sign) GetStatus() (status SignStatus.SignStatus) {
 
 type Sign struct {
 	Id           int64
-	Coin         Coin
+	Coin         *Coin
 	Amount       math.BigDecimal
 	EndDate      time.Time
 	CreationTime time.Time

@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/TransactionType"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *MemberTransaction) SetId(id int64) (result *MemberTransaction) {
 	this.Id = id
 	return this

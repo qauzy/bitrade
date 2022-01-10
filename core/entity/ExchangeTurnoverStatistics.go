@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *ExchangeTurnoverStatistics) SetDate(date time.Time) (result *ExchangeTurnoverStatistics) {
 	this.Date = date
 	return this

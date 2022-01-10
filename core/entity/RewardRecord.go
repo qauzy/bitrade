@@ -13,11 +13,11 @@ func (this *RewardRecord) SetId(id int64) (result *RewardRecord) {
 func (this *RewardRecord) GetId() (id int64) {
 	return this.Id
 }
-func (this *RewardRecord) SetCoin(coin Coin) (result *RewardRecord) {
+func (this *RewardRecord) SetCoin(coin *Coin) (result *RewardRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *RewardRecord) GetCoin() (coin Coin) {
+func (this *RewardRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *RewardRecord) SetRemark(remark string) (result *RewardRecord) {
@@ -41,11 +41,11 @@ func (this *RewardRecord) SetAmount(amount math.BigDecimal) (result *RewardRecor
 func (this *RewardRecord) GetAmount() (amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *RewardRecord) SetMember(member Member) (result *RewardRecord) {
+func (this *RewardRecord) SetMember(member *Member) (result *RewardRecord) {
 	this.Member = member
 	return this
 }
-func (this *RewardRecord) GetMember() (member Member) {
+func (this *RewardRecord) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *RewardRecord) SetCreateTime(createTime time.Time) (result *RewardRecord) {
@@ -58,10 +58,10 @@ func (this *RewardRecord) GetCreateTime() (createTime time.Time) {
 
 type RewardRecord struct {
 	Id         int64
-	Coin       Coin
+	Coin       *Coin
 	Remark     string
 	Type       RewardRecordType.RewardRecordType
 	Amount     math.BigDecimal
-	Member     Member
+	Member     *Member
 	CreateTime time.Time
 }

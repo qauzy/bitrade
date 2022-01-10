@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *MemberSignRecord) SetId(id int64) (result *MemberSignRecord) {
 	this.Id = id
 	return this
@@ -7,25 +12,25 @@ func (this *MemberSignRecord) SetId(id int64) (result *MemberSignRecord) {
 func (this *MemberSignRecord) GetId() (id int64) {
 	return this.Id
 }
-func (this *MemberSignRecord) SetMember(member Member) (result *MemberSignRecord) {
+func (this *MemberSignRecord) SetMember(member *Member) (result *MemberSignRecord) {
 	this.Member = member
 	return this
 }
-func (this *MemberSignRecord) GetMember() (member Member) {
+func (this *MemberSignRecord) GetMember() (member *Member) {
 	return this.Member
 }
-func (this *MemberSignRecord) SetSign(sign Sign) (result *MemberSignRecord) {
+func (this *MemberSignRecord) SetSign(sign *Sign) (result *MemberSignRecord) {
 	this.Sign = sign
 	return this
 }
-func (this *MemberSignRecord) GetSign() (sign Sign) {
+func (this *MemberSignRecord) GetSign() (sign *Sign) {
 	return this.Sign
 }
-func (this *MemberSignRecord) SetCoin(coin Coin) (result *MemberSignRecord) {
+func (this *MemberSignRecord) SetCoin(coin *Coin) (result *MemberSignRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *MemberSignRecord) GetCoin() (coin Coin) {
+func (this *MemberSignRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *MemberSignRecord) SetAmount(amount math.BigDecimal) (result *MemberSignRecord) {
@@ -42,11 +47,11 @@ func (this *MemberSignRecord) SetCreationTime(creationTime time.Time) (result *M
 func (this *MemberSignRecord) GetCreationTime() (creationTime time.Time) {
 	return this.CreationTime
 }
-func NewMemberSignRecord() (this *MemberSignRecord) {
+func NewMemberSignRecordV0() (this *MemberSignRecord) {
 	this = new(MemberSignRecord)
 	return
 }
-func NewMemberSignRecord(member Member, sign Sign) (this *MemberSignRecord) {
+func NewMemberSignRecordV2(member *Member, sign *Sign) (this *MemberSignRecord) {
 	this = new(MemberSignRecord)
 	this.Member = member
 	this.Sign = sign
@@ -59,9 +64,9 @@ func NewMemberSignRecord(member Member, sign Sign) (this *MemberSignRecord) {
 
 type MemberSignRecord struct {
 	Id           int64
-	Member       Member
-	Sign         Sign
-	Coin         Coin
+	Member       *Member
+	Sign         *Sign
+	Coin         *Coin
 	Amount       math.BigDecimal
 	CreationTime time.Time
 }

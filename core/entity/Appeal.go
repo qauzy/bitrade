@@ -13,11 +13,11 @@ func (this *Appeal) SetId(id int64) (result *Appeal) {
 func (this *Appeal) GetId() (id int64) {
 	return this.Id
 }
-func (this *Appeal) SetOrder(order Order) (result *Appeal) {
+func (this *Appeal) SetOrder(order *Order) (result *Appeal) {
 	this.Order = order
 	return this
 }
-func (this *Appeal) GetOrder() (order Order) {
+func (this *Appeal) GetOrder() (order *Order) {
 	return this.Order
 }
 func (this *Appeal) SetCreateTime(createTime time.Time) (result *Appeal) {
@@ -69,11 +69,11 @@ func (this *Appeal) SetStatus(status AppealStatus.AppealStatus) (result *Appeal)
 func (this *Appeal) GetStatus() (status AppealStatus.AppealStatus) {
 	return this.Status
 }
-func (this *Appeal) SetAdmin(admin Admin) (result *Appeal) {
+func (this *Appeal) SetAdmin(admin *Admin) (result *Appeal) {
 	this.Admin = admin
 	return this
 }
-func (this *Appeal) GetAdmin() (admin Admin) {
+func (this *Appeal) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *Appeal) SetImgUrls(imgUrls string) (result *Appeal) {
@@ -86,7 +86,7 @@ func (this *Appeal) GetImgUrls() (imgUrls string) {
 
 type Appeal struct {
 	Id           int64
-	Order        Order
+	Order        *Order
 	CreateTime   time.Time
 	DealWithTime time.Time
 	Remark       string
@@ -94,6 +94,6 @@ type Appeal struct {
 	AssociateId  int64
 	IsSuccess    BooleanEnum.BooleanEnum
 	Status       AppealStatus.AppealStatus
-	Admin        Admin
+	Admin        *Admin
 	ImgUrls      string
 }

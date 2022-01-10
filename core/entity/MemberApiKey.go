@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 func (this *MemberApiKey) SetId(id int64) (result *MemberApiKey) {
 	this.Id = id
 	return this
@@ -70,11 +72,11 @@ func (this *MemberApiKey) SetCode(code string) (result *MemberApiKey) {
 func (this *MemberApiKey) GetCode() (code string) {
 	return this.Code
 }
-func NewMemberApiKey() (this *MemberApiKey) {
+func NewMemberApiKeyV0() (this *MemberApiKey) {
 	this = new(MemberApiKey)
 	return
 }
-func NewMemberApiKey(memberId int64, apiKey string, secretKey string, bindIp string, apiName string, remark string, expireTime time.Time, id int64, createTime time.Time) (this *MemberApiKey) {
+func NewMemberApiKeyV9(memberId int64, apiKey string, secretKey string, bindIp string, apiName string, remark string, expireTime time.Time, id int64, createTime time.Time) (this *MemberApiKey) {
 	this = new(MemberApiKey)
 	this.Id = id
 	this.MemberId = memberId
@@ -87,7 +89,7 @@ func NewMemberApiKey(memberId int64, apiKey string, secretKey string, bindIp str
 	this.CreateTime = createTime
 	return
 }
-func NewMemberApiKey(memberId int64, apiKey string, bindIp string, apiName string, remark string, expireTime time.Time, id int64, createTime time.Time) (this *MemberApiKey) {
+func NewMemberApiKeyV8(memberId int64, apiKey string, bindIp string, apiName string, remark string, expireTime time.Time, id int64, createTime time.Time) (this *MemberApiKey) {
 	this = new(MemberApiKey)
 	this.Id = id
 	this.MemberId = memberId
@@ -99,7 +101,7 @@ func NewMemberApiKey(memberId int64, apiKey string, bindIp string, apiName strin
 	this.CreateTime = createTime
 	return
 }
-func NewMemberApiKey(memberId int64, bindIp string, apiName string, remark string, createTime time.Time) (this *MemberApiKey) {
+func NewMemberApiKeyV5(memberId int64, bindIp string, apiName string, remark string, createTime time.Time) (this *MemberApiKey) {
 	this = new(MemberApiKey)
 	this.MemberId = memberId
 	this.BindIp = bindIp

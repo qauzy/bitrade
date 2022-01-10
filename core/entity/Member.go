@@ -1,5 +1,15 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/CertifiedBusinessStatus"
+	"bitrade/core/constant/CommonStatus"
+	"bitrade/core/constant/MemberLevelEnum"
+	"bitrade/core/constant/RealNameStatus"
+	"bitrade/core/vo"
+	"time"
+)
+
 func (this *Member) SetId(id int64) (result *Member) {
 	this.Id = id
 	return this
@@ -91,25 +101,25 @@ func (this *Member) SetMobilePhone(mobilePhone string) (result *Member) {
 func (this *Member) GetMobilePhone() (mobilePhone string) {
 	return this.MobilePhone
 }
-func (this *Member) SetLocation(location Location) (result *Member) {
+func (this *Member) SetLocation(location *Location) (result *Member) {
 	this.Location = location
 	return this
 }
-func (this *Member) GetLocation() (location Location) {
+func (this *Member) GetLocation() (location *Location) {
 	return this.Location
 }
-func (this *Member) SetMemberLevel(memberLevel MemberLevelEnum) (result *Member) {
+func (this *Member) SetMemberLevel(memberLevel MemberLevelEnum.MemberLevelEnum) (result *Member) {
 	this.MemberLevel = memberLevel
 	return this
 }
-func (this *Member) GetMemberLevel() (memberLevel MemberLevelEnum) {
+func (this *Member) GetMemberLevel() (memberLevel MemberLevelEnum.MemberLevelEnum) {
 	return this.MemberLevel
 }
-func (this *Member) SetStatus(status CommonStatus) (result *Member) {
+func (this *Member) SetStatus(status CommonStatus.CommonStatus) (result *Member) {
 	this.Status = status
 	return this
 }
-func (this *Member) GetStatus() (status CommonStatus) {
+func (this *Member) GetStatus() (status CommonStatus.CommonStatus) {
 	return this.Status
 }
 func (this *Member) SetRegistrationTime(registrationTime time.Time) (result *Member) {
@@ -140,25 +150,25 @@ func (this *Member) SetTransactions(transactions int) (result *Member) {
 func (this *Member) GetTransactions() (transactions int) {
 	return this.Transactions
 }
-func (this *Member) SetBankInfo(bankInfo BankInfo) (result *Member) {
+func (this *Member) SetBankInfo(bankInfo *BankInfo) (result *Member) {
 	this.BankInfo = bankInfo
 	return this
 }
-func (this *Member) GetBankInfo() (bankInfo BankInfo) {
+func (this *Member) GetBankInfo() (bankInfo *BankInfo) {
 	return this.BankInfo
 }
-func (this *Member) SetAlipay(alipay Alipay) (result *Member) {
+func (this *Member) SetAlipay(alipay *Alipay) (result *Member) {
 	this.Alipay = alipay
 	return this
 }
-func (this *Member) GetAlipay() (alipay Alipay) {
+func (this *Member) GetAlipay() (alipay *Alipay) {
 	return this.Alipay
 }
-func (this *Member) SetWechatPay(wechatPay WechatPay) (result *Member) {
+func (this *Member) SetWechatPay(wechatPay *WechatPay) (result *Member) {
 	this.WechatPay = wechatPay
 	return this
 }
-func (this *Member) GetWechatPay() (wechatPay WechatPay) {
+func (this *Member) GetWechatPay() (wechatPay *WechatPay) {
 	return this.WechatPay
 }
 func (this *Member) SetAppealTimes(appealTimes int) (result *Member) {
@@ -210,18 +220,18 @@ func (this *Member) SetThirdLevel(thirdLevel int) (result *Member) {
 func (this *Member) GetThirdLevel() (thirdLevel int) {
 	return this.ThirdLevel
 }
-func (this *Member) SetCountry(country Country) (result *Member) {
+func (this *Member) SetCountry(country *Country) (result *Member) {
 	this.Country = country
 	return this
 }
-func (this *Member) GetCountry() (country Country) {
+func (this *Member) GetCountry() (country *Country) {
 	return this.Country
 }
-func (this *Member) SetRealNameStatus(realNameStatus RealNameStatus) (result *Member) {
+func (this *Member) SetRealNameStatus(realNameStatus RealNameStatus.RealNameStatus) (result *Member) {
 	this.RealNameStatus = realNameStatus
 	return this
 }
-func (this *Member) GetRealNameStatus() (realNameStatus RealNameStatus) {
+func (this *Member) GetRealNameStatus() (realNameStatus RealNameStatus.RealNameStatus) {
 	return this.RealNameStatus
 }
 func (this *Member) SetLoginCount(loginCount int) (result *Member) {
@@ -231,11 +241,11 @@ func (this *Member) SetLoginCount(loginCount int) (result *Member) {
 func (this *Member) GetLoginCount() (loginCount int) {
 	return this.LoginCount
 }
-func (this *Member) SetCertifiedBusinessStatus(certifiedBusinessStatus CertifiedBusinessStatus) (result *Member) {
+func (this *Member) SetCertifiedBusinessStatus(certifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus) (result *Member) {
 	this.CertifiedBusinessStatus = certifiedBusinessStatus
 	return this
 }
-func (this *Member) GetCertifiedBusinessStatus() (certifiedBusinessStatus CertifiedBusinessStatus) {
+func (this *Member) GetCertifiedBusinessStatus() (certifiedBusinessStatus CertifiedBusinessStatus.CertifiedBusinessStatus) {
 	return this.CertifiedBusinessStatus
 }
 func (this *Member) SetCertifiedBusinessApplyTime(certifiedBusinessApplyTime time.Time) (result *Member) {
@@ -273,18 +283,18 @@ func (this *Member) SetTokenExpireTime(tokenExpireTime time.Time) (result *Membe
 func (this *Member) GetTokenExpireTime() (tokenExpireTime time.Time) {
 	return this.TokenExpireTime
 }
-func (this *Member) SetPublishAdvertise(publishAdvertise BooleanEnum) (result *Member) {
+func (this *Member) SetPublishAdvertise(publishAdvertise BooleanEnum.BooleanEnum) (result *Member) {
 	this.PublishAdvertise = publishAdvertise
 	return this
 }
-func (this *Member) GetPublishAdvertise() (publishAdvertise BooleanEnum) {
+func (this *Member) GetPublishAdvertise() (publishAdvertise BooleanEnum.BooleanEnum) {
 	return this.PublishAdvertise
 }
-func (this *Member) SetTransactionStatus(transactionStatus BooleanEnum) (result *Member) {
+func (this *Member) SetTransactionStatus(transactionStatus BooleanEnum.BooleanEnum) (result *Member) {
 	this.TransactionStatus = transactionStatus
 	return this
 }
-func (this *Member) GetTransactionStatus() (transactionStatus BooleanEnum) {
+func (this *Member) GetTransactionStatus() (transactionStatus BooleanEnum.BooleanEnum) {
 	return this.TransactionStatus
 }
 func (this *Member) SetSignInAbility(signInAbility bool) (result *Member) {
@@ -308,25 +318,25 @@ func (this *Member) SetChannelId(channelId int64) (result *Member) {
 func (this *Member) GetChannelId() (channelId int64) {
 	return this.ChannelId
 }
-func (this *Member) SetIsChannel(isChannel BooleanEnum) (result *Member) {
+func (this *Member) SetIsChannel(isChannel BooleanEnum.BooleanEnum) (result *Member) {
 	this.IsChannel = isChannel
 	return this
 }
-func (this *Member) GetIsChannel() (isChannel BooleanEnum) {
+func (this *Member) GetIsChannel() (isChannel BooleanEnum.BooleanEnum) {
 	return this.IsChannel
 }
-func (this *Member) SetChannelVO(channelVO vo.ChannelVO) (result *Member) {
+func (this *Member) SetChannelVO(channelVO *vo.ChannelVO) (result *Member) {
 	this.ChannelVO = channelVO
 	return this
 }
-func (this *Member) GetChannelVO() (channelVO vo.ChannelVO) {
+func (this *Member) GetChannelVO() (channelVO *vo.ChannelVO) {
 	return this.ChannelVO
 }
-func (this *Member) SetLoginLock(loginLock BooleanEnum) (result *Member) {
+func (this *Member) SetLoginLock(loginLock BooleanEnum.BooleanEnum) (result *Member) {
 	this.LoginLock = loginLock
 	return this
 }
-func (this *Member) GetLoginLock() (loginLock BooleanEnum) {
+func (this *Member) GetLoginLock() (loginLock BooleanEnum.BooleanEnum) {
 	return this.LoginLock
 }
 func (this *Member) SetIntegration(integration int64) (result *Member) {
@@ -379,16 +389,16 @@ type Member struct {
 	IdNumber                   string
 	Email                      string
 	MobilePhone                string
-	Location                   Location
-	MemberLevel                MemberLevelEnum
-	Status                     CommonStatus
+	Location                   *Location
+	MemberLevel                MemberLevelEnum.MemberLevelEnum
+	Status                     CommonStatus.CommonStatus
 	RegistrationTime           time.Time
 	LastLoginTime              time.Time
 	Token                      string
 	Transactions               int
-	BankInfo                   BankInfo
-	Alipay                     Alipay
-	WechatPay                  WechatPay
+	BankInfo                   *BankInfo
+	Alipay                     *Alipay
+	WechatPay                  *WechatPay
 	AppealTimes                int
 	AppealSuccessTimes         int
 	InviterId                  int64
@@ -396,23 +406,23 @@ type Member struct {
 	FirstLevel                 int
 	SecondLevel                int
 	ThirdLevel                 int
-	Country                    Country
-	RealNameStatus             RealNameStatus
+	Country                    *Country
+	RealNameStatus             RealNameStatus.RealNameStatus
 	LoginCount                 int
-	CertifiedBusinessStatus    CertifiedBusinessStatus
+	CertifiedBusinessStatus    CertifiedBusinessStatus.CertifiedBusinessStatus
 	CertifiedBusinessApplyTime time.Time
 	ApplicationTime            time.Time
 	CertifiedBusinessCheckTime time.Time
 	Avatar                     string
 	TokenExpireTime            time.Time
-	PublishAdvertise           BooleanEnum
-	TransactionStatus          BooleanEnum
+	PublishAdvertise           BooleanEnum.BooleanEnum
+	TransactionStatus          BooleanEnum.BooleanEnum
 	SignInAbility              bool
 	TransactionTime            time.Time
 	ChannelId                  int64
-	IsChannel                  BooleanEnum
-	ChannelVO                  vo.ChannelVO
-	LoginLock                  BooleanEnum
+	IsChannel                  BooleanEnum.BooleanEnum
+	ChannelVO                  *vo.ChannelVO
+	LoginLock                  BooleanEnum.BooleanEnum
 	Integration                int64
 	MemberGradeId              int64
 	KycStatus                  int64

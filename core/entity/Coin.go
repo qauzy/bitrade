@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/CommonStatus"
+	"github.com/qauzy/math"
+)
+
 func (this *Coin) SetName(name string) (result *Coin) {
 	this.Name = name
 	return this

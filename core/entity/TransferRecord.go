@@ -26,11 +26,11 @@ func (this *TransferRecord) SetMemberId(memberId int64) (result *TransferRecord)
 func (this *TransferRecord) GetMemberId() (memberId int64) {
 	return this.MemberId
 }
-func (this *TransferRecord) SetCoin(coin Coin) (result *TransferRecord) {
+func (this *TransferRecord) SetCoin(coin *Coin) (result *TransferRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *TransferRecord) GetCoin() (coin Coin) {
+func (this *TransferRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *TransferRecord) SetCreateTime(createTime time.Time) (result *TransferRecord) {
@@ -73,7 +73,7 @@ type TransferRecord struct {
 	Id         int64
 	Amount     math.BigDecimal
 	MemberId   int64
-	Coin       Coin
+	Coin       *Coin
 	CreateTime time.Time
 	Fee        math.BigDecimal
 	OrderSn    string

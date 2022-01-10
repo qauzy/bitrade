@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/LegalWalletState"
+	"bitrade/core/constant/PayMode"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *LegalWalletRecharge) SetId(id int64) (result *LegalWalletRecharge) {
 	this.Id = id
 	return this
@@ -7,11 +14,11 @@ func (this *LegalWalletRecharge) SetId(id int64) (result *LegalWalletRecharge) {
 func (this *LegalWalletRecharge) GetId() (id int64) {
 	return this.Id
 }
-func (this *LegalWalletRecharge) SetMember(member Member) (result *LegalWalletRecharge) {
+func (this *LegalWalletRecharge) SetMember(member *Member) (result *LegalWalletRecharge) {
 	this.Member = member
 	return this
 }
-func (this *LegalWalletRecharge) GetMember() (member Member) {
+func (this *LegalWalletRecharge) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *LegalWalletRecharge) SetAmount(amount math.BigDecimal) (result *LegalWalletRecharge) {
@@ -28,11 +35,11 @@ func (this *LegalWalletRecharge) SetPaymentInstrument(paymentInstrument string) 
 func (this *LegalWalletRecharge) GetPaymentInstrument() (paymentInstrument string) {
 	return this.PaymentInstrument
 }
-func (this *LegalWalletRecharge) SetCoin(coin Coin) (result *LegalWalletRecharge) {
+func (this *LegalWalletRecharge) SetCoin(coin *Coin) (result *LegalWalletRecharge) {
 	this.Coin = coin
 	return this
 }
-func (this *LegalWalletRecharge) GetCoin() (coin Coin) {
+func (this *LegalWalletRecharge) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *LegalWalletRecharge) SetState(state LegalWalletState.LegalWalletState) (result *LegalWalletRecharge) {
@@ -70,11 +77,11 @@ func (this *LegalWalletRecharge) SetDealTime(dealTime time.Time) (result *LegalW
 func (this *LegalWalletRecharge) GetDealTime() (dealTime time.Time) {
 	return this.DealTime
 }
-func (this *LegalWalletRecharge) SetAdmin(admin Admin) (result *LegalWalletRecharge) {
+func (this *LegalWalletRecharge) SetAdmin(admin *Admin) (result *LegalWalletRecharge) {
 	this.Admin = admin
 	return this
 }
-func (this *LegalWalletRecharge) GetAdmin() (admin Admin) {
+func (this *LegalWalletRecharge) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *LegalWalletRecharge) SetUpdateTime(updateTime time.Time) (result *LegalWalletRecharge) {
@@ -87,15 +94,15 @@ func (this *LegalWalletRecharge) GetUpdateTime() (updateTime time.Time) {
 
 type LegalWalletRecharge struct {
 	Id                int64
-	Member            Member
+	Member            *Member
 	Amount            math.BigDecimal
 	PaymentInstrument string
-	Coin              Coin
+	Coin              *Coin
 	State             LegalWalletState.LegalWalletState
 	PayMode           PayMode.PayMode
 	Remark            string
 	CreationTime      time.Time
 	DealTime          time.Time
-	Admin             Admin
+	Admin             *Admin
 	UpdateTime        time.Time
 }

@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/CommonStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *LockPositionRecord) SetId(id int64) (result *LockPositionRecord) {
 	this.Id = id
 	return this
@@ -21,11 +27,11 @@ func (this *LockPositionRecord) SetMemberName(memberName string) (result *LockPo
 func (this *LockPositionRecord) GetMemberName() (memberName string) {
 	return this.MemberName
 }
-func (this *LockPositionRecord) SetCoin(coin Coin) (result *LockPositionRecord) {
+func (this *LockPositionRecord) SetCoin(coin *Coin) (result *LockPositionRecord) {
 	this.Coin = coin
 	return this
 }
-func (this *LockPositionRecord) GetCoin() (coin Coin) {
+func (this *LockPositionRecord) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *LockPositionRecord) SetCreateTime(createTime time.Time) (result *LockPositionRecord) {
@@ -75,7 +81,7 @@ type LockPositionRecord struct {
 	Id         int64
 	MemberId   int64
 	MemberName string
-	Coin       Coin
+	Coin       *Coin
 	CreateTime time.Time
 	Status     CommonStatus.CommonStatus
 	UnlockTime time.Time

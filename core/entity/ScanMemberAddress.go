@@ -28,7 +28,7 @@ func (this *ScanMemberAddress) SetAddress(address string) (result *ScanMemberAdd
 func (this *ScanMemberAddress) GetAddress() (address string) {
 	return this.Address
 }
-func ToScanMemberAddress(memberAddress MemberAddress) (result ScanMemberAddress) {
+func ToScanMemberAddress(memberAddress *MemberAddress) (result *ScanMemberAddress) {
 	return new(ScanMemberAddress).SetId(memberAddress.GetId()).SetAddress(memberAddress.GetAddress()).SetRemark(memberAddress.GetRemark()).SetUnit(memberAddress.GetCoin().GetUnit())
 }
 

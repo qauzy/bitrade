@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/IntegrationRecordType"
+	"time"
+)
+
 func (this *IntegrationRecord) SetId(id int64) (result *IntegrationRecord) {
 	this.Id = id
 	return this

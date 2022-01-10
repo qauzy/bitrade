@@ -1,13 +1,5 @@
 package transform
 
-import (
-	"bitrade/core/constant/AdvertiseControlStatus"
-	"bitrade/core/constant/AdvertiseType"
-	"bitrade/core/entity"
-	"github.com/qauzy/math"
-	"time"
-)
-
 func (this *MemberAdvertise) SetId(id int64) (result *MemberAdvertise) {
 	this.Id = id
 	return this
@@ -64,14 +56,14 @@ func (this *MemberAdvertise) SetCreateTime(createTime time.Time) (result *Member
 func (this *MemberAdvertise) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *MemberAdvertise) SetCountry(country entity.Country) (result *MemberAdvertise) {
+func (this *MemberAdvertise) SetCountry(country *entity.Country) (result *MemberAdvertise) {
 	this.Country = country
 	return this
 }
-func (this *MemberAdvertise) GetCountry() (country entity.Country) {
+func (this *MemberAdvertise) GetCountry() (country *entity.Country) {
 	return this.Country
 }
-func ToMemberAdvertise(x entity.Advertise) (result MemberAdvertise) {
+func ToMemberAdvertise(x *entity.Advertise) (result *MemberAdvertise) {
 	return new(MemberAdvertise).SetId(x.GetId()).SetAdvertiseType(x.GetAdvertiseType()).SetCoinUnit(x.GetCoin().GetUnit()).SetCreateTime(x.GetCreateTime()).SetMinLimit(x.GetMinLimit()).SetMaxLimit(x.GetMaxLimit()).SetRemainAmount(x.GetRemainAmount()).SetStatus(x.GetStatus()).SetCountry(x.GetCountry())
 }
 
@@ -84,5 +76,5 @@ type MemberAdvertise struct {
 	RemainAmount  math.BigDecimal
 	CoinUnit      string
 	CreateTime    time.Time
-	Country       entity.Country
+	Country       *entity.Country
 }

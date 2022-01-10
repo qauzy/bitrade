@@ -12,11 +12,11 @@ func (this *BusinessCancelApply) SetId(id int64) (result *BusinessCancelApply) {
 func (this *BusinessCancelApply) GetId() (id int64) {
 	return this.Id
 }
-func (this *BusinessCancelApply) SetMember(member Member) (result *BusinessCancelApply) {
+func (this *BusinessCancelApply) SetMember(member *Member) (result *BusinessCancelApply) {
 	this.Member = member
 	return this
 }
-func (this *BusinessCancelApply) GetMember() (member Member) {
+func (this *BusinessCancelApply) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *BusinessCancelApply) SetStatus(status CertifiedBusinessStatus.CertifiedBusinessStatus) (result *BusinessCancelApply) {
@@ -61,11 +61,11 @@ func (this *BusinessCancelApply) SetDetail(detail string) (result *BusinessCance
 func (this *BusinessCancelApply) GetDetail() (detail string) {
 	return this.Detail
 }
-func (this *BusinessCancelApply) SetDepositRecord(depositRecord DepositRecord) (result *BusinessCancelApply) {
+func (this *BusinessCancelApply) SetDepositRecord(depositRecord *DepositRecord) (result *BusinessCancelApply) {
 	this.DepositRecord = depositRecord
 	return this
 }
-func (this *BusinessCancelApply) GetDepositRecord() (depositRecord DepositRecord) {
+func (this *BusinessCancelApply) GetDepositRecord() (depositRecord *DepositRecord) {
 	return this.DepositRecord
 }
 func NewBusinessCancelApply() (this *BusinessCancelApply) {
@@ -75,12 +75,12 @@ func NewBusinessCancelApply() (this *BusinessCancelApply) {
 
 type BusinessCancelApply struct {
 	Id              int64
-	Member          Member
+	Member          *Member
 	Status          CertifiedBusinessStatus.CertifiedBusinessStatus
 	DepositRecordId string
 	CancelApplyTime time.Time
 	HandleTime      time.Time
 	Reason          string
 	Detail          string
-	DepositRecord   DepositRecord
+	DepositRecord   *DepositRecord
 }

@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/CommonStatus"
+	"github.com/qauzy/math"
+)
+
 func (this *OtcCoin) SetId(id int64) (result *OtcCoin) {
 	this.Id = id
 	return this

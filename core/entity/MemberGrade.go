@@ -1,5 +1,7 @@
 package entity
 
+import "github.com/qauzy/math"
+
 func (this *MemberGrade) SetId(id int64) (result *MemberGrade) {
 	this.Id = id
 	return this

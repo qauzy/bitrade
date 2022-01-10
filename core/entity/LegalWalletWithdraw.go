@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/PayMode"
+	"bitrade/core/constant/WithdrawStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *LegalWalletWithdraw) SetId(id int64) (result *LegalWalletWithdraw) {
 	this.Id = id
 	return this
@@ -7,11 +14,11 @@ func (this *LegalWalletWithdraw) SetId(id int64) (result *LegalWalletWithdraw) {
 func (this *LegalWalletWithdraw) GetId() (id int64) {
 	return this.Id
 }
-func (this *LegalWalletWithdraw) SetMember(member Member) (result *LegalWalletWithdraw) {
+func (this *LegalWalletWithdraw) SetMember(member *Member) (result *LegalWalletWithdraw) {
 	this.Member = member
 	return this
 }
-func (this *LegalWalletWithdraw) GetMember() (member Member) {
+func (this *LegalWalletWithdraw) GetMember() (member *Member) {
 	return this.Member
 }
 func (this *LegalWalletWithdraw) SetAmount(amount math.BigDecimal) (result *LegalWalletWithdraw) {
@@ -42,11 +49,11 @@ func (this *LegalWalletWithdraw) SetStatus(status WithdrawStatus.WithdrawStatus)
 func (this *LegalWalletWithdraw) GetStatus() (status WithdrawStatus.WithdrawStatus) {
 	return this.Status
 }
-func (this *LegalWalletWithdraw) SetAdmin(admin Admin) (result *LegalWalletWithdraw) {
+func (this *LegalWalletWithdraw) SetAdmin(admin *Admin) (result *LegalWalletWithdraw) {
 	this.Admin = admin
 	return this
 }
-func (this *LegalWalletWithdraw) GetAdmin() (admin Admin) {
+func (this *LegalWalletWithdraw) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *LegalWalletWithdraw) SetRemark(remark string) (result *LegalWalletWithdraw) {
@@ -63,11 +70,11 @@ func (this *LegalWalletWithdraw) SetPayMode(payMode PayMode.PayMode) (result *Le
 func (this *LegalWalletWithdraw) GetPayMode() (payMode PayMode.PayMode) {
 	return this.PayMode
 }
-func (this *LegalWalletWithdraw) SetCoin(coin Coin) (result *LegalWalletWithdraw) {
+func (this *LegalWalletWithdraw) SetCoin(coin *Coin) (result *LegalWalletWithdraw) {
 	this.Coin = coin
 	return this
 }
-func (this *LegalWalletWithdraw) GetCoin() (coin Coin) {
+func (this *LegalWalletWithdraw) GetCoin() (coin *Coin) {
 	return this.Coin
 }
 func (this *LegalWalletWithdraw) SetPaymentInstrument(paymentInstrument string) (result *LegalWalletWithdraw) {
@@ -94,15 +101,15 @@ func (this *LegalWalletWithdraw) GetAccount() (account string) {
 
 type LegalWalletWithdraw struct {
 	Id                int64
-	Member            Member
+	Member            *Member
 	Amount            math.BigDecimal
 	CreateTime        time.Time
 	DealTime          time.Time
 	Status            WithdrawStatus.WithdrawStatus
-	Admin             Admin
+	Admin             *Admin
 	Remark            string
 	PayMode           PayMode.PayMode
-	Coin              Coin
+	Coin              *Coin
 	PaymentInstrument string
 	RemitTime         time.Time
 	Account           string

@@ -1,11 +1,5 @@
 package transform
 
-import (
-	"bitrade/core/constant/CommonStatus"
-	"bitrade/core/constant/MemberLevelEnum"
-	"bitrade/core/entity"
-)
-
 func (this *AuthMember) SetId(id int64) (result *AuthMember) {
 	this.Id = id
 	return this
@@ -27,11 +21,11 @@ func (this *AuthMember) SetRealName(realName string) (result *AuthMember) {
 func (this *AuthMember) GetRealName() (realName string) {
 	return this.RealName
 }
-func (this *AuthMember) SetLocation(location entity.Location) (result *AuthMember) {
+func (this *AuthMember) SetLocation(location *entity.Location) (result *AuthMember) {
 	this.Location = location
 	return this
 }
-func (this *AuthMember) GetLocation() (location entity.Location) {
+func (this *AuthMember) GetLocation() (location *entity.Location) {
 	return this.Location
 }
 func (this *AuthMember) SetMobilePhone(mobilePhone string) (result *AuthMember) {
@@ -76,7 +70,7 @@ func (this *AuthMember) GetMemberGradeId() (memberGradeId int64) {
  * @param member
  * @return
  */
-func ToAuthMember(member entity.Member) (result AuthMember) {
+func ToAuthMember(member *entity.Member) (result *AuthMember) {
 	return new(AuthMember).SetId(member.GetId()).SetName(member.GetUsername()).SetRealName(member.GetRealName()).SetLocation(member.GetLocation()).SetMobilePhone(member.GetMobilePhone()).SetEmail(member.GetEmail()).SetMemberLevel(member.GetMemberLevel()).SetStatus(member.GetStatus()).SetMemberGradeId(member.GetMemberGradeId())
 }
 
@@ -84,7 +78,7 @@ type AuthMember struct {
 	Id            int64
 	Name          string
 	RealName      string
-	Location      entity.Location
+	Location      *entity.Location
 	MobilePhone   string
 	Email         string
 	MemberLevel   MemberLevelEnum.MemberLevelEnum

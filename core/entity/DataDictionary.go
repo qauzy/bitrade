@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 func (this *DataDictionary) SetId(id int64) (result *DataDictionary) {
 	this.Id = id
 	return this
@@ -48,10 +50,6 @@ func (this *DataDictionary) SetImgUrl(imgUrl string) (result *DataDictionary) {
 }
 func (this *DataDictionary) GetImgUrl() (imgUrl string) {
 	return this.ImgUrl
-}
-func NewDataDictionary() (this *DataDictionary) {
-	this = new(DataDictionary)
-	return
 }
 func NewDataDictionary(bond string, value string, comment string) (this *DataDictionary) {
 	this = new(DataDictionary)

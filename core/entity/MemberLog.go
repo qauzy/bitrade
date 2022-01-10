@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 func (this *MemberLog) SetDate(date time.Time) (result *MemberLog) {
 	this.Date = date
 	return this

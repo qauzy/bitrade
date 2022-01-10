@@ -16,11 +16,11 @@ func (this *Airdrop) SetCreateTime(createTime time.Time) (result *Airdrop) {
 func (this *Airdrop) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *Airdrop) SetAdmin(admin Admin) (result *Airdrop) {
+func (this *Airdrop) SetAdmin(admin *Admin) (result *Airdrop) {
 	this.Admin = admin
 	return this
 }
-func (this *Airdrop) GetAdmin() (admin Admin) {
+func (this *Airdrop) GetAdmin() (admin *Admin) {
 	return this.Admin
 }
 func (this *Airdrop) SetErrorIndex(errorIndex int64) (result *Airdrop) {
@@ -62,7 +62,7 @@ func (this *Airdrop) GetErrorMsg() (errorMsg string) {
 type Airdrop struct {
 	Id           int64
 	CreateTime   time.Time
-	Admin        Admin
+	Admin        *Admin
 	ErrorIndex   int64
 	SuccessCount int64
 	FileName     string
