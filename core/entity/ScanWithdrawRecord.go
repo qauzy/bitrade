@@ -1,5 +1,12 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/WithdrawStatus"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *ScanWithdrawRecord) SetTotalAmount(totalAmount math.BigDecimal) (result *ScanWithdrawRecord) {
 	this.TotalAmount = totalAmount
 	return this
@@ -35,18 +42,18 @@ func (this *ScanWithdrawRecord) SetDealTime(dealTime time.Time) (result *ScanWit
 func (this *ScanWithdrawRecord) GetDealTime() (dealTime time.Time) {
 	return this.DealTime
 }
-func (this *ScanWithdrawRecord) SetStatus(status constant.WithdrawStatus) (result *ScanWithdrawRecord) {
+func (this *ScanWithdrawRecord) SetStatus(status WithdrawStatus.WithdrawStatus) (result *ScanWithdrawRecord) {
 	this.Status = status
 	return this
 }
-func (this *ScanWithdrawRecord) GetStatus() (status constant.WithdrawStatus) {
+func (this *ScanWithdrawRecord) GetStatus() (status WithdrawStatus.WithdrawStatus) {
 	return this.Status
 }
-func (this *ScanWithdrawRecord) SetIsAuto(isAuto constant.BooleanEnum) (result *ScanWithdrawRecord) {
+func (this *ScanWithdrawRecord) SetIsAuto(isAuto BooleanEnum.BooleanEnum) (result *ScanWithdrawRecord) {
 	this.IsAuto = isAuto
 	return this
 }
-func (this *ScanWithdrawRecord) GetIsAuto() (isAuto constant.BooleanEnum) {
+func (this *ScanWithdrawRecord) GetIsAuto() (isAuto BooleanEnum.BooleanEnum) {
 	return this.IsAuto
 }
 func (this *ScanWithdrawRecord) SetUnit(unit string) (result *ScanWithdrawRecord) {
@@ -56,11 +63,11 @@ func (this *ScanWithdrawRecord) SetUnit(unit string) (result *ScanWithdrawRecord
 func (this *ScanWithdrawRecord) GetUnit() (unit string) {
 	return this.Unit
 }
-func (this *ScanWithdrawRecord) SetCanAutoWithdraw(canAutoWithdraw constant.BooleanEnum) (result *ScanWithdrawRecord) {
+func (this *ScanWithdrawRecord) SetCanAutoWithdraw(canAutoWithdraw BooleanEnum.BooleanEnum) (result *ScanWithdrawRecord) {
 	this.CanAutoWithdraw = canAutoWithdraw
 	return this
 }
-func (this *ScanWithdrawRecord) GetCanAutoWithdraw() (canAutoWithdraw constant.BooleanEnum) {
+func (this *ScanWithdrawRecord) GetCanAutoWithdraw() (canAutoWithdraw BooleanEnum.BooleanEnum) {
 	return this.CanAutoWithdraw
 }
 func (this *ScanWithdrawRecord) SetTransactionNumber(transactionNumber string) (result *ScanWithdrawRecord) {
@@ -84,7 +91,7 @@ func (this *ScanWithdrawRecord) SetRemark(remark string) (result *ScanWithdrawRe
 func (this *ScanWithdrawRecord) GetRemark() (remark string) {
 	return this.Remark
 }
-func ToScanWithdrawRecord(withdrawRecord WithdrawRecord) (result ScanWithdrawRecord) {
+func ToScanWithdrawRecord(withdrawRecord *WithdrawRecord) (result *ScanWithdrawRecord) {
 	return new(ScanWithdrawRecord).SetTotalAmount(withdrawRecord.GetTotalAmount()).SetCreateTime(withdrawRecord.GetCreateTime()).SetUnit(withdrawRecord.GetCoin().GetUnit()).SetDealTime(withdrawRecord.GetDealTime()).SetFee(withdrawRecord.GetFee()).SetArrivedAmount(withdrawRecord.GetArrivedAmount()).SetStatus(withdrawRecord.GetStatus()).SetIsAuto(withdrawRecord.GetIsAuto()).SetAddress(withdrawRecord.GetAddress()).SetRemark(withdrawRecord.GetRemark()).SetCanAutoWithdraw(withdrawRecord.GetCanAutoWithdraw()).SetTransactionNumber(withdrawRecord.GetTransactionNumber())
 }
 
@@ -94,10 +101,10 @@ type ScanWithdrawRecord struct {
 	ArrivedAmount     math.BigDecimal
 	CreateTime        time.Time
 	DealTime          time.Time
-	Status            constant.WithdrawStatus
-	IsAuto            constant.BooleanEnum
+	Status            WithdrawStatus.WithdrawStatus
+	IsAuto            BooleanEnum.BooleanEnum
 	Unit              string
-	CanAutoWithdraw   constant.BooleanEnum
+	CanAutoWithdraw   BooleanEnum.BooleanEnum
 	TransactionNumber string
 	Address           string
 	Remark            string

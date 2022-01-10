@@ -1,5 +1,11 @@
 package transform
 
+import (
+	"bitrade/core/constant/CommonStatus"
+	"bitrade/core/constant/MemberLevelEnum"
+	"bitrade/core/entity"
+)
+
 func (this *AuthMember) SetId(id int64) (result *AuthMember) {
 	this.Id = id
 	return this

@@ -1,5 +1,7 @@
 package entity
 
+import "bitrade/core/constant/MemberLevelEnum"
+
 func (this *LoginInfo) SetUsername(username string) (result *LoginInfo) {
 	this.Username = username
 	return this
@@ -7,18 +9,18 @@ func (this *LoginInfo) SetUsername(username string) (result *LoginInfo) {
 func (this *LoginInfo) GetUsername() (username string) {
 	return this.Username
 }
-func (this *LoginInfo) SetLocation(location Location) (result *LoginInfo) {
+func (this *LoginInfo) SetLocation(location *Location) (result *LoginInfo) {
 	this.Location = location
 	return this
 }
-func (this *LoginInfo) GetLocation() (location Location) {
+func (this *LoginInfo) GetLocation() (location *Location) {
 	return this.Location
 }
-func (this *LoginInfo) SetMemberLevel(memberLevel constant.MemberLevelEnum) (result *LoginInfo) {
+func (this *LoginInfo) SetMemberLevel(memberLevel MemberLevelEnum.MemberLevelEnum) (result *LoginInfo) {
 	this.MemberLevel = memberLevel
 	return this
 }
-func (this *LoginInfo) GetMemberLevel() (memberLevel constant.MemberLevelEnum) {
+func (this *LoginInfo) GetMemberLevel() (memberLevel MemberLevelEnum.MemberLevelEnum) {
 	return this.MemberLevel
 }
 func (this *LoginInfo) SetToken(token string) (result *LoginInfo) {
@@ -35,11 +37,11 @@ func (this *LoginInfo) SetRealName(realName string) (result *LoginInfo) {
 func (this *LoginInfo) GetRealName() (realName string) {
 	return this.RealName
 }
-func (this *LoginInfo) SetCountry(country Country) (result *LoginInfo) {
+func (this *LoginInfo) SetCountry(country *Country) (result *LoginInfo) {
 	this.Country = country
 	return this
 }
-func (this *LoginInfo) GetCountry() (country Country) {
+func (this *LoginInfo) GetCountry() (country *Country) {
 	return this.Country
 }
 func (this *LoginInfo) SetAvatar(avatar string) (result *LoginInfo) {
@@ -128,17 +130,17 @@ func (this *LoginInfo) GetMobile() (mobile string) {
  * @param prefix
  * @return
  */
-func GetLoginInfo(member Member, token string, signInActivity bool, prefix string) (result LoginInfo) {
+func GetLoginInfo(member *Member, token string, signInActivity bool, prefix string) (result *LoginInfo) {
 	return new(LoginInfo).SetLocation(member.GetLocation()).SetMemberLevel(member.GetMemberLevel()).SetUsername(member.GetUsername()).SetToken(token).SetRealName(member.GetRealName()).SetCountry(member.GetCountry()).SetAvatar(member.GetAvatar()).SetPromotionCode(member.GetPromotionCode()).SetId(member.GetId()).SetPromotionPrefix(prefix).SetSignInAbility(member.GetSignInAbility()).SetSignInActivity(signInActivity).SetMemberGradeId(member.GetMemberGradeId()).SetGoogleState(member.GetGoogleState()).SetIntegration(member.GetIntegration()).SetKycStatus(member.GetKycStatus()).SetMobile(member.GetMobilePhone())
 }
 
 type LoginInfo struct {
 	Username        string
-	Location        Location
-	MemberLevel     constant.MemberLevelEnum
+	Location        *Location
+	MemberLevel     MemberLevelEnum.MemberLevelEnum
 	Token           string
 	RealName        string
-	Country         Country
+	Country         *Country
 	Avatar          string
 	PromotionCode   string
 	Id              int64

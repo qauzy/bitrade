@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *PromotionRewardRecord) SetSymbol(symbol string) (result *PromotionRewardRecord) {
 	this.Symbol = symbol
 	return this

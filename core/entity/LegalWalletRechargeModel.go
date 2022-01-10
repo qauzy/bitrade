@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitrade/core/constant"
+	"bitrade/core/constant/PayMode"
 	"github.com/qauzy/math"
 )
 
@@ -26,11 +26,11 @@ func (this *LegalWalletRechargeModel) SetUnit(unit string) (result *LegalWalletR
 func (this *LegalWalletRechargeModel) GetUnit() (unit string) {
 	return this.Unit
 }
-func (this *LegalWalletRechargeModel) SetPayMode(payMode constant.PayMode) (result *LegalWalletRechargeModel) {
+func (this *LegalWalletRechargeModel) SetPayMode(payMode PayMode.PayMode) (result *LegalWalletRechargeModel) {
 	this.PayMode = payMode
 	return this
 }
-func (this *LegalWalletRechargeModel) GetPayMode() (payMode constant.PayMode) {
+func (this *LegalWalletRechargeModel) GetPayMode() (payMode PayMode.PayMode) {
 	return this.PayMode
 }
 func (this *LegalWalletRechargeModel) SetRemark(remark string) (result *LegalWalletRechargeModel) {
@@ -45,6 +45,6 @@ type LegalWalletRechargeModel struct {
 	Amount            math.BigDecimal
 	PaymentInstrument string
 	Unit              string
-	PayMode           constant.PayMode
+	PayMode           PayMode.PayMode
 	Remark            string
 }

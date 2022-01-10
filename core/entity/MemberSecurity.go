@@ -1,5 +1,11 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/MemberLevelEnum"
+	"time"
+)
+
 func (this *MemberSecurity) SetUsername(username string) (result *MemberSecurity) {
 	this.Username = username
 	return this
@@ -21,46 +27,46 @@ func (this *MemberSecurity) SetCreateTime(createTime time.Time) (result *MemberS
 func (this *MemberSecurity) GetCreateTime() (createTime time.Time) {
 	return this.CreateTime
 }
-func (this *MemberSecurity) SetRealVerified(realVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetRealVerified(realVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.RealVerified = realVerified
 	return this
 }
-func (this *MemberSecurity) GetRealVerified() (realVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetRealVerified() (realVerified BooleanEnum.BooleanEnum) {
 	return this.RealVerified
 }
-func (this *MemberSecurity) SetEmailVerified(emailVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetEmailVerified(emailVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.EmailVerified = emailVerified
 	return this
 }
-func (this *MemberSecurity) GetEmailVerified() (emailVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetEmailVerified() (emailVerified BooleanEnum.BooleanEnum) {
 	return this.EmailVerified
 }
-func (this *MemberSecurity) SetPhoneVerified(phoneVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetPhoneVerified(phoneVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.PhoneVerified = phoneVerified
 	return this
 }
-func (this *MemberSecurity) GetPhoneVerified() (phoneVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetPhoneVerified() (phoneVerified BooleanEnum.BooleanEnum) {
 	return this.PhoneVerified
 }
-func (this *MemberSecurity) SetLoginVerified(loginVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetLoginVerified(loginVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.LoginVerified = loginVerified
 	return this
 }
-func (this *MemberSecurity) GetLoginVerified() (loginVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetLoginVerified() (loginVerified BooleanEnum.BooleanEnum) {
 	return this.LoginVerified
 }
-func (this *MemberSecurity) SetFundsVerified(fundsVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetFundsVerified(fundsVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.FundsVerified = fundsVerified
 	return this
 }
-func (this *MemberSecurity) GetFundsVerified() (fundsVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetFundsVerified() (fundsVerified BooleanEnum.BooleanEnum) {
 	return this.FundsVerified
 }
-func (this *MemberSecurity) SetRealAuditing(realAuditing constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetRealAuditing(realAuditing BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.RealAuditing = realAuditing
 	return this
 }
-func (this *MemberSecurity) GetRealAuditing() (realAuditing constant.BooleanEnum) {
+func (this *MemberSecurity) GetRealAuditing() (realAuditing BooleanEnum.BooleanEnum) {
 	return this.RealAuditing
 }
 func (this *MemberSecurity) SetMobilePhone(mobilePhone string) (result *MemberSecurity) {
@@ -105,11 +111,11 @@ func (this *MemberSecurity) SetAvatar(avatar string) (result *MemberSecurity) {
 func (this *MemberSecurity) GetAvatar() (avatar string) {
 	return this.Avatar
 }
-func (this *MemberSecurity) SetAccountVerified(accountVerified constant.BooleanEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetAccountVerified(accountVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
 	this.AccountVerified = accountVerified
 	return this
 }
-func (this *MemberSecurity) GetAccountVerified() (accountVerified constant.BooleanEnum) {
+func (this *MemberSecurity) GetAccountVerified() (accountVerified BooleanEnum.BooleanEnum) {
 	return this.AccountVerified
 }
 func (this *MemberSecurity) SetGoogleStatus(googleStatus int64) (result *MemberSecurity) {
@@ -168,11 +174,11 @@ func (this *MemberSecurity) SetGoogleState(googleState int64) (result *MemberSec
 func (this *MemberSecurity) GetGoogleState() (googleState int64) {
 	return this.GoogleState
 }
-func (this *MemberSecurity) SetMemberLevel(memberLevel constant.MemberLevelEnum) (result *MemberSecurity) {
+func (this *MemberSecurity) SetMemberLevel(memberLevel MemberLevelEnum.MemberLevelEnum) (result *MemberSecurity) {
 	this.MemberLevel = memberLevel
 	return this
 }
-func (this *MemberSecurity) GetMemberLevel() (memberLevel constant.MemberLevelEnum) {
+func (this *MemberSecurity) GetMemberLevel() (memberLevel MemberLevelEnum.MemberLevelEnum) {
 	return this.MemberLevel
 }
 
@@ -180,19 +186,19 @@ type MemberSecurity struct {
 	Username             string
 	Id                   int64
 	CreateTime           time.Time
-	RealVerified         constant.BooleanEnum
-	EmailVerified        constant.BooleanEnum
-	PhoneVerified        constant.BooleanEnum
-	LoginVerified        constant.BooleanEnum
-	FundsVerified        constant.BooleanEnum
-	RealAuditing         constant.BooleanEnum
+	RealVerified         BooleanEnum.BooleanEnum
+	EmailVerified        BooleanEnum.BooleanEnum
+	PhoneVerified        BooleanEnum.BooleanEnum
+	LoginVerified        BooleanEnum.BooleanEnum
+	FundsVerified        BooleanEnum.BooleanEnum
+	RealAuditing         BooleanEnum.BooleanEnum
 	MobilePhone          string
 	Email                string
 	RealName             string
 	RealNameRejectReason string
 	IdCard               string
 	Avatar               string
-	AccountVerified      constant.BooleanEnum
+	AccountVerified      BooleanEnum.BooleanEnum
 	GoogleStatus         int64
 	Transactions         int
 	TransactionTime      time.Time
@@ -201,5 +207,5 @@ type MemberSecurity struct {
 	KycStatus            int64
 	MemberGradeId        int64
 	GoogleState          int64
-	MemberLevel          constant.MemberLevelEnum
+	MemberLevel          MemberLevelEnum.MemberLevelEnum
 }

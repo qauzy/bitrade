@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"bitrade/core/constant/BooleanEnum"
+	"github.com/qauzy/math"
+)
+
 func (this *WithdrawWalletInfo) SetUnit(unit string) (result *WithdrawWalletInfo) {
 	this.Unit = unit
 	return this
@@ -63,11 +68,11 @@ func (this *WithdrawWalletInfo) SetBalance(balance math.BigDecimal) (result *Wit
 func (this *WithdrawWalletInfo) GetBalance() (balance math.BigDecimal) {
 	return this.Balance
 }
-func (this *WithdrawWalletInfo) SetCanAutoWithdraw(canAutoWithdraw constant.BooleanEnum) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetCanAutoWithdraw(canAutoWithdraw BooleanEnum.BooleanEnum) (result *WithdrawWalletInfo) {
 	this.CanAutoWithdraw = canAutoWithdraw
 	return this
 }
-func (this *WithdrawWalletInfo) GetCanAutoWithdraw() (canAutoWithdraw constant.BooleanEnum) {
+func (this *WithdrawWalletInfo) GetCanAutoWithdraw() (canAutoWithdraw BooleanEnum.BooleanEnum) {
 	return this.CanAutoWithdraw
 }
 func (this *WithdrawWalletInfo) SetWithdrawScale(withdrawScale int) (result *WithdrawWalletInfo) {
@@ -95,7 +100,7 @@ type WithdrawWalletInfo struct {
 	NameCn          string
 	Name            string
 	Balance         math.BigDecimal
-	CanAutoWithdraw constant.BooleanEnum
+	CanAutoWithdraw BooleanEnum.BooleanEnum
 	WithdrawScale   int
 	Addresses       []map[string]string
 }

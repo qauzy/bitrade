@@ -1,5 +1,14 @@
 package transform
 
+import (
+	"bitrade/core/constant/AdvertiseControlStatus"
+	"bitrade/core/constant/AdvertiseType"
+	"bitrade/core/constant/BooleanEnum"
+	"bitrade/core/constant/PriceType"
+	"bitrade/core/entity"
+	"github.com/qauzy/math"
+)
+
 func (this *MemberAdvertiseDetail) SetId(id int64) (result *MemberAdvertiseDetail) {
 	this.Id = id
 	return this

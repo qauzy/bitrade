@@ -1,5 +1,11 @@
 package transform
 
+import (
+	"bitrade/core/constant/AdvertiseType"
+	"github.com/qauzy/math"
+	"time"
+)
+
 func (this *ScanAdvertise) SetMemberName(memberName string) (result *ScanAdvertise) {
 	this.MemberName = memberName
 	return this
