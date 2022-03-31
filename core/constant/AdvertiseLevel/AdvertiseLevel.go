@@ -1,18 +1,18 @@
 package AdvertiseLevel
 
-type AdvertiseLevel int
-
-const (
-	ORDINARY AdvertiseLevel = iota
-	EXCELLENT
+var (
+	ORDINARY  = AdvertiseLevel{"普通", 0}
+	EXCELLENT = AdvertiseLevel{"优质", 1}
 )
 
-func (this AdvertiseLevel) String() string {
-	switch this {
-	case ORDINARY:
-		return "普通"
-	case EXCELLENT:
-		return "优质"
-	}
-	return ""
+func (this *AdvertiseLevel) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *AdvertiseLevel) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type AdvertiseLevel struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

@@ -1,18 +1,18 @@
 package Platform
 
-type Platform int
-
-const (
-	ANDROID Platform = iota
-	IOS
+var (
+	ANDROID = Platform{"安卓", 0}
+	IOS     = Platform{"苹果", 1}
 )
 
-func (this Platform) String() string {
-	switch this {
-	case ANDROID:
-		return "安卓"
-	case IOS:
-		return "苹果"
-	}
-	return ""
+func (this *Platform) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *Platform) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type Platform struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

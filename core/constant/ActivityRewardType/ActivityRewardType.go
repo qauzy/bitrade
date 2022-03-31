@@ -1,21 +1,19 @@
 package ActivityRewardType
 
-type ActivityRewardType int
-
-const (
-	REGISTER ActivityRewardType = iota
-	TRANSACTION
-	RECHARGE
+var (
+	REGISTER    = ActivityRewardType{"注册奖励", 0}
+	TRANSACTION = ActivityRewardType{"交易奖励", 1}
+	RECHARGE    = ActivityRewardType{"充值奖励", 2}
 )
 
-func (this ActivityRewardType) String() string {
-	switch this {
-	case REGISTER:
-		return "注册奖励"
-	case TRANSACTION:
-		return "交易奖励"
-	case RECHARGE:
-		return "充值奖励"
-	}
-	return ""
+func (this *ActivityRewardType) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *ActivityRewardType) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type ActivityRewardType struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

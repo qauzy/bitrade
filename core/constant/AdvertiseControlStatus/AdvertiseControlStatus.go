@@ -1,21 +1,19 @@
 package AdvertiseControlStatus
 
-type AdvertiseControlStatus int
-
-const (
-	PUT_ON_SHELVES AdvertiseControlStatus = iota
-	PUT_OFF_SHELVES
-	TURNOFF
+var (
+	PUT_ON_SHELVES  = AdvertiseControlStatus{"上架", 0}
+	PUT_OFF_SHELVES = AdvertiseControlStatus{"下架", 1}
+	TURNOFF         = AdvertiseControlStatus{"已关闭", 2}
 )
 
-func (this AdvertiseControlStatus) String() string {
-	switch this {
-	case PUT_ON_SHELVES:
-		return "上架"
-	case PUT_OFF_SHELVES:
-		return "下架"
-	case TURNOFF:
-		return "已关闭"
-	}
-	return ""
+func (this *AdvertiseControlStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *AdvertiseControlStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type AdvertiseControlStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

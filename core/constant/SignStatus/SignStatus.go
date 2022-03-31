@@ -1,14 +1,16 @@
+
 package SignStatus
 
-type SignStatus int
-
-const (
+var (
 	UNDERWAY SignStatus = iota
 	FINISH
 )
 
-func (this SignStatus) String() string {
-	switch this {
-	}
-	return ""
+func (this *SignStatus) Ordinal() (result int) {
+	return this.ordinal
 }
+
+type SignStatus struct {
+	ordinal int
+}
+

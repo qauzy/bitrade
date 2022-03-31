@@ -1,21 +1,19 @@
 package IntegrationRecordType
 
-type IntegrationRecordType int
-
-const (
-	PROMOTION_GIVING IntegrationRecordType = iota
-	LEGAL_RECHARGE_GIVING
-	COIN_RECHARGE_GIVING
+var (
+	PROMOTION_GIVING      = IntegrationRecordType{"推广", 0}
+	LEGAL_RECHARGE_GIVING = IntegrationRecordType{"法币充值赠送", 1}
+	COIN_RECHARGE_GIVING  = IntegrationRecordType{"币币充值赠送", 2}
 )
 
-func (this IntegrationRecordType) String() string {
-	switch this {
-	case PROMOTION_GIVING:
-		return "推广"
-	case LEGAL_RECHARGE_GIVING:
-		return "法币充值赠送"
-	case COIN_RECHARGE_GIVING:
-		return "币币充值赠送"
-	}
-	return ""
+func (this *IntegrationRecordType) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *IntegrationRecordType) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type IntegrationRecordType struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

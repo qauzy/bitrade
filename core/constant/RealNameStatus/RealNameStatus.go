@@ -1,21 +1,19 @@
 package RealNameStatus
 
-type RealNameStatus int
-
-const (
-	NOT_CERTIFIED RealNameStatus = iota
-	AUDITING
-	VERIFIED
+var (
+	NOT_CERTIFIED = RealNameStatus{"未认证", 0}
+	AUDITING      = RealNameStatus{"审核中", 1}
+	VERIFIED      = RealNameStatus{"已认证", 2}
 )
 
-func (this RealNameStatus) String() string {
-	switch this {
-	case NOT_CERTIFIED:
-		return "未认证"
-	case AUDITING:
-		return "审核中"
-	case VERIFIED:
-		return "已认证"
-	}
-	return ""
+func (this *RealNameStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *RealNameStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type RealNameStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

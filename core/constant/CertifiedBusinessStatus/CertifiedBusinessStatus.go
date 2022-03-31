@@ -1,36 +1,24 @@
 package CertifiedBusinessStatus
 
-type CertifiedBusinessStatus int
-
-const (
-	NOT_CERTIFIED CertifiedBusinessStatus = iota
-	AUDITING
-	VERIFIED
-	FAILED
-	DEPOSIT_LESS
-	CANCEL_AUTH
-	RETURN_FAILED
-	RETURN_SUCCESS
+var (
+	NOT_CERTIFIED  = CertifiedBusinessStatus{"未认证", 0}
+	AUDITING       = CertifiedBusinessStatus{"认证-待审核", 1}
+	VERIFIED       = CertifiedBusinessStatus{"认证-审核成功", 2}
+	FAILED         = CertifiedBusinessStatus{"认证-审核失败", 3}
+	DEPOSIT_LESS   = CertifiedBusinessStatus{"保证金不足", 4}
+	CANCEL_AUTH    = CertifiedBusinessStatus{"退保-待审核", 5}
+	RETURN_FAILED  = CertifiedBusinessStatus{"退保-审核失败", 6}
+	RETURN_SUCCESS = CertifiedBusinessStatus{"退保-审核成功", 7}
 )
 
-func (this CertifiedBusinessStatus) String() string {
-	switch this {
-	case NOT_CERTIFIED:
-		return "未认证"
-	case AUDITING:
-		return "认证-待审核"
-	case VERIFIED:
-		return "认证-审核成功"
-	case FAILED:
-		return "认证-审核失败"
-	case DEPOSIT_LESS:
-		return "保证金不足"
-	case CANCEL_AUTH:
-		return "退保-待审核"
-	case RETURN_FAILED:
-		return "退保-审核失败"
-	case RETURN_SUCCESS:
-		return "退保-审核成功"
-	}
-	return ""
+func (this *CertifiedBusinessStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *CertifiedBusinessStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type CertifiedBusinessStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

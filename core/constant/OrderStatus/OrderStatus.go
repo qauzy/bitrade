@@ -1,27 +1,21 @@
 package OrderStatus
 
-type OrderStatus int
-
-const (
-	CANCELLED OrderStatus = iota
-	NONPAYMENT
-	PAID
-	COMPLETED
-	APPEAL
+var (
+	CANCELLED  = OrderStatus{"已取消", 0}
+	NONPAYMENT = OrderStatus{"未付款", 1}
+	PAID       = OrderStatus{"已付款", 2}
+	COMPLETED  = OrderStatus{"已完成", 3}
+	APPEAL     = OrderStatus{"申诉中", 4}
 )
 
-func (this OrderStatus) String() string {
-	switch this {
-	case CANCELLED:
-		return "已取消"
-	case NONPAYMENT:
-		return "未付款"
-	case PAID:
-		return "已付款"
-	case COMPLETED:
-		return "已完成"
-	case APPEAL:
-		return "申诉中"
-	}
-	return ""
+func (this *OrderStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *OrderStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type OrderStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

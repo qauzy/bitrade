@@ -1,13 +1,15 @@
 package Currency
 
-type Currency int
+var BTC = Currency{"比特币", 0}
 
-const BTC Currency = iota
+func (this *Currency) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *Currency) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
 
-func (this Currency) String() string {
-	switch this {
-	case BTC:
-		return "比特币"
-	}
-	return ""
+type Currency struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

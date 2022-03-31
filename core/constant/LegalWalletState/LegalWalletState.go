@@ -1,21 +1,21 @@
 package LegalWalletState
 
-type LegalWalletState int
-
-const (
-	APPLYING LegalWalletState = iota
-	COMPLETE
-	DEFEATED
+var (
+	APPLYING = LegalWalletState{"申请中", 0}
+	COMPLETE = LegalWalletState{"完成", 1}
+	DEFEATED = LegalWalletState{"失败", 2}
 )
 
-func (this LegalWalletState) String() string {
-	switch this {
-	case APPLYING:
-		return "申请中"
-	case COMPLETE:
-		return "完成"
-	case DEFEATED:
-		return "失败"
-	}
-	return ""
+func (this *LegalWalletState) Ordinal() (result int) {
+	return this.ordinal
+}
+func NewLegalWalletState(CnName string) (this *LegalWalletState) {
+	this = new(LegalWalletState)
+	this.CnName = this.CnName
+	return
+}
+
+type LegalWalletState struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

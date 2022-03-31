@@ -1,21 +1,19 @@
 package MemberLevelEnum
 
-type MemberLevelEnum int
-
-const (
-	GENERAL MemberLevelEnum = iota
-	REALNAME
-	IDENTIFICATION
+var (
+	GENERAL        = MemberLevelEnum{"普通", 0}
+	REALNAME       = MemberLevelEnum{"实名", 1}
+	IDENTIFICATION = MemberLevelEnum{"认证商家", 2}
 )
 
-func (this MemberLevelEnum) String() string {
-	switch this {
-	case GENERAL:
-		return "普通"
-	case REALNAME:
-		return "实名"
-	case IDENTIFICATION:
-		return "认证商家"
-	}
-	return ""
+func (this *MemberLevelEnum) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *MemberLevelEnum) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type MemberLevelEnum struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

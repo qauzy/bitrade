@@ -1,21 +1,19 @@
 package RewardRecordType
 
-type RewardRecordType int
-
-const (
-	PROMOTION RewardRecordType = iota
-	ACTIVITY
-	DIVIDEND
+var (
+	PROMOTION = RewardRecordType{"推广", 0}
+	ACTIVITY  = RewardRecordType{"活动", 1}
+	DIVIDEND  = RewardRecordType{"分红", 2}
 )
 
-func (this RewardRecordType) String() string {
-	switch this {
-	case PROMOTION:
-		return "推广"
-	case ACTIVITY:
-		return "活动"
-	case DIVIDEND:
-		return "分红"
-	}
-	return ""
+func (this *RewardRecordType) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *RewardRecordType) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type RewardRecordType struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

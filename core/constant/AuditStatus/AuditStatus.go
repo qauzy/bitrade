@@ -1,21 +1,19 @@
 package AuditStatus
 
-type AuditStatus int
-
-const (
-	AUDIT_ING AuditStatus = iota
-	AUDIT_DEFEATED
-	AUDIT_SUCCESS
+var (
+	AUDIT_ING      = AuditStatus{"待审核", 0}
+	AUDIT_DEFEATED = AuditStatus{"审核失败", 1}
+	AUDIT_SUCCESS  = AuditStatus{"审核成功", 2}
 )
 
-func (this AuditStatus) String() string {
-	switch this {
-	case AUDIT_ING:
-		return "待审核"
-	case AUDIT_DEFEATED:
-		return "审核失败"
-	case AUDIT_SUCCESS:
-		return "审核成功"
-	}
-	return ""
+func (this *AuditStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *AuditStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type AuditStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

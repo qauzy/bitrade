@@ -1,8 +1,7 @@
+
 package Symbol
 
-type Symbol int
-
-const (
+var (
 	USDT Symbol = iota
 	BTC
 	ETH
@@ -10,8 +9,11 @@ const (
 	GCX
 )
 
-func (this Symbol) String() string {
-	switch this {
-	}
-	return ""
+func (this *Symbol) Ordinal() (result int) {
+	return this.ordinal
 }
+
+type Symbol struct {
+	ordinal int
+}
+

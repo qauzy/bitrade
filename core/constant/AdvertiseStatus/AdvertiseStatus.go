@@ -1,21 +1,19 @@
 package AdvertiseStatus
 
-type AdvertiseStatus int
-
-const (
-	HANG AdvertiseStatus = iota
-	PAYMENT
-	TURNOFF
+var (
+	HANG    = AdvertiseStatus{"已挂单", 0}
+	PAYMENT = AdvertiseStatus{"待付款", 1}
+	TURNOFF = AdvertiseStatus{"已关闭", 2}
 )
 
-func (this AdvertiseStatus) String() string {
-	switch this {
-	case HANG:
-		return "已挂单"
-	case PAYMENT:
-		return "待付款"
-	case TURNOFF:
-		return "已关闭"
-	}
-	return ""
+func (this *AdvertiseStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *AdvertiseStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type AdvertiseStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

@@ -1,27 +1,21 @@
 package SysHelpClassification
 
-type SysHelpClassification int
-
-const (
-	HELP SysHelpClassification = iota
-	FAQ
-	RECHARGE
-	TRANSACTION
-	QR_CODE
+var (
+	HELP        = SysHelpClassification{"新手入门", 0}
+	FAQ         = SysHelpClassification{"常见问题", 1}
+	RECHARGE    = SysHelpClassification{"充值指南", 2}
+	TRANSACTION = SysHelpClassification{"交易指南", 3}
+	QR_CODE     = SysHelpClassification{"APP二维码", 4}
 )
 
-func (this SysHelpClassification) String() string {
-	switch this {
-	case HELP:
-		return "新手入门"
-	case FAQ:
-		return "常见问题"
-	case RECHARGE:
-		return "充值指南"
-	case TRANSACTION:
-		return "交易指南"
-	case QR_CODE:
-		return "APP二维码"
-	}
-	return ""
+func (this *SysHelpClassification) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *SysHelpClassification) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type SysHelpClassification struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }

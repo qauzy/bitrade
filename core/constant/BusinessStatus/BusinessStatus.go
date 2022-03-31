@@ -1,21 +1,19 @@
 package BusinessStatus
 
-type BusinessStatus int
-
-const (
-	ZERO BusinessStatus = iota
-	PORTION
-	ALL
+var (
+	ZERO    = BusinessStatus{"为成交", 0}
+	PORTION = BusinessStatus{"部分成交", 1}
+	ALL     = BusinessStatus{"全部成交", 2}
 )
 
-func (this BusinessStatus) String() string {
-	switch this {
-	case ZERO:
-		return "为成交"
-	case PORTION:
-		return "部分成交"
-	case ALL:
-		return "全部成交"
-	}
-	return ""
+func (this *BusinessStatus) Ordinal() (result int) {
+	return this.ordinal
+}
+func (this *BusinessStatus) GetOrdinal() (result int) {
+	return this.Ordinal()
+}
+
+type BusinessStatus struct {
+	CnName  string `gorm:"column:cn_name" json:"cnName"`
+	ordinal int
 }
