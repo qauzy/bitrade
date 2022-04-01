@@ -21,7 +21,7 @@ func (sb *StringBuilder) Append(s string) *StringBuilder {
 	return sb
 }
 
-func (sb *StringBuilder) AppendFormat(f string, s ...interface{}) *StringBuilder {
+func (sb *StringBuilder) AppendFormat(f string, s ...any) *StringBuilder {
 	sb.buf.WriteString(fmt.Sprintf(f, s...))
 	return sb
 }

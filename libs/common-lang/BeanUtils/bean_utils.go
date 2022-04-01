@@ -1,6 +1,9 @@
 package BeanUtils
 
-import "reflect"
+import (
+	"github.com/jinzhu/copier"
+	"reflect"
+)
 
 func IsNil(i interface{}) bool {
 	if i == nil {
@@ -24,4 +27,7 @@ func IsAnyNil(list ...interface{}) bool {
 
 func IsNonNil(list ...interface{}) bool {
 	return !IsAnyNil(list)
+}
+func CopyProperties(toValue interface{}, fromValue interface{}) (err error) {
+	return copier.Copy(toValue, fromValue)
 }
