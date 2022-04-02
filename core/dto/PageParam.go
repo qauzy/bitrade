@@ -1,37 +1,42 @@
 package dto
 
-func (this *PageParam) SetPageNo(pageNo int) (result *PageParam) {
-	this.PageNo = pageNo
+import (
+	"bitrade/core/constant/Direction"
+	"github.com/qauzy/util/lists/arraylist"
+)
+
+func (this *PageParam) SetPageNo(PageNo int) (result *PageParam) {
+	this.PageNo = PageNo
 	return this
 }
-func (this *PageParam) GetPageNo() (pageNo int) {
+func (this *PageParam) GetPageNo() (PageNo int) {
 	return this.PageNo
 }
-func (this *PageParam) SetPageSize(pageSize int) (result *PageParam) {
-	this.PageSize = pageSize
+func (this *PageParam) SetPageSize(PageSize int) (result *PageParam) {
+	this.PageSize = PageSize
 	return this
 }
-func (this *PageParam) GetPageSize() (pageSize int) {
+func (this *PageParam) GetPageSize() (PageSize int) {
 	return this.PageSize
 }
-func (this *PageParam) SetOrders(orders []string) (result *PageParam) {
-	this.Orders = orders
+func (this *PageParam) SetOrders(Orders *arraylist.List[string]) (result *PageParam) {
+	this.Orders = Orders
 	return this
 }
-func (this *PageParam) GetOrders() (orders []string) {
+func (this *PageParam) GetOrders() (Orders *arraylist.List[string]) {
 	return this.Orders
 }
-func (this *PageParam) SetDirection(direction Sort.Direction) (result *PageParam) {
-	this.Direction = direction
+func (this *PageParam) SetDirection(Direction Direction.Direction) (result *PageParam) {
+	this.Direction = Direction
 	return this
 }
-func (this *PageParam) GetDirection() (direction Sort.Direction) {
+func (this *PageParam) GetDirection() (Direction Direction.Direction) {
 	return this.Direction
 }
 
 type PageParam struct {
-	PageNo    int
-	PageSize  int
-	Orders    []string
-	Direction Sort.Direction
+	PageNo    int                     `gorm:"column:page_no" json:"pageNo"`
+	PageSize  int                     `gorm:"column:page_size" json:"pageSize"`
+	Orders    *arraylist.List[string] `gorm:"column:orders" json:"orders"`
+	Direction Direction.Direction     `gorm:"column:direction" json:"direction"`
 }

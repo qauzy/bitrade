@@ -1,61 +1,63 @@
 package dto
 
-func (this *MemberBonusDTO) SetId(id int64) (result *MemberBonusDTO) {
-	this.Id = id
+import "github.com/qauzy/math"
+
+func (this *MemberBonusDTO) SetId(Id int64) (result *MemberBonusDTO) {
+	this.Id = Id
 	return this
 }
-func (this *MemberBonusDTO) GetId() (id int64) {
+func (this *MemberBonusDTO) GetId() (Id int64) {
 	return this.Id
 }
-func (this *MemberBonusDTO) SetMemberId(memberId int64) (result *MemberBonusDTO) {
-	this.MemberId = memberId
+func (this *MemberBonusDTO) SetMemberId(MemberId int64) (result *MemberBonusDTO) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *MemberBonusDTO) GetMemberId() (memberId int64) {
+func (this *MemberBonusDTO) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *MemberBonusDTO) SetHaveTime(haveTime string) (result *MemberBonusDTO) {
-	this.HaveTime = haveTime
+func (this *MemberBonusDTO) SetHaveTime(HaveTime string) (result *MemberBonusDTO) {
+	this.HaveTime = HaveTime
 	return this
 }
-func (this *MemberBonusDTO) GetHaveTime() (haveTime string) {
+func (this *MemberBonusDTO) GetHaveTime() (HaveTime string) {
 	return this.HaveTime
 }
-func (this *MemberBonusDTO) SetArriveTime(arriveTime string) (result *MemberBonusDTO) {
-	this.ArriveTime = arriveTime
+func (this *MemberBonusDTO) SetArriveTime(ArriveTime string) (result *MemberBonusDTO) {
+	this.ArriveTime = ArriveTime
 	return this
 }
-func (this *MemberBonusDTO) GetArriveTime() (arriveTime string) {
+func (this *MemberBonusDTO) GetArriveTime() (ArriveTime string) {
 	return this.ArriveTime
 }
-func (this *MemberBonusDTO) SetTotal(total math.BigDecimal) (result *MemberBonusDTO) {
-	this.Total = total
+func (this *MemberBonusDTO) SetTotal(Total *math.BigDecimal) (result *MemberBonusDTO) {
+	this.Total = Total
 	return this
 }
-func (this *MemberBonusDTO) GetTotal() (total math.BigDecimal) {
+func (this *MemberBonusDTO) GetTotal() (Total *math.BigDecimal) {
 	return this.Total
 }
-func (this *MemberBonusDTO) SetMemBouns(memBouns math.BigDecimal) (result *MemberBonusDTO) {
-	this.MemBouns = memBouns
+func (this *MemberBonusDTO) SetMemBouns(MemBouns *math.BigDecimal) (result *MemberBonusDTO) {
+	this.MemBouns = MemBouns
 	return this
 }
-func (this *MemberBonusDTO) GetMemBouns() (memBouns math.BigDecimal) {
+func (this *MemberBonusDTO) GetMemBouns() (MemBouns *math.BigDecimal) {
 	return this.MemBouns
 }
-func (this *MemberBonusDTO) SetCoinId(coinId string) (result *MemberBonusDTO) {
-	this.CoinId = coinId
+func (this *MemberBonusDTO) SetCoinId(CoinId string) (result *MemberBonusDTO) {
+	this.CoinId = CoinId
 	return this
 }
-func (this *MemberBonusDTO) GetCoinId() (coinId string) {
+func (this *MemberBonusDTO) GetCoinId() (CoinId string) {
 	return this.CoinId
 }
 
 type MemberBonusDTO struct {
-	Id         int64
-	MemberId   int64
-	HaveTime   string
-	ArriveTime string
-	Total      math.BigDecimal
-	MemBouns   math.BigDecimal
-	CoinId     string
+	Id         int64            `gorm:"column:id" json:"id"`
+	MemberId   int64            `gorm:"column:member_id" json:"memberId"`
+	HaveTime   string           `gorm:"column:have_time" json:"haveTime"`
+	ArriveTime string           `gorm:"column:arrive_time" json:"arriveTime"`
+	Total      *math.BigDecimal `gorm:"column:total" json:"total"`
+	MemBouns   *math.BigDecimal `gorm:"column:mem_bouns" json:"memBouns"`
+	CoinId     string           `gorm:"column:coin_id" json:"coinId"`
 }

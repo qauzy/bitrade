@@ -1,45 +1,48 @@
 package dto
 
-func (this *OtcWalletDTO) SetId(id int64) (result *OtcWalletDTO) {
-	this.Id = id
+import "github.com/qauzy/math"
+
+func (this *OtcWalletDTO) SetId(Id int64) (result *OtcWalletDTO) {
+	this.Id = Id
 	return this
 }
-func (this *OtcWalletDTO) GetId() (id int64) {
+func (this *OtcWalletDTO) GetId() (Id int64) {
 	return this.Id
 }
-func (this *OtcWalletDTO) SetUnit(unit string) (result *OtcWalletDTO) {
-	this.Unit = unit
+func (this *OtcWalletDTO) SetUnit(Unit string) (result *OtcWalletDTO) {
+	this.Unit = Unit
 	return this
 }
-func (this *OtcWalletDTO) GetUnit() (unit string) {
+func (this *OtcWalletDTO) GetUnit() (Unit string) {
 	return this.Unit
 }
-func (this *OtcWalletDTO) SetBalance(balance math.BigDecimal) (result *OtcWalletDTO) {
-	this.Balance = balance
+func (this *OtcWalletDTO) SetBalance(Balance *math.BigDecimal) (result *OtcWalletDTO) {
+	this.Balance = Balance
 	return this
 }
-func (this *OtcWalletDTO) GetBalance() (balance math.BigDecimal) {
+func (this *OtcWalletDTO) GetBalance() (Balance *math.BigDecimal) {
 	return this.Balance
 }
-func (this *OtcWalletDTO) SetFrozenBalance(frozenBalance math.BigDecimal) (result *OtcWalletDTO) {
-	this.FrozenBalance = frozenBalance
+func (this *OtcWalletDTO) SetFrozenBalance(FrozenBalance *math.BigDecimal) (result *OtcWalletDTO) {
+	this.FrozenBalance = FrozenBalance
 	return this
 }
-func (this *OtcWalletDTO) GetFrozenBalance() (frozenBalance math.BigDecimal) {
+func (this *OtcWalletDTO) GetFrozenBalance() (FrozenBalance *math.BigDecimal) {
 	return this.FrozenBalance
 }
-func (this *OtcWalletDTO) SetAllBalance(allBalance math.BigDecimal) (result *OtcWalletDTO) {
-	this.AllBalance = allBalance
+func (this *OtcWalletDTO) SetAllBalance(AllBalance *math.BigDecimal) (result *OtcWalletDTO) {
+	this.AllBalance = AllBalance
 	return this
 }
-func (this *OtcWalletDTO) GetAllBalance() (allBalance math.BigDecimal) {
+func (this *OtcWalletDTO) GetAllBalance() (AllBalance *math.BigDecimal) {
 	return this.AllBalance
 }
 
 type OtcWalletDTO struct {
-	Id            int64
-	Unit          string
-	Balance       math.BigDecimal
-	FrozenBalance math.BigDecimal
-	AllBalance    math.BigDecimal
+	Id            int64            `gorm:"column:id" json:"id"`
+	Unit          string           `gorm:"column:unit" json:"unit"`
+	Balance       *math.BigDecimal `gorm:"column:balance" json:"balance"`
+	FrozenBalance *math.BigDecimal `gorm:"column:frozen_balance" json:"frozenBalance"`
+	AllBalance    *math.BigDecimal `gorm:"column:all_balance" json:"allBalance"`
+	BaseMemberDTO
 }

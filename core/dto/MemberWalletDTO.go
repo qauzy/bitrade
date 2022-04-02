@@ -1,53 +1,56 @@
 package dto
 
-func (this *MemberWalletDTO) SetId(id int64) (result *MemberWalletDTO) {
-	this.Id = id
+import "github.com/qauzy/math"
+
+func (this *MemberWalletDTO) SetId(Id int64) (result *MemberWalletDTO) {
+	this.Id = Id
 	return this
 }
-func (this *MemberWalletDTO) GetId() (id int64) {
+func (this *MemberWalletDTO) GetId() (Id int64) {
 	return this.Id
 }
-func (this *MemberWalletDTO) SetUnit(unit string) (result *MemberWalletDTO) {
-	this.Unit = unit
+func (this *MemberWalletDTO) SetUnit(Unit string) (result *MemberWalletDTO) {
+	this.Unit = Unit
 	return this
 }
-func (this *MemberWalletDTO) GetUnit() (unit string) {
+func (this *MemberWalletDTO) GetUnit() (Unit string) {
 	return this.Unit
 }
-func (this *MemberWalletDTO) SetBalance(balance math.BigDecimal) (result *MemberWalletDTO) {
-	this.Balance = balance
+func (this *MemberWalletDTO) SetBalance(Balance *math.BigDecimal) (result *MemberWalletDTO) {
+	this.Balance = Balance
 	return this
 }
-func (this *MemberWalletDTO) GetBalance() (balance math.BigDecimal) {
+func (this *MemberWalletDTO) GetBalance() (Balance *math.BigDecimal) {
 	return this.Balance
 }
-func (this *MemberWalletDTO) SetFrozenBalance(frozenBalance math.BigDecimal) (result *MemberWalletDTO) {
-	this.FrozenBalance = frozenBalance
+func (this *MemberWalletDTO) SetFrozenBalance(FrozenBalance *math.BigDecimal) (result *MemberWalletDTO) {
+	this.FrozenBalance = FrozenBalance
 	return this
 }
-func (this *MemberWalletDTO) GetFrozenBalance() (frozenBalance math.BigDecimal) {
+func (this *MemberWalletDTO) GetFrozenBalance() (FrozenBalance *math.BigDecimal) {
 	return this.FrozenBalance
 }
-func (this *MemberWalletDTO) SetAllBalance(allBalance math.BigDecimal) (result *MemberWalletDTO) {
-	this.AllBalance = allBalance
+func (this *MemberWalletDTO) SetAllBalance(AllBalance *math.BigDecimal) (result *MemberWalletDTO) {
+	this.AllBalance = AllBalance
 	return this
 }
-func (this *MemberWalletDTO) GetAllBalance() (allBalance math.BigDecimal) {
+func (this *MemberWalletDTO) GetAllBalance() (AllBalance *math.BigDecimal) {
 	return this.AllBalance
 }
-func (this *MemberWalletDTO) SetAddress(address string) (result *MemberWalletDTO) {
-	this.Address = address
+func (this *MemberWalletDTO) SetAddress(Address string) (result *MemberWalletDTO) {
+	this.Address = Address
 	return this
 }
-func (this *MemberWalletDTO) GetAddress() (address string) {
+func (this *MemberWalletDTO) GetAddress() (Address string) {
 	return this.Address
 }
 
 type MemberWalletDTO struct {
-	Id            int64
-	Unit          string
-	Balance       math.BigDecimal
-	FrozenBalance math.BigDecimal
-	AllBalance    math.BigDecimal
-	Address       string
+	Id            int64            `gorm:"column:id" json:"id"`
+	Unit          string           `gorm:"column:unit" json:"unit"`
+	Balance       *math.BigDecimal `gorm:"column:balance" json:"balance"`
+	FrozenBalance *math.BigDecimal `gorm:"column:frozen_balance" json:"frozenBalance"`
+	AllBalance    *math.BigDecimal `gorm:"column:all_balance" json:"allBalance"`
+	Address       string           `gorm:"column:address" json:"address"`
+	BaseMemberDTO
 }

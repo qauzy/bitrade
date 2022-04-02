@@ -1,58 +1,59 @@
 package dto
 
-func (this *Pagenation) SetPageParam(pageParam PageParam) (result *Pagenation) {
-	this.PageParam = pageParam
+import "github.com/qauzy/util/lists/arraylist"
+
+func (this *Pagenation[T]) SetPageParam(PageParam *PageParam) (result *Pagenation[T]) {
+	this.PageParam = PageParam
 	return this
 }
-func (this *Pagenation) GetPageParam() (pageParam PageParam) {
+func (this *Pagenation[T]) GetPageParam() (PageParam *PageParam) {
 	return this.PageParam
 }
-func (this *Pagenation) SetTotalCount(totalCount int64) (result *Pagenation) {
-	this.TotalCount = totalCount
+func (this *Pagenation[T]) SetTotalCount(TotalCount int64) (result *Pagenation[T]) {
+	this.TotalCount = TotalCount
 	return this
 }
-func (this *Pagenation) GetTotalCount() (totalCount int64) {
+func (this *Pagenation[T]) GetTotalCount() (TotalCount int64) {
 	return this.TotalCount
 }
-func (this *Pagenation) SetTotalPage(totalPage int64) (result *Pagenation) {
-	this.TotalPage = totalPage
+func (this *Pagenation[T]) SetTotalPage(TotalPage int64) (result *Pagenation[T]) {
+	this.TotalPage = TotalPage
 	return this
 }
-func (this *Pagenation) GetTotalPage() (totalPage int64) {
+func (this *Pagenation[T]) GetTotalPage() (TotalPage int64) {
 	return this.TotalPage
 }
-func (this *Pagenation) SetList(list []T) (result *Pagenation) {
-	this.List = list
+func (this *Pagenation[T]) SetList(List *arraylist.List[T]) (result *Pagenation[T]) {
+	this.List = List
 	return this
 }
-func (this *Pagenation) GetList() (list []T) {
+func (this *Pagenation[T]) GetList() (List *arraylist.List[T]) {
 	return this.List
 }
-func NewPagenation(pageNo int, pageSize int) (this *Pagenation) {
-	this = new(Pagenation)
+func NewPagenation[T any](pageNo int, pageSize int) (this *Pagenation[T]) {
+	this = new(Pagenation[T])
 	this.PageParam.SetPageNo(pageNo)
 	this.PageParam.SetPageSize(pageSize)
 	return
 }
-func NewPagenation(pageParam PageParam) (this *Pagenation) {
-	this = new(Pagenation)
-	if pageParam.GetOrders().Size() < 1 {
-		pageParam.GetOrders().Add("id")
+func NewPagenationEx[T any](PageParam PageParam) (this *Pagenation[T]) {
+	this = new(Pagenation[T])
+	if this.PageParam.GetOrders().Size() < 1 {
+		this.PageParam.GetOrders().Add("id")
 	}
-	this.PageParam = pageParam
+	this.PageParam = this.PageParam
 	return
 }
-func (this *Pagenation) SetData(list []interface {
-}, totalCount int64, totalPage int64) (result Pagenation) {
-	this.List = list
-	this.TotalCount = totalCount
-	this.TotalPage = totalPage
+func (this *Pagenation[T]) SetData(List *arraylist.List[interface{}], TotalCount int64, TotalPage int64) (result *Pagenation[T]) {
+	this.List = this.List
+	this.TotalCount = this.TotalCount
+	this.TotalPage = this.TotalPage
 	return this
 }
 
-type Pagenation struct {
-	PageParam  PageParam
-	TotalCount int64
-	TotalPage  int64
-	List       []T
+type Pagenation[T any] struct {
+	PageParam  *PageParam         `gorm:"column:page_param" json:"pageParam"`
+	TotalCount int64              `gorm:"column:total_count" json:"totalCount"`
+	TotalPage  int64              `gorm:"column:total_page" json:"totalPage"`
+	List       *arraylist.List[T] `gorm:"column:list" json:"list"`
 }

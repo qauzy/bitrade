@@ -1,45 +1,45 @@
 package dto
 
-func (this *BaseMemberDTO) SetMemberId(memberId int64) (result *BaseMemberDTO) {
-	this.MemberId = memberId
+func (this *BaseMemberDTO) SetMemberId(MemberId int64) (result *BaseMemberDTO) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *BaseMemberDTO) GetMemberId() (memberId int64) {
+func (this *BaseMemberDTO) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *BaseMemberDTO) SetRealName(realName string) (result *BaseMemberDTO) {
-	this.RealName = realName
+func (this *BaseMemberDTO) SetRealName(RealName string) (result *BaseMemberDTO) {
+	this.RealName = RealName
 	return this
 }
-func (this *BaseMemberDTO) GetRealName() (realName string) {
+func (this *BaseMemberDTO) GetRealName() (RealName string) {
 	return this.RealName
 }
-func (this *BaseMemberDTO) SetEmail(email string) (result *BaseMemberDTO) {
-	this.Email = email
+func (this *BaseMemberDTO) SetEmail(Email string) (result *BaseMemberDTO) {
+	this.Email = Email
 	return this
 }
-func (this *BaseMemberDTO) GetEmail() (email string) {
+func (this *BaseMemberDTO) GetEmail() (Email string) {
 	return this.Email
 }
-func (this *BaseMemberDTO) SetMobilePhone(mobilePhone string) (result *BaseMemberDTO) {
-	this.MobilePhone = mobilePhone
+func (this *BaseMemberDTO) SetMobilePhone(MobilePhone string) (result *BaseMemberDTO) {
+	this.MobilePhone = MobilePhone
 	return this
 }
-func (this *BaseMemberDTO) GetMobilePhone() (mobilePhone string) {
+func (this *BaseMemberDTO) GetMobilePhone() (MobilePhone string) {
 	return this.MobilePhone
 }
-func (this *BaseMemberDTO) SetUsername(username string) (result *BaseMemberDTO) {
-	this.Username = username
+func (this *BaseMemberDTO) SetUsername(Username string) (result *BaseMemberDTO) {
+	this.Username = Username
 	return this
 }
-func (this *BaseMemberDTO) GetUsername() (username string) {
+func (this *BaseMemberDTO) GetUsername() (Username string) {
 	return this.Username
 }
 
 type BaseMemberDTO struct {
-	MemberId    int64
-	RealName    string
-	Email       string
-	MobilePhone string
-	Username    string
+	MemberId    int64  `gorm:"column:member_id" json:"memberId"`
+	RealName    string `gorm:"column:real_name" json:"realName"`
+	Email       string `gorm:"column:email" json:"email"`
+	MobilePhone string `gorm:"column:mobile_phone" json:"mobilePhone"`
+	Username    string `gorm:"column:username" json:"username"`
 }
