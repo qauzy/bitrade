@@ -44,7 +44,7 @@ func NewPagenationEx[T any](PageParam PageParam) (this *Pagenation[T]) {
 	this.PageParam = this.PageParam
 	return
 }
-func (this *Pagenation[T]) SetData(List *arraylist.List[interface{}], TotalCount int64, TotalPage int64) (result *Pagenation[T]) {
+func (this *Pagenation[T]) SetData(List *arraylist.List[T], TotalCount int64, TotalPage int64) (result *Pagenation[T]) {
 	this.List = this.List
 	this.TotalCount = this.TotalCount
 	this.TotalPage = this.TotalPage
