@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type IntegrationRecordDao interface {
 	Save(m *entity.IntegrationRecord) (result *entity.IntegrationRecord, err error)
 	FindById(id int64) (result *entity.IntegrationRecord, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.IntegrationRecord, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.IntegrationRecord], err error)
 }
 type integrationRecordDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *integrationRecordDao) DeleteById(id int64) (count int64, err error) 
 	count = d.RowsAffected
 	return
 }
-func (this *integrationRecordDao) FindAll(qp *types.QueryParam) (result []*entity.IntegrationRecord, err error) {
+func (this *integrationRecordDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.IntegrationRecord], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

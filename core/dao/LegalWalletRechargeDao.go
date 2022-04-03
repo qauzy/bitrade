@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type LegalWalletRechargeDao interface {
 	Save(m *entity.LegalWalletRecharge) (result *entity.LegalWalletRecharge, err error)
 	FindById(id int64) (result *entity.LegalWalletRecharge, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.LegalWalletRecharge, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.LegalWalletRecharge], err error)
 }
 type legalWalletRechargeDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *legalWalletRechargeDao) DeleteById(id int64) (count int64, err error
 	count = d.RowsAffected
 	return
 }
-func (this *legalWalletRechargeDao) FindAll(qp *types.QueryParam) (result []*entity.LegalWalletRecharge, err error) {
+func (this *legalWalletRechargeDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.LegalWalletRecharge], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

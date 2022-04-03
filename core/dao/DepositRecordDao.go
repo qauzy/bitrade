@@ -5,14 +5,15 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type DepositRecordDao interface {
-	FindByMemberAndStatus(member entity.Member, status DepositStatusEnum.DepositStatusEnum) (result []entity.DepositRecord, err error)
+	FindByMemberAndStatus(member *entity.Member, status *DepositStatusEnum.DepositStatusEnum) (result arraylist.List[entity.DepositRecord], err error)
 	Save(m *entity.DepositRecord) (result *entity.DepositRecord, err error)
 	FindById(id int64) (result *entity.DepositRecord, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.DepositRecord, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.DepositRecord], err error)
 }
 type depositRecordDao struct {
 	*db.DB
@@ -22,7 +23,7 @@ func NewDepositRecordDao(db *db.DB) (dao DepositRecordDao) {
 	dao = &depositRecordDao{db}
 	return
 }
-func (this *depositRecordDao) FindByMemberAndStatus(member entity.Member, status DepositStatusEnum.DepositStatusEnum) (result []entity.DepositRecord, err error) {
+func (this *depositRecordDao) FindByMemberAndStatus(member *entity.Member, status *DepositStatusEnum.DepositStatusEnum) (result arraylist.List[entity.DepositRecord], err error) {
 	err = this.DBRead().Where("member = ?", member).Where("status = ?", status).First(&result).Error
 	return
 }
@@ -40,7 +41,7 @@ func (this *depositRecordDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *depositRecordDao) FindAll(qp *types.QueryParam) (result []*entity.DepositRecord, err error) {
+func (this *depositRecordDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.DepositRecord], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type MemberPromotionDao interface {
 	Save(m *entity.MemberPromotion) (result *entity.MemberPromotion, err error)
 	FindById(id int64) (result *entity.MemberPromotion, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.MemberPromotion, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberPromotion], err error)
 }
 type memberPromotionDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *memberPromotionDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *memberPromotionDao) FindAll(qp *types.QueryParam) (result []*entity.MemberPromotion, err error) {
+func (this *memberPromotionDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberPromotion], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

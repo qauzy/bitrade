@@ -3,17 +3,14 @@ package dao
 import (
 	"bitrade/core/constant/BooleanEnum"
 	"bitrade/core/constant/PromotionRewardType"
-	"bitrade/core/dao/db"
-	"bitrade/core/dao/types"
-	"bitrade/core/entity"
 )
 
 type RewardPromotionSettingDao interface {
-	FindByStatusAndType(booleanEnum BooleanEnum.BooleanEnum, oType PromotionRewardType.PromotionRewardType) (result entity.RewardPromotionSetting, err error)
+	FindByStatusAndType(booleanEnum *BooleanEnum.BooleanEnum, oType *PromotionRewardType.PromotionRewardType) (result *entity.RewardPromotionSetting, err error)
 	Save(m *entity.RewardPromotionSetting) (result *entity.RewardPromotionSetting, err error)
 	FindById(id int64) (result *entity.RewardPromotionSetting, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.RewardPromotionSetting, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.RewardPromotionSetting], err error)
 }
 type rewardPromotionSettingDao struct {
 	*db.DB
@@ -23,7 +20,7 @@ func NewRewardPromotionSettingDao(db *db.DB) (dao RewardPromotionSettingDao) {
 	dao = &rewardPromotionSettingDao{db}
 	return
 }
-func (this *rewardPromotionSettingDao) FindByStatusAndType(booleanEnum BooleanEnum.BooleanEnum, oType PromotionRewardType.PromotionRewardType) (result entity.RewardPromotionSetting, err error) {
+func (this *rewardPromotionSettingDao) FindByStatusAndType(booleanEnum *BooleanEnum.BooleanEnum, oType *PromotionRewardType.PromotionRewardType) (result *entity.RewardPromotionSetting, err error) {
 	err = this.DBRead().Where("status = ?", booleanEnum).Where("type = ?", oType).First(&result).Error
 	return
 }
@@ -41,7 +38,7 @@ func (this *rewardPromotionSettingDao) DeleteById(id int64) (count int64, err er
 	count = d.RowsAffected
 	return
 }
-func (this *rewardPromotionSettingDao) FindAll(qp *types.QueryParam) (result []*entity.RewardPromotionSetting, err error) {
+func (this *rewardPromotionSettingDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.RewardPromotionSetting], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

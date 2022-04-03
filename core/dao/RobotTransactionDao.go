@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type RobotTransactionDao interface {
 	Save(m *entity.RobotTransaction) (result *entity.RobotTransaction, err error)
 	FindById(id int64) (result *entity.RobotTransaction, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.RobotTransaction, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.RobotTransaction], err error)
 }
 type robotTransactionDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *robotTransactionDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *robotTransactionDao) FindAll(qp *types.QueryParam) (result []*entity.RobotTransaction, err error) {
+func (this *robotTransactionDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.RobotTransaction], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

@@ -6,15 +6,16 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type SysAdvertiseDao interface {
-	FindAllByStatusAndSysAdvertiseLocationOrderBySortDesc(status CommonStatus.CommonStatus, sysAdvertiseLocation SysAdvertiseLocation.SysAdvertiseLocation) (result []entity.SysAdvertise, err error)
+	FindAllByStatusAndSysAdvertiseLocationOrderBySortDesc(status *CommonStatus.CommonStatus, sysAdvertiseLocation *SysAdvertiseLocation.SysAdvertiseLocation) (result arraylist.List[entity.SysAdvertise], err error)
 	FindMaxSort() (result int, err error)
 	Save(m *entity.SysAdvertise) (result *entity.SysAdvertise, err error)
 	FindById(id int64) (result *entity.SysAdvertise, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.SysAdvertise, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysAdvertise], err error)
 }
 type sysAdvertiseDao struct {
 	*db.DB
@@ -24,14 +25,12 @@ func NewSysAdvertiseDao(db *db.DB) (dao SysAdvertiseDao) {
 	dao = &sysAdvertiseDao{db}
 	return
 }
-func (this *sysAdvertiseDao) FindAllByStatusAndSysAdvertiseLocationOrderBySortDesc(status CommonStatus.CommonStatus, sysAdvertiseLocation SysAdvertiseLocation.SysAdvertiseLocation) (result []entity.SysAdvertise, err error) {
+func (this *sysAdvertiseDao) FindAllByStatusAndSysAdvertiseLocationOrderBySortDesc(status *CommonStatus.CommonStatus, sysAdvertiseLocation *SysAdvertiseLocation.SysAdvertiseLocation) (result arraylist.List[entity.SysAdvertise], err error) {
 	err = this.DBRead().Where("sort_desc = ?", status).Find(&result).Error
 	return
 }
 func (this *sysAdvertiseDao) FindMaxSort() (result int, err error) {
-
-	//FIXME 非原生sql，需要处理
-	eng := this.DBWrite().Exec("select max(s.sort) from SysAdvertise s")
+	eng := this.DBWrite().Table("SysAdvertise as s").Select("max(s.sort)").Find(&result)
 	err = eng.Error
 	return
 }
@@ -49,7 +48,7 @@ func (this *sysAdvertiseDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *sysAdvertiseDao) FindAll(qp *types.QueryParam) (result []*entity.SysAdvertise, err error) {
+func (this *sysAdvertiseDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysAdvertise], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

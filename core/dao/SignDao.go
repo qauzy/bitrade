@@ -5,14 +5,15 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type SignDao interface {
-	FindByStatus(status SignStatus.SignStatus) (result entity.Sign, err error)
+	FindByStatus(status *SignStatus.SignStatus) (result *entity.Sign, err error)
 	Save(m *entity.Sign) (result *entity.Sign, err error)
 	FindById(id int64) (result *entity.Sign, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.Sign, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.Sign], err error)
 }
 type signDao struct {
 	*db.DB
@@ -22,7 +23,7 @@ func NewSignDao(db *db.DB) (dao SignDao) {
 	dao = &signDao{db}
 	return
 }
-func (this *signDao) FindByStatus(status SignStatus.SignStatus) (result entity.Sign, err error) {
+func (this *signDao) FindByStatus(status *SignStatus.SignStatus) (result *entity.Sign, err error) {
 	err = this.DBRead().Where("status = ?", status).First(&result).Error
 	return
 }
@@ -40,7 +41,7 @@ func (this *signDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *signDao) FindAll(qp *types.QueryParam) (result []*entity.Sign, err error) {
+func (this *signDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.Sign], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

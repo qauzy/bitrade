@@ -5,17 +5,18 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type MemberApplicationDao interface {
-	FindMemberApplicationByMemberAndAuditStatusOrderByIdDesc(var1 entity.Member, var2 AuditStatus.AuditStatus) (result []entity.MemberApplication, err error)
-	CountAllByAuditStatus(auditStatus AuditStatus.AuditStatus) (result int64, err error)
-	FindSuccessMemberApplicationsByIdCard(idCard string, sta1 AuditStatus.AuditStatus, sta2 AuditStatus.AuditStatus) (result []entity.MemberApplication, err error)
-	FindMemberApplicationByKycStatusInAndMember(kycStatus []int64, member entity.Member) (result entity.MemberApplication, err error)
+	FindMemberApplicationByMemberAndAuditStatusOrderByIdDesc(var1 *entity.Member, var2 *AuditStatus.AuditStatus) (result arraylist.List[entity.MemberApplication], err error)
+	CountAllByAuditStatus(auditStatus *AuditStatus.AuditStatus) (result int64, err error)
+	FindSuccessMemberApplicationsByIdCard(idCard string, sta1 *AuditStatus.AuditStatus, sta2 *AuditStatus.AuditStatus) (result arraylist.List[entity.MemberApplication], err error)
+	FindMemberApplicationByKycStatusInAndMember(kycStatus arraylist.List[int], member *entity.Member) (result *entity.MemberApplication, err error)
 	Save(m *entity.MemberApplication) (result *entity.MemberApplication, err error)
 	FindById(id int64) (result *entity.MemberApplication, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.MemberApplication, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberApplication], err error)
 }
 type memberApplicationDao struct {
 	*db.DB
@@ -25,18 +26,18 @@ func NewMemberApplicationDao(db *db.DB) (dao MemberApplicationDao) {
 	dao = &memberApplicationDao{db}
 	return
 }
-func (this *memberApplicationDao) FindMemberApplicationByMemberAndAuditStatusOrderByIdDesc(var1 entity.Member, var2 AuditStatus.AuditStatus) (result []entity.MemberApplication, err error) {
+func (this *memberApplicationDao) FindMemberApplicationByMemberAndAuditStatusOrderByIdDesc(var1 *entity.Member, var2 *AuditStatus.AuditStatus) (result arraylist.List[entity.MemberApplication], err error) {
 	err = this.DBRead().Where("id_desc = ?", var1).First(&result).Error
 	return
 }
-func (this *memberApplicationDao) CountAllByAuditStatus(auditStatus AuditStatus.AuditStatus) (result int64, err error) {
+func (this *memberApplicationDao) CountAllByAuditStatus(auditStatus *AuditStatus.AuditStatus) (result int64, err error) {
 	return
 }
-func (this *memberApplicationDao) FindSuccessMemberApplicationsByIdCard(idCard string, sta1 AuditStatus.AuditStatus, sta2 AuditStatus.AuditStatus) (result []entity.MemberApplication, err error) {
+func (this *memberApplicationDao) FindSuccessMemberApplicationsByIdCard(idCard string, sta1 *AuditStatus.AuditStatus, sta2 *AuditStatus.AuditStatus) (result arraylist.List[entity.MemberApplication], err error) {
 	err = this.DBRead().Where("id_card = ?", idCard).First(&result).Error
 	return
 }
-func (this *memberApplicationDao) FindMemberApplicationByKycStatusInAndMember(kycStatus []int64, member entity.Member) (result entity.MemberApplication, err error) {
+func (this *memberApplicationDao) FindMemberApplicationByKycStatusInAndMember(kycStatus arraylist.List[int], member *entity.Member) (result *entity.MemberApplication, err error) {
 	err = this.DBRead().Where("kyc_status_in = ?", kycStatus).Where("member = ?", member).First(&result).Error
 	return
 }
@@ -54,7 +55,7 @@ func (this *memberApplicationDao) DeleteById(id int64) (count int64, err error) 
 	count = d.RowsAffected
 	return
 }
-func (this *memberApplicationDao) FindAll(qp *types.QueryParam) (result []*entity.MemberApplication, err error) {
+func (this *memberApplicationDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberApplication], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

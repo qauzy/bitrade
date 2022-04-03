@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type MemberSignRecordDao interface {
 	Save(m *entity.MemberSignRecord) (result *entity.MemberSignRecord, err error)
 	FindById(id int64) (result *entity.MemberSignRecord, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.MemberSignRecord, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberSignRecord], err error)
 }
 type memberSignRecordDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *memberSignRecordDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *memberSignRecordDao) FindAll(qp *types.QueryParam) (result []*entity.MemberSignRecord, err error) {
+func (this *memberSignRecordDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.MemberSignRecord], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

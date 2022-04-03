@@ -4,15 +4,16 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type SysRoleDao interface {
 	UpdateSysRole(description string, role string, id int64) (result int, err error)
-	FindAllSysRole() (result []entity.SysRole, err error)
+	FindAllSysRole() (result arraylist.List[entity.SysRole], err error)
 	Save(m *entity.SysRole) (result *entity.SysRole, err error)
 	FindById(id int64) (result *entity.SysRole, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.SysRole, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysRole], err error)
 }
 type sysRoleDao struct {
 	*db.DB
@@ -24,14 +25,14 @@ func NewSysRoleDao(db *db.DB) (dao SysRoleDao) {
 }
 func (this *sysRoleDao) UpdateSysRole(description string, role string, id int64) (result int, err error) {
 
-	//FIXME 非原生sql，需要处理
+	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update SysRole s set s.description=?,s.role=? where s.id=?", description, role, id)
 	err = eng.Error
 	return
 }
-func (this *sysRoleDao) FindAllSysRole() (result []entity.SysRole, err error) {
+func (this *sysRoleDao) FindAllSysRole() (result arraylist.List[entity.SysRole], err error) {
 
-	//FIXME 非原生sql，需要处理
+	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("SELECT new SysRole(s.id,s.role,s.description) FROM SysRole s")
 	err = eng.Error
 	return
@@ -50,7 +51,7 @@ func (this *sysRoleDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *sysRoleDao) FindAll(qp *types.QueryParam) (result []*entity.SysRole, err error) {
+func (this *sysRoleDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysRole], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

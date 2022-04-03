@@ -8,7 +8,7 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/json-iterator/go v1.1.12
 	github.com/nacos-group/nacos-sdk-go v1.1.0
-	github.com/qauzy/fastjson v1.6.4
+	github.com/qauzy/fastjson v1.7.0
 	github.com/qauzy/math v1.3.3
 	github.com/shopspring/decimal v1.3.1
 	github.com/stretchr/testify v1.7.0

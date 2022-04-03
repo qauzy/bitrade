@@ -4,14 +4,15 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type DataDictionaryDao interface {
-	FindByBond(bond string) (result entity.DataDictionary, err error)
+	FindByBond(bond string) (result *entity.DataDictionary, err error)
 	Save(m *entity.DataDictionary) (result *entity.DataDictionary, err error)
 	FindById(id int64) (result *entity.DataDictionary, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.DataDictionary, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.DataDictionary], err error)
 }
 type dataDictionaryDao struct {
 	*db.DB
@@ -21,7 +22,7 @@ func NewDataDictionaryDao(db *db.DB) (dao DataDictionaryDao) {
 	dao = &dataDictionaryDao{db}
 	return
 }
-func (this *dataDictionaryDao) FindByBond(bond string) (result entity.DataDictionary, err error) {
+func (this *dataDictionaryDao) FindByBond(bond string) (result *entity.DataDictionary, err error) {
 	err = this.DBRead().Where("bond = ?", bond).First(&result).Error
 	return
 }
@@ -39,7 +40,7 @@ func (this *dataDictionaryDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *dataDictionaryDao) FindAll(qp *types.QueryParam) (result []*entity.DataDictionary, err error) {
+func (this *dataDictionaryDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.DataDictionary], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

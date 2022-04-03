@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type WebsiteInformationDao interface {
 	Save(m *entity.WebsiteInformation) (result *entity.WebsiteInformation, err error)
 	FindById(id int64) (result *entity.WebsiteInformation, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.WebsiteInformation, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.WebsiteInformation], err error)
 }
 type websiteInformationDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *websiteInformationDao) DeleteById(id int64) (count int64, err error)
 	count = d.RowsAffected
 	return
 }
-func (this *websiteInformationDao) FindAll(qp *types.QueryParam) (result []*entity.WebsiteInformation, err error) {
+func (this *websiteInformationDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.WebsiteInformation], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

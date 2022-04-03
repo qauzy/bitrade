@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type DepartmentDao interface {
 	Save(m *entity.Department) (result *entity.Department, err error)
 	FindById(id int64) (result *entity.Department, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.Department, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.Department], err error)
 }
 type departmentDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *departmentDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *departmentDao) FindAll(qp *types.QueryParam) (result []*entity.Department, err error) {
+func (this *departmentDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.Department], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

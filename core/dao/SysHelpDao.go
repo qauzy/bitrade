@@ -6,17 +6,18 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type SysHelpDao interface {
-	FindAllBySysHelpClassificationAndStatusNot(sysHelpClassification SysHelpClassification.SysHelpClassification, commonStatus CommonStatus.CommonStatus) (result []entity.SysHelp, err error)
+	FindAllBySysHelpClassificationAndStatusNot(sysHelpClassification *SysHelpClassification.SysHelpClassification, commonStatus *CommonStatus.CommonStatus) (result arraylist.List[entity.SysHelp], err error)
 	FindMaxSort() (result int, err error)
-	GetCateTop(cate string) (result []entity.SysHelp, err error)
-	FindAllByStatusNotAndSort() (result []entity.SysHelp, err error)
+	GetCateTop(cate string) (result arraylist.List[entity.SysHelp], err error)
+	FindAllByStatusNotAndSort() (result arraylist.List[entity.SysHelp], err error)
 	Save(m *entity.SysHelp) (result *entity.SysHelp, err error)
 	FindById(id int64) (result *entity.SysHelp, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.SysHelp, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysHelp], err error)
 }
 type sysHelpDao struct {
 	*db.DB
@@ -26,28 +27,22 @@ func NewSysHelpDao(db *db.DB) (dao SysHelpDao) {
 	dao = &sysHelpDao{db}
 	return
 }
-func (this *sysHelpDao) FindAllBySysHelpClassificationAndStatusNot(sysHelpClassification SysHelpClassification.SysHelpClassification, commonStatus CommonStatus.CommonStatus) (result []entity.SysHelp, err error) {
+func (this *sysHelpDao) FindAllBySysHelpClassificationAndStatusNot(sysHelpClassification *SysHelpClassification.SysHelpClassification, commonStatus *CommonStatus.CommonStatus) (result arraylist.List[entity.SysHelp], err error) {
 	err = this.DBRead().Where("sys_help_classification = ?", sysHelpClassification).Where("status <> ?", commonStatus).Find(&result).Error
 	return
 }
 func (this *sysHelpDao) FindMaxSort() (result int, err error) {
-
-	//FIXME 非原生sql，需要处理
-	eng := this.DBWrite().Exec("select max(s.sort) from SysHelp s")
+	eng := this.DBWrite().Table("SysHelp as s").Select("max(s.sort)").Find(&result)
 	err = eng.Error
 	return
 }
-func (this *sysHelpDao) GetCateTop(cate string) (result []entity.SysHelp, err error) {
-
-	//FIXME 非原生sql，需要处理
-	eng := this.DBWrite().Exec("select * from sys_help WHERE sys_help_classification=? and is_top='0' ", cate)
+func (this *sysHelpDao) GetCateTop(cate string) (result arraylist.List[entity.SysHelp], err error) {
+	eng := this.DBWrite().Table("sys_help").Select("*").Where("sys_help_classification = ? and is_top = '0'", cate).Find(&result)
 	err = eng.Error
 	return
 }
-func (this *sysHelpDao) FindAllByStatusNotAndSort() (result []entity.SysHelp, err error) {
-
-	//FIXME 非原生sql，需要处理
-	eng := this.DBWrite().Exec("SELECT * FROM sys_help s WHERE s.status ='0' ORDER BY s.is_top asc , s.sort DESC")
+func (this *sysHelpDao) FindAllByStatusNotAndSort() (result arraylist.List[entity.SysHelp], err error) {
+	eng := this.DBWrite().Table("sys_help as s").Select("*").Where("s.`status` = '0'").Order("s.is_top asc,s.sort desc").Find(&result)
 	err = eng.Error
 	return
 }
@@ -65,7 +60,7 @@ func (this *sysHelpDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *sysHelpDao) FindAll(qp *types.QueryParam) (result []*entity.SysHelp, err error) {
+func (this *sysHelpDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysHelp], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

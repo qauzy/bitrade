@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type TransferRecordDao interface {
 	Save(m *entity.TransferRecord) (result *entity.TransferRecord, err error)
 	FindById(id int64) (result *entity.TransferRecord, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.TransferRecord, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.TransferRecord], err error)
 }
 type transferRecordDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *transferRecordDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *transferRecordDao) FindAll(qp *types.QueryParam) (result []*entity.TransferRecord, err error) {
+func (this *transferRecordDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.TransferRecord], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

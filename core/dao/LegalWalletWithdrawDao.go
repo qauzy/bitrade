@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type LegalWalletWithdrawDao interface {
 	Save(m *entity.LegalWalletWithdraw) (result *entity.LegalWalletWithdraw, err error)
 	FindById(id int64) (result *entity.LegalWalletWithdraw, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.LegalWalletWithdraw, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.LegalWalletWithdraw], err error)
 }
 type legalWalletWithdrawDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *legalWalletWithdrawDao) DeleteById(id int64) (count int64, err error
 	count = d.RowsAffected
 	return
 }
-func (this *legalWalletWithdrawDao) FindAll(qp *types.QueryParam) (result []*entity.LegalWalletWithdraw, err error) {
+func (this *legalWalletWithdrawDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.LegalWalletWithdraw], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

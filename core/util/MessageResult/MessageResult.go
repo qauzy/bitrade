@@ -1,4 +1,4 @@
-package util
+package MessageResult
 
 func NewMessageResult() (this *MessageResult) {
 	this = new(MessageResult)

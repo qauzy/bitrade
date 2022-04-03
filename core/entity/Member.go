@@ -52,11 +52,11 @@ func (this *Member) SetGoogleKey(googleKey string) (result *Member) {
 func (this *Member) GetGoogleKey() (googleKey string) {
 	return this.GoogleKey
 }
-func (this *Member) SetGoogleState(googleState int64) (result *Member) {
+func (this *Member) SetGoogleState(googleState int) (result *Member) {
 	this.GoogleState = googleState
 	return this
 }
-func (this *Member) GetGoogleState() (googleState int64) {
+func (this *Member) GetGoogleState() (googleState int) {
 	return this.GoogleState
 }
 func (this *Member) SetGoogleDate(googleDate time.Time) (result *Member) {
@@ -353,11 +353,11 @@ func (this *Member) SetMemberGradeId(memberGradeId int64) (result *Member) {
 func (this *Member) GetMemberGradeId() (memberGradeId int64) {
 	return this.MemberGradeId
 }
-func (this *Member) SetKycStatus(kycStatus int64) (result *Member) {
+func (this *Member) SetKycStatus(kycStatus int) (result *Member) {
 	this.KycStatus = kycStatus
 	return this
 }
-func (this *Member) GetKycStatus() (kycStatus int64) {
+func (this *Member) GetKycStatus() (kycStatus int) {
 	return this.KycStatus
 }
 func (this *Member) SetGeneralizeTotal(generalizeTotal int64) (result *Member) {
@@ -382,7 +382,7 @@ type Member struct {
 	Password                   string
 	Margin                     string
 	GoogleKey                  string
-	GoogleState                int64
+	GoogleState                int
 	GoogleDate                 time.Time
 	JyPassword                 string
 	RealName                   string
@@ -425,7 +425,7 @@ type Member struct {
 	LoginLock                  BooleanEnum.BooleanEnum
 	Integration                int64
 	MemberGradeId              int64
-	KycStatus                  int64
+	KycStatus                  int
 	GeneralizeTotal            int64
 	InviterParentId            int64
 }

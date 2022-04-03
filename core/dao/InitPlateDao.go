@@ -4,14 +4,15 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type InitPlateDao interface {
-	FindInitPlateBySymbol(symbol string) (result entity.InitPlate, err error)
+	FindInitPlateBySymbol(symbol string) (result *entity.InitPlate, err error)
 	Save(m *entity.InitPlate) (result *entity.InitPlate, err error)
 	FindById(id int64) (result *entity.InitPlate, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.InitPlate, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.InitPlate], err error)
 }
 type initPlateDao struct {
 	*db.DB
@@ -21,7 +22,7 @@ func NewInitPlateDao(db *db.DB) (dao InitPlateDao) {
 	dao = &initPlateDao{db}
 	return
 }
-func (this *initPlateDao) FindInitPlateBySymbol(symbol string) (result entity.InitPlate, err error) {
+func (this *initPlateDao) FindInitPlateBySymbol(symbol string) (result *entity.InitPlate, err error) {
 	err = this.DBRead().Where("symbol = ?", symbol).First(&result).Error
 	return
 }
@@ -39,7 +40,7 @@ func (this *initPlateDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *initPlateDao) FindAll(qp *types.QueryParam) (result []*entity.InitPlate, err error) {
+func (this *initPlateDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.InitPlate], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

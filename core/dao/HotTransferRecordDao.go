@@ -4,13 +4,14 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type HotTransferRecordDao interface {
 	Save(m *entity.HotTransferRecord) (result *entity.HotTransferRecord, err error)
 	FindById(id int64) (result *entity.HotTransferRecord, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.HotTransferRecord, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.HotTransferRecord], err error)
 }
 type hotTransferRecordDao struct {
 	*db.DB
@@ -34,7 +35,7 @@ func (this *hotTransferRecordDao) DeleteById(id int64) (count int64, err error) 
 	count = d.RowsAffected
 	return
 }
-func (this *hotTransferRecordDao) FindAll(qp *types.QueryParam) (result []*entity.HotTransferRecord, err error) {
+func (this *hotTransferRecordDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.HotTransferRecord], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)

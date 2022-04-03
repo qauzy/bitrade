@@ -4,15 +4,16 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/util/lists/arraylist"
 )
 
 type SysPermissionDao interface {
 	DeletePermission(permissionId int64) (result int, err error)
-	FindSysPermissionByName(name string) (result entity.SysPermission, err error)
+	FindSysPermissionByName(name string) (result *entity.SysPermission, err error)
 	Save(m *entity.SysPermission) (result *entity.SysPermission, err error)
 	FindById(id int64) (result *entity.SysPermission, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result []*entity.SysPermission, err error)
+	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysPermission], err error)
 }
 type sysPermissionDao struct {
 	*db.DB
@@ -24,12 +25,12 @@ func NewSysPermissionDao(db *db.DB) (dao SysPermissionDao) {
 }
 func (this *sysPermissionDao) DeletePermission(permissionId int64) (result int, err error) {
 
-	//FIXME 非原生sql，需要处理
+	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("delete from admin_role_permission where rule_id = ?", permissionId)
 	err = eng.Error
 	return
 }
-func (this *sysPermissionDao) FindSysPermissionByName(name string) (result entity.SysPermission, err error) {
+func (this *sysPermissionDao) FindSysPermissionByName(name string) (result *entity.SysPermission, err error) {
 	err = this.DBRead().Where("name = ?", name).First(&result).Error
 	return
 }
@@ -47,7 +48,7 @@ func (this *sysPermissionDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *sysPermissionDao) FindAll(qp *types.QueryParam) (result []*entity.SysPermission, err error) {
+func (this *sysPermissionDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.SysPermission], err error) {
 	d := this.DBRead()
 	if qp != nil {
 		d = qp.BuildQuery(d)
