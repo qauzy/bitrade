@@ -2,70 +2,82 @@ package entity
 
 import "github.com/qauzy/math"
 
-func (this *OtcWallet) SetId(id int64) (result *OtcWallet) {
-	this.Id = id
+func (this *OtcWallet) SetId(Id int64) (result *OtcWallet) {
+	this.Id = Id
 	return this
 }
-func (this *OtcWallet) GetId() (id int64) {
+func (this *OtcWallet) GetId() (Id int64) {
 	return this.Id
 }
-func (this *OtcWallet) SetBalance(balance math.BigDecimal) (result *OtcWallet) {
-	this.Balance = balance
+func (this *OtcWallet) SetBalance(Balance math.BigDecimal) (result *OtcWallet) {
+	this.Balance = Balance
 	return this
 }
-func (this *OtcWallet) GetBalance() (balance math.BigDecimal) {
+func (this *OtcWallet) GetBalance() (Balance math.BigDecimal) {
 	return this.Balance
 }
-func (this *OtcWallet) SetFrozenBalance(frozenBalance math.BigDecimal) (result *OtcWallet) {
-	this.FrozenBalance = frozenBalance
+func (this *OtcWallet) SetFrozenBalance(FrozenBalance math.BigDecimal) (result *OtcWallet) {
+	this.FrozenBalance = FrozenBalance
 	return this
 }
-func (this *OtcWallet) GetFrozenBalance() (frozenBalance math.BigDecimal) {
+func (this *OtcWallet) GetFrozenBalance() (FrozenBalance math.BigDecimal) {
 	return this.FrozenBalance
 }
-func (this *OtcWallet) SetReleaseBalance(releaseBalance math.BigDecimal) (result *OtcWallet) {
-	this.ReleaseBalance = releaseBalance
+func (this *OtcWallet) SetReleaseBalance(ReleaseBalance math.BigDecimal) (result *OtcWallet) {
+	this.ReleaseBalance = ReleaseBalance
 	return this
 }
-func (this *OtcWallet) GetReleaseBalance() (releaseBalance math.BigDecimal) {
+func (this *OtcWallet) GetReleaseBalance() (ReleaseBalance math.BigDecimal) {
 	return this.ReleaseBalance
 }
-func (this *OtcWallet) SetIsLock(isLock int64) (result *OtcWallet) {
-	this.IsLock = isLock
+func (this *OtcWallet) SetIsLock(IsLock int) (result *OtcWallet) {
+	this.IsLock = IsLock
 	return this
 }
-func (this *OtcWallet) GetIsLock() (isLock int64) {
+func (this *OtcWallet) GetIsLock() (IsLock int) {
 	return this.IsLock
 }
-func (this *OtcWallet) SetMemberId(memberId int64) (result *OtcWallet) {
-	this.MemberId = memberId
+func (this *OtcWallet) SetMemberId(MemberId int64) (result *OtcWallet) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *OtcWallet) GetMemberId() (memberId int64) {
+func (this *OtcWallet) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *OtcWallet) SetVersion(version int64) (result *OtcWallet) {
-	this.Version = version
+func (this *OtcWallet) SetVersion(Version int) (result *OtcWallet) {
+	this.Version = Version
 	return this
 }
-func (this *OtcWallet) GetVersion() (version int64) {
+func (this *OtcWallet) GetVersion() (Version int) {
 	return this.Version
 }
-func (this *OtcWallet) SetCoin(coin *Coin) (result *OtcWallet) {
-	this.Coin = coin
+func (this *OtcWallet) SetCoin(Coin *Coin) (result *OtcWallet) {
+	this.Coin = Coin
 	return this
 }
-func (this *OtcWallet) GetCoin() (coin *Coin) {
+func (this *OtcWallet) GetCoin() (Coin *Coin) {
 	return this.Coin
+}
+func NewOtcWallet(id int64, balance math.BigDecimal, frozenBalance math.BigDecimal, releaseBalance math.BigDecimal, isLock int, memberId int64, version int, coin *Coin) (ret *OtcWallet) {
+	ret = new(OtcWallet)
+	ret.Id = id
+	ret.Balance = balance
+	ret.FrozenBalance = frozenBalance
+	ret.ReleaseBalance = releaseBalance
+	ret.IsLock = isLock
+	ret.MemberId = memberId
+	ret.Version = version
+	ret.Coin = coin
+	return
 }
 
 type OtcWallet struct {
-	Id             int64
-	Balance        math.BigDecimal
-	FrozenBalance  math.BigDecimal
-	ReleaseBalance math.BigDecimal
-	IsLock         int64
-	MemberId       int64
-	Version        int64
-	Coin           *Coin
+	Id             int64           `gorm:"column:id" json:"id"`
+	Balance        math.BigDecimal `gorm:"column:balance" json:"balance"`
+	FrozenBalance  math.BigDecimal `gorm:"column:frozen_balance" json:"frozenBalance"`
+	ReleaseBalance math.BigDecimal `gorm:"column:release_balance" json:"releaseBalance"`
+	IsLock         int             `gorm:"column:is_lock" json:"isLock"`
+	MemberId       int64           `gorm:"column:member_id" json:"memberId"`
+	Version        int             `gorm:"column:version" json:"version"`
+	Coin           *Coin           `gorm:"column:coin" json:"coin"`
 }

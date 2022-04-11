@@ -2,90 +2,104 @@ package entity
 
 import (
 	"bitrade/core/constant/TransactionType"
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
-func (this *MemberTransaction) SetId(id int64) (result *MemberTransaction) {
-	this.Id = id
+func (this *MemberTransaction) SetId(Id int64) (result *MemberTransaction) {
+	this.Id = Id
 	return this
 }
-func (this *MemberTransaction) GetId() (id int64) {
+func (this *MemberTransaction) GetId() (Id int64) {
 	return this.Id
 }
-func (this *MemberTransaction) SetMemberId(memberId int64) (result *MemberTransaction) {
-	this.MemberId = memberId
+func (this *MemberTransaction) SetMemberId(MemberId int64) (result *MemberTransaction) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *MemberTransaction) GetMemberId() (memberId int64) {
+func (this *MemberTransaction) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *MemberTransaction) SetAmount(amount math.BigDecimal) (result *MemberTransaction) {
-	this.Amount = amount
+func (this *MemberTransaction) SetAmount(Amount math.BigDecimal) (result *MemberTransaction) {
+	this.Amount = Amount
 	return this
 }
-func (this *MemberTransaction) GetAmount() (amount math.BigDecimal) {
+func (this *MemberTransaction) GetAmount() (Amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *MemberTransaction) SetCreateTime(createTime time.Time) (result *MemberTransaction) {
-	this.CreateTime = createTime
+func (this *MemberTransaction) SetCreateTime(CreateTime xtime.Xtime) (result *MemberTransaction) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *MemberTransaction) GetCreateTime() (createTime time.Time) {
+func (this *MemberTransaction) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *MemberTransaction) SetType(oType TransactionType.TransactionType) (result *MemberTransaction) {
-	this.Type = oType
+func (this *MemberTransaction) SetType(Type TransactionType.TransactionType) (result *MemberTransaction) {
+	this.Type = Type
 	return this
 }
-func (this *MemberTransaction) GetType() (oType TransactionType.TransactionType) {
+func (this *MemberTransaction) GetType() (Type TransactionType.TransactionType) {
 	return this.Type
 }
-func (this *MemberTransaction) SetSymbol(symbol string) (result *MemberTransaction) {
-	this.Symbol = symbol
+func (this *MemberTransaction) SetSymbol(Symbol string) (result *MemberTransaction) {
+	this.Symbol = Symbol
 	return this
 }
-func (this *MemberTransaction) GetSymbol() (symbol string) {
+func (this *MemberTransaction) GetSymbol() (Symbol string) {
 	return this.Symbol
 }
-func (this *MemberTransaction) SetAddress(address string) (result *MemberTransaction) {
-	this.Address = address
+func (this *MemberTransaction) SetAddress(Address string) (result *MemberTransaction) {
+	this.Address = Address
 	return this
 }
-func (this *MemberTransaction) GetAddress() (address string) {
+func (this *MemberTransaction) GetAddress() (Address string) {
 	return this.Address
 }
-func (this *MemberTransaction) SetFee(fee math.BigDecimal) (result *MemberTransaction) {
-	this.Fee = fee
+func (this *MemberTransaction) SetFee(Fee math.BigDecimal) (result *MemberTransaction) {
+	this.Fee = Fee
 	return this
 }
-func (this *MemberTransaction) GetFee() (fee math.BigDecimal) {
+func (this *MemberTransaction) GetFee() (Fee math.BigDecimal) {
 	return this.Fee
 }
-func (this *MemberTransaction) SetFlag(flag int) (result *MemberTransaction) {
-	this.Flag = flag
+func (this *MemberTransaction) SetFlag(Flag int) (result *MemberTransaction) {
+	this.Flag = Flag
 	return this
 }
-func (this *MemberTransaction) GetFlag() (flag int) {
+func (this *MemberTransaction) GetFlag() (Flag int) {
 	return this.Flag
 }
-func (this *MemberTransaction) SetAirdropId(airdropId int64) (result *MemberTransaction) {
-	this.AirdropId = airdropId
+func (this *MemberTransaction) SetAirdropId(AirdropId int64) (result *MemberTransaction) {
+	this.AirdropId = AirdropId
 	return this
 }
-func (this *MemberTransaction) GetAirdropId() (airdropId int64) {
+func (this *MemberTransaction) GetAirdropId() (AirdropId int64) {
 	return this.AirdropId
+}
+func NewMemberTransaction(id int64, memberId int64, amount math.BigDecimal, createTime xtime.Xtime, oType TransactionType.TransactionType, symbol string, address string, fee math.BigDecimal, flag int, airdropId int64) (ret *MemberTransaction) {
+	ret = new(MemberTransaction)
+	ret.Id = id
+	ret.MemberId = memberId
+	ret.Amount = amount
+	ret.CreateTime = createTime
+	ret.Type = oType
+	ret.Symbol = symbol
+	ret.Address = address
+	ret.Fee = fee
+	ret.Flag = flag
+	ret.AirdropId = airdropId
+	return
 }
 
 type MemberTransaction struct {
-	Id         int64
-	MemberId   int64
-	Amount     math.BigDecimal
-	CreateTime time.Time
-	Type       TransactionType.TransactionType
-	Symbol     string
-	Address    string
-	Fee        math.BigDecimal
-	Flag       int
-	AirdropId  int64
+	Id         int64                           `gorm:"column:id" json:"id"`
+	MemberId   int64                           `gorm:"column:member_id" json:"memberId"`
+	Amount     math.BigDecimal                 `gorm:"column:amount" json:"amount"`
+	CreateTime xtime.Xtime                     `gorm:"column:create_time" json:"createTime"`
+	Type       TransactionType.TransactionType `gorm:"column:type" json:"type"`
+	Symbol     string                          `gorm:"column:symbol" json:"symbol"`
+	Address    string                          `gorm:"column:address" json:"address"`
+	Fee        math.BigDecimal                 `gorm:"column:fee" json:"fee"`
+	Flag       int                             `gorm:"column:flag" json:"flag"`
+	AirdropId  int64                           `gorm:"column:airdrop_id" json:"airdropId"`
 }

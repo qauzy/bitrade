@@ -2,90 +2,104 @@ package entity
 
 import (
 	"bitrade/core/constant/CommonStatus"
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
-func (this *LockPositionRecord) SetId(id int64) (result *LockPositionRecord) {
-	this.Id = id
+func (this *LockPositionRecord) SetId(Id int64) (result *LockPositionRecord) {
+	this.Id = Id
 	return this
 }
-func (this *LockPositionRecord) GetId() (id int64) {
+func (this *LockPositionRecord) GetId() (Id int64) {
 	return this.Id
 }
-func (this *LockPositionRecord) SetMemberId(memberId int64) (result *LockPositionRecord) {
-	this.MemberId = memberId
+func (this *LockPositionRecord) SetMemberId(MemberId int64) (result *LockPositionRecord) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *LockPositionRecord) GetMemberId() (memberId int64) {
+func (this *LockPositionRecord) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *LockPositionRecord) SetMemberName(memberName string) (result *LockPositionRecord) {
-	this.MemberName = memberName
+func (this *LockPositionRecord) SetMemberName(MemberName string) (result *LockPositionRecord) {
+	this.MemberName = MemberName
 	return this
 }
-func (this *LockPositionRecord) GetMemberName() (memberName string) {
+func (this *LockPositionRecord) GetMemberName() (MemberName string) {
 	return this.MemberName
 }
-func (this *LockPositionRecord) SetCoin(coin *Coin) (result *LockPositionRecord) {
-	this.Coin = coin
+func (this *LockPositionRecord) SetCoin(Coin *Coin) (result *LockPositionRecord) {
+	this.Coin = Coin
 	return this
 }
-func (this *LockPositionRecord) GetCoin() (coin *Coin) {
+func (this *LockPositionRecord) GetCoin() (Coin *Coin) {
 	return this.Coin
 }
-func (this *LockPositionRecord) SetCreateTime(createTime time.Time) (result *LockPositionRecord) {
-	this.CreateTime = createTime
+func (this *LockPositionRecord) SetCreateTime(CreateTime xtime.Xtime) (result *LockPositionRecord) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *LockPositionRecord) GetCreateTime() (createTime time.Time) {
+func (this *LockPositionRecord) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *LockPositionRecord) SetStatus(status CommonStatus.CommonStatus) (result *LockPositionRecord) {
-	this.Status = status
+func (this *LockPositionRecord) SetStatus(Status CommonStatus.CommonStatus) (result *LockPositionRecord) {
+	this.Status = Status
 	return this
 }
-func (this *LockPositionRecord) GetStatus() (status CommonStatus.CommonStatus) {
+func (this *LockPositionRecord) GetStatus() (Status CommonStatus.CommonStatus) {
 	return this.Status
 }
-func (this *LockPositionRecord) SetUnlockTime(unlockTime time.Time) (result *LockPositionRecord) {
-	this.UnlockTime = unlockTime
+func (this *LockPositionRecord) SetUnlockTime(UnlockTime xtime.Xtime) (result *LockPositionRecord) {
+	this.UnlockTime = UnlockTime
 	return this
 }
-func (this *LockPositionRecord) GetUnlockTime() (unlockTime time.Time) {
+func (this *LockPositionRecord) GetUnlockTime() (UnlockTime xtime.Xtime) {
 	return this.UnlockTime
 }
-func (this *LockPositionRecord) SetReason(reason string) (result *LockPositionRecord) {
-	this.Reason = reason
+func (this *LockPositionRecord) SetReason(Reason string) (result *LockPositionRecord) {
+	this.Reason = Reason
 	return this
 }
-func (this *LockPositionRecord) GetReason() (reason string) {
+func (this *LockPositionRecord) GetReason() (Reason string) {
 	return this.Reason
 }
-func (this *LockPositionRecord) SetAmount(amount math.BigDecimal) (result *LockPositionRecord) {
-	this.Amount = amount
+func (this *LockPositionRecord) SetAmount(Amount math.BigDecimal) (result *LockPositionRecord) {
+	this.Amount = Amount
 	return this
 }
-func (this *LockPositionRecord) GetAmount() (amount math.BigDecimal) {
+func (this *LockPositionRecord) GetAmount() (Amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *LockPositionRecord) SetWalletId(walletId int64) (result *LockPositionRecord) {
-	this.WalletId = walletId
+func (this *LockPositionRecord) SetWalletId(WalletId int64) (result *LockPositionRecord) {
+	this.WalletId = WalletId
 	return this
 }
-func (this *LockPositionRecord) GetWalletId() (walletId int64) {
+func (this *LockPositionRecord) GetWalletId() (WalletId int64) {
 	return this.WalletId
+}
+func NewLockPositionRecord(id int64, memberId int64, memberName string, coin *Coin, createTime xtime.Xtime, status CommonStatus.CommonStatus, unlockTime xtime.Xtime, reason string, amount math.BigDecimal, walletId int64) (ret *LockPositionRecord) {
+	ret = new(LockPositionRecord)
+	ret.Id = id
+	ret.MemberId = memberId
+	ret.MemberName = memberName
+	ret.Coin = coin
+	ret.CreateTime = createTime
+	ret.Status = status
+	ret.UnlockTime = unlockTime
+	ret.Reason = reason
+	ret.Amount = amount
+	ret.WalletId = walletId
+	return
 }
 
 type LockPositionRecord struct {
-	Id         int64
-	MemberId   int64
-	MemberName string
-	Coin       *Coin
-	CreateTime time.Time
-	Status     CommonStatus.CommonStatus
-	UnlockTime time.Time
-	Reason     string
-	Amount     math.BigDecimal
-	WalletId   int64
+	Id         int64                     `gorm:"column:id" json:"id"`
+	MemberId   int64                     `gorm:"column:member_id" json:"memberId"`
+	MemberName string                    `gorm:"column:member_name" json:"memberName"`
+	Coin       *Coin                     `gorm:"column:coin" json:"coin"`
+	CreateTime xtime.Xtime               `gorm:"column:create_time" json:"createTime"`
+	Status     CommonStatus.CommonStatus `gorm:"column:status" json:"status"`
+	UnlockTime xtime.Xtime               `gorm:"column:unlock_time" json:"unlockTime"`
+	Reason     string                    `gorm:"column:reason" json:"reason"`
+	Amount     math.BigDecimal           `gorm:"column:amount" json:"amount"`
+	WalletId   int64                     `gorm:"column:wallet_id" json:"walletId"`
 }

@@ -2,154 +2,176 @@ package transform
 
 import (
 	"bitrade/core/constant/AdvertiseType"
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
-func (this *ScanAdvertise) SetMemberName(memberName string) (result *ScanAdvertise) {
-	this.MemberName = memberName
+func (this *ScanAdvertise) SetMemberName(MemberName string) (result *ScanAdvertise) {
+	this.MemberName = MemberName
 	return this
 }
-func (this *ScanAdvertise) GetMemberName() (memberName string) {
+func (this *ScanAdvertise) GetMemberName() (MemberName string) {
 	return this.MemberName
 }
-func (this *ScanAdvertise) SetAvatar(avatar string) (result *ScanAdvertise) {
-	this.Avatar = avatar
+func (this *ScanAdvertise) SetAvatar(Avatar string) (result *ScanAdvertise) {
+	this.Avatar = Avatar
 	return this
 }
-func (this *ScanAdvertise) GetAvatar() (avatar string) {
+func (this *ScanAdvertise) GetAvatar() (Avatar string) {
 	return this.Avatar
 }
-func (this *ScanAdvertise) SetAdvertiseId(advertiseId int64) (result *ScanAdvertise) {
-	this.AdvertiseId = advertiseId
+func (this *ScanAdvertise) SetAdvertiseId(AdvertiseId int64) (result *ScanAdvertise) {
+	this.AdvertiseId = AdvertiseId
 	return this
 }
-func (this *ScanAdvertise) GetAdvertiseId() (advertiseId int64) {
+func (this *ScanAdvertise) GetAdvertiseId() (AdvertiseId int64) {
 	return this.AdvertiseId
 }
-func (this *ScanAdvertise) SetTransactions(transactions int) (result *ScanAdvertise) {
-	this.Transactions = transactions
+func (this *ScanAdvertise) SetTransactions(Transactions int) (result *ScanAdvertise) {
+	this.Transactions = Transactions
 	return this
 }
-func (this *ScanAdvertise) GetTransactions() (transactions int) {
+func (this *ScanAdvertise) GetTransactions() (Transactions int) {
 	return this.Transactions
 }
-func (this *ScanAdvertise) SetPrice(price math.BigDecimal) (result *ScanAdvertise) {
-	this.Price = price
+func (this *ScanAdvertise) SetPrice(Price math.BigDecimal) (result *ScanAdvertise) {
+	this.Price = Price
 	return this
 }
-func (this *ScanAdvertise) GetPrice() (price math.BigDecimal) {
+func (this *ScanAdvertise) GetPrice() (Price math.BigDecimal) {
 	return this.Price
 }
-func (this *ScanAdvertise) SetMinLimit(minLimit math.BigDecimal) (result *ScanAdvertise) {
-	this.MinLimit = minLimit
+func (this *ScanAdvertise) SetMinLimit(MinLimit math.BigDecimal) (result *ScanAdvertise) {
+	this.MinLimit = MinLimit
 	return this
 }
-func (this *ScanAdvertise) GetMinLimit() (minLimit math.BigDecimal) {
+func (this *ScanAdvertise) GetMinLimit() (MinLimit math.BigDecimal) {
 	return this.MinLimit
 }
-func (this *ScanAdvertise) SetMaxLimit(maxLimit math.BigDecimal) (result *ScanAdvertise) {
-	this.MaxLimit = maxLimit
+func (this *ScanAdvertise) SetMaxLimit(MaxLimit math.BigDecimal) (result *ScanAdvertise) {
+	this.MaxLimit = MaxLimit
 	return this
 }
-func (this *ScanAdvertise) GetMaxLimit() (maxLimit math.BigDecimal) {
+func (this *ScanAdvertise) GetMaxLimit() (MaxLimit math.BigDecimal) {
 	return this.MaxLimit
 }
-func (this *ScanAdvertise) SetRemainAmount(remainAmount math.BigDecimal) (result *ScanAdvertise) {
-	this.RemainAmount = remainAmount
+func (this *ScanAdvertise) SetRemainAmount(RemainAmount math.BigDecimal) (result *ScanAdvertise) {
+	this.RemainAmount = RemainAmount
 	return this
 }
-func (this *ScanAdvertise) GetRemainAmount() (remainAmount math.BigDecimal) {
+func (this *ScanAdvertise) GetRemainAmount() (RemainAmount math.BigDecimal) {
 	return this.RemainAmount
 }
-func (this *ScanAdvertise) SetCreateTime(createTime time.Time) (result *ScanAdvertise) {
-	this.CreateTime = createTime
+func (this *ScanAdvertise) SetCreateTime(CreateTime xtime.Xtime) (result *ScanAdvertise) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *ScanAdvertise) GetCreateTime() (createTime time.Time) {
+func (this *ScanAdvertise) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *ScanAdvertise) SetPayMode(payMode string) (result *ScanAdvertise) {
-	this.PayMode = payMode
+func (this *ScanAdvertise) SetPayMode(PayMode string) (result *ScanAdvertise) {
+	this.PayMode = PayMode
 	return this
 }
-func (this *ScanAdvertise) GetPayMode() (payMode string) {
+func (this *ScanAdvertise) GetPayMode() (PayMode string) {
 	return this.PayMode
 }
-func (this *ScanAdvertise) SetCoinId(coinId int64) (result *ScanAdvertise) {
-	this.CoinId = coinId
+func (this *ScanAdvertise) SetCoinId(CoinId int64) (result *ScanAdvertise) {
+	this.CoinId = CoinId
 	return this
 }
-func (this *ScanAdvertise) GetCoinId() (coinId int64) {
+func (this *ScanAdvertise) GetCoinId() (CoinId int64) {
 	return this.CoinId
 }
-func (this *ScanAdvertise) SetUnit(unit string) (result *ScanAdvertise) {
-	this.Unit = unit
+func (this *ScanAdvertise) SetUnit(Unit string) (result *ScanAdvertise) {
+	this.Unit = Unit
 	return this
 }
-func (this *ScanAdvertise) GetUnit() (unit string) {
+func (this *ScanAdvertise) GetUnit() (Unit string) {
 	return this.Unit
 }
-func (this *ScanAdvertise) SetCoinName(coinName string) (result *ScanAdvertise) {
-	this.CoinName = coinName
+func (this *ScanAdvertise) SetCoinName(CoinName string) (result *ScanAdvertise) {
+	this.CoinName = CoinName
 	return this
 }
-func (this *ScanAdvertise) GetCoinName() (coinName string) {
+func (this *ScanAdvertise) GetCoinName() (CoinName string) {
 	return this.CoinName
 }
-func (this *ScanAdvertise) SetCoinNameCn(coinNameCn string) (result *ScanAdvertise) {
-	this.CoinNameCn = coinNameCn
+func (this *ScanAdvertise) SetCoinNameCn(CoinNameCn string) (result *ScanAdvertise) {
+	this.CoinNameCn = CoinNameCn
 	return this
 }
-func (this *ScanAdvertise) GetCoinNameCn() (coinNameCn string) {
+func (this *ScanAdvertise) GetCoinNameCn() (CoinNameCn string) {
 	return this.CoinNameCn
 }
-func (this *ScanAdvertise) SetLevel(level int) (result *ScanAdvertise) {
-	this.Level = level
+func (this *ScanAdvertise) SetLevel(Level int) (result *ScanAdvertise) {
+	this.Level = Level
 	return this
 }
-func (this *ScanAdvertise) GetLevel() (level int) {
+func (this *ScanAdvertise) GetLevel() (Level int) {
 	return this.Level
 }
-func (this *ScanAdvertise) SetAdvertiseType(advertiseType AdvertiseType.AdvertiseType) (result *ScanAdvertise) {
-	this.AdvertiseType = advertiseType
+func (this *ScanAdvertise) SetAdvertiseType(AdvertiseType AdvertiseType.AdvertiseType) (result *ScanAdvertise) {
+	this.AdvertiseType = AdvertiseType
 	return this
 }
-func (this *ScanAdvertise) GetAdvertiseType() (advertiseType AdvertiseType.AdvertiseType) {
+func (this *ScanAdvertise) GetAdvertiseType() (AdvertiseType AdvertiseType.AdvertiseType) {
 	return this.AdvertiseType
 }
-func (this *ScanAdvertise) SetAdvType(advType int) (result *ScanAdvertise) {
-	this.AdvType = advType
+func (this *ScanAdvertise) SetAdvType(AdvType int) (result *ScanAdvertise) {
+	this.AdvType = AdvType
 	return this
 }
-func (this *ScanAdvertise) GetAdvType() (advType int) {
+func (this *ScanAdvertise) GetAdvType() (AdvType int) {
 	return this.AdvType
 }
-func (this *ScanAdvertise) SetPremiseRate(premiseRate math.BigDecimal) (result *ScanAdvertise) {
-	this.PremiseRate = premiseRate
+func (this *ScanAdvertise) SetPremiseRate(PremiseRate math.BigDecimal) (result *ScanAdvertise) {
+	this.PremiseRate = PremiseRate
 	return this
 }
-func (this *ScanAdvertise) GetPremiseRate() (premiseRate math.BigDecimal) {
+func (this *ScanAdvertise) GetPremiseRate() (PremiseRate math.BigDecimal) {
 	return this.PremiseRate
+}
+func NewScanAdvertise(memberName string, avatar string, advertiseId int64, transactions int, price math.BigDecimal, minLimit math.BigDecimal, maxLimit math.BigDecimal, remainAmount math.BigDecimal, createTime xtime.Xtime, payMode string, coinId int64, unit string, coinName string, coinNameCn string, level int, advertiseType AdvertiseType.AdvertiseType, advType int, premiseRate math.BigDecimal) (ret *ScanAdvertise) {
+	ret = new(ScanAdvertise)
+	ret.MemberName = memberName
+	ret.Avatar = avatar
+	ret.AdvertiseId = advertiseId
+	ret.Transactions = transactions
+	ret.Price = price
+	ret.MinLimit = minLimit
+	ret.MaxLimit = maxLimit
+	ret.RemainAmount = remainAmount
+	ret.CreateTime = createTime
+	ret.PayMode = payMode
+	ret.CoinId = coinId
+	ret.Unit = unit
+	ret.CoinName = coinName
+	ret.CoinNameCn = coinNameCn
+	ret.Level = level
+	ret.AdvertiseType = advertiseType
+	ret.AdvType = advType
+	ret.PremiseRate = premiseRate
+	return
 }
 
 type ScanAdvertise struct {
-	MemberName    string
-	Avatar        string
-	AdvertiseId   int64
-	Transactions  int
-	Price         math.BigDecimal
-	MinLimit      math.BigDecimal
-	MaxLimit      math.BigDecimal
-	RemainAmount  math.BigDecimal
-	CreateTime    time.Time
-	PayMode       string
-	CoinId        int64
-	Unit          string
-	CoinName      string
-	CoinNameCn    string
-	Level         int
-	AdvertiseType AdvertiseType.AdvertiseType
-	AdvType       int
-	PremiseRate   math.BigDecimal
+	MemberName    string                      `gorm:"column:member_name" json:"memberName"`
+	Avatar        string                      `gorm:"column:avatar" json:"avatar"`
+	AdvertiseId   int64                       `gorm:"column:advertise_id" json:"advertiseId"`
+	Transactions  int                         `gorm:"column:transactions" json:"transactions"`
+	Price         math.BigDecimal             `gorm:"column:price" json:"price"`
+	MinLimit      math.BigDecimal             `gorm:"column:min_limit" json:"minLimit"`
+	MaxLimit      math.BigDecimal             `gorm:"column:max_limit" json:"maxLimit"`
+	RemainAmount  math.BigDecimal             `gorm:"column:remain_amount" json:"remainAmount"`
+	CreateTime    xtime.Xtime                 `gorm:"column:create_time" json:"createTime"`
+	PayMode       string                      `gorm:"column:pay_mode" json:"payMode"`
+	CoinId        int64                       `gorm:"column:coin_id" json:"coinId"`
+	Unit          string                      `gorm:"column:unit" json:"unit"`
+	CoinName      string                      `gorm:"column:coin_name" json:"coinName"`
+	CoinNameCn    string                      `gorm:"column:coin_name_cn" json:"coinNameCn"`
+	Level         int                         `gorm:"column:level" json:"level"`
+	AdvertiseType AdvertiseType.AdvertiseType `gorm:"column:advertise_type" json:"advertiseType"`
+	AdvType       int                         `gorm:"column:adv_type" json:"advType"`
+	PremiseRate   math.BigDecimal             `gorm:"column:premise_rate" json:"premiseRate"`
 }

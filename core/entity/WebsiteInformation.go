@@ -1,93 +1,108 @@
 package entity
 
-func (this *WebsiteInformation) SetId(id int64) (result *WebsiteInformation) {
-	this.Id = id
+func (this *WebsiteInformation) SetId(Id int64) (result *WebsiteInformation) {
+	this.Id = Id
 	return this
 }
-func (this *WebsiteInformation) GetId() (id int64) {
+func (this *WebsiteInformation) GetId() (Id int64) {
 	return this.Id
 }
-func (this *WebsiteInformation) SetName(name string) (result *WebsiteInformation) {
-	this.Name = name
+func (this *WebsiteInformation) SetName(Name string) (result *WebsiteInformation) {
+	this.Name = Name
 	return this
 }
-func (this *WebsiteInformation) GetName() (name string) {
+func (this *WebsiteInformation) GetName() (Name string) {
 	return this.Name
 }
-func (this *WebsiteInformation) SetLogo(logo string) (result *WebsiteInformation) {
-	this.Logo = logo
+func (this *WebsiteInformation) SetLogo(Logo string) (result *WebsiteInformation) {
+	this.Logo = Logo
 	return this
 }
-func (this *WebsiteInformation) GetLogo() (logo string) {
+func (this *WebsiteInformation) GetLogo() (Logo string) {
 	return this.Logo
 }
-func (this *WebsiteInformation) SetAddressIcon(addressIcon string) (result *WebsiteInformation) {
-	this.AddressIcon = addressIcon
+func (this *WebsiteInformation) SetAddressIcon(AddressIcon string) (result *WebsiteInformation) {
+	this.AddressIcon = AddressIcon
 	return this
 }
-func (this *WebsiteInformation) GetAddressIcon() (addressIcon string) {
+func (this *WebsiteInformation) GetAddressIcon() (AddressIcon string) {
 	return this.AddressIcon
 }
-func (this *WebsiteInformation) SetUrl(url string) (result *WebsiteInformation) {
-	this.Url = url
+func (this *WebsiteInformation) SetUrl(Url string) (result *WebsiteInformation) {
+	this.Url = Url
 	return this
 }
-func (this *WebsiteInformation) GetUrl() (url string) {
+func (this *WebsiteInformation) GetUrl() (Url string) {
 	return this.Url
 }
-func (this *WebsiteInformation) SetKeywords(keywords string) (result *WebsiteInformation) {
-	this.Keywords = keywords
+func (this *WebsiteInformation) SetKeywords(Keywords string) (result *WebsiteInformation) {
+	this.Keywords = Keywords
 	return this
 }
-func (this *WebsiteInformation) GetKeywords() (keywords string) {
+func (this *WebsiteInformation) GetKeywords() (Keywords string) {
 	return this.Keywords
 }
-func (this *WebsiteInformation) SetDescription(description string) (result *WebsiteInformation) {
-	this.Description = description
+func (this *WebsiteInformation) SetDescription(Description string) (result *WebsiteInformation) {
+	this.Description = Description
 	return this
 }
-func (this *WebsiteInformation) GetDescription() (description string) {
+func (this *WebsiteInformation) GetDescription() (Description string) {
 	return this.Description
 }
-func (this *WebsiteInformation) SetCopyright(copyright string) (result *WebsiteInformation) {
-	this.Copyright = copyright
+func (this *WebsiteInformation) SetCopyright(Copyright string) (result *WebsiteInformation) {
+	this.Copyright = Copyright
 	return this
 }
-func (this *WebsiteInformation) GetCopyright() (copyright string) {
+func (this *WebsiteInformation) GetCopyright() (Copyright string) {
 	return this.Copyright
 }
-func (this *WebsiteInformation) SetPostcode(postcode string) (result *WebsiteInformation) {
-	this.Postcode = postcode
+func (this *WebsiteInformation) SetPostcode(Postcode string) (result *WebsiteInformation) {
+	this.Postcode = Postcode
 	return this
 }
-func (this *WebsiteInformation) GetPostcode() (postcode string) {
+func (this *WebsiteInformation) GetPostcode() (Postcode string) {
 	return this.Postcode
 }
-func (this *WebsiteInformation) SetContact(contact string) (result *WebsiteInformation) {
-	this.Contact = contact
+func (this *WebsiteInformation) SetContact(Contact string) (result *WebsiteInformation) {
+	this.Contact = Contact
 	return this
 }
-func (this *WebsiteInformation) GetContact() (contact string) {
+func (this *WebsiteInformation) GetContact() (Contact string) {
 	return this.Contact
 }
-func (this *WebsiteInformation) SetOtherInformation(otherInformation string) (result *WebsiteInformation) {
-	this.OtherInformation = otherInformation
+func (this *WebsiteInformation) SetOtherInformation(OtherInformation string) (result *WebsiteInformation) {
+	this.OtherInformation = OtherInformation
 	return this
 }
-func (this *WebsiteInformation) GetOtherInformation() (otherInformation string) {
+func (this *WebsiteInformation) GetOtherInformation() (OtherInformation string) {
 	return this.OtherInformation
+}
+func NewWebsiteInformation(id int64, name string, logo string, addressIcon string, url string, keywords string, description string, copyright string, postcode string, contact string, otherInformation string) (ret *WebsiteInformation) {
+	ret = new(WebsiteInformation)
+	ret.Id = id
+	ret.Name = name
+	ret.Logo = logo
+	ret.AddressIcon = addressIcon
+	ret.Url = url
+	ret.Keywords = keywords
+	ret.Description = description
+	ret.Copyright = copyright
+	ret.Postcode = postcode
+	ret.Contact = contact
+	ret.OtherInformation = otherInformation
+	return
 }
 
 type WebsiteInformation struct {
-	Id               int64
-	Name             string
-	Logo             string
-	AddressIcon      string
-	Url              string
-	Keywords         string
-	Description      string
-	Copyright        string
-	Postcode         string
-	Contact          string
-	OtherInformation string
+	Id               int64  `gorm:"column:id" json:"id"`
+	Name             string `gorm:"column:name" json:"name"`
+	Logo             string `gorm:"column:logo" json:"logo"`
+	AddressIcon      string `gorm:"column:address_icon" json:"addressIcon"`
+	Url              string `gorm:"column:url" json:"url"`
+	Keywords         string `gorm:"column:keywords" json:"keywords"`
+	Description      string `gorm:"column:description" json:"description"`
+	Copyright        string `gorm:"column:copyright" json:"copyright"`
+	Postcode         string `gorm:"column:postcode" json:"postcode"`
+	Contact          string `gorm:"column:contact" json:"contact"`
+	OtherInformation string `gorm:"column:other_information" json:"otherInformation"`
 }

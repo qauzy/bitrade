@@ -3,8 +3,8 @@ package entity
 import (
 	"bitrade/core/constant/BooleanEnum"
 	"bitrade/core/constant/WithdrawStatus"
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
 func (this *ScanWithdrawRecord) SetTotalAmount(totalAmount math.BigDecimal) (result *ScanWithdrawRecord) {
@@ -28,18 +28,18 @@ func (this *ScanWithdrawRecord) SetArrivedAmount(arrivedAmount math.BigDecimal) 
 func (this *ScanWithdrawRecord) GetArrivedAmount() (arrivedAmount math.BigDecimal) {
 	return this.ArrivedAmount
 }
-func (this *ScanWithdrawRecord) SetCreateTime(createTime time.Time) (result *ScanWithdrawRecord) {
+func (this *ScanWithdrawRecord) SetCreateTime(createTime xtime.Xtime) (result *ScanWithdrawRecord) {
 	this.CreateTime = createTime
 	return this
 }
-func (this *ScanWithdrawRecord) GetCreateTime() (createTime time.Time) {
+func (this *ScanWithdrawRecord) GetCreateTime() (createTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *ScanWithdrawRecord) SetDealTime(dealTime time.Time) (result *ScanWithdrawRecord) {
+func (this *ScanWithdrawRecord) SetDealTime(dealTime xtime.Xtime) (result *ScanWithdrawRecord) {
 	this.DealTime = dealTime
 	return this
 }
-func (this *ScanWithdrawRecord) GetDealTime() (dealTime time.Time) {
+func (this *ScanWithdrawRecord) GetDealTime() (dealTime xtime.Xtime) {
 	return this.DealTime
 }
 func (this *ScanWithdrawRecord) SetStatus(status WithdrawStatus.WithdrawStatus) (result *ScanWithdrawRecord) {
@@ -99,8 +99,8 @@ type ScanWithdrawRecord struct {
 	TotalAmount       math.BigDecimal
 	Fee               math.BigDecimal
 	ArrivedAmount     math.BigDecimal
-	CreateTime        time.Time
-	DealTime          time.Time
+	CreateTime        xtime.Xtime
+	DealTime          xtime.Xtime
 	Status            WithdrawStatus.WithdrawStatus
 	IsAuto            BooleanEnum.BooleanEnum
 	Unit              string

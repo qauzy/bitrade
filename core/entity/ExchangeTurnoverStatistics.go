@@ -1,74 +1,86 @@
 package entity
 
 import (
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
-func (this *ExchangeTurnoverStatistics) SetDate(date time.Time) (result *ExchangeTurnoverStatistics) {
-	this.Date = date
+func (this *ExchangeTurnoverStatistics) SetDate(Date xtime.Xtime) (result *ExchangeTurnoverStatistics) {
+	this.Date = Date
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetDate() (date time.Time) {
+func (this *ExchangeTurnoverStatistics) GetDate() (Date xtime.Xtime) {
 	return this.Date
 }
-func (this *ExchangeTurnoverStatistics) SetYear(year int) (result *ExchangeTurnoverStatistics) {
-	this.Year = year
+func (this *ExchangeTurnoverStatistics) SetYear(Year int) (result *ExchangeTurnoverStatistics) {
+	this.Year = Year
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetYear() (year int) {
+func (this *ExchangeTurnoverStatistics) GetYear() (Year int) {
 	return this.Year
 }
-func (this *ExchangeTurnoverStatistics) SetMonth(month int) (result *ExchangeTurnoverStatistics) {
-	this.Month = month
+func (this *ExchangeTurnoverStatistics) SetMonth(Month int) (result *ExchangeTurnoverStatistics) {
+	this.Month = Month
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetMonth() (month int) {
+func (this *ExchangeTurnoverStatistics) GetMonth() (Month int) {
 	return this.Month
 }
-func (this *ExchangeTurnoverStatistics) SetDay(day int) (result *ExchangeTurnoverStatistics) {
-	this.Day = day
+func (this *ExchangeTurnoverStatistics) SetDay(Day int) (result *ExchangeTurnoverStatistics) {
+	this.Day = Day
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetDay() (day int) {
+func (this *ExchangeTurnoverStatistics) GetDay() (Day int) {
 	return this.Day
 }
-func (this *ExchangeTurnoverStatistics) SetBaseSymbol(baseSymbol string) (result *ExchangeTurnoverStatistics) {
-	this.BaseSymbol = baseSymbol
+func (this *ExchangeTurnoverStatistics) SetBaseSymbol(BaseSymbol string) (result *ExchangeTurnoverStatistics) {
+	this.BaseSymbol = BaseSymbol
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetBaseSymbol() (baseSymbol string) {
+func (this *ExchangeTurnoverStatistics) GetBaseSymbol() (BaseSymbol string) {
 	return this.BaseSymbol
 }
-func (this *ExchangeTurnoverStatistics) SetCoinSymbol(coinSymbol string) (result *ExchangeTurnoverStatistics) {
-	this.CoinSymbol = coinSymbol
+func (this *ExchangeTurnoverStatistics) SetCoinSymbol(CoinSymbol string) (result *ExchangeTurnoverStatistics) {
+	this.CoinSymbol = CoinSymbol
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetCoinSymbol() (coinSymbol string) {
+func (this *ExchangeTurnoverStatistics) GetCoinSymbol() (CoinSymbol string) {
 	return this.CoinSymbol
 }
-func (this *ExchangeTurnoverStatistics) SetAmount(amount math.BigDecimal) (result *ExchangeTurnoverStatistics) {
-	this.Amount = amount
+func (this *ExchangeTurnoverStatistics) SetAmount(Amount math.BigDecimal) (result *ExchangeTurnoverStatistics) {
+	this.Amount = Amount
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetAmount() (amount math.BigDecimal) {
+func (this *ExchangeTurnoverStatistics) GetAmount() (Amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *ExchangeTurnoverStatistics) SetMoney(money math.BigDecimal) (result *ExchangeTurnoverStatistics) {
-	this.Money = money
+func (this *ExchangeTurnoverStatistics) SetMoney(Money math.BigDecimal) (result *ExchangeTurnoverStatistics) {
+	this.Money = Money
 	return this
 }
-func (this *ExchangeTurnoverStatistics) GetMoney() (money math.BigDecimal) {
+func (this *ExchangeTurnoverStatistics) GetMoney() (Money math.BigDecimal) {
 	return this.Money
+}
+func NewExchangeTurnoverStatistics(date xtime.Xtime, year int, month int, day int, baseSymbol string, coinSymbol string, amount math.BigDecimal, money math.BigDecimal) (ret *ExchangeTurnoverStatistics) {
+	ret = new(ExchangeTurnoverStatistics)
+	ret.Date = date
+	ret.Year = year
+	ret.Month = month
+	ret.Day = day
+	ret.BaseSymbol = baseSymbol
+	ret.CoinSymbol = coinSymbol
+	ret.Amount = amount
+	ret.Money = money
+	return
 }
 
 type ExchangeTurnoverStatistics struct {
-	Date       time.Time
-	Year       int
-	Month      int
-	Day        int
-	BaseSymbol string
-	CoinSymbol string
-	Amount     math.BigDecimal
-	Money      math.BigDecimal
+	Date       xtime.Xtime     `gorm:"column:date" json:"date"`
+	Year       int             `gorm:"column:year" json:"year"`
+	Month      int             `gorm:"column:month" json:"month"`
+	Day        int             `gorm:"column:day" json:"day"`
+	BaseSymbol string          `gorm:"column:base_symbol" json:"baseSymbol"`
+	CoinSymbol string          `gorm:"column:coin_symbol" json:"coinSymbol"`
+	Amount     math.BigDecimal `gorm:"column:amount" json:"amount"`
+	Money      math.BigDecimal `gorm:"column:money" json:"money"`
 }

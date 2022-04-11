@@ -1,8 +1,8 @@
 package entity
 
 import (
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
 func (this *PromotionRewardRecord) SetSymbol(symbol string) (result *PromotionRewardRecord) {
@@ -26,11 +26,11 @@ func (this *PromotionRewardRecord) SetAmount(amount math.BigDecimal) (result *Pr
 func (this *PromotionRewardRecord) GetAmount() (amount math.BigDecimal) {
 	return this.Amount
 }
-func (this *PromotionRewardRecord) SetCreateTime(createTime time.Time) (result *PromotionRewardRecord) {
+func (this *PromotionRewardRecord) SetCreateTime(createTime xtime.Xtime) (result *PromotionRewardRecord) {
 	this.CreateTime = createTime
 	return this
 }
-func (this *PromotionRewardRecord) GetCreateTime() (createTime time.Time) {
+func (this *PromotionRewardRecord) GetCreateTime() (createTime xtime.Xtime) {
 	return this.CreateTime
 }
 
@@ -38,5 +38,5 @@ type PromotionRewardRecord struct {
 	Symbol     string
 	Remark     string
 	Amount     math.BigDecimal
-	CreateTime time.Time
+	CreateTime xtime.Xtime
 }

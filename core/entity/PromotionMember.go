@@ -2,14 +2,14 @@ package entity
 
 import (
 	"bitrade/core/constant/PromotionLevel"
-	"time"
+	"github.com/qauzy/chocolate/xtime"
 )
 
-func (this *PromotionMember) SetCreateTime(createTime time.Time) (result *PromotionMember) {
+func (this *PromotionMember) SetCreateTime(createTime xtime.Xtime) (result *PromotionMember) {
 	this.CreateTime = createTime
 	return this
 }
-func (this *PromotionMember) GetCreateTime() (createTime time.Time) {
+func (this *PromotionMember) GetCreateTime() (createTime xtime.Xtime) {
 	return this.CreateTime
 }
 func (this *PromotionMember) SetUsername(username string) (result *PromotionMember) {
@@ -28,7 +28,7 @@ func (this *PromotionMember) GetLevel() (level PromotionLevel.PromotionLevel) {
 }
 
 type PromotionMember struct {
-	CreateTime time.Time
+	CreateTime xtime.Xtime
 	Username   string
 	Level      PromotionLevel.PromotionLevel
 }

@@ -65,18 +65,18 @@ func (this *LoginInfo) SetId(id int64) (result *LoginInfo) {
 func (this *LoginInfo) GetId() (id int64) {
 	return this.Id
 }
-func (this *LoginInfo) SetGoogleState(googleState int64) (result *LoginInfo) {
+func (this *LoginInfo) SetGoogleState(googleState int) (result *LoginInfo) {
 	this.GoogleState = googleState
 	return this
 }
-func (this *LoginInfo) GetGoogleState() (googleState int64) {
+func (this *LoginInfo) GetGoogleState() (googleState int) {
 	return this.GoogleState
 }
-func (this *LoginInfo) SetKycStatus(kycStatus int64) (result *LoginInfo) {
+func (this *LoginInfo) SetKycStatus(kycStatus int) (result *LoginInfo) {
 	this.KycStatus = kycStatus
 	return this
 }
-func (this *LoginInfo) GetKycStatus() (kycStatus int64) {
+func (this *LoginInfo) GetKycStatus() (kycStatus int) {
 	return this.KycStatus
 }
 func (this *LoginInfo) SetPromotionPrefix(promotionPrefix string) (result *LoginInfo) {
@@ -144,8 +144,8 @@ type LoginInfo struct {
 	Avatar          string
 	PromotionCode   string
 	Id              int64
-	GoogleState     int64
-	KycStatus       int64
+	GoogleState     int
+	KycStatus       int
 	PromotionPrefix string
 	SignInAbility   bool
 	SignInActivity  bool

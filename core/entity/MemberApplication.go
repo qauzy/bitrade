@@ -2,129 +2,149 @@ package entity
 
 import (
 	"bitrade/core/constant/AuditStatus"
-	"time"
+	"bitrade/core/enums/CredentialsType"
+	"github.com/qauzy/chocolate/xtime"
 )
 
-func (this *MemberApplication) SetId(id int64) (result *MemberApplication) {
-	this.Id = id
+func (this *MemberApplication) SetId(Id int64) (result *MemberApplication) {
+	this.Id = Id
 	return this
 }
-func (this *MemberApplication) GetId() (id int64) {
+func (this *MemberApplication) GetId() (Id int64) {
 	return this.Id
 }
-func (this *MemberApplication) SetRealName(realName string) (result *MemberApplication) {
-	this.RealName = realName
+func (this *MemberApplication) SetRealName(RealName string) (result *MemberApplication) {
+	this.RealName = RealName
 	return this
 }
-func (this *MemberApplication) GetRealName() (realName string) {
+func (this *MemberApplication) GetRealName() (RealName string) {
 	return this.RealName
 }
-func (this *MemberApplication) SetIdCard(idCard string) (result *MemberApplication) {
-	this.IdCard = idCard
+func (this *MemberApplication) SetIdCard(IdCard string) (result *MemberApplication) {
+	this.IdCard = IdCard
 	return this
 }
-func (this *MemberApplication) GetIdCard() (idCard string) {
+func (this *MemberApplication) GetIdCard() (IdCard string) {
 	return this.IdCard
 }
-func (this *MemberApplication) SetType(oType CredentialsType.CredentialsType) (result *MemberApplication) {
-	this.Type = oType
+func (this *MemberApplication) SetType(Type CredentialsType.CredentialsType) (result *MemberApplication) {
+	this.Type = Type
 	return this
 }
-func (this *MemberApplication) GetType() (oType CredentialsType.CredentialsType) {
+func (this *MemberApplication) GetType() (Type CredentialsType.CredentialsType) {
 	return this.Type
 }
-func (this *MemberApplication) SetIdentityCardImgFront(identityCardImgFront string) (result *MemberApplication) {
-	this.IdentityCardImgFront = identityCardImgFront
+func (this *MemberApplication) SetIdentityCardImgFront(IdentityCardImgFront string) (result *MemberApplication) {
+	this.IdentityCardImgFront = IdentityCardImgFront
 	return this
 }
-func (this *MemberApplication) GetIdentityCardImgFront() (identityCardImgFront string) {
+func (this *MemberApplication) GetIdentityCardImgFront() (IdentityCardImgFront string) {
 	return this.IdentityCardImgFront
 }
-func (this *MemberApplication) SetIdentityCardImgReverse(identityCardImgReverse string) (result *MemberApplication) {
-	this.IdentityCardImgReverse = identityCardImgReverse
+func (this *MemberApplication) SetIdentityCardImgReverse(IdentityCardImgReverse string) (result *MemberApplication) {
+	this.IdentityCardImgReverse = IdentityCardImgReverse
 	return this
 }
-func (this *MemberApplication) GetIdentityCardImgReverse() (identityCardImgReverse string) {
+func (this *MemberApplication) GetIdentityCardImgReverse() (IdentityCardImgReverse string) {
 	return this.IdentityCardImgReverse
 }
-func (this *MemberApplication) SetIdentityCardImgInHand(identityCardImgInHand string) (result *MemberApplication) {
-	this.IdentityCardImgInHand = identityCardImgInHand
+func (this *MemberApplication) SetIdentityCardImgInHand(IdentityCardImgInHand string) (result *MemberApplication) {
+	this.IdentityCardImgInHand = IdentityCardImgInHand
 	return this
 }
-func (this *MemberApplication) GetIdentityCardImgInHand() (identityCardImgInHand string) {
+func (this *MemberApplication) GetIdentityCardImgInHand() (IdentityCardImgInHand string) {
 	return this.IdentityCardImgInHand
 }
-func (this *MemberApplication) SetAuditStatus(auditStatus AuditStatus.AuditStatus) (result *MemberApplication) {
-	this.AuditStatus = auditStatus
+func (this *MemberApplication) SetAuditStatus(AuditStatus AuditStatus.AuditStatus) (result *MemberApplication) {
+	this.AuditStatus = AuditStatus
 	return this
 }
-func (this *MemberApplication) GetAuditStatus() (auditStatus AuditStatus.AuditStatus) {
+func (this *MemberApplication) GetAuditStatus() (AuditStatus AuditStatus.AuditStatus) {
 	return this.AuditStatus
 }
-func (this *MemberApplication) SetMember(member *Member) (result *MemberApplication) {
-	this.Member = member
+func (this *MemberApplication) SetMember(Member *Member) (result *MemberApplication) {
+	this.Member = Member
 	return this
 }
-func (this *MemberApplication) GetMember() (member *Member) {
+func (this *MemberApplication) GetMember() (Member *Member) {
 	return this.Member
 }
-func (this *MemberApplication) SetRejectReason(rejectReason string) (result *MemberApplication) {
-	this.RejectReason = rejectReason
+func (this *MemberApplication) SetRejectReason(RejectReason string) (result *MemberApplication) {
+	this.RejectReason = RejectReason
 	return this
 }
-func (this *MemberApplication) GetRejectReason() (rejectReason string) {
+func (this *MemberApplication) GetRejectReason() (RejectReason string) {
 	return this.RejectReason
 }
-func (this *MemberApplication) SetCreateTime(createTime time.Time) (result *MemberApplication) {
-	this.CreateTime = createTime
+func (this *MemberApplication) SetCreateTime(CreateTime xtime.Xtime) (result *MemberApplication) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *MemberApplication) GetCreateTime() (createTime time.Time) {
+func (this *MemberApplication) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *MemberApplication) SetUpdateTime(updateTime time.Time) (result *MemberApplication) {
-	this.UpdateTime = updateTime
+func (this *MemberApplication) SetUpdateTime(UpdateTime xtime.Xtime) (result *MemberApplication) {
+	this.UpdateTime = UpdateTime
 	return this
 }
-func (this *MemberApplication) GetUpdateTime() (updateTime time.Time) {
+func (this *MemberApplication) GetUpdateTime() (UpdateTime xtime.Xtime) {
 	return this.UpdateTime
 }
-func (this *MemberApplication) SetVideoUrl(videoUrl string) (result *MemberApplication) {
-	this.VideoUrl = videoUrl
+func (this *MemberApplication) SetVideoUrl(VideoUrl string) (result *MemberApplication) {
+	this.VideoUrl = VideoUrl
 	return this
 }
-func (this *MemberApplication) GetVideoUrl() (videoUrl string) {
+func (this *MemberApplication) GetVideoUrl() (VideoUrl string) {
 	return this.VideoUrl
 }
-func (this *MemberApplication) SetKycStatus(kycStatus int64) (result *MemberApplication) {
-	this.KycStatus = kycStatus
+func (this *MemberApplication) SetKycStatus(KycStatus int) (result *MemberApplication) {
+	this.KycStatus = KycStatus
 	return this
 }
-func (this *MemberApplication) GetKycStatus() (kycStatus int64) {
+func (this *MemberApplication) GetKycStatus() (KycStatus int) {
 	return this.KycStatus
 }
-func (this *MemberApplication) SetVideoRandom(videoRandom string) (result *MemberApplication) {
-	this.VideoRandom = videoRandom
+func (this *MemberApplication) SetVideoRandom(VideoRandom string) (result *MemberApplication) {
+	this.VideoRandom = VideoRandom
 	return this
 }
-func (this *MemberApplication) GetVideoRandom() (videoRandom string) {
+func (this *MemberApplication) GetVideoRandom() (VideoRandom string) {
 	return this.VideoRandom
+}
+func NewMemberApplication(id int64, realName string, idCard string, oType CredentialsType.CredentialsType, identityCardImgFront string, identityCardImgReverse string, identityCardImgInHand string, auditStatus AuditStatus.AuditStatus, member *Member, rejectReason string, createTime xtime.Xtime, updateTime xtime.Xtime, videoUrl string, kycStatus int, videoRandom string) (ret *MemberApplication) {
+	ret = new(MemberApplication)
+	ret.Id = id
+	ret.RealName = realName
+	ret.IdCard = idCard
+	ret.Type = oType
+	ret.IdentityCardImgFront = identityCardImgFront
+	ret.IdentityCardImgReverse = identityCardImgReverse
+	ret.IdentityCardImgInHand = identityCardImgInHand
+	ret.AuditStatus = auditStatus
+	ret.Member = member
+	ret.RejectReason = rejectReason
+	ret.CreateTime = createTime
+	ret.UpdateTime = updateTime
+	ret.VideoUrl = videoUrl
+	ret.KycStatus = kycStatus
+	ret.VideoRandom = videoRandom
+	return
 }
 
 type MemberApplication struct {
-	Id                     int64
-	RealName               string
-	IdCard                 string
-	Type                   CredentialsType.CredentialsType
-	IdentityCardImgFront   string
-	IdentityCardImgReverse string
-	IdentityCardImgInHand  string
-	AuditStatus            AuditStatus.AuditStatus
-	Member                 *Member
-	RejectReason           string
-	CreateTime             time.Time
-	UpdateTime             time.Time
-	VideoUrl               string
-	KycStatus              int64
-	VideoRandom            string
+	Id                     int64                           `gorm:"column:id" json:"id"`
+	RealName               string                          `gorm:"column:real_name" json:"realName"`
+	IdCard                 string                          `gorm:"column:id_card" json:"idCard"`
+	Type                   CredentialsType.CredentialsType `gorm:"column:type" json:"type"`
+	IdentityCardImgFront   string                          `gorm:"column:identity_card_img_front" json:"identityCardImgFront"`
+	IdentityCardImgReverse string                          `gorm:"column:identity_card_img_reverse" json:"identityCardImgReverse"`
+	IdentityCardImgInHand  string                          `gorm:"column:identity_card_img_in_hand" json:"identityCardImgInHand"`
+	AuditStatus            AuditStatus.AuditStatus         `gorm:"column:audit_status" json:"auditStatus"`
+	Member                 *Member                         `gorm:"column:member" json:"member"`
+	RejectReason           string                          `gorm:"column:reject_reason" json:"rejectReason"`
+	CreateTime             xtime.Xtime                     `gorm:"column:create_time" json:"createTime"`
+	UpdateTime             xtime.Xtime                     `gorm:"column:update_time" json:"updateTime"`
+	VideoUrl               string                          `gorm:"column:video_url" json:"videoUrl"`
+	KycStatus              int                             `gorm:"column:kyc_status" json:"kycStatus"`
+	VideoRandom            string                          `gorm:"column:video_random" json:"videoRandom"`
 }

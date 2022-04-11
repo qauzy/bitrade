@@ -3,7 +3,7 @@ package entity
 import (
 	"bitrade/core/constant/BooleanEnum"
 	"bitrade/core/constant/MemberLevelEnum"
-	"time"
+	"github.com/qauzy/chocolate/xtime"
 )
 
 func (this *MemberSecurity) SetUsername(username string) (result *MemberSecurity) {
@@ -20,11 +20,11 @@ func (this *MemberSecurity) SetId(id int64) (result *MemberSecurity) {
 func (this *MemberSecurity) GetId() (id int64) {
 	return this.Id
 }
-func (this *MemberSecurity) SetCreateTime(createTime time.Time) (result *MemberSecurity) {
+func (this *MemberSecurity) SetCreateTime(createTime xtime.Xtime) (result *MemberSecurity) {
 	this.CreateTime = createTime
 	return this
 }
-func (this *MemberSecurity) GetCreateTime() (createTime time.Time) {
+func (this *MemberSecurity) GetCreateTime() (createTime xtime.Xtime) {
 	return this.CreateTime
 }
 func (this *MemberSecurity) SetRealVerified(realVerified BooleanEnum.BooleanEnum) (result *MemberSecurity) {
@@ -132,11 +132,11 @@ func (this *MemberSecurity) SetTransactions(transactions int) (result *MemberSec
 func (this *MemberSecurity) GetTransactions() (transactions int) {
 	return this.Transactions
 }
-func (this *MemberSecurity) SetTransactionTime(transactionTime time.Time) (result *MemberSecurity) {
+func (this *MemberSecurity) SetTransactionTime(transactionTime xtime.Xtime) (result *MemberSecurity) {
 	this.TransactionTime = transactionTime
 	return this
 }
-func (this *MemberSecurity) GetTransactionTime() (transactionTime time.Time) {
+func (this *MemberSecurity) GetTransactionTime() (transactionTime xtime.Xtime) {
 	return this.TransactionTime
 }
 func (this *MemberSecurity) SetLevel(level int64) (result *MemberSecurity) {
@@ -185,7 +185,7 @@ func (this *MemberSecurity) GetMemberLevel() (memberLevel MemberLevelEnum.Member
 type MemberSecurity struct {
 	Username             string
 	Id                   int64
-	CreateTime           time.Time
+	CreateTime           xtime.Xtime
 	RealVerified         BooleanEnum.BooleanEnum
 	EmailVerified        BooleanEnum.BooleanEnum
 	PhoneVerified        BooleanEnum.BooleanEnum
@@ -201,7 +201,7 @@ type MemberSecurity struct {
 	AccountVerified      BooleanEnum.BooleanEnum
 	GoogleStatus         int64
 	Transactions         int
-	TransactionTime      time.Time
+	TransactionTime      xtime.Xtime
 	Level                int64
 	Integration          int64
 	KycStatus            int64

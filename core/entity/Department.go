@@ -1,55 +1,65 @@
 package entity
 
-import "time"
+import "github.com/qauzy/chocolate/xtime"
 
-func (this *Department) SetId(id int64) (result *Department) {
-	this.Id = id
+func (this *Department) SetId(Id int64) (result *Department) {
+	this.Id = Id
 	return this
 }
-func (this *Department) GetId() (id int64) {
+func (this *Department) GetId() (Id int64) {
 	return this.Id
 }
-func (this *Department) SetName(name string) (result *Department) {
-	this.Name = name
+func (this *Department) SetName(Name string) (result *Department) {
+	this.Name = Name
 	return this
 }
-func (this *Department) GetName() (name string) {
+func (this *Department) GetName() (Name string) {
 	return this.Name
 }
-func (this *Department) SetRemark(remark string) (result *Department) {
-	this.Remark = remark
+func (this *Department) SetRemark(Remark string) (result *Department) {
+	this.Remark = Remark
 	return this
 }
-func (this *Department) GetRemark() (remark string) {
+func (this *Department) GetRemark() (Remark string) {
 	return this.Remark
 }
-func (this *Department) SetLeaderId(leaderId int64) (result *Department) {
-	this.LeaderId = leaderId
+func (this *Department) SetLeaderId(LeaderId int64) (result *Department) {
+	this.LeaderId = LeaderId
 	return this
 }
-func (this *Department) GetLeaderId() (leaderId int64) {
+func (this *Department) GetLeaderId() (LeaderId int64) {
 	return this.LeaderId
 }
-func (this *Department) SetCreateTime(createTime time.Time) (result *Department) {
-	this.CreateTime = createTime
+func (this *Department) SetCreateTime(CreateTime xtime.Xtime) (result *Department) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *Department) GetCreateTime() (createTime time.Time) {
+func (this *Department) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *Department) SetUpdateTime(updateTime time.Time) (result *Department) {
-	this.UpdateTime = updateTime
+func (this *Department) SetUpdateTime(UpdateTime xtime.Xtime) (result *Department) {
+	this.UpdateTime = UpdateTime
 	return this
 }
-func (this *Department) GetUpdateTime() (updateTime time.Time) {
+func (this *Department) GetUpdateTime() (UpdateTime xtime.Xtime) {
 	return this.UpdateTime
+}
+func NewDepartment(id int64, name string, remark string, leaderId int64, createTime xtime.Xtime, updateTime xtime.Xtime) (ret *Department) {
+	ret = new(Department)
+	ret.Id = id
+	ret.Name = name
+	ret.Remark = remark
+	ret.LeaderId = leaderId
+	ret.CreateTime = createTime
+	ret.UpdateTime = updateTime
+	return
 }
 
 type Department struct {
-	Id         int64
-	Name       string
-	Remark     string
-	LeaderId   int64
-	CreateTime time.Time
-	UpdateTime time.Time
+	Id         int64       `gorm:"column:id" json:"id"`
+	Name       string      `gorm:"column:name" json:"name"`
+	Remark     string      `gorm:"column:remark" json:"remark"`
+	LeaderId   int64       `gorm:"column:leader_id" json:"leaderId"`
+	CreateTime xtime.Xtime `gorm:"column:create_time" json:"createTime"`
+	UpdateTime xtime.Xtime `gorm:"column:update_time" json:"updateTime"`
 }

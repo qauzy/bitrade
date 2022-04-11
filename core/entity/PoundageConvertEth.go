@@ -1,114 +1,131 @@
 package entity
 
 import (
+	"github.com/qauzy/chocolate/xtime"
 	"github.com/qauzy/math"
-	"time"
 )
 
-func (this *PoundageConvertEth) SetId(id int64) (result *PoundageConvertEth) {
-	this.Id = id
+func (this *PoundageConvertEth) SetId(Id int64) (result *PoundageConvertEth) {
+	this.Id = Id
 	return this
 }
-func (this *PoundageConvertEth) GetId() (id int64) {
+func (this *PoundageConvertEth) GetId() (Id int64) {
 	return this.Id
 }
-func (this *PoundageConvertEth) SetExchangeOrderId(exchangeOrderId string) (result *PoundageConvertEth) {
-	this.ExchangeOrderId = exchangeOrderId
+func (this *PoundageConvertEth) SetExchangeOrderId(ExchangeOrderId string) (result *PoundageConvertEth) {
+	this.ExchangeOrderId = ExchangeOrderId
 	return this
 }
-func (this *PoundageConvertEth) GetExchangeOrderId() (exchangeOrderId string) {
+func (this *PoundageConvertEth) GetExchangeOrderId() (ExchangeOrderId string) {
 	return this.ExchangeOrderId
 }
-func (this *PoundageConvertEth) SetMemberId(memberId int64) (result *PoundageConvertEth) {
-	this.MemberId = memberId
+func (this *PoundageConvertEth) SetMemberId(MemberId int64) (result *PoundageConvertEth) {
+	this.MemberId = MemberId
 	return this
 }
-func (this *PoundageConvertEth) GetMemberId() (memberId int64) {
+func (this *PoundageConvertEth) GetMemberId() (MemberId int64) {
 	return this.MemberId
 }
-func (this *PoundageConvertEth) SetMineAmount(mineAmount math.BigDecimal) (result *PoundageConvertEth) {
-	this.MineAmount = mineAmount
+func (this *PoundageConvertEth) SetMineAmount(MineAmount math.BigDecimal) (result *PoundageConvertEth) {
+	this.MineAmount = MineAmount
 	return this
 }
-func (this *PoundageConvertEth) GetMineAmount() (mineAmount math.BigDecimal) {
+func (this *PoundageConvertEth) GetMineAmount() (MineAmount math.BigDecimal) {
 	return this.MineAmount
 }
-func (this *PoundageConvertEth) SetPoundageAmount(poundageAmount math.BigDecimal) (result *PoundageConvertEth) {
-	this.PoundageAmount = poundageAmount
+func (this *PoundageConvertEth) SetPoundageAmount(PoundageAmount math.BigDecimal) (result *PoundageConvertEth) {
+	this.PoundageAmount = PoundageAmount
 	return this
 }
-func (this *PoundageConvertEth) GetPoundageAmount() (poundageAmount math.BigDecimal) {
+func (this *PoundageConvertEth) GetPoundageAmount() (PoundageAmount math.BigDecimal) {
 	return this.PoundageAmount
 }
-func (this *PoundageConvertEth) SetPoundageAmountEth(poundageAmountEth math.BigDecimal) (result *PoundageConvertEth) {
-	this.PoundageAmountEth = poundageAmountEth
+func (this *PoundageConvertEth) SetPoundageAmountEth(PoundageAmountEth math.BigDecimal) (result *PoundageConvertEth) {
+	this.PoundageAmountEth = PoundageAmountEth
 	return this
 }
-func (this *PoundageConvertEth) GetPoundageAmountEth() (poundageAmountEth math.BigDecimal) {
+func (this *PoundageConvertEth) GetPoundageAmountEth() (PoundageAmountEth math.BigDecimal) {
 	return this.PoundageAmountEth
 }
-func (this *PoundageConvertEth) SetCoinId(coinId string) (result *PoundageConvertEth) {
-	this.CoinId = coinId
+func (this *PoundageConvertEth) SetCoinId(CoinId string) (result *PoundageConvertEth) {
+	this.CoinId = CoinId
 	return this
 }
-func (this *PoundageConvertEth) GetCoinId() (coinId string) {
+func (this *PoundageConvertEth) GetCoinId() (CoinId string) {
 	return this.CoinId
 }
-func (this *PoundageConvertEth) SetTransactionTime(transactionTime time.Time) (result *PoundageConvertEth) {
-	this.TransactionTime = transactionTime
+func (this *PoundageConvertEth) SetTransactionTime(TransactionTime xtime.Xtime) (result *PoundageConvertEth) {
+	this.TransactionTime = TransactionTime
 	return this
 }
-func (this *PoundageConvertEth) GetTransactionTime() (transactionTime time.Time) {
+func (this *PoundageConvertEth) GetTransactionTime() (TransactionTime xtime.Xtime) {
 	return this.TransactionTime
 }
-func (this *PoundageConvertEth) SetSymbol(symbol string) (result *PoundageConvertEth) {
-	this.Symbol = symbol
+func (this *PoundageConvertEth) SetSymbol(Symbol string) (result *PoundageConvertEth) {
+	this.Symbol = Symbol
 	return this
 }
-func (this *PoundageConvertEth) GetSymbol() (symbol string) {
+func (this *PoundageConvertEth) GetSymbol() (Symbol string) {
 	return this.Symbol
 }
-func (this *PoundageConvertEth) SetType(oType string) (result *PoundageConvertEth) {
-	this.Type = oType
+func (this *PoundageConvertEth) SetType(Type string) (result *PoundageConvertEth) {
+	this.Type = Type
 	return this
 }
-func (this *PoundageConvertEth) GetType() (oType string) {
+func (this *PoundageConvertEth) GetType() (Type string) {
 	return this.Type
 }
-func (this *PoundageConvertEth) SetDirection(direction string) (result *PoundageConvertEth) {
-	this.Direction = direction
+func (this *PoundageConvertEth) SetDirection(Direction string) (result *PoundageConvertEth) {
+	this.Direction = Direction
 	return this
 }
-func (this *PoundageConvertEth) GetDirection() (direction string) {
+func (this *PoundageConvertEth) GetDirection() (Direction string) {
 	return this.Direction
 }
-func (this *PoundageConvertEth) SetUsdtRate(usdtRate string) (result *PoundageConvertEth) {
-	this.UsdtRate = usdtRate
+func (this *PoundageConvertEth) SetUsdtRate(UsdtRate string) (result *PoundageConvertEth) {
+	this.UsdtRate = UsdtRate
 	return this
 }
-func (this *PoundageConvertEth) GetUsdtRate() (usdtRate string) {
+func (this *PoundageConvertEth) GetUsdtRate() (UsdtRate string) {
 	return this.UsdtRate
 }
-func (this *PoundageConvertEth) SetEthUsdtRate(ethUsdtRate string) (result *PoundageConvertEth) {
-	this.EthUsdtRate = ethUsdtRate
+func (this *PoundageConvertEth) SetEthUsdtRate(EthUsdtRate string) (result *PoundageConvertEth) {
+	this.EthUsdtRate = EthUsdtRate
 	return this
 }
-func (this *PoundageConvertEth) GetEthUsdtRate() (ethUsdtRate string) {
+func (this *PoundageConvertEth) GetEthUsdtRate() (EthUsdtRate string) {
 	return this.EthUsdtRate
+}
+func NewPoundageConvertEth(id int64, exchangeOrderId string, memberId int64, mineAmount math.BigDecimal, poundageAmount math.BigDecimal, poundageAmountEth math.BigDecimal, coinId string, transactionTime xtime.Xtime, symbol string, oType string, direction string, usdtRate string, ethUsdtRate string) (ret *PoundageConvertEth) {
+	ret = new(PoundageConvertEth)
+	ret.Id = id
+	ret.ExchangeOrderId = exchangeOrderId
+	ret.MemberId = memberId
+	ret.MineAmount = mineAmount
+	ret.PoundageAmount = poundageAmount
+	ret.PoundageAmountEth = poundageAmountEth
+	ret.CoinId = coinId
+	ret.TransactionTime = transactionTime
+	ret.Symbol = symbol
+	ret.Type = oType
+	ret.Direction = direction
+	ret.UsdtRate = usdtRate
+	ret.EthUsdtRate = ethUsdtRate
+	return
 }
 
 type PoundageConvertEth struct {
-	Id                int64
-	ExchangeOrderId   string
-	MemberId          int64
-	MineAmount        math.BigDecimal
-	PoundageAmount    math.BigDecimal
-	PoundageAmountEth math.BigDecimal
-	CoinId            string
-	TransactionTime   time.Time
-	Symbol            string
-	Type              string
-	Direction         string
-	UsdtRate          string
-	EthUsdtRate       string
+	Id                int64           `gorm:"column:id" json:"id"`
+	ExchangeOrderId   string          `gorm:"column:exchange_order_id" json:"exchangeOrderId"`
+	MemberId          int64           `gorm:"column:member_id" json:"memberId"`
+	MineAmount        math.BigDecimal `gorm:"column:mine_amount" json:"mineAmount"`
+	PoundageAmount    math.BigDecimal `gorm:"column:poundage_amount" json:"poundageAmount"`
+	PoundageAmountEth math.BigDecimal `gorm:"column:poundage_amount_eth" json:"poundageAmountEth"`
+	CoinId            string          `gorm:"column:coin_id" json:"coinId"`
+	TransactionTime   xtime.Xtime     `gorm:"column:transaction_time" json:"transactionTime"`
+	Symbol            string          `gorm:"column:symbol" json:"symbol"`
+	Type              string          `gorm:"column:type" json:"type"`
+	Direction         string          `gorm:"column:direction" json:"direction"`
+	UsdtRate          string          `gorm:"column:usdt_rate" json:"usdtRate"`
+	EthUsdtRate       string          `gorm:"column:eth_usdt_rate" json:"ethUsdtRate"`
 }

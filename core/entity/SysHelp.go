@@ -3,89 +3,103 @@ package entity
 import (
 	"bitrade/core/constant/CommonStatus"
 	"bitrade/core/constant/SysHelpClassification"
-	"time"
+	"github.com/qauzy/chocolate/xtime"
 )
 
-func (this *SysHelp) SetId(id int64) (result *SysHelp) {
-	this.Id = id
+func (this *SysHelp) SetId(Id int64) (result *SysHelp) {
+	this.Id = Id
 	return this
 }
-func (this *SysHelp) GetId() (id int64) {
+func (this *SysHelp) GetId() (Id int64) {
 	return this.Id
 }
-func (this *SysHelp) SetTitle(title string) (result *SysHelp) {
-	this.Title = title
+func (this *SysHelp) SetTitle(Title string) (result *SysHelp) {
+	this.Title = Title
 	return this
 }
-func (this *SysHelp) GetTitle() (title string) {
+func (this *SysHelp) GetTitle() (Title string) {
 	return this.Title
 }
-func (this *SysHelp) SetSysHelpClassification(sysHelpClassification SysHelpClassification.SysHelpClassification) (result *SysHelp) {
-	this.SysHelpClassification = sysHelpClassification
+func (this *SysHelp) SetSysHelpClassification(SysHelpClassification SysHelpClassification.SysHelpClassification) (result *SysHelp) {
+	this.SysHelpClassification = SysHelpClassification
 	return this
 }
-func (this *SysHelp) GetSysHelpClassification() (sysHelpClassification SysHelpClassification.SysHelpClassification) {
+func (this *SysHelp) GetSysHelpClassification() (SysHelpClassification SysHelpClassification.SysHelpClassification) {
 	return this.SysHelpClassification
 }
-func (this *SysHelp) SetImgUrl(imgUrl string) (result *SysHelp) {
-	this.ImgUrl = imgUrl
+func (this *SysHelp) SetImgUrl(ImgUrl string) (result *SysHelp) {
+	this.ImgUrl = ImgUrl
 	return this
 }
-func (this *SysHelp) GetImgUrl() (imgUrl string) {
+func (this *SysHelp) GetImgUrl() (ImgUrl string) {
 	return this.ImgUrl
 }
-func (this *SysHelp) SetCreateTime(createTime time.Time) (result *SysHelp) {
-	this.CreateTime = createTime
+func (this *SysHelp) SetCreateTime(CreateTime xtime.Xtime) (result *SysHelp) {
+	this.CreateTime = CreateTime
 	return this
 }
-func (this *SysHelp) GetCreateTime() (createTime time.Time) {
+func (this *SysHelp) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
-func (this *SysHelp) SetStatus(status CommonStatus.CommonStatus) (result *SysHelp) {
-	this.Status = status
+func (this *SysHelp) SetStatus(Status CommonStatus.CommonStatus) (result *SysHelp) {
+	this.Status = Status
 	return this
 }
-func (this *SysHelp) GetStatus() (status CommonStatus.CommonStatus) {
+func (this *SysHelp) GetStatus() (Status CommonStatus.CommonStatus) {
 	return this.Status
 }
-func (this *SysHelp) SetContent(content string) (result *SysHelp) {
-	this.Content = content
+func (this *SysHelp) SetContent(Content string) (result *SysHelp) {
+	this.Content = Content
 	return this
 }
-func (this *SysHelp) GetContent() (content string) {
+func (this *SysHelp) GetContent() (Content string) {
 	return this.Content
 }
-func (this *SysHelp) SetAuthor(author string) (result *SysHelp) {
-	this.Author = author
+func (this *SysHelp) SetAuthor(Author string) (result *SysHelp) {
+	this.Author = Author
 	return this
 }
-func (this *SysHelp) GetAuthor() (author string) {
+func (this *SysHelp) GetAuthor() (Author string) {
 	return this.Author
 }
-func (this *SysHelp) SetSort(sort int) (result *SysHelp) {
-	this.Sort = sort
+func (this *SysHelp) SetSort(Sort int) (result *SysHelp) {
+	this.Sort = Sort
 	return this
 }
-func (this *SysHelp) GetSort() (sort int) {
+func (this *SysHelp) GetSort() (Sort int) {
 	return this.Sort
 }
-func (this *SysHelp) SetIsTop(isTop string) (result *SysHelp) {
-	this.IsTop = isTop
+func (this *SysHelp) SetIsTop(IsTop string) (result *SysHelp) {
+	this.IsTop = IsTop
 	return this
 }
-func (this *SysHelp) GetIsTop() (isTop string) {
+func (this *SysHelp) GetIsTop() (IsTop string) {
 	return this.IsTop
+}
+func NewSysHelp(id int64, title string, sysHelpClassification SysHelpClassification.SysHelpClassification, imgUrl string, createTime xtime.Xtime, status CommonStatus.CommonStatus, content string, author string, sort int, isTop string) (ret *SysHelp) {
+	ret = new(SysHelp)
+	ret.Id = id
+	ret.Title = title
+	ret.SysHelpClassification = sysHelpClassification
+	ret.ImgUrl = imgUrl
+	ret.CreateTime = createTime
+	ret.Status = status
+	ret.Content = content
+	ret.Author = author
+	ret.Sort = sort
+	ret.IsTop = isTop
+	return
 }
 
 type SysHelp struct {
-	Id                    int64
-	Title                 string
-	SysHelpClassification SysHelpClassification.SysHelpClassification
-	ImgUrl                string
-	CreateTime            time.Time
-	Status                CommonStatus.CommonStatus
-	Content               string
-	Author                string
-	Sort                  int
-	IsTop                 string
+	Id                    int64                                       `gorm:"column:id" json:"id"`
+	Title                 string                                      `gorm:"column:title" json:"title"`
+	SysHelpClassification SysHelpClassification.SysHelpClassification `gorm:"column:sys_help_classification" json:"sysHelpClassification"`
+	ImgUrl                string                                      `gorm:"column:img_url" json:"imgUrl"`
+	CreateTime            xtime.Xtime                                 `gorm:"column:create_time" json:"createTime"`
+	Status                CommonStatus.CommonStatus                   `gorm:"column:status" json:"status"`
+	Content               string                                      `gorm:"column:content" json:"content"`
+	Author                string                                      `gorm:"column:author" json:"author"`
+	Sort                  int                                         `gorm:"column:sort" json:"sort"`
+	IsTop                 string                                      `gorm:"column:is_top" json:"isTop"`
 }

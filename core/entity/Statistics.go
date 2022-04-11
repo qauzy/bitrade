@@ -1,23 +1,29 @@
 package entity
 
-import "time"
+import "github.com/qauzy/chocolate/xtime"
 
-func (this *Statistics) SetDate(date time.Time) (result *Statistics) {
-	this.Date = date
+func (this *Statistics) SetDate(Date xtime.Xtime) (result *Statistics) {
+	this.Date = Date
 	return this
 }
-func (this *Statistics) GetDate() (date time.Time) {
+func (this *Statistics) GetDate() (Date xtime.Xtime) {
 	return this.Date
 }
-func (this *Statistics) SetI(i int64) (result *Statistics) {
-	this.I = i
+func (this *Statistics) SetI(I int) (result *Statistics) {
+	this.I = I
 	return this
 }
-func (this *Statistics) GetI() (i int64) {
+func (this *Statistics) GetI() (I int) {
 	return this.I
+}
+func NewStatistics(date xtime.Xtime, i int) (ret *Statistics) {
+	ret = new(Statistics)
+	ret.Date = date
+	ret.I = i
+	return
 }
 
 type Statistics struct {
-	Date time.Time
-	I    int64
+	Date xtime.Xtime `gorm:"column:date" json:"date"`
+	I    int         `gorm:"column:i" json:"i"`
 }
