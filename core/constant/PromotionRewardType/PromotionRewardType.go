@@ -12,6 +12,13 @@ var (
 	EXCHANGE_TRANSACTION = PromotionRewardType{"币币推广交易", 3}
 )
 
+func (this *PromotionRewardType) SetCnName(CnName string) (result *PromotionRewardType) {
+	this.CnName = CnName
+	return this
+}
+func (this *PromotionRewardType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *PromotionRewardType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *PromotionRewardType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "币币推广交易"
 	}
 	return
+}
+func Values() (result []PromotionRewardType) {
+	return []PromotionRewardType{REGISTER, TRANSACTION, EXCHANGE_TRANSACTION}
 }
 func (this *PromotionRewardType) GetOrdinal() (result int) {
 	return this.Ordinal()

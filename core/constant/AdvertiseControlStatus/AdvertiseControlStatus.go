@@ -12,6 +12,13 @@ var (
 	TURNOFF         = AdvertiseControlStatus{"已关闭", 3}
 )
 
+func (this *AdvertiseControlStatus) SetCnName(CnName string) (result *AdvertiseControlStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *AdvertiseControlStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *AdvertiseControlStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *AdvertiseControlStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "已关闭"
 	}
 	return
+}
+func Values() (result []AdvertiseControlStatus) {
+	return []AdvertiseControlStatus{PUT_ON_SHELVES, PUT_OFF_SHELVES, TURNOFF}
 }
 func (this *AdvertiseControlStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

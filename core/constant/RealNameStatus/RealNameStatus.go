@@ -12,6 +12,13 @@ var (
 	VERIFIED      = RealNameStatus{"已认证", 3}
 )
 
+func (this *RealNameStatus) SetCnName(CnName string) (result *RealNameStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *RealNameStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *RealNameStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *RealNameStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "已认证"
 	}
 	return
+}
+func Values() (result []RealNameStatus) {
+	return []RealNameStatus{NOT_CERTIFIED, AUDITING, VERIFIED}
 }
 func (this *RealNameStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

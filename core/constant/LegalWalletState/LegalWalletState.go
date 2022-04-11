@@ -12,6 +12,13 @@ var (
 	DEFEATED = LegalWalletState{"失败", 3}
 )
 
+func (this *LegalWalletState) SetCnName(CnName string) (result *LegalWalletState) {
+	this.CnName = CnName
+	return this
+}
+func (this *LegalWalletState) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *LegalWalletState) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *LegalWalletState) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "失败"
 	}
 	return
+}
+func Values() (result []LegalWalletState) {
+	return []LegalWalletState{APPLYING, COMPLETE, DEFEATED}
 }
 func NewLegalWalletState(cnName string) (this *LegalWalletState) {
 	this = new(LegalWalletState)

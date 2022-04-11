@@ -17,6 +17,13 @@ var (
 	RETURN_SUCCESS = CertifiedBusinessStatus{"退保-审核成功", 8}
 )
 
+func (this *CertifiedBusinessStatus) SetCnName(CnName string) (result *CertifiedBusinessStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *CertifiedBusinessStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *CertifiedBusinessStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -82,6 +89,9 @@ func (this *CertifiedBusinessStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "退保-审核成功"
 	}
 	return
+}
+func Values() (result []CertifiedBusinessStatus) {
+	return []CertifiedBusinessStatus{NOT_CERTIFIED, AUDITING, VERIFIED, FAILED, DEPOSIT_LESS, CANCEL_AUTH, RETURN_FAILED, RETURN_SUCCESS}
 }
 func (this *CertifiedBusinessStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

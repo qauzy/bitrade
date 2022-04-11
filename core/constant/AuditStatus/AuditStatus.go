@@ -12,6 +12,13 @@ var (
 	AUDIT_SUCCESS  = AuditStatus{"审核成功", 3}
 )
 
+func (this *AuditStatus) SetCnName(CnName string) (result *AuditStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *AuditStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *AuditStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *AuditStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "审核成功"
 	}
 	return
+}
+func Values() (result []AuditStatus) {
+	return []AuditStatus{AUDIT_ING, AUDIT_DEFEATED, AUDIT_SUCCESS}
 }
 func (this *AuditStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

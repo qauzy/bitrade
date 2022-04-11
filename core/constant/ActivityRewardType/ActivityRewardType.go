@@ -12,6 +12,13 @@ var (
 	RECHARGE    = ActivityRewardType{"充值奖励", 3}
 )
 
+func (this *ActivityRewardType) SetCnName(CnName string) (result *ActivityRewardType) {
+	this.CnName = CnName
+	return this
+}
+func (this *ActivityRewardType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *ActivityRewardType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *ActivityRewardType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "充值奖励"
 	}
 	return
+}
+func Values() (result []ActivityRewardType) {
+	return []ActivityRewardType{REGISTER, TRANSACTION, RECHARGE}
 }
 func (this *ActivityRewardType) GetOrdinal() (result int) {
 	return this.Ordinal()

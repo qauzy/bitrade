@@ -14,6 +14,13 @@ var (
 	TRANSFER   = WithdrawStatus{"转账中", 5}
 )
 
+func (this *WithdrawStatus) SetCnName(CnName string) (result *WithdrawStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *WithdrawStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *WithdrawStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -67,6 +74,9 @@ func (this *WithdrawStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "转账中"
 	}
 	return
+}
+func Values() (result []WithdrawStatus) {
+	return []WithdrawStatus{PROCESSING, WAITING, FAIL, SUCCESS, TRANSFER}
 }
 func (this *WithdrawStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

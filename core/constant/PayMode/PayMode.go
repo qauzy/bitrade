@@ -13,6 +13,13 @@ var (
 	PAYPAL = PayMode{"Paypal", 4}
 )
 
+func (this *PayMode) SetCnName(CnName string) (result *PayMode) {
+	this.CnName = CnName
+	return this
+}
+func (this *PayMode) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *PayMode) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -62,6 +69,9 @@ func (this *PayMode) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "Paypal"
 	}
 	return
+}
+func Values() (result []PayMode) {
+	return []PayMode{ALIPAY, WECHAT, BANK, PAYPAL}
 }
 func (this *PayMode) GetOrdinal() (result int) {
 	return this.Ordinal()

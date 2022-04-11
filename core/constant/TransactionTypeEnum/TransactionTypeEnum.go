@@ -16,6 +16,13 @@ var (
 	WITHDRAW      = TransactionTypeEnum{"提币", 7}
 )
 
+func (this *TransactionTypeEnum) SetCnName(CnName string) (result *TransactionTypeEnum) {
+	this.CnName = CnName
+	return this
+}
+func (this *TransactionTypeEnum) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *TransactionTypeEnum) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -77,6 +84,9 @@ func (this *TransactionTypeEnum) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "提币"
 	}
 	return
+}
+func Values() (result []TransactionTypeEnum) {
+	return []TransactionTypeEnum{OTC_NUM, OTC_MONEY, EXCHANGE, EXCHANGE_COIN, EXCHANGE_BASE, RECHARGE, WITHDRAW}
 }
 func (this *TransactionTypeEnum) GetOrdinal() (result int) {
 	return this.Ordinal()

@@ -12,6 +12,13 @@ var (
 	PC_CLASSIFICATION = SysAdvertiseLocation{"pc分类广告", 3}
 )
 
+func (this *SysAdvertiseLocation) SetCnName(CnName string) (result *SysAdvertiseLocation) {
+	this.CnName = CnName
+	return this
+}
+func (this *SysAdvertiseLocation) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *SysAdvertiseLocation) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *SysAdvertiseLocation) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "pc分类广告"
 	}
 	return
+}
+func Values() (result []SysAdvertiseLocation) {
+	return []SysAdvertiseLocation{APP_SHUFFLING, PC_SHUFFLING, PC_CLASSIFICATION}
 }
 func (this *SysAdvertiseLocation) GetOrdinal() (result int) {
 	return this.Ordinal()

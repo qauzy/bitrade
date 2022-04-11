@@ -11,6 +11,13 @@ var (
 	ILLEGAL = CommonStatus{"非法", 2}
 )
 
+func (this *CommonStatus) SetCnName(CnName string) (result *CommonStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *CommonStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *CommonStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *CommonStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "非法"
 	}
 	return
+}
+func Values() (result []CommonStatus) {
+	return []CommonStatus{NORMAL, ILLEGAL}
 }
 func (this *CommonStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

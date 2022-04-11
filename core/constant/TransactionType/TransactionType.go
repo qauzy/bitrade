@@ -37,6 +37,13 @@ var (
 	REPAYMENT_LOAN       = TransactionType{"还款流水", 28}
 )
 
+func (this *TransactionType) SetCnName(CnName string) (result *TransactionType) {
+	CnName = CnName
+	return this
+}
+func (this *TransactionType) GetCnName() (CnName string) {
+	return CnName
+}
 func (this *TransactionType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -183,6 +190,9 @@ func (this *TransactionType) UnmarshalJSON(data []byte) (err error) {
 	}
 	return
 }
+func Values() (result []TransactionType) {
+	return []TransactionType{RECHARGE, WITHDRAW, TRANSFER_ACCOUNTS, EXCHANGE, OTC_BUY, OTC_SELL, ACTIVITY_AWARD, PROMOTION_AWARD, DIVIDEND, VOTE, ADMIN_RECHARGE, MATCH, DEPOSIT, GET_BACK_DEPOSIT, LEGAL_RECHARGE, ASSET_EXCHANGE, CHANNEL_AWARD, TRANSFER_INTO_LEVER, TRANSFER_OUT_LEVER, MANUAL_AIRDROP, LOCK_POSITION, UNLOCK_POSITION, THIRD_PARTY_TRANSFER, THIRD_PARTY_TURN_OUT, COIN_TWO_OTC, OTC_TWO_COIN, LOAN_RECORD, REPAYMENT_LOAN}
+}
 func (this *TransactionType) GetOrdinal() (result int) {
 	return this.Ordinal()
 }
@@ -213,32 +223,28 @@ func ValueOfOrdinal(ordinal int) (result TransactionType) {
 	}
 	return
 }
-
-func (this *TransactionType) Equals(ordinal TransactionType) (result bool) {
-	return *this == ordinal
-}
 func ParseOrdinal(ordinal TransactionType) (result int) {
-	if RECHARGE.Equals(ordinal) {
+	if RECHARGE == ordinal {
 		return 0
-	} else if WITHDRAW.Equals(ordinal) {
+	} else if WITHDRAW == ordinal {
 		return 1
-	} else if TRANSFER_ACCOUNTS.Equals(ordinal) {
+	} else if TRANSFER_ACCOUNTS == ordinal {
 		return 2
-	} else if EXCHANGE.Equals(ordinal) {
+	} else if EXCHANGE == ordinal {
 		return 3
-	} else if OTC_BUY.Equals(ordinal) {
+	} else if OTC_BUY == ordinal {
 		return 4
-	} else if OTC_SELL.Equals(ordinal) {
+	} else if OTC_SELL == ordinal {
 		return 5
-	} else if ACTIVITY_AWARD.Equals(ordinal) {
+	} else if ACTIVITY_AWARD == ordinal {
 		return 6
-	} else if PROMOTION_AWARD.Equals(ordinal) {
+	} else if PROMOTION_AWARD == ordinal {
 		return 7
-	} else if DIVIDEND.Equals(ordinal) {
+	} else if DIVIDEND == ordinal {
 		return 8
-	} else if VOTE.Equals(ordinal) {
+	} else if VOTE == ordinal {
 		return 9
-	} else if ADMIN_RECHARGE.Equals(ordinal) {
+	} else if ADMIN_RECHARGE == ordinal {
 		return 10
 	} else {
 		return 20

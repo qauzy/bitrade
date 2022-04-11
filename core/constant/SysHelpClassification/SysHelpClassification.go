@@ -14,6 +14,13 @@ var (
 	QR_CODE     = SysHelpClassification{"APP二维码", 5}
 )
 
+func (this *SysHelpClassification) SetCnName(CnName string) (result *SysHelpClassification) {
+	this.CnName = CnName
+	return this
+}
+func (this *SysHelpClassification) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *SysHelpClassification) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -67,6 +74,9 @@ func (this *SysHelpClassification) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "APP二维码"
 	}
 	return
+}
+func Values() (result []SysHelpClassification) {
+	return []SysHelpClassification{HELP, FAQ, RECHARGE, TRANSACTION, QR_CODE}
 }
 func (this *SysHelpClassification) GetOrdinal() (result int) {
 	return this.Ordinal()

@@ -11,6 +11,13 @@ var (
 	PROCESSED     = AppealStatus{"已处理", 2}
 )
 
+func (this *AppealStatus) SetCnName(CnName string) (result *AppealStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *AppealStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *AppealStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *AppealStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "已处理"
 	}
 	return
+}
+func Values() (result []AppealStatus) {
+	return []AppealStatus{NOT_PROCESSED, PROCESSED}
 }
 func (this *AppealStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

@@ -11,6 +11,20 @@ var (
 	IS_TRUE  = BooleanEnum{true, "是", 2}
 )
 
+func (this *BooleanEnum) SetIs(Is bool) (result *BooleanEnum) {
+	this.Is = Is
+	return this
+}
+func (this *BooleanEnum) GetIs() (Is bool) {
+	return this.Is
+}
+func (this *BooleanEnum) SetNameCn(NameCn string) (result *BooleanEnum) {
+	this.NameCn = NameCn
+	return this
+}
+func (this *BooleanEnum) GetNameCn() (NameCn string) {
+	return this.NameCn
+}
 func (this *BooleanEnum) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -23,9 +37,9 @@ func (this *BooleanEnum) Scan(v interface{}) error {
 		this.ordinal = vt
 		switch vt {
 		case 1:
-			this.CnName = "否"
+			this.NameCn = "否"
 		case 2:
-			this.CnName = "是"
+			this.NameCn = "是"
 		}
 	default:
 		this = nil
@@ -47,11 +61,14 @@ func (this *BooleanEnum) UnmarshalJSON(data []byte) (err error) {
 	}
 	switch this.ordinal {
 	case 1:
-		this.CnName = "否"
+		this.NameCn = "否"
 	case 2:
-		this.CnName = "是"
+		this.NameCn = "是"
 	}
 	return
+}
+func Values() (result []BooleanEnum) {
+	return []BooleanEnum{IS_FALSE, IS_TRUE}
 }
 func (this *BooleanEnum) GetOrdinal() (result int) {
 	return this.Ordinal()
@@ -59,6 +76,6 @@ func (this *BooleanEnum) GetOrdinal() (result int) {
 
 type BooleanEnum struct {
 	Is      bool
-	CnName  string
+	NameCn  string
 	ordinal int
 }

@@ -12,6 +12,13 @@ var (
 	COIN_RECHARGE_GIVING  = IntegrationRecordType{"币币充值赠送", 3}
 )
 
+func (this *IntegrationRecordType) SetCnName(CnName string) (result *IntegrationRecordType) {
+	this.CnName = CnName
+	return this
+}
+func (this *IntegrationRecordType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *IntegrationRecordType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *IntegrationRecordType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "币币充值赠送"
 	}
 	return
+}
+func Values() (result []IntegrationRecordType) {
+	return []IntegrationRecordType{PROMOTION_GIVING, LEGAL_RECHARGE_GIVING, COIN_RECHARGE_GIVING}
 }
 func (this *IntegrationRecordType) GetOrdinal() (result int) {
 	return this.Ordinal()

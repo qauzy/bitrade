@@ -11,6 +11,13 @@ var (
 	SELL = AdvertiseType{"出售", 2}
 )
 
+func (this *AdvertiseType) SetCnName(CnName string) (result *AdvertiseType) {
+	this.CnName = CnName
+	return this
+}
+func (this *AdvertiseType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *AdvertiseType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *AdvertiseType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "出售"
 	}
 	return
+}
+func Values() (result []AdvertiseType) {
+	return []AdvertiseType{BUY, SELL}
 }
 func (this *AdvertiseType) GetOrdinal() (result int) {
 	return this.Ordinal()

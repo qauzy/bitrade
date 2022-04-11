@@ -1,12 +1,17 @@
-
 package Symbol
 
+import (
+	"database/sql/driver"
+	"fmt"
+	"strconv"
+)
+
 var (
-	USDT Symbol = iota
-	BTC
-	ETH
-	GCC
-	GCX
+	USDT = Symbol{1}
+	BTC  = Symbol{2}
+	ETH  = Symbol{3}
+	GCC  = Symbol{4}
+	GCX  = Symbol{5}
 )
 
 func (this *Symbol) Ordinal() (result int) {
@@ -43,8 +48,10 @@ func (this *Symbol) UnmarshalJSON(data []byte) (err error) {
 	}
 	return
 }
+func Values() (result []Symbol) {
+	return []Symbol{USDT, BTC, ETH, GCC, GCX}
+}
 
 type Symbol struct {
 	ordinal int
 }
-

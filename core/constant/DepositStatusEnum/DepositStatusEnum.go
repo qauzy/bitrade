@@ -11,6 +11,13 @@ var (
 	GET_BACK = DepositStatusEnum{"索回", 2}
 )
 
+func (this *DepositStatusEnum) SetCnName(CnName string) (result *DepositStatusEnum) {
+	this.CnName = CnName
+	return this
+}
+func (this *DepositStatusEnum) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *DepositStatusEnum) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *DepositStatusEnum) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "索回"
 	}
 	return
+}
+func Values() (result []DepositStatusEnum) {
+	return []DepositStatusEnum{PAY, GET_BACK}
 }
 func (this *DepositStatusEnum) GetOrdinal() (result int) {
 	return this.Ordinal()

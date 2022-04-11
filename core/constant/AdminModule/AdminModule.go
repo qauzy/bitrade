@@ -21,6 +21,13 @@ var (
 	MARGIN    = AdminModule{"MARGIN", 12}
 )
 
+func (this *AdminModule) SetTitle(Title string) (result *AdminModule) {
+	this.Title = Title
+	return this
+}
+func (this *AdminModule) GetTitle() (Title string) {
+	return this.Title
+}
 func (this *AdminModule) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -102,6 +109,9 @@ func (this *AdminModule) UnmarshalJSON(data []byte) (err error) {
 		this.Title = "MARGIN"
 	}
 	return
+}
+func Values() (result []AdminModule) {
+	return []AdminModule{CMS, COMMON, EXCHANGE, FINANCE, MEMBER, OTC, SYSTEM, PROMOTION, INDEX, IEO, GIFT, MARGIN}
 }
 
 type AdminModule struct {

@@ -12,6 +12,13 @@ var (
 	IDENTIFICATION = MemberLevelEnum{"认证商家", 3}
 )
 
+func (this *MemberLevelEnum) SetCnName(CnName string) (result *MemberLevelEnum) {
+	this.CnName = CnName
+	return this
+}
+func (this *MemberLevelEnum) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *MemberLevelEnum) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *MemberLevelEnum) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "认证商家"
 	}
 	return
+}
+func Values() (result []MemberLevelEnum) {
+	return []MemberLevelEnum{GENERAL, REALNAME, IDENTIFICATION}
 }
 func (this *MemberLevelEnum) GetOrdinal() (result int) {
 	return this.Ordinal()

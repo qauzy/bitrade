@@ -11,6 +11,13 @@ var (
 	IOS     = Platform{"苹果", 2}
 )
 
+func (this *Platform) SetCnName(CnName string) (result *Platform) {
+	this.CnName = CnName
+	return this
+}
+func (this *Platform) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *Platform) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *Platform) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "苹果"
 	}
 	return
+}
+func Values() (result []Platform) {
+	return []Platform{ANDROID, IOS}
 }
 func (this *Platform) GetOrdinal() (result int) {
 	return this.Ordinal()

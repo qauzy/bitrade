@@ -12,6 +12,13 @@ var (
 	DIVIDEND  = RewardRecordType{"分红", 3}
 )
 
+func (this *RewardRecordType) SetCnName(CnName string) (result *RewardRecordType) {
+	this.CnName = CnName
+	return this
+}
+func (this *RewardRecordType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *RewardRecordType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *RewardRecordType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "分红"
 	}
 	return
+}
+func Values() (result []RewardRecordType) {
+	return []RewardRecordType{PROMOTION, ACTIVITY, DIVIDEND}
 }
 func (this *RewardRecordType) GetOrdinal() (result int) {
 	return this.Ordinal()

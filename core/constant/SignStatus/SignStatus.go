@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	UNDERWAY = SignStatus{0}
-	FINISH   = SignStatus{1}
+	UNDERWAY = SignStatus{1}
+	FINISH   = SignStatus{2}
 )
 
 func (this *SignStatus) Ordinal() (result int) {
@@ -44,6 +44,9 @@ func (this *SignStatus) UnmarshalJSON(data []byte) (err error) {
 	switch this.ordinal {
 	}
 	return
+}
+func Values() (result []SignStatus) {
+	return []SignStatus{UNDERWAY, FINISH}
 }
 
 type SignStatus struct {

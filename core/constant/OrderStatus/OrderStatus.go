@@ -14,6 +14,13 @@ var (
 	APPEAL     = OrderStatus{"申诉中", 5}
 )
 
+func (this *OrderStatus) SetCnName(CnName string) (result *OrderStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *OrderStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *OrderStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -67,6 +74,9 @@ func (this *OrderStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "申诉中"
 	}
 	return
+}
+func Values() (result []OrderStatus) {
+	return []OrderStatus{CANCELLED, NONPAYMENT, PAID, COMPLETED, APPEAL}
 }
 func (this *OrderStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

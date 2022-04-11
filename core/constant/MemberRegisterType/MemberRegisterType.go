@@ -12,6 +12,13 @@ var (
 	AUTONOMOUSLY_RECOMMEND = MemberRegisterType{"自主(推荐)", 3}
 )
 
+func (this *MemberRegisterType) SetCnName(CnName string) (result *MemberRegisterType) {
+	this.CnName = CnName
+	return this
+}
+func (this *MemberRegisterType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *MemberRegisterType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *MemberRegisterType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "自主(推荐)"
 	}
 	return
+}
+func Values() (result []MemberRegisterType) {
+	return []MemberRegisterType{BACKSTAGE, AUTONOMOUSLY, AUTONOMOUSLY_RECOMMEND}
 }
 func (this *MemberRegisterType) GetOrdinal() (result int) {
 	return this.Ordinal()

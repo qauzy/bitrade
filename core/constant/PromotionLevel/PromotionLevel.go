@@ -12,6 +12,13 @@ var (
 	THREE = PromotionLevel{"三级", 3}
 )
 
+func (this *PromotionLevel) SetCnName(CnName string) (result *PromotionLevel) {
+	this.CnName = CnName
+	return this
+}
+func (this *PromotionLevel) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *PromotionLevel) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *PromotionLevel) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "三级"
 	}
 	return
+}
+func Values() (result []PromotionLevel) {
+	return []PromotionLevel{ONE, TWO, THREE}
 }
 func (this *PromotionLevel) GetOrdinal() (result int) {
 	return this.Ordinal()

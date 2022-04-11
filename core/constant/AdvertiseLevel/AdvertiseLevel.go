@@ -11,6 +11,13 @@ var (
 	EXCELLENT = AdvertiseLevel{"优质", 2}
 )
 
+func (this *AdvertiseLevel) SetCnName(CnName string) (result *AdvertiseLevel) {
+	this.CnName = CnName
+	return this
+}
+func (this *AdvertiseLevel) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *AdvertiseLevel) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *AdvertiseLevel) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "优质"
 	}
 	return
+}
+func Values() (result []AdvertiseLevel) {
+	return []AdvertiseLevel{ORDINARY, EXCELLENT}
 }
 func (this *AdvertiseLevel) GetOrdinal() (result int) {
 	return this.Ordinal()

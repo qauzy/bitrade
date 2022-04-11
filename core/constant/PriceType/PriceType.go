@@ -11,6 +11,13 @@ var (
 	MUTATIVE = PriceType{"变化的", 2}
 )
 
+func (this *PriceType) SetCnName(CnName string) (result *PriceType) {
+	this.CnName = CnName
+	return this
+}
+func (this *PriceType) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *PriceType) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -52,6 +59,9 @@ func (this *PriceType) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "变化的"
 	}
 	return
+}
+func Values() (result []PriceType) {
+	return []PriceType{REGULAR, MUTATIVE}
 }
 func (this *PriceType) GetOrdinal() (result int) {
 	return this.Ordinal()

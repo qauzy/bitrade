@@ -12,6 +12,13 @@ var (
 	ALL     = BusinessStatus{"全部成交", 3}
 )
 
+func (this *BusinessStatus) SetCnName(CnName string) (result *BusinessStatus) {
+	this.CnName = CnName
+	return this
+}
+func (this *BusinessStatus) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *BusinessStatus) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -57,6 +64,9 @@ func (this *BusinessStatus) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "全部成交"
 	}
 	return
+}
+func Values() (result []BusinessStatus) {
+	return []BusinessStatus{ZERO, PORTION, ALL}
 }
 func (this *BusinessStatus) GetOrdinal() (result int) {
 	return this.Ordinal()

@@ -8,6 +8,13 @@ import (
 
 var BTC = Currency{"比特币", 1}
 
+func (this *Currency) SetCnName(CnName string) (result *Currency) {
+	this.CnName = CnName
+	return this
+}
+func (this *Currency) GetCnName() (CnName string) {
+	return this.CnName
+}
 func (this *Currency) Ordinal() (result int) {
 	return this.ordinal
 }
@@ -45,6 +52,9 @@ func (this *Currency) UnmarshalJSON(data []byte) (err error) {
 		this.CnName = "比特币"
 	}
 	return
+}
+func Values() (result []Currency) {
+	return []Currency{BTC}
 }
 func (this *Currency) GetOrdinal() (result int) {
 	return this.Ordinal()
