@@ -9,8 +9,8 @@ import (
 	"bitrade/core/entity/transform"
 	"bitrade/core/log"
 	"bitrade/core/service"
-	"bitrade/core/util"
 	"bitrade/core/util/BigDecimalUtils"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/chocolate/sets/hashset"
@@ -18,7 +18,7 @@ import (
 	"github.com/qauzy/math"
 )
 
-func (this *TransferController) TransferAddress(ctx *gin.Context, unit string, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *TransferController) TransferAddress(ctx *gin.Context, unit string, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var coin = this.CoinService.FindByUnit(unit)
 	var memberWallet = this.MemberWalletService.FindByCoinAndMemberId(coin, user.GetId())
 	var list = this.TransferAddressService.FindByCoin(coin)
@@ -34,7 +34,7 @@ func (this *TransferController) TransferAddress(ctx *gin.Context, unit string, u
 	}).Collect(Collectors.ToList())))
 	return result
 }
-func (this *TransferController) Transfer(ctx *gin.Context, user *transform.AuthMember, unit string, address string, amount *math.BigDecimal, fee *math.BigDecimal, jyPassword string, remark string) (result *util.MessageResult, err error) {
+func (this *TransferController) Transfer(ctx *gin.Context, user *transform.AuthMember, unit string, address string, amount *math.BigDecimal, fee *math.BigDecimal, jyPassword string, remark string) (result *MessageResult.MessageResult, err error) {
 	hasText(jyPassword, this.SourceService.GetMessage("MISSING_JYPASSWORD"))
 	hasText(unit, this.SourceService.GetMessage("MISSING_COIN_TYPE"))
 	var coin = this.CoinService.FindByUnit(unit)
@@ -77,7 +77,7 @@ func (this *TransferController) Transfer(ctx *gin.Context, user *transform.AuthM
 	if transferRecord1 == nil {
 		return InformationExpiredException("Information Expired")
 	} else {
-		var json = new(fastjson.JSONObject)
+		var json = fastjson.NewJSONObject()
 		//会员id
 		json.Put("uid", user.GetId())
 		//转账数目
@@ -90,7 +90,7 @@ func (this *TransferController) Transfer(ctx *gin.Context, user *transform.AuthM
 		json.Put("address", address)
 		//转账记录ID
 		json.Put("recordId", transferRecord1.GetId())
-		var jsonObject = new(fastjson.JSONObject)
+		var jsonObject = fastjson.NewJSONObject()
 		jsonObject.Put("data", json)
 		jsonObject.Put("sign", Md5.Md5Digest(json.ToJSONString()+this.Smac))
 		var ciphertext = DESUtil.ENCRYPTMethod(jsonObject.ToJSONString(), this.Key).ToUpperCase()
@@ -108,13 +108,13 @@ func (this *TransferController) Transfer(ctx *gin.Context, user *transform.AuthM
 		return MessageResult.Success()
 	}
 }
-func (this *TransferController) PageWithdraw(ctx *gin.Context, user *transform.AuthMember, pageNo int, pageSize int) (result *util.MessageResult) {
+func (this *TransferController) PageWithdraw(ctx *gin.Context, user *transform.AuthMember, pageNo int, pageSize int) (result *MessageResult.MessageResult) {
 	var mr = MessageResult(0, "success")
 	var records = this.TransferRecordService.FindAllByMemberId(user.GetId(), pageNo, pageSize)
 	mr.SetData(records)
 	return mr
 }
-func (this *TransferController) GetSupportTransferCoin(ctx *gin.Context, coinUnit string) (result *util.MessageResult) {
+func (this *TransferController) GetSupportTransferCoin(ctx *gin.Context, coinUnit string) (result *MessageResult.MessageResult) {
 	var otcCoins = arraylist.New[entity.OtcCoin]()
 	var leverCoins arraylist.List[entity.LeverCoin]
 	if !StringUtils.IsEmpty(coinUnit) {
@@ -125,7 +125,7 @@ func (this *TransferController) GetSupportTransferCoin(ctx *gin.Context, coinUni
 		otcCoins = this.OtcCoinService.GetNormalCoin()
 		leverCoins = this.LeverCoinService.FindByEnable(BooleanEnum.IS_TRUE)
 	}
-	var resultJson = new(fastjson.JSONObject)
+	var resultJson = fastjson.NewJSONObject()
 	resultJson.Put("supportOtcCoins", otcCoins)
 	resultJson.Put("supportLeverCoins", leverCoins)
 	return this.SuccessWithData(resultJson)

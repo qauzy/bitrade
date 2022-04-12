@@ -6,13 +6,14 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"bitrade/core/util/RequestUtil"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/sets/hashset"
 	"time"
 )
 
-func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRequest, username string, password string, code string, ticket string, randStr string) (result *util.MessageResult, err error) {
+func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRequest, username string, password string, code string, ticket string, randStr string) (result *MessageResult.MessageResult, err error) {
 	if username == "" {
 		this.MessageSourceService.GetMessage("MISSING_USERNAME")
 	}
@@ -119,8 +120,8 @@ func (this *LoginController) GetLoginInfo(ctx *gin.Context, username string, pas
 	}
 	return loginInfo
 }
-func (this *LoginController) LoginOut2(ctx *gin.Context, request *http.HttpServletRequest, user *transform.AuthMember) (result *util.MessageResult) {
-	var messageResult = new(util.MessageResult)
+func (this *LoginController) LoginOut2(ctx *gin.Context, request *http.HttpServletRequest, user *transform.AuthMember) (result *MessageResult.MessageResult) {
+	var messageResult = new(MessageResult.MessageResult)
 	log.Info(">>>>>退出登陆接口开始>>>>>")
 	exception := func() (err error) {
 		request.GetSession().RemoveAttribute(SysConstant.SESSION_MEMBER)
@@ -140,7 +141,7 @@ func (this *LoginController) LoginOut2(ctx *gin.Context, request *http.HttpServl
 	log.Info(">>>>>退出登陆接口结束>>>>>")
 	return messageResult
 }
-func (this *LoginController) CheckLogin(ctx *gin.Context, request *http.HttpServletRequest) (result *util.MessageResult) {
+func (this *LoginController) CheckLogin(ctx *gin.Context, request *http.HttpServletRequest) (result *MessageResult.MessageResult) {
 	var authMember = request.GetSession().GetAttribute(SESSION_MEMBER).(transform.AuthMember)
 	var result = MessageResult.Success()
 	if authMember != nil {
@@ -150,7 +151,7 @@ func (this *LoginController) CheckLogin(ctx *gin.Context, request *http.HttpServ
 	}
 	return result
 }
-func (this *LoginController) CheckLogin(ctx *gin.Context, mobile string) (result *util.MessageResult) {
+func (this *LoginController) CheckLogin(ctx *gin.Context, mobile string) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindByPhone(mobile)
 	if member != nil {
 		return success(member.GetGoogleState())

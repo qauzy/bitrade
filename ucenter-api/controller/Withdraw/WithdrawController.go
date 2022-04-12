@@ -11,6 +11,7 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/fastjson"
@@ -19,7 +20,7 @@ import (
 	"time"
 )
 
-func (this *WithdrawController) AddAddress(ctx *gin.Context, address string, unit string, remark string, code string, aims string, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *WithdrawController) AddAddress(ctx *gin.Context, address string, unit string, remark string, code string, aims string, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	hasText(address, this.SourceService.GetMessage("MISSING_COIN_ADDRESS"))
 	hasText(unit, this.SourceService.GetMessage("MISSING_COIN_TYPE"))
 	hasText(code, this.SourceService.GetMessage("MISSING_VERIFICATION_CODE"))
@@ -63,7 +64,7 @@ func (this *WithdrawController) AddAddress(ctx *gin.Context, address string, uni
 	}
 	return result
 }
-func (this *WithdrawController) DeleteAddress(ctx *gin.Context, id int64, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *WithdrawController) DeleteAddress(ctx *gin.Context, id int64, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var result = this.MemberAddressService.DeleteMemberAddress(user.GetId(), id)
 	if result.GetCode() == 0 {
 		result.SetMessage(this.SourceService.GetMessage("DELETE_ADDRESS_SUCCESS"))
@@ -72,7 +73,7 @@ func (this *WithdrawController) DeleteAddress(ctx *gin.Context, id int64, user *
 	}
 	return result
 }
-func (this *WithdrawController) AddressPage(ctx *gin.Context, user *transform.AuthMember, pageNo int, pageSize int, unit string) (result *util.MessageResult) {
+func (this *WithdrawController) AddressPage(ctx *gin.Context, user *transform.AuthMember, pageNo int, pageSize int, unit string) (result *MessageResult.MessageResult) {
 	var page = this.MemberAddressService.PageQuery(pageNo, pageSize, user.GetId(), unit)
 	var scanMemberAddresses = page.Map(func(x interface {
 	}) {
@@ -82,7 +83,7 @@ func (this *WithdrawController) AddressPage(ctx *gin.Context, user *transform.Au
 	result.SetData(scanMemberAddresses)
 	return result
 }
-func (this *WithdrawController) QueryWithdraw(ctx *gin.Context) (result *util.MessageResult) {
+func (this *WithdrawController) QueryWithdraw(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var list = this.CoinService.FindAllCanWithDraw()
 	var list1 = arraylist.New[string]()
 	list.Stream().ForEach(func(x interface {
@@ -93,7 +94,7 @@ func (this *WithdrawController) QueryWithdraw(ctx *gin.Context) (result *util.Me
 	result.SetData(list1)
 	return result
 }
-func (this *WithdrawController) QueryAllCoin(ctx *gin.Context) (result *util.MessageResult) {
+func (this *WithdrawController) QueryAllCoin(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var list = this.CoinService.FindAllByStatus(CommonStatus.NORMAL)
 	var list1 = arraylist.New[string]()
 	list.Stream().ForEach(func(x interface {
@@ -104,7 +105,7 @@ func (this *WithdrawController) QueryAllCoin(ctx *gin.Context) (result *util.Mes
 	result.SetData(list1)
 	return result
 }
-func (this *WithdrawController) QueryWithdrawCoin(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *WithdrawController) QueryWithdrawCoin(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var list = this.CoinService.FindAllCanWithDraw()
 	var list1 = this.MemberWalletService.FindAllByMemberId(user.GetId())
 	var id = user.GetId()
@@ -119,7 +120,7 @@ func (this *WithdrawController) QueryWithdrawCoin(ctx *gin.Context, user *transf
 	result.SetData(list2)
 	return result
 }
-func (this *WithdrawController) Withdraw(ctx *gin.Context, user *transform.AuthMember, unit string, address string, amount *math.BigDecimal, fee *math.BigDecimal, remark string, jyPassword string, code string, googleCode string) (result *util.MessageResult, err error) {
+func (this *WithdrawController) Withdraw(ctx *gin.Context, user *transform.AuthMember, unit string, address string, amount *math.BigDecimal, fee *math.BigDecimal, remark string, jyPassword string, code string, googleCode string) (result *MessageResult.MessageResult, err error) {
 	hasText(jyPassword, this.SourceService.GetMessage("MISSING_JYPASSWORD"))
 	hasText(unit, this.SourceService.GetMessage("MISSING_COIN_TYPE"))
 	var coin = this.CoinService.FindByUnit(unit)
@@ -227,7 +228,7 @@ func (this *WithdrawController) Withdraw(ctx *gin.Context, user *transform.AuthM
 			withdrawApply.SetIsAuto(BooleanEnum.IS_TRUE)
 			withdrawApply.SetDealTime(withdrawApply.GetCreateTime())
 			var withdrawRecord = this.WithdrawApplyService.Save(withdrawApply)
-			var json = new(fastjson.JSONObject)
+			var json = fastjson.NewJSONObject()
 			json.Put("uid", user.GetId())
 			//提币总数量
 			json.Put("totalAmount", amount)
@@ -255,7 +256,7 @@ func (this *WithdrawController) Withdraw(ctx *gin.Context, user *transform.AuthM
 		}
 	}
 }
-func (this *WithdrawController) PageWithdraw(ctx *gin.Context, user *transform.AuthMember, pageModel *PageModel.PageModel, unit string) (result *util.MessageResult) {
+func (this *WithdrawController) PageWithdraw(ctx *gin.Context, user *transform.AuthMember, pageModel *PageModel.PageModel, unit string) (result *MessageResult.MessageResult) {
 	var mr = MessageResult(0, "success")
 	var booleanExpressions = arraylist.New[dsl.BooleanExpression]()
 	if !StringUtils.IsEmpty(unit) {
@@ -271,7 +272,7 @@ func (this *WithdrawController) PageWithdraw(ctx *gin.Context, user *transform.A
 	mr.SetData(records)
 	return mr
 }
-func (this *WithdrawController) TodayWithdrawSum(ctx *gin.Context, user *transform.AuthMember, symbol string) (result *util.MessageResult) {
+func (this *WithdrawController) TodayWithdrawSum(ctx *gin.Context, user *transform.AuthMember, symbol string) (result *MessageResult.MessageResult) {
 	if StringUtils.IsEmpty(symbol) {
 		return error("symbol is not null")
 	}

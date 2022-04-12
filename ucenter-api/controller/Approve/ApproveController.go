@@ -15,6 +15,7 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/fastjson"
@@ -23,12 +24,12 @@ import (
 
 var Logger slf4j.Logger = LoggerFactory.GetLogger(ApproveController)
 
-func (this *ApproveController) Update(ctx *gin.Context, user *transform.AuthMember, url string) (result *util.MessageResult) {
+func (this *ApproveController) Update(ctx *gin.Context, user *transform.AuthMember, url string) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	member.SetAvatar(url)
 	return MessageResult.Success()
 }
-func (this *ApproveController) SecuritySetting(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *ApproveController) SecuritySetting(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	var idNumber = member.GetIdNumber()
 	var memberSecurity = new(MemberSecurity).SetUsername(member.GetUsername()).SetCreateTime(member.GetRegistrationTime()).SetId(member.GetId()).SetEmailVerified(func() {
@@ -94,7 +95,7 @@ func (this *ApproveController) SecuritySetting(ctx *gin.Context, user *transform
 	result.SetData(memberSecurity)
 	return result
 }
-func (this *ApproveController) ApproveTransaction(ctx *gin.Context, jyPassword string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) ApproveTransaction(ctx *gin.Context, jyPassword string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	//校验密码
 	isTrue(ValidateUtils.ValidatePassword(jyPassword), this.MsService.GetMessage("JY_PASSWORD_LENGTH_ILLEGAL"))
 	var member = this.MemberService.FindOne(user.GetId())
@@ -106,7 +107,7 @@ func (this *ApproveController) ApproveTransaction(ctx *gin.Context, jyPassword s
 	member.SetJyPassword(jyPass)
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_JY_PASSWORD"))
 }
-func (this *ApproveController) UpdateTransaction(ctx *gin.Context, oldPassword string, newPassword string, msgCode string, googleCode string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) UpdateTransaction(ctx *gin.Context, oldPassword string, newPassword string, msgCode string, googleCode string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	isTrue(ValidateUtils.ValidatePassword(newPassword), this.MsService.GetMessage("JY_PASSWORD_LENGTH_ILLEGAL"))
 	isTrue(org.Apache.Commons.Lang3.StringUtils.IsNotEmpty(msgCode), "请输入验证码")
 	var member = this.MemberService.FindOne(user.GetId())
@@ -128,7 +129,7 @@ func (this *ApproveController) UpdateTransaction(ctx *gin.Context, oldPassword s
 	member.SetJyPassword(Md5.Md5Digest(newPassword + member.GetSalt()).ToLowerCase())
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_JY_PASSWORD"))
 }
-func (this *ApproveController) ResetTransaction(ctx *gin.Context, newPassword string, code string, codeMold int, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) ResetTransaction(ctx *gin.Context, newPassword string, code string, codeMold int, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	hasText(newPassword, this.MsService.GetMessage("MISSING_NEW_JY_PASSWORD"))
 	hasText(code, this.MsService.GetMessage("MISSING_VERIFICATION_CODE"))
 	isTrue(ValidateUtils.ValidatePassword(newPassword), this.MsService.GetMessage("JY_PASSWORD_LENGTH_ILLEGAL"))
@@ -146,7 +147,7 @@ func (this *ApproveController) ResetTransaction(ctx *gin.Context, newPassword st
 	member.SetJyPassword(Md5.Md5Digest(newPassword + member.GetSalt()).ToLowerCase())
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_JY_PASSWORD"))
 }
-func (this *ApproveController) BindPhone(ctx *gin.Context, request *http.HttpServletRequest, password string, phone string, code string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) BindPhone(ctx *gin.Context, request *http.HttpServletRequest, password string, phone string, code string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	hasText(password, this.MsService.GetMessage("MISSING_LOGIN_PASSWORD"))
 	hasText(phone, this.MsService.GetMessage("MISSING_PHONE"))
 	hasText(code, this.MsService.GetMessage("MISSING_VERIFICATION_CODE"))
@@ -174,7 +175,7 @@ func (this *ApproveController) BindPhone(ctx *gin.Context, request *http.HttpSer
 		return MessageResult.Error(this.MsService.GetMessage("PASSWORD_ERROR"))
 	}
 }
-func (this *ApproveController) UpdateLoginPassword(ctx *gin.Context, request *http.HttpServletRequest, oldPassword string, newPassword string, code string, googleCode string, codeMold int, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) UpdateLoginPassword(ctx *gin.Context, request *http.HttpServletRequest, oldPassword string, newPassword string, code string, googleCode string, codeMold int, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	log.Info("code=" + code)
 	hasText(oldPassword, this.MsService.GetMessage("MISSING_OLD_PASSWORD"))
 	hasText(newPassword, this.MsService.GetMessage("MISSING_NEW_PASSWORD"))
@@ -210,7 +211,7 @@ func (this *ApproveController) UpdateLoginPassword(ctx *gin.Context, request *ht
 	member.SetPassword(Md5.Md5Digest(newPassword + member.GetSalt()).ToLowerCase())
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_SUCCESS"))
 }
-func (this *ApproveController) BindEmail(ctx *gin.Context, request *http.HttpServletRequest, password string, code string, email string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) BindEmail(ctx *gin.Context, request *http.HttpServletRequest, password string, code string, email string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	hasText(password, this.MsService.GetMessage("MISSING_LOGIN_PASSWORD"))
 	hasText(code, this.MsService.GetMessage("MISSING_VERIFICATION_CODE"))
 	hasText(email, this.MsService.GetMessage("MISSING_EMAIL"))
@@ -228,7 +229,7 @@ func (this *ApproveController) BindEmail(ctx *gin.Context, request *http.HttpSer
 		return MessageResult.Success(this.MsService.GetMessage("SETTING_SUCCESS"))
 	}
 }
-func (this *ApproveController) UpdateEmail(ctx *gin.Context, user *transform.AuthMember, oldEmailCode string, newEmailCode string, newEmail string) (result *util.MessageResult) {
+func (this *ApproveController) UpdateEmail(ctx *gin.Context, user *transform.AuthMember, oldEmailCode string, newEmailCode string, newEmail string) (result *MessageResult.MessageResult) {
 	hasText(oldEmailCode, this.MsService.GetMessage("MISSING_VERIFICATION_CODE"))
 	hasText(newEmailCode, this.MsService.GetMessage("MISSING_VERIFICATION_CODE"))
 	hasText(newEmail, this.MsService.GetMessage("MISSING_EMAIL"))
@@ -245,7 +246,7 @@ func (this *ApproveController) UpdateEmail(ctx *gin.Context, user *transform.Aut
 	member.SetEmail(newEmail)
 	return MessageResult.Success()
 }
-func (this *ApproveController) RealApprove(ctx *gin.Context, user *transform.AuthMember, realName string, idCard string, idCardFront string, idCardBack string, handHeldIdCard string, authType int) (result *util.MessageResult) {
+func (this *ApproveController) RealApprove(ctx *gin.Context, user *transform.AuthMember, realName string, idCard string, idCardFront string, idCardBack string, handHeldIdCard string, authType int) (result *MessageResult.MessageResult) {
 	hasText(realName, this.MsService.GetMessage("MISSING_REAL_NAME"))
 	hasText(idCard, this.MsService.GetMessage("MISSING_ID_CARD"))
 	hasText(idCardFront, this.MsService.GetMessage("MISSING_ID_CARD_FRONT"))
@@ -282,7 +283,7 @@ func (this *ApproveController) RealApprove(ctx *gin.Context, user *transform.Aut
 	member.SetRealNameStatus(RealNameStatus.AUDITING)
 	return MessageResult.Success(this.MsService.GetMessage("REAL_APPLY_SUCCESS"))
 }
-func (this *ApproveController) RealApproveVideo(ctx *gin.Context, user *transform.AuthMember, videoStr string, random string) (result *util.MessageResult) {
+func (this *ApproveController) RealApproveVideo(ctx *gin.Context, user *transform.AuthMember, videoStr string, random string) (result *MessageResult.MessageResult) {
 	hasText(videoStr, "URL为空")
 	var member = this.MemberService.FindOne(user.GetId())
 	isTrue(member.GetKycStatus() == 1 || member.GetKycStatus() == 3, "请先完成实名认证")
@@ -301,7 +302,7 @@ func (this *ApproveController) RealApproveVideo(ctx *gin.Context, user *transfor
 	this.MemberService.Save(member)
 	return MessageResult.Success("提交成功，等待审核")
 }
-func (this *ApproveController) RealNameApproveDetail(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *ApproveController) RealNameApproveDetail(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	var predicateList = arraylist.New[types.Predicate]()
 	predicateList.Add(QMemberApplication.MemberApplication.Member.Eq(member))
@@ -314,7 +315,7 @@ func (this *ApproveController) RealNameApproveDetail(ctx *gin.Context, user *tra
 	result.SetData(memberApplication)
 	return result
 }
-func (this *ApproveController) AccountSetting(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *ApproveController) AccountSetting(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	hasText(member.GetIdNumber(), this.MsService.GetMessage("NO_REAL_NAME"))
 	hasText(member.GetJyPassword(), this.MsService.GetMessage("NO_JY_PASSWORD"))
@@ -341,12 +342,12 @@ func (this *ApproveController) AccountSetting(ctx *gin.Context, user *transform.
 	result.SetData(memberAccount)
 	return result
 }
-func (this *ApproveController) BindBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) BindBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	isTrue(member.GetBankInfo() == nil, this.MsService.GetMessage("REPEAT_SETTING"))
 	return this.DoBank(this.BindBank, bindingResult, user)
 }
-func (this *ApproveController) DoBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) DoBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -360,15 +361,15 @@ func (this *ApproveController) DoBank(ctx *gin.Context, bindBank *entity.BindBan
 	member.SetBankInfo(bankInfo)
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_SUCCESS"))
 }
-func (this *ApproveController) UpdateBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) UpdateBank(ctx *gin.Context, bindBank *entity.BindBank, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	return this.DoBank(this.BindBank, bindingResult, user)
 }
-func (this *ApproveController) BindAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) BindAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	isTrue(member.GetAlipay() == nil, this.MsService.GetMessage("REPEAT_SETTING"))
 	return this.DoAli(this.BindAli, bindingResult, user)
 }
-func (this *ApproveController) DoAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) DoAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -381,15 +382,15 @@ func (this *ApproveController) DoAli(ctx *gin.Context, bindAli *entity.BindAli, 
 	member.SetAlipay(alipay)
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_SUCCESS"))
 }
-func (this *ApproveController) UpdateAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) UpdateAli(ctx *gin.Context, bindAli *entity.BindAli, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	return this.DoAli(this.BindAli, bindingResult, user)
 }
-func (this *ApproveController) BindWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) BindWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	isTrue(member.GetWechatPay() == nil, this.MsService.GetMessage("REPEAT_SETTING"))
 	return this.DoWechat(this.BindWechat, bindingResult, user)
 }
-func (this *ApproveController) DoWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) DoWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -402,10 +403,10 @@ func (this *ApproveController) DoWechat(ctx *gin.Context, bindWechat *entity.Bin
 	member.SetWechatPay(wechatPay)
 	return MessageResult.Success(this.MsService.GetMessage("SETTING_SUCCESS"))
 }
-func (this *ApproveController) UpdateWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) UpdateWechat(ctx *gin.Context, bindWechat *entity.BindWechat, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	return this.DoWechat(this.BindWechat, bindingResult, user)
 }
-func (this *ApproveController) CertifiedBusinessStatus(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *ApproveController) CertifiedBusinessStatus(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	var certifiedBusinessInfo = new(entity.CertifiedBusinessInfo)
 	certifiedBusinessInfo.SetCertifiedBusinessStatus(member.GetCertifiedBusinessStatus())
@@ -438,7 +439,7 @@ func (this *ApproveController) CertifiedBusinessStatus(ctx *gin.Context, user *t
 	result.SetData(certifiedBusinessInfo)
 	return result
 }
-func (this *ApproveController) CertifiedBusiness(ctx *gin.Context, user *transform.AuthMember, json string, businessAuthDepositId int64) (result *util.MessageResult) {
+func (this *ApproveController) CertifiedBusiness(ctx *gin.Context, user *transform.AuthMember, json string, businessAuthDepositId int64) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	//只有未认证和认证失败的用户，可以发起认证申请
 	isTrue(member.GetCertifiedBusinessStatus().Equals(CertifiedBusinessStatus.NOT_CERTIFIED) || member.GetCertifiedBusinessStatus().Equals(CertifiedBusinessStatus.FAILED), this.MsService.GetMessage("REPEAT_APPLICATION"))
@@ -500,7 +501,7 @@ func (this *ApproveController) CertifiedBusiness(ctx *gin.Context, user *transfo
 	result.SetData(certifiedBusinessInfo)
 	return result
 }
-func (this *ApproveController) ListBusinessAuthDepositList(ctx *gin.Context) (result *util.MessageResult) {
+func (this *ApproveController) ListBusinessAuthDepositList(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var depositList = this.BusinessAuthDepositService.FindAllByStatus(CommonStatus.NORMAL)
 	depositList.ForEach(func(deposit interface {
 	}) {
@@ -510,7 +511,7 @@ func (this *ApproveController) ListBusinessAuthDepositList(ctx *gin.Context) (re
 	result.SetData(depositList)
 	return result
 }
-func (this *ApproveController) ChangePhone(ctx *gin.Context, request *http.HttpServletRequest, password string, phone string, code string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *ApproveController) ChangePhone(ctx *gin.Context, request *http.HttpServletRequest, password string, phone string, code string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	hasText(password, this.MsService.GetMessage("MISSING_LOGIN_PASSWORD"))
 	hasText(phone, this.MsService.GetMessage("MISSING_PHONE"))
@@ -537,7 +538,7 @@ func (this *ApproveController) ChangePhone(ctx *gin.Context, request *http.HttpS
 		return MessageResult.Error(this.MsService.GetMessage("PASSWORD_ERROR"))
 	}
 }
-func (this *ApproveController) CancelBusiness(ctx *gin.Context, user *transform.AuthMember, detail string) (result *util.MessageResult) {
+func (this *ApproveController) CancelBusiness(ctx *gin.Context, user *transform.AuthMember, detail string) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	Logger.Info("申请退保，原因={}", detail)
 	var advertiseNum = this.AdvertiseService.CountByMemberAndStatus(member, AdvertiseControlStatus.PUT_ON_SHELVES)
@@ -577,7 +578,7 @@ func (this *ApproveController) CancelBusiness(ctx *gin.Context, user *transform.
 	log.Infof("退保申请状态:%v", cancelApply.GetStatus())
 	return MessageResult.Success()
 }
-func (this *ApproveController) CheckCode(ctx *gin.Context, key string, member *entity.Member, code string, codeMold int) (result *util.MessageResult) {
+func (this *ApproveController) CheckCode(ctx *gin.Context, key string, member *entity.Member, code string, codeMold int) (result *MessageResult.MessageResult) {
 	if this.CodeType == 0 {
 		var fullKey = ""
 		if codeMold == 1 {
@@ -604,14 +605,14 @@ func (this *ApproveController) CheckCode(ctx *gin.Context, key string, member *e
 	}
 	return MessageResult.Success()
 }
-func (this *ApproveController) VideoRandom(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
-	var jsonResult = new(fastjson.JSONObject)
+func (this *ApproveController) VideoRandom(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
+	var jsonResult = fastjson.NewJSONObject()
 	var memberId = user.GetId() + ""
 	var random = GeneratorUtil.GetRandomNumber(100000, 999999)
 	jsonResult.Put("memberId", memberId)
 	jsonResult.Put("random", random)
 	Logger.Info("=====获取视频随机码====" + jsonResult.ToJSONString())
-	var result = MessageResult.Success()
+	result = MessageResult.Success()
 	result.SetData(jsonResult)
 	return result
 }

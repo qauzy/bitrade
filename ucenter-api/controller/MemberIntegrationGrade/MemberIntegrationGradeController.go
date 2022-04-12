@@ -5,15 +5,16 @@ import (
 	"bitrade/core/entity/transform"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"bitrade/core/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/fastjson"
 )
 
-func (this *MemberIntegrationGradeController) QueryGradeInfo(ctx *gin.Context) (result *util.MessageResult) {
+func (this *MemberIntegrationGradeController) QueryGradeInfo(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	return success(this.GradeService.FindAll())
 }
-func (this *MemberIntegrationGradeController) QueryDayWithdrawLimit(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *MemberIntegrationGradeController) QueryDayWithdrawLimit(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var count = this.RedisUtil.Get(SysConstant.CUSTOMER_DAY_WITHDRAW_TOTAL_COUNT + user.GetId())
 	if count == nil {
 		count = 0
@@ -26,12 +27,12 @@ func (this *MemberIntegrationGradeController) QueryDayWithdrawLimit(ctx *gin.Con
 	} else {
 		amount = amount
 	}
-	var result = new(fastjson.JSONObject)
+	var result = fastjson.NewJSONObject()
 	result.Put("count", count)
 	result.Put("amount", amount)
 	return this.SuccessWithData(result)
 }
-func (this *MemberIntegrationGradeController) QueryIntegration4PageQuery(ctx *gin.Context, queryVo *vo.IntegrationRecordVO, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *MemberIntegrationGradeController) QueryIntegration4PageQuery(ctx *gin.Context, queryVo *vo.IntegrationRecordVO, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var mr = MessageResult(0, "success")
 	queryVo.SetUserId(user.GetId())
 	var page = this.RecordService.FindRecord4Page(queryVo)

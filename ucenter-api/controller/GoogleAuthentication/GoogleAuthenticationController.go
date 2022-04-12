@@ -7,12 +7,13 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/fastjson"
 	"time"
 )
 
-func (this *GoogleAuthenticationController) Yzgoogle(ctx *gin.Context, user *transform.AuthMember, codes string) (result *util.MessageResult) {
+func (this *GoogleAuthenticationController) Yzgoogle(ctx *gin.Context, user *transform.AuthMember, codes string) (result *MessageResult.MessageResult) {
 	// enter the code shown on device. Edit this and run it fast before the
 	// code expires!
 	var code = Long.ParseLong(codes)
@@ -28,7 +29,7 @@ func (this *GoogleAuthenticationController) Yzgoogle(ctx *gin.Context, user *tra
 		return MessageResult.Success("验证通过")
 	}
 }
-func (this *GoogleAuthenticationController) Sendgoogle(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *GoogleAuthenticationController) Sendgoogle(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	/*for(int i = 0;i<50;i++){
 	    log.info("######################       开始循环次数={}    ######################",i+1);
 	    GoogleAuthenticatorUtil.generateSecretKey();
@@ -45,17 +46,17 @@ func (this *GoogleAuthenticationController) Sendgoogle(ctx *gin.Context, user *t
 	log.Infof("secret完毕 耗时=%v", System.CurrentTimeMillis()-current)
 	var qrBarcodeURL = GoogleAuthenticatorUtil.GetQRBarcodeURL(member.GetMobilePhone(), this.GoogleAuthUrl, secret)
 	log.Infof("qrBarcodeURL完毕 耗时=%v", System.CurrentTimeMillis()-current)
-	var jsonObject = new(fastjson.JSONObject)
+	var jsonObject = fastjson.NewJSONObject()
 	jsonObject.Put("link", qrBarcodeURL)
 	jsonObject.Put("secret", secret)
 	log.Infof("jsonObject完毕 耗时=%v", System.CurrentTimeMillis()-current)
-	var messageResult = new(util.MessageResult)
+	var messageResult = new(MessageResult.MessageResult)
 	messageResult.SetData(jsonObject)
 	messageResult.SetMessage("获取成功")
 	log.Infof("执行完毕 耗时=%v", System.CurrentTimeMillis()-current)
 	return messageResult
 }
-func (this *GoogleAuthenticationController) Jcgoogle(ctx *gin.Context, codes string, user *transform.AuthMember, smsCode string) (result *util.MessageResult) {
+func (this *GoogleAuthenticationController) Jcgoogle(ctx *gin.Context, codes string, user *transform.AuthMember, smsCode string) (result *MessageResult.MessageResult) {
 	// enter the code shown on device. Edit this and run it fast before the
 	// code expires!
 	//String GoogleKey = (String) request.getSession().getAttribute("googleKey");
@@ -94,7 +95,7 @@ func (this *GoogleAuthenticationController) Jcgoogle(ctx *gin.Context, codes str
 		}
 	}
 }
-func (this *GoogleAuthenticationController) GoogleAuth(ctx *gin.Context, codes string, user *transform.AuthMember, secret string) (result *util.MessageResult) {
+func (this *GoogleAuthenticationController) GoogleAuth(ctx *gin.Context, codes string, user *transform.AuthMember, secret string) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	var code = Long.ParseLong(codes)
 	var t = System.CurrentTimeMillis()

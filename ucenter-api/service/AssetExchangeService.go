@@ -3,7 +3,7 @@ package service
 import (
 	"bitrade/core/constant/TransactionType"
 	"bitrade/core/service/Base"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"bitrade/ucenter-api/dao"
 	"bitrade/ucenter-api/entity"
 	"github.com/qauzy/chocolate/lists/arraylist"
@@ -16,12 +16,12 @@ func (this *AssetExchangeService) FindAllByFromCoin(toUnit string) (result array
 func (this *AssetExchangeService) FindOne(fromUnit string, toUnit string) (result *entity.AssetExchangeCoin, err error) {
 	return this.AssetExchangeDao.FindByFromUnitAndToUnit(fromUnit, toUnit)
 }
-func (this *AssetExchangeService) Exchange(memberId int64, coin *entity.AssetExchangeCoin, amount math.BigDecimal) (result *util.MessageResult, err error) {
+func (this *AssetExchangeService) Exchange(memberId int64, coin *entity.AssetExchangeCoin, amount math.BigDecimal) (result *MessageResult.MessageResult, err error) {
 	var fromWallet, err = this.MemberWalletService.FindByCoinUnitAndMemberId(coin.GetFromUnit(), memberId)
 
 	var toWallet, err = this.MemberWalletService.FindByCoinUnitAndMemberId(coin.GetToUnit(), memberId)
 	if fromWallet == nil || toWallet == nil {
-		return util.NewMessageResultV2(500, "钱包不存在"), nil
+		return MessageResult.NewMessageResultV2(500, "钱包不存在"), nil
 	}
 	var toAmount = amount.Mul(coin.GetExchangeRate())
 	if this.MemberWalletService.DeductBalance(fromWallet, amount) > 0 {
@@ -45,9 +45,9 @@ func (this *AssetExchangeService) Exchange(memberId int64, coin *entity.AssetExc
 		transaction2.SetType(TransactionType.ASSET_EXCHANGE)
 		transaction2.SetFee(math.Zero)
 		this.TransactionService.Save(transaction2)
-		return util.NewMessageResultV2(0, "success"), nil
+		return MessageResult.NewMessageResultV2(0, "success"), nil
 	} else {
-		return util.NewMessageResultV2(500, "余额不足"), nil
+		return MessageResult.NewMessageResultV2(500, "余额不足"), nil
 	}
 }
 

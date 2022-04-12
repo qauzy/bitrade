@@ -3,13 +3,13 @@ package Upload
 import (
 	"bitrade/core/log"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"strings"
 	"time"
 )
 
-func (this *UploadController) UploadOssImage(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *util.MessageResult, err error) {
+func (this *UploadController) UploadOssImage(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *MessageResult.MessageResult, err error) {
 	log.Info(request.GetSession().GetServletContext().GetResource("/").ToString())
 	response.SetCharacterEncoding("UTF-8")
 	response.SetContentType("text/html; charset=UTF-8")
@@ -58,7 +58,7 @@ func (this *UploadController) UploadOssImage(ctx *gin.Context, request *http.Htt
 		return MessageResult.Error(500, this.SourceService.GetMessage("SYSTEM_ERROR"))
 	}
 }
-func (this *UploadController) UploadVideo(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *util.MessageResult, err error) {
+func (this *UploadController) UploadVideo(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *MessageResult.MessageResult, err error) {
 	log.Info(request.GetSession().GetServletContext().GetResource("/").ToString() + "==========实名认证视频上传")
 	response.SetCharacterEncoding("UTF-8")
 	response.SetContentType("text/html; charset=UTF-8")
@@ -105,7 +105,7 @@ func (this *UploadController) UploadVideo(ctx *gin.Context, request *http.HttpSe
 		return MessageResult.Error(500, this.SourceService.GetMessage("SYSTEM_ERROR"))
 	}
 }
-func (this *UploadController) UploadLocalImage(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *util.MessageResult, err error) {
+func (this *UploadController) UploadLocalImage(ctx *gin.Context, request *http.HttpServletRequest, response *http.HttpServletResponse, file *multipart.MultipartFile) (result *MessageResult.MessageResult, err error) {
 	log.Info(request.GetSession().GetServletContext().GetResource("/").ToString())
 	response.SetCharacterEncoding("UTF-8")
 	response.SetContentType("text/html; charset=UTF-8")
@@ -132,9 +132,9 @@ func (this *UploadController) UploadLocalImage(ctx *gin.Context, request *http.H
 		return mr
 	}
 }
-func (this *UploadController) Base64UpLoad(ctx *gin.Context, base64Data string, oss bool) (result *util.MessageResult) {
+func (this *UploadController) Base64UpLoad(ctx *gin.Context, base64Data string, oss bool) (result *MessageResult.MessageResult) {
 	log.Info("oss == " + oss)
-	var result = new(util.MessageResult)
+	var result = new(MessageResult.MessageResult)
 	var uri string
 	exception := func() (err error) {
 		log.Debug("上传文件的数据：" + base64Data)

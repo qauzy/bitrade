@@ -8,18 +8,18 @@ import (
 	"bitrade/core/entity/transform"
 	"bitrade/core/log"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"bitrade/core/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/shopspring/decimal"
 )
 
-func (this *OtcWalletController) GetUserOtcWallet(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *OtcWalletController) GetUserOtcWallet(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	log.Info("---------查询用户法币账户:" + user.GetId())
 	var result = this.OtcWalletService.FindByMemberId(user.GetId())
 	return this.SuccessWithData(result)
 }
-func (this *OtcWalletController) TransferOtcWallet(ctx *gin.Context, user *transform.AuthMember, otcWalletVO *vo.OtcWalletVO) (result *util.MessageResult, err error) {
+func (this *OtcWalletController) TransferOtcWallet(ctx *gin.Context, user *transform.AuthMember, otcWalletVO *vo.OtcWalletVO) (result *MessageResult.MessageResult, err error) {
 	log.Info("---------币币账户到法币账户互转:userId=" + user.GetId() + "," + JSONObject.ToJSONString(otcWalletVO))
 	//        String jyPassword = otcWalletVO.getJyPassword();
 	//        hasText(jyPassword, sourceService.getMessage("MISSING_JYPASSWORD"));

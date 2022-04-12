@@ -4,12 +4,12 @@ import (
 	"bitrade/core/controller"
 	"bitrade/core/dao/types"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
-func (this *AnnouncementController) Page(ctx *gin.Context, pageNo int, pageSize int) (result *util.MessageResult) {
+func (this *AnnouncementController) Page(ctx *gin.Context, pageNo int, pageSize int) (result *MessageResult.MessageResult) {
 	//条件
 	var predicates = arraylist.New[types.Predicate]()
 	predicates.Add(QAnnouncement.Announcement.IsShow.Eq(true))
@@ -21,13 +21,13 @@ func (this *AnnouncementController) Page(ctx *gin.Context, pageNo int, pageSize 
 	var pageResult = this.AnnouncementService.QueryDsl(pageNo, pageSize, predicates, QAnnouncement.Announcement, orderSpecifiers)
 	return this.SuccessWithData(pageResult)
 }
-func (this *AnnouncementController) Detail(ctx *gin.Context, id int64) (result *util.MessageResult) {
+func (this *AnnouncementController) Detail(ctx *gin.Context, id int64) (result *MessageResult.MessageResult) {
 	var announcement, err = this.AnnouncementService.FindById(id)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	if announcement == nil {
-		return util.Error("validate id!")
+		return MessageResult.Error("validate id!")
 	}
 	return this.SuccessWithData(announcement)
 }

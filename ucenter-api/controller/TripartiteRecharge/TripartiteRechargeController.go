@@ -8,8 +8,8 @@ import (
 )
 
 func (this *TripartiteRechargeController) Recharge(ctx *gin.Context, body string) (result string, err error) {
-	var json = new(fastjson.JSONObject)
-	var jsonObject = new(fastjson.JSONObject)
+	var json = fastjson.NewJSONObject()
+	var jsonObject = fastjson.NewJSONObject()
 	exception := func() (err error) {
 		//解密
 		var resJson = JSONObject.ParseObject(DESUtil.Decrypt(body.Trim(), this.Key))

@@ -9,19 +9,20 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/sets/hashset"
 	"reflect"
 	"time"
 )
 
-func (this *RegisterController) AllCountry(ctx *gin.Context) (result *util.MessageResult) {
+func (this *RegisterController) AllCountry(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var result = new(MessageResult.success)
 	var list = this.CountryService.GetAllCountry()
 	result.SetData(list)
 	return result
 }
-func (this *RegisterController) CheckUsername(ctx *gin.Context, username string) (result *util.MessageResult) {
+func (this *RegisterController) CheckUsername(ctx *gin.Context, username string) (result *MessageResult.MessageResult) {
 	var result = new(MessageResult.success)
 	if this.MemberService.UsernameIsExist(username) {
 		result.SetCode(500)
@@ -82,7 +83,7 @@ func (this *RegisterController) Activate(ctx *gin.Context, key string, request *
 	}
 	return "registeredResult"
 }
-func (this *RegisterController) RegisterByEmail(ctx *gin.Context, loginByEmail *entity.LoginByEmail, request *http.HttpServletRequest, bindingResult *validation.BindingResult) (result *util.MessageResult, err error) {
+func (this *RegisterController) RegisterByEmail(ctx *gin.Context, loginByEmail *entity.LoginByEmail, request *http.HttpServletRequest, bindingResult *validation.BindingResult) (result *MessageResult.MessageResult, err error) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -136,7 +137,7 @@ func (this *RegisterController) SentEmail(ctx *gin.Context, loginByEmail *entity
 	this.RedisUtil.Set(token, loginByEmail, 12, time.Hour)
 	this.RedisUtil.Set(email, "", 12, time.Hour)
 }
-func (this *RegisterController) LoginByPhone(ctx *gin.Context, loginByPhone *entity.LoginByPhone, bindingResult *validation.BindingResult, request *http.HttpServletRequest) (result *util.MessageResult, err error) {
+func (this *RegisterController) LoginByPhone(ctx *gin.Context, loginByPhone *entity.LoginByPhone, bindingResult *validation.BindingResult, request *http.HttpServletRequest) (result *MessageResult.MessageResult, err error) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -190,7 +191,7 @@ func (this *RegisterController) LoginByPhone(ctx *gin.Context, loginByPhone *ent
 		return error(this.LocaleMessageSourceService.GetMessage("REGISTRATION_FAILED"))
 	}
 }
-func (this *RegisterController) SendBindEmail(ctx *gin.Context, email string, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *RegisterController) SendBindEmail(ctx *gin.Context, email string, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	if ValidateUtil.IsEmail(email) == false {
 		this.LocaleMessageSourceService.GetMessage("WRONG_EMAIL")
 	}
@@ -235,7 +236,7 @@ func (this *RegisterController) SentEmailCode(ctx *gin.Context, email string, co
 	log.Infof("send email for %v,content:%v", email, html)
 	this.RedisUtil.Set(EMAIL_BIND_CODE_PREFIX+email, code, 10, time.Minute)
 }
-func (this *RegisterController) SendAddAddress(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *RegisterController) SendAddAddress(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var code = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	var member = this.MemberService.FindOne(user.GetId())
 	var email = member.GetEmail()
@@ -274,7 +275,7 @@ func (this *RegisterController) SentEmailAddCode(ctx *gin.Context, email string,
 	this.JavaMailSender.Send(mimeMessage)
 	this.RedisUtil.Set(ADD_ADDRESS_CODE_PREFIX+email, code, 10, time.Minute)
 }
-func (this *RegisterController) SendResetPasswordCode(ctx *gin.Context, account string) (result *util.MessageResult) {
+func (this *RegisterController) SendResetPasswordCode(ctx *gin.Context, account string) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindByEmail(account)
 	if member == nil {
 		this.LocaleMessageSourceService.GetMessage("MEMBER_NOT_EXISTS")
@@ -312,7 +313,7 @@ func (this *RegisterController) SentResetPassword(ctx *gin.Context, email string
 	this.JavaMailSender.Send(mimeMessage)
 	this.RedisUtil.Set(prefix+email, code, 10, time.Minute)
 }
-func (this *RegisterController) ForgetPassword(ctx *gin.Context, mode int, account string, code string, password string) (result *util.MessageResult, err error) {
+func (this *RegisterController) ForgetPassword(ctx *gin.Context, mode int, account string, code string, password string) (result *MessageResult.MessageResult, err error) {
 	isTrue(ValidateUtils.ValidatePassword(password), this.MsService.GetMessage("PASSWORD_LENGTH_ILLEGAL"))
 	var member *entity.Member
 	var redisCode = this.RedisUtil.Get(SysConstant.RESET_PASSWORD_CODE_PREFIX + account)
@@ -335,7 +336,7 @@ func (this *RegisterController) ForgetPassword(ctx *gin.Context, mode int, accou
 	member.SetLoginLock(BooleanEnum.IS_FALSE)
 	return new(MessageResult.success)
 }
-func (this *RegisterController) UntieEmailCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *RegisterController) UntieEmailCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var member = this.MemberService.FindOne(user.GetId())
 	isTrue(member.GetEmail() != nil, this.MsService.GetMessage("NOT_BIND_EMAIL"))
 	var cache = this.RedisUtil.Get(SysConstant.EMAIL_UNTIE_CODE_PREFIX + member.GetEmail())
@@ -352,7 +353,7 @@ func (this *RegisterController) UntieEmailCode(ctx *gin.Context, user *transform
 	}
 	return new(MessageResult.success)
 }
-func (this *RegisterController) UpdateEmailCode(ctx *gin.Context, user *transform.AuthMember, email string) (result *util.MessageResult) {
+func (this *RegisterController) UpdateEmailCode(ctx *gin.Context, user *transform.AuthMember, email string) (result *MessageResult.MessageResult) {
 	if this.MemberService.EmailIsExist(email) {
 		return MessageResult.Error(this.MsService.GetMessage("REPEAT_EMAIL_REQUEST"))
 	}

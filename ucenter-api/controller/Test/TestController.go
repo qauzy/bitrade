@@ -3,11 +3,11 @@ package Test
 import (
 	"bitrade/core/controller"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 )
 
-func (this *TestController) TestSms(ctx *gin.Context) (result *util.MessageResult) {
+func (this *TestController) TestSms(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var smsDTO = this.SmsService.GetByStatus()
 	System.Out.Println(smsDTO)
 	System.Out.Println(success("succss", smsDTO))

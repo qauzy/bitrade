@@ -5,28 +5,26 @@ import (
 	"bitrade/core/controller"
 	"bitrade/core/entity"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/chocolate/maps/hashmap"
-	"github.com/qauzy/chocolate/sets/hashset"
 )
 
-func (this *CoinController) Legal(ctx *gin.Context) (result *util.MessageResult) {
+func (this *CoinController) Legal(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var legalAll arraylist.List[entity.Coin] = this.CoinService.FindLegalAll()
 	return this.SuccessWithData(legalAll)
 }
-func (this *CoinController) FindLegalCoinPage(ctx *gin.Context, pageModel *PageModel.PageModel) (result *util.MessageResult) {
-	var all *domain.Page = this.CoinService.FindLegalCoinPage(pageModel)
+func (this *CoinController) FindLegalCoinPage(ctx *gin.Context, pageModel *PageModel.PageModel) (result *MessageResult.MessageResult) {
+	var all **pagination.PageResult = this.CoinService.FindLegalCoinPage(pageModel)
 	return this.SuccessWithData(all)
 }
 func (this *CoinController) FindCoins(ctx *gin.Context) (result arraylist.List[*hashmap.Map[string, string]]) {
-	var coins arraylist.List[entity.Coin] = this.CoinService.FindAll()
+	var coins, err = this.CoinService.FindAll()
 	var result = arraylist.New[*hashmap.Map[string, string]]()
-	coins.ForEach(func(coin interface {
-	}) {
+	coins.ForEach(func(coin *entity.Coin) {
 		if coin.GetHasLegal() == false {
-			var oMap = hashset.New[string]()
+			var oMap = hashmap.New[string, string]()
 			oMap.Put("name", coin.GetName())
 			oMap.Put("nameCn", coin.GetNameCn())
 			oMap.Put("withdrawFee", String.ValueOf(coin.GetMinTxFee()))

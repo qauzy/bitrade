@@ -7,12 +7,12 @@ import (
 	"bitrade/core/entity"
 	"bitrade/core/entity/transform"
 	"bitrade/core/service"
-	"bitrade/core/util"
 	"bitrade/core/util/BigDecimalUtils"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 )
 
-func (this *LegalWalletWithdrawController) Page(ctx *gin.Context, pageModel *PageModel.PageModel, status *WithdrawStatus.WithdrawStatus, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *LegalWalletWithdrawController) Page(ctx *gin.Context, pageModel *PageModel.PageModel, status *WithdrawStatus.WithdrawStatus, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var eq = QLegalWalletWithdraw.LegalWalletWithdraw.Member.Id.Eq(user.GetId())
 	if status != nil {
 		eq.And(QLegalWalletWithdraw.LegalWalletWithdraw.Status.Eq(status))
@@ -20,7 +20,7 @@ func (this *LegalWalletWithdrawController) Page(ctx *gin.Context, pageModel *Pag
 	var Page = this.LegalWalletWithdrawService.FindAll(eq, pageModel)
 	return success(this.Page)
 }
-func (this *LegalWalletWithdrawController) Post(ctx *gin.Context, model *entity.LegalWalletWithdrawModel, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *LegalWalletWithdrawController) Post(ctx *gin.Context, model *entity.LegalWalletWithdrawModel, bindingResult *validation.BindingResult, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var result = BindingResultUtil.Validate(bindingResult)
 	if result != nil {
 		return result
@@ -59,7 +59,7 @@ func (this *LegalWalletWithdrawController) Post(ctx *gin.Context, model *entity.
 	this.LegalWalletWithdrawService.Withdraw(wallet, legalWalletWithdraw)
 	return success()
 }
-func (this *LegalWalletWithdrawController) Detail(ctx *gin.Context, id int64, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *LegalWalletWithdrawController) Detail(ctx *gin.Context, id int64, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var one = this.LegalWalletWithdrawService.FindDetailWeb(id, user.GetId())
 	if one == nil {
 		"validate id!"

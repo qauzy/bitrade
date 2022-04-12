@@ -7,13 +7,13 @@ import (
 	"bitrade/core/constant/TransactionType"
 	"bitrade/core/entity/transform"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/maps/hashmap"
 	"github.com/qauzy/chocolate/sets/hashset"
 )
 
-func (this *PromotionController) PromotionRecord(ctx *gin.Context, pageModel *PageModel.PageModel, member *transform.AuthMember) (result *util.MessageResult) {
+func (this *PromotionController) PromotionRecord(ctx *gin.Context, pageModel *PageModel.PageModel, member *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var predicate = QMember.Member.InviterId.Eq(member.GetId())
 	var page = this.MemberService.FindAll(predicate, pageModel.GetPageable())
 	var list = page.GetContent()
@@ -45,7 +45,7 @@ func (this *PromotionController) PromotionRecord(ctx *gin.Context, pageModel *Pa
 	messageResult.SetData(pageResult)
 	return messageResult
 }
-func (this *PromotionController) RewardRecord(ctx *gin.Context, pageModel *PageModel.PageModel, member *transform.AuthMember) (result *util.MessageResult) {
+func (this *PromotionController) RewardRecord(ctx *gin.Context, pageModel *PageModel.PageModel, member *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var predicate = QRewardRecord.RewardRecord.Member.Id.Eq(member.GetId()).And(QRewardRecord.RewardRecord.Type.Eq(RewardRecordType.PROMOTION))
 	var page = this.RewardRecordService.FindAll(predicate, pageModel)
 	var list = page.GetContent()

@@ -7,15 +7,16 @@ import (
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"time"
 )
 
-func (this *OpenApiController) QueryApiKey(ctx *gin.Context, member *transform.AuthMember) (result *util.MessageResult) {
+func (this *OpenApiController) QueryApiKey(ctx *gin.Context, member *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var result = this.MemberApiKeyService.FindAllByMemberId(member.GetId())
 	return this.SuccessWithData(result)
 }
-func (this *OpenApiController) SaveApiKey(ctx *gin.Context, member *transform.AuthMember, memberApiKey *entity.MemberApiKey) (result *util.MessageResult) {
+func (this *OpenApiController) SaveApiKey(ctx *gin.Context, member *transform.AuthMember, memberApiKey *entity.MemberApiKey) (result *MessageResult.MessageResult) {
 	log.Info("-------新增API-key:" + JSONObject.ToJSONString(memberApiKey))
 	var code = memberApiKey.GetCode()
 	if StringUtils.IsNotEmpty(code) == false {
@@ -49,7 +50,7 @@ func (this *OpenApiController) SaveApiKey(ctx *gin.Context, member *transform.Au
 		return error("数量超过最大限制")
 	}
 }
-func (this *OpenApiController) UpdateApiKey(ctx *gin.Context, member *transform.AuthMember, memberApiKey *entity.MemberApiKey) (result *util.MessageResult) {
+func (this *OpenApiController) UpdateApiKey(ctx *gin.Context, member *transform.AuthMember, memberApiKey *entity.MemberApiKey) (result *MessageResult.MessageResult) {
 	log.Info("-------修改API-key:" + JSONObject.ToJSONString(memberApiKey))
 	if memberApiKey.GetId() != nil {
 		var findMemberApiKey = this.MemberApiKeyService.FindByMemberIdAndId(member.GetId(), memberApiKey.GetId())
@@ -71,7 +72,7 @@ func (this *OpenApiController) UpdateApiKey(ctx *gin.Context, member *transform.
 		return error("记录不存在")
 	}
 }
-func (this *OpenApiController) UpdateApiKey(ctx *gin.Context, member *transform.AuthMember, id int64) (result *util.MessageResult) {
+func (this *OpenApiController) UpdateApiKey(ctx *gin.Context, member *transform.AuthMember, id int64) (result *MessageResult.MessageResult) {
 	log.Infof("------删除api-key：memberId=%v,id=%v", member.GetId(), id)
 	this.MemberApiKeyService.Del(id)
 	return success("删除成功")

@@ -6,11 +6,11 @@ import (
 	"bitrade/core/controller"
 	"bitrade/core/entity/transform"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 )
 
-func (this *MemberController) SignIn(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult) {
+func (this *MemberController) SignIn(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult) {
 	//校验 签到活动 币种 会员 会员钱包
 	if user == nil {
 		"The login timeout!"

@@ -8,14 +8,14 @@ import (
 	"bitrade/core/entity/transform"
 	"bitrade/core/log"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/fastjson"
 	"strings"
 )
 
-func (this *AssetController) FindWallet(ctx *gin.Context, member *transform.AuthMember) (result *util.MessageResult) {
+func (this *AssetController) FindWallet(ctx *gin.Context, member *transform.AuthMember) (result *MessageResult.MessageResult) {
 	var wallets, err = this.WalletService.FindAllByMemberId(member.GetId())
 	wallets.ForEach(func(wallet interface {
 	}) {
@@ -32,11 +32,11 @@ func (this *AssetController) FindWallet(ctx *gin.Context, member *transform.Auth
 	mr.SetData(wallets)
 	return mr
 }
-func (this *AssetController) FindTransaction(ctx *gin.Context, member *transform.AuthMember, pageNo int, pageSize int, oType *TransactionType.TransactionType, symbol string, startTime string, endTime string) (result *util.MessageResult, err error) {
+func (this *AssetController) FindTransaction(ctx *gin.Context, member *transform.AuthMember, pageNo int, pageSize int, oType *TransactionType.TransactionType, symbol string, startTime string, endTime string) (result *MessageResult.MessageResult, err error) {
 	var page = this.TransactionService.QueryByMember(member.GetId(), pageNo, pageSize, oType, startTime, endTime, symbol)
 	return this.SuccessWithData(page)
 }
-func (this *AssetController) FindTransaction(ctx *gin.Context, member *transform.AuthMember, request *http.HttpServletRequest, pageNo int, pageSize int, symbol string) (result *util.MessageResult, err error) {
+func (this *AssetController) FindTransaction(ctx *gin.Context, member *transform.AuthMember, request *http.HttpServletRequest, pageNo int, pageSize int, symbol string) (result *MessageResult.MessageResult, err error) {
 	var oType *TransactionType.TransactionType
 	if StringUtils.IsNotEmpty(request.GetParameter("type")) {
 		oType = TransactionType.ValueOfOrdinal(Convert.StrToInt(request.GetParameter("type"), 0))
@@ -50,14 +50,14 @@ func (this *AssetController) FindTransaction(ctx *gin.Context, member *transform
 	}
 	return success(this.TransactionService.QueryByMember(member.GetId(), pageNo, pageSize, oType, startDate, endDate, symbol))
 }
-func (this *AssetController) FindWalletBySymbol(ctx *gin.Context, member *transform.AuthMember, symbol string) (result *util.MessageResult) {
+func (this *AssetController) FindWalletBySymbol(ctx *gin.Context, member *transform.AuthMember, symbol string) (result *MessageResult.MessageResult) {
 	var mr = MessageResult.Success("success")
 	mr.SetData(this.WalletService.FindByCoinUnitAndMemberId(symbol, member.GetId()))
 	return mr
 }
-func (this *AssetController) ResetWalletAddress(ctx *gin.Context, member *transform.AuthMember, unit string) (result *util.MessageResult) {
+func (this *AssetController) ResetWalletAddress(ctx *gin.Context, member *transform.AuthMember, unit string) (result *MessageResult.MessageResult) {
 	exception := func() (err error) {
-		var json = new(fastjson.JSONObject)
+		var json = fastjson.NewJSONObject()
 		json.Put("uid", member.GetId())
 		this.KafkaTemplate.Send("reset-member-address", unit, json.ToJSONString())
 		return MessageResult.Success("提交成功")
@@ -67,7 +67,7 @@ func (this *AssetController) ResetWalletAddress(ctx *gin.Context, member *transf
 		return MessageResult.Error("未知异常")
 	}
 }
-func (this *AssetController) LockPositionRecordList(ctx *gin.Context, member *transform.AuthMember, status *CommonStatus.CommonStatus, coinUnit string, pageModel *PageModel.PageModel) (result *util.MessageResult) {
+func (this *AssetController) LockPositionRecordList(ctx *gin.Context, member *transform.AuthMember, status *CommonStatus.CommonStatus, coinUnit string, pageModel *PageModel.PageModel) (result *MessageResult.MessageResult) {
 	var booleanExpressions = arraylist.New[dsl.BooleanExpression]()
 	if status != nil {
 		booleanExpressions.Add(QLockPositionRecord.LockPositionRecord.Status.Eq(status))

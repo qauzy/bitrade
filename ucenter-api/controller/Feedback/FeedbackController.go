@@ -4,11 +4,11 @@ import (
 	"bitrade/core/entity"
 	"bitrade/core/entity/transform"
 	"bitrade/core/service"
-	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 )
 
-func (this *FeedbackController) Feedback(ctx *gin.Context, user *transform.AuthMember, remark string) (result *util.MessageResult) {
+func (this *FeedbackController) Feedback(ctx *gin.Context, user *transform.AuthMember, remark string) (result *MessageResult.MessageResult) {
 	var Feedback = new(entity.Feedback)
 	var member = this.MemberService.FindOne(user.GetId())
 	this.Feedback.SetMember(member)

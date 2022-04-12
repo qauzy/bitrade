@@ -15,8 +15,7 @@ var (
 	DT_FORMAT         text.SimpleDateFormat = SimpleDateFormat("uuuu-MM-dd'T'HH:mm:ss")
 )
 
-func CreateSignature(ctx *gin.Context, method string, path string, apiKey string, timeStamp string, oMap *hashmap.Map[string, interface {
-}], secretKey string) (result string, err error) {
+func CreateSignature(ctx *gin.Context, method string, path string, apiKey string, timeStamp string, oMap *hashmap.Map[string, interface {}], secretKey string) (result string, err error) {
 	var sb = StringBuilder(1024)
 	// GET
 	sb.Append(method.ToUpperCase()).Append(('\n').Append(API_HOST.ToLowerCase()).Append(('\n').Append(path).Append(('\n')

@@ -9,6 +9,7 @@ import (
 	"bitrade/core/entity"
 	"bitrade/core/service"
 	"bitrade/core/util"
+	"bitrade/core/util/MessageResult"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/lists/arraylist"
@@ -16,66 +17,66 @@ import (
 	"strconv"
 )
 
-func (this *AideController) KeyWords(ctx *gin.Context) (result *util.MessageResult) {
+func (this *AideController) KeyWords(ctx *gin.Context) (result *MessageResult.MessageResult) {
 	var websiteInformation, err = this.WebsiteInformationService.FetchOne()
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
-	result = util.Success()
+	result = MessageResult.Success()
 	result.SetData(websiteInformation)
 	return result
 }
-func (this *AideController) SysAdvertise(ctx *gin.Context, sysAdvertiseLocation *SysAdvertiseLocation.SysAdvertiseLocation) (result *util.MessageResult) {
+func (this *AideController) SysAdvertise(ctx *gin.Context, sysAdvertiseLocation *SysAdvertiseLocation.SysAdvertiseLocation) (result *MessageResult.MessageResult) {
 	var list, err = this.SysAdvertiseService.FindAllNormal(sysAdvertiseLocation)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
-	result = util.Success()
+	result = MessageResult.Success()
 	result.SetData(list)
 	return result
 }
-func (this *AideController) SysHelp(ctx *gin.Context, sysHelpClassification *SysHelpClassification.SysHelpClassification) (result *util.MessageResult) {
+func (this *AideController) SysHelp(ctx *gin.Context, sysHelpClassification *SysHelpClassification.SysHelpClassification) (result *MessageResult.MessageResult) {
 	var list arraylist.List[entity.SysHelp]
 	var err error
 	if sysHelpClassification == nil {
 		list, err = this.SysHelpService.FindAllByStatusNotAndSort()
 		if err != nil {
-			return util.Error(err.Error())
+			return MessageResult.Error(err.Error())
 		}
 	} else {
 		list, err = this.SysHelpService.FindBySysHelpClassification(sysHelpClassification)
 		if err != nil {
-			return util.Error(err.Error())
+			return MessageResult.Error(err.Error())
 		}
 	}
-	result = util.Success()
+	result = MessageResult.Success()
 	result.SetData(list)
 	return result
 }
-func (this *AideController) SysHelpById(ctx *gin.Context, id int64) (result *util.MessageResult) {
+func (this *AideController) SysHelpById(ctx *gin.Context, id int64) (result *MessageResult.MessageResult) {
 	//List<SysHelp> list = sysHelpService.findBySysHelpClassification(sysHelpClassification);
 	var sysHelp, err = this.SysHelpService.FindById(id)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
-	result = util.Success()
+	result = MessageResult.Success()
 	result.SetData(sysHelp)
 	return result
 }
-func (this *AideController) SysHelpEx(ctx *gin.Context, platform *Platform.Platform) (result *util.MessageResult) {
+func (this *AideController) SysHelpEx(ctx *gin.Context, platform *Platform.Platform) (result *MessageResult.MessageResult) {
 	var revision, err = this.AppRevisionService.FindRecentVersion(platform)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	if revision != nil {
-		var result = util.Success()
+		var result = MessageResult.Success()
 		result.SetData(revision)
 		return result
 	} else {
-		return util.Error(this.MsService.GetMessage("NO_UPDATE"))
+		return MessageResult.Error(this.MsService.GetMessage("NO_UPDATE"))
 	}
 }
-func (this *AideController) SysAllHelp(ctx *gin.Context, total int) (result *util.MessageResult) {
+func (this *AideController) SysAllHelp(ctx *gin.Context, total int) (result *MessageResult.MessageResult) {
 	var resultStr = this.RedisUtil.Get(SysConstant.SYS_HELP)
 	if resultStr != "" {
 		var jarr arraylist.List[fastjson.JSONObject]
@@ -88,7 +89,7 @@ func (this *AideController) SysAllHelp(ctx *gin.Context, total int) (result *uti
 	var jsonResult = arraylist.New[fastjson.JSONObject]()
 	var sysHelpPage, err = this.SysHelpService.FindByCondition(1, total, SysHelpClassification.HELP)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	var jsonSysHelp = fastjson.NewJSONObject()
 	jsonSysHelp.Put("content", sysHelpPage.GetContent())
@@ -98,7 +99,7 @@ func (this *AideController) SysAllHelp(ctx *gin.Context, total int) (result *uti
 	//FAQ("常见问题"),
 	sysFaqPage, err := this.SysHelpService.FindByCondition(1, total, SysHelpClassification.FAQ)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	var jsonSysFaq = fastjson.NewJSONObject()
 	jsonSysFaq.Put("content", sysFaqPage.GetContent())
@@ -112,7 +113,7 @@ func (this *AideController) SysAllHelp(ctx *gin.Context, total int) (result *uti
 	//TRANSACTION("交易指南"),
 	//Page<SysHelp> sysTransactonPage = sysHelpService.findByCondition(1,total,SysHelpClassification.HELP);
 }
-func (this *AideController) SysHelpCate(ctx *gin.Context, pageNo int, pageSize int, cate SysHelpClassification.SysHelpClassification) (result *util.MessageResult) {
+func (this *AideController) SysHelpCate(ctx *gin.Context, pageNo int, pageSize int, cate SysHelpClassification.SysHelpClassification) (result *MessageResult.MessageResult) {
 	var resultStr = this.RedisUtil.Get(SysConstant.SYS_HELP_CATE + strconv.Itoa(cate.GetOrdinal()))
 	if resultStr != "" {
 		var jobj fastjson.JSONObject
@@ -124,7 +125,7 @@ func (this *AideController) SysHelpCate(ctx *gin.Context, pageNo int, pageSize i
 	var jsonObject = fastjson.NewJSONObject()
 	var sysHelpPage, err = this.SysHelpService.FindByCondition(pageNo, pageSize, cate)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	jsonObject.Put("content", sysHelpPage.GetContent())
 	jsonObject.Put("totalPage", sysHelpPage.GetTotalPages())
@@ -133,7 +134,7 @@ func (this *AideController) SysHelpCate(ctx *gin.Context, pageNo int, pageSize i
 	return this.SuccessWithData(jsonObject)
 
 }
-func (this *AideController) SysHelpTop(ctx *gin.Context, cate string) (result *util.MessageResult) {
+func (this *AideController) SysHelpTop(ctx *gin.Context, cate string) (result *MessageResult.MessageResult) {
 	var resultStr = this.RedisUtil.Get(SysConstant.SYS_HELP_TOP + cate)
 	if resultStr != "" {
 		var jobj arraylist.List[entity.SysHelp]
@@ -144,13 +145,13 @@ func (this *AideController) SysHelpTop(ctx *gin.Context, cate string) (result *u
 	}
 	var sysHelps, err = this.SysHelpService.GetgetCateTops(cate)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	this.RedisUtil.SetExpireKV(SysConstant.SYS_HELP_TOP+cate, sysHelps, SysConstant.SYS_HELP_TOP_EXPIRE_TIME)
 	return this.SuccessWithData(sysHelps)
 
 }
-func (this *AideController) SysHelpDetail(ctx *gin.Context, id int64) (result *util.MessageResult) {
+func (this *AideController) SysHelpDetail(ctx *gin.Context, id int64) (result *MessageResult.MessageResult) {
 	var resultStr = this.RedisUtil.Get(SysConstant.SYS_HELP_DETAIL + strconv.FormatInt(id, 10))
 	if resultStr != "" {
 		var jobj entity.SysHelp
@@ -162,7 +163,7 @@ func (this *AideController) SysHelpDetail(ctx *gin.Context, id int64) (result *u
 	}
 	var sysHelp, err = this.SysHelpService.FindById(id)
 	if err != nil {
-		return util.Error(err.Error())
+		return MessageResult.Error(err.Error())
 	}
 	this.RedisUtil.SetExpireKV(SysConstant.SYS_HELP_DETAIL+strconv.FormatInt(id, 10), sysHelp, SysConstant.SYS_HELP_DETAIL_EXPIRE_TIME)
 	return this.SuccessWithData(sysHelp)

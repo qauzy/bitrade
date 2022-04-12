@@ -7,12 +7,13 @@ import (
 	"bitrade/core/service"
 	"bitrade/core/util"
 	"bitrade/core/util/BigDecimalUtils"
+	"bitrade/core/util/MessageResult"
 	"github.com/gin-gonic/gin"
 	"github.com/qauzy/chocolate/xtime"
 	"time"
 )
 
-func (this *SmsController) SendCheckCode(ctx *gin.Context, phone string, country string) (result *util.MessageResult, err error) {
+func (this *SmsController) SendCheckCode(ctx *gin.Context, phone string, country string) (result *MessageResult.MessageResult, err error) {
 	if this.MemberService.PhoneIsExist(phone) {
 		this.LocaleMessageSourceService.GetMessage("PHONE_ALREADY_EXISTS")
 	}
@@ -33,7 +34,7 @@ func (this *SmsController) SendCheckCode(ctx *gin.Context, phone string, country
 	}
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	log.Info("fakeParameters====" + randomCode)
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	//253国际短信，可以发国内号码，都要加上区域号
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(country1.GetAreaCode()+phone, randomCode)
@@ -58,9 +59,9 @@ func (this *SmsController) SendCheckCode(ctx *gin.Context, phone string, country
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) SendSMSCode(ctx *gin.Context, member *entity.Member, prefix string) (result *util.MessageResult) {
+func (this *SmsController) SendSMSCode(ctx *gin.Context, member *entity.Member, prefix string) (result *MessageResult.MessageResult) {
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	exception := func() (err error) {
 		if this.DriverName.EqualsIgnoreCase("two_five_three") {
 			result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -84,13 +85,13 @@ func (this *SmsController) SendSMSCode(ctx *gin.Context, member *entity.Member, 
 		return MessageResult.Error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) SendResetTransactionCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) SendResetTransactionCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
 	} else if member.GetCountry().GetAreaCode().Equals("86") {
@@ -108,12 +109,12 @@ func (this *SmsController) SendResetTransactionCode(ctx *gin.Context, user *tran
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) SetBindPhoneCode(ctx *gin.Context, country string, phone string, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) SetBindPhoneCode(ctx *gin.Context, country string, phone string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() != nil {
 		this.LocaleMessageSourceService.GetMessage("REPEAT_PHONE_REQUEST")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	// 修改所在国家
 	if StringUtils.IsNotBlank(country) {
@@ -143,7 +144,7 @@ func (this *SmsController) SetBindPhoneCode(ctx *gin.Context, country string, ph
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) UpdatePasswordCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) UpdatePasswordCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
@@ -156,7 +157,7 @@ func (this *SmsController) UpdatePasswordCode(ctx *gin.Context, user *transform.
 			return error(this.LocaleMessageSourceService.GetMessage("FREQUENTLY_REQUEST"))
 		}
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -176,12 +177,12 @@ func (this *SmsController) UpdatePasswordCode(ctx *gin.Context, user *transform.
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) AddAddressCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) AddAddressCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -200,12 +201,12 @@ func (this *SmsController) AddAddressCode(ctx *gin.Context, user *transform.Auth
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) ResetPasswordCode(ctx *gin.Context, account string) (result *util.MessageResult, err error) {
+func (this *SmsController) ResetPasswordCode(ctx *gin.Context, account string) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindByPhone(account)
 	if member == nil {
 		this.LocaleMessageSourceService.GetMessage("MEMBER_NOT_EXISTS")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -224,12 +225,12 @@ func (this *SmsController) ResetPasswordCode(ctx *gin.Context, account string) (
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) ResetPhoneCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) ResetPhoneCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -248,7 +249,7 @@ func (this *SmsController) ResetPhoneCode(ctx *gin.Context, user *transform.Auth
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) ResetGoogleCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) ResetGoogleCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member == nil {
 		this.LocaleMessageSourceService.GetMessage("MEMBER_NOT_EXISTS")
@@ -256,7 +257,7 @@ func (this *SmsController) ResetGoogleCode(ctx *gin.Context, user *transform.Aut
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if this.DriverName.EqualsIgnoreCase("two_five_three") {
 		result = this.SmsProvider.SendVerifyMessage(member.GetCountry().GetAreaCode()+member.GetMobilePhone(), randomCode)
@@ -275,12 +276,12 @@ func (this *SmsController) ResetGoogleCode(ctx *gin.Context, user *transform.Aut
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) WithdrawCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) WithdrawCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	log.Info("===提币验证码发送===mobile：" + member.GetMobilePhone())
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if "86".Equals(member.GetCountry().GetAreaCode()) {
@@ -298,12 +299,12 @@ func (this *SmsController) WithdrawCode(ctx *gin.Context, user *transform.AuthMe
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) TradeCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) TradeCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	log.Info("===交易密码验证码发送===mobile：" + member.GetMobilePhone())
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if "86".Equals(member.GetCountry().GetAreaCode()) {
@@ -321,12 +322,12 @@ func (this *SmsController) TradeCode(ctx *gin.Context, user *transform.AuthMembe
 		return error(this.LocaleMessageSourceService.GetMessage("SEND_SMS_FAILED"))
 	}
 }
-func (this *SmsController) BindApiSendCode(ctx *gin.Context, user *transform.AuthMember) (result *util.MessageResult, err error) {
+func (this *SmsController) BindApiSendCode(ctx *gin.Context, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	if member.GetMobilePhone() == "" {
 		this.LocaleMessageSourceService.GetMessage("NOT_BIND_PHONE")
 	}
-	var result *util.MessageResult
+	var result *MessageResult.MessageResult
 	log.Info("===交易密码验证码发送===mobile：" + member.GetMobilePhone())
 	var randomCode = String.ValueOf(GeneratorUtil.GetRandomNumber(100000, 999999))
 	if "86".Equals(member.GetCountry().GetAreaCode()) {
