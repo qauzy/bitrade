@@ -18,8 +18,9 @@ const (
 type QueryParam struct {
 	order []string
 	where []struct {
-		prefix string
-		value  interface{}
+		prefix    string
+		predicate Predicate
+		value     interface{}
 	}
 	limit  int
 	offset int

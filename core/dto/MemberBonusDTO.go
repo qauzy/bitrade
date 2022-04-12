@@ -30,18 +30,18 @@ func (this *MemberBonusDTO) SetArriveTime(ArriveTime string) (result *MemberBonu
 func (this *MemberBonusDTO) GetArriveTime() (ArriveTime string) {
 	return this.ArriveTime
 }
-func (this *MemberBonusDTO) SetTotal(Total *math.BigDecimal) (result *MemberBonusDTO) {
+func (this *MemberBonusDTO) SetTotal(Total math.BigDecimal) (result *MemberBonusDTO) {
 	this.Total = Total
 	return this
 }
-func (this *MemberBonusDTO) GetTotal() (Total *math.BigDecimal) {
+func (this *MemberBonusDTO) GetTotal() (Total math.BigDecimal) {
 	return this.Total
 }
-func (this *MemberBonusDTO) SetMemBouns(MemBouns *math.BigDecimal) (result *MemberBonusDTO) {
+func (this *MemberBonusDTO) SetMemBouns(MemBouns math.BigDecimal) (result *MemberBonusDTO) {
 	this.MemBouns = MemBouns
 	return this
 }
-func (this *MemberBonusDTO) GetMemBouns() (MemBouns *math.BigDecimal) {
+func (this *MemberBonusDTO) GetMemBouns() (MemBouns math.BigDecimal) {
 	return this.MemBouns
 }
 func (this *MemberBonusDTO) SetCoinId(CoinId string) (result *MemberBonusDTO) {
@@ -53,11 +53,11 @@ func (this *MemberBonusDTO) GetCoinId() (CoinId string) {
 }
 
 type MemberBonusDTO struct {
-	Id         int64            `gorm:"column:id" json:"id"`
-	MemberId   int64            `gorm:"column:member_id" json:"memberId"`
-	HaveTime   string           `gorm:"column:have_time" json:"haveTime"`
-	ArriveTime string           `gorm:"column:arrive_time" json:"arriveTime"`
-	Total      *math.BigDecimal `gorm:"column:total" json:"total"`
-	MemBouns   *math.BigDecimal `gorm:"column:mem_bouns" json:"memBouns"`
-	CoinId     string           `gorm:"column:coin_id" json:"coinId"`
+	Id         int64           `gorm:"column:id" json:"id"`
+	MemberId   int64           `gorm:"column:member_id" json:"memberId"`
+	HaveTime   string          `gorm:"column:have_time" json:"haveTime"`
+	ArriveTime string          `gorm:"column:arrive_time" json:"arriveTime"`
+	Total      math.BigDecimal `gorm:"column:total" json:"total"`
+	MemBouns   math.BigDecimal `gorm:"column:mem_bouns" json:"memBouns"`
+	CoinId     string          `gorm:"column:coin_id" json:"coinId"`
 }

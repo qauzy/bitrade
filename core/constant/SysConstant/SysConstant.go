@@ -31,11 +31,11 @@ var (
 	SYS_HELP                                       string = "SYS_HELP"
 	SYS_HELP_EXPIRE_TIME                           int    = 300
 	SYS_HELP_CATE                                  string = "SYS_HELP_CATE_"
-	SYS_HELP_CATE_EXPIRE_TIME                      int    = 300
+	SYS_HELP_CATE_EXPIRE_TIME                      int64  = 300
 	SYS_HELP_DETAIL                                string = "SYS_HELP_DETAIL_"
-	SYS_HELP_DETAIL_EXPIRE_TIME                    int    = 300
+	SYS_HELP_DETAIL_EXPIRE_TIME                    int64  = 300
 	SYS_HELP_TOP                                   string = "SYS_HELP_TOP_"
-	SYS_HELP_TOP_EXPIRE_TIME                       int    = 300
+	SYS_HELP_TOP_EXPIRE_TIME                       int64  = 300
 	DATA_DICTIONARY_BOUND_KEY                      string = "data_dictionary_bound_key_"
 	DATA_DICTIONARY_BOUND_EXPIRE_TIME              int    = 604800
 	EXCHANGE_INIT_PLATE_SYMBOL_KEY                 string = "EXCHANGE_INIT_PLATE_SYMBOL_KEY_"

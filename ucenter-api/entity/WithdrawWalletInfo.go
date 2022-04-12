@@ -2,9 +2,9 @@ package entity
 
 import (
 	"bitrade/core/constant/BooleanEnum"
+	"github.com/qauzy/chocolate/lists/arraylist"
+	"github.com/qauzy/chocolate/maps/hashmap"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
-	"github.com/qauzy/util/maps/hashmap"
 )
 
 func (this *WithdrawWalletInfo) SetUnit(Unit string) (result *WithdrawWalletInfo) {
@@ -14,25 +14,25 @@ func (this *WithdrawWalletInfo) SetUnit(Unit string) (result *WithdrawWalletInfo
 func (this *WithdrawWalletInfo) GetUnit() (Unit string) {
 	return this.Unit
 }
-func (this *WithdrawWalletInfo) SetThreshold(Threshold *math.BigDecimal) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetThreshold(Threshold math.BigDecimal) (result *WithdrawWalletInfo) {
 	this.Threshold = Threshold
 	return this
 }
-func (this *WithdrawWalletInfo) GetThreshold() (Threshold *math.BigDecimal) {
+func (this *WithdrawWalletInfo) GetThreshold() (Threshold math.BigDecimal) {
 	return this.Threshold
 }
-func (this *WithdrawWalletInfo) SetMinAmount(MinAmount *math.BigDecimal) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetMinAmount(MinAmount math.BigDecimal) (result *WithdrawWalletInfo) {
 	this.MinAmount = MinAmount
 	return this
 }
-func (this *WithdrawWalletInfo) GetMinAmount() (MinAmount *math.BigDecimal) {
+func (this *WithdrawWalletInfo) GetMinAmount() (MinAmount math.BigDecimal) {
 	return this.MinAmount
 }
-func (this *WithdrawWalletInfo) SetMaxAmount(MaxAmount *math.BigDecimal) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetMaxAmount(MaxAmount math.BigDecimal) (result *WithdrawWalletInfo) {
 	this.MaxAmount = MaxAmount
 	return this
 }
-func (this *WithdrawWalletInfo) GetMaxAmount() (MaxAmount *math.BigDecimal) {
+func (this *WithdrawWalletInfo) GetMaxAmount() (MaxAmount math.BigDecimal) {
 	return this.MaxAmount
 }
 func (this *WithdrawWalletInfo) SetMinTxFee(MinTxFee float64) (result *WithdrawWalletInfo) {
@@ -63,11 +63,11 @@ func (this *WithdrawWalletInfo) SetName(Name string) (result *WithdrawWalletInfo
 func (this *WithdrawWalletInfo) GetName() (Name string) {
 	return this.Name
 }
-func (this *WithdrawWalletInfo) SetBalance(Balance *math.BigDecimal) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetBalance(Balance math.BigDecimal) (result *WithdrawWalletInfo) {
 	this.Balance = Balance
 	return this
 }
-func (this *WithdrawWalletInfo) GetBalance() (Balance *math.BigDecimal) {
+func (this *WithdrawWalletInfo) GetBalance() (Balance math.BigDecimal) {
 	return this.Balance
 }
 func (this *WithdrawWalletInfo) SetCanAutoWithdraw(CanAutoWithdraw *BooleanEnum.BooleanEnum) (result *WithdrawWalletInfo) {
@@ -84,25 +84,25 @@ func (this *WithdrawWalletInfo) SetWithdrawScale(WithdrawScale int) (result *Wit
 func (this *WithdrawWalletInfo) GetWithdrawScale() (WithdrawScale int) {
 	return this.WithdrawScale
 }
-func (this *WithdrawWalletInfo) SetAddresses(Addresses *arraylist.List[*hashmap.Map[string, string]]) (result *WithdrawWalletInfo) {
+func (this *WithdrawWalletInfo) SetAddresses(Addresses arraylist.List[*hashmap.Map[string, string]]) (result *WithdrawWalletInfo) {
 	this.Addresses = Addresses
 	return this
 }
-func (this *WithdrawWalletInfo) GetAddresses() (Addresses *arraylist.List[*hashmap.Map[string, string]]) {
+func (this *WithdrawWalletInfo) GetAddresses() (Addresses arraylist.List[*hashmap.Map[string, string]]) {
 	return this.Addresses
 }
 
 type WithdrawWalletInfo struct {
-	Unit            string                                        `gorm:"column:unit" json:"unit"`
-	Threshold       *math.BigDecimal                              `gorm:"column:threshold" json:"threshold"`
-	MinAmount       *math.BigDecimal                              `gorm:"column:min_amount" json:"minAmount"`
-	MaxAmount       *math.BigDecimal                              `gorm:"column:max_amount" json:"maxAmount"`
-	MinTxFee        float64                                       `gorm:"column:min_tx_fee" json:"minTxFee"`
-	MaxTxFee        float64                                       `gorm:"column:max_tx_fee" json:"maxTxFee"`
-	NameCn          string                                        `gorm:"column:name_cn" json:"nameCn"`
-	Name            string                                        `gorm:"column:name" json:"name"`
-	Balance         *math.BigDecimal                              `gorm:"column:balance" json:"balance"`
-	CanAutoWithdraw *BooleanEnum.BooleanEnum                      `gorm:"column:can_auto_withdraw" json:"canAutoWithdraw"`
-	WithdrawScale   int                                           `gorm:"column:withdraw_scale" json:"withdrawScale"`
-	Addresses       *arraylist.List[*hashmap.Map[string, string]] `gorm:"column:addresses" json:"addresses"`
+	Unit            string                                       `gorm:"column:unit" json:"unit"`
+	Threshold       math.BigDecimal                              `gorm:"column:threshold" json:"threshold"`
+	MinAmount       math.BigDecimal                              `gorm:"column:min_amount" json:"minAmount"`
+	MaxAmount       math.BigDecimal                              `gorm:"column:max_amount" json:"maxAmount"`
+	MinTxFee        float64                                      `gorm:"column:min_tx_fee" json:"minTxFee"`
+	MaxTxFee        float64                                      `gorm:"column:max_tx_fee" json:"maxTxFee"`
+	NameCn          string                                       `gorm:"column:name_cn" json:"nameCn"`
+	Name            string                                       `gorm:"column:name" json:"name"`
+	Balance         math.BigDecimal                              `gorm:"column:balance" json:"balance"`
+	CanAutoWithdraw *BooleanEnum.BooleanEnum                     `gorm:"column:can_auto_withdraw" json:"canAutoWithdraw"`
+	WithdrawScale   int                                          `gorm:"column:withdraw_scale" json:"withdrawScale"`
+	Addresses       arraylist.List[*hashmap.Map[string, string]] `gorm:"column:addresses" json:"addresses"`
 }

@@ -2,7 +2,7 @@ package dto
 
 import (
 	"bitrade/core/entity"
-	"github.com/qauzy/util/lists/arraylist"
+	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
 func (this *MemberDTO) SetMember(Member *entity.Member) (result *MemberDTO) {

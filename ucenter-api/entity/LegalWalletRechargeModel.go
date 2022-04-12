@@ -5,11 +5,11 @@ import (
 	"github.com/qauzy/math"
 )
 
-func (this *LegalWalletRechargeModel) SetAmount(Amount *math.BigDecimal) (result *LegalWalletRechargeModel) {
+func (this *LegalWalletRechargeModel) SetAmount(Amount math.BigDecimal) (result *LegalWalletRechargeModel) {
 	this.Amount = Amount
 	return this
 }
-func (this *LegalWalletRechargeModel) GetAmount() (Amount *math.BigDecimal) {
+func (this *LegalWalletRechargeModel) GetAmount() (Amount math.BigDecimal) {
 	return this.Amount
 }
 func (this *LegalWalletRechargeModel) SetPaymentInstrument(PaymentInstrument string) (result *LegalWalletRechargeModel) {
@@ -42,7 +42,7 @@ func (this *LegalWalletRechargeModel) GetRemark() (Remark string) {
 }
 
 type LegalWalletRechargeModel struct {
-	Amount            *math.BigDecimal `gorm:"column:amount" json:"amount"`
+	Amount            math.BigDecimal  `gorm:"column:amount" json:"amount"`
 	PaymentInstrument string           `gorm:"column:payment_instrument" json:"paymentInstrument"`
 	Unit              string           `gorm:"column:unit" json:"unit"`
 	PayMode           *PayMode.PayMode `gorm:"column:pay_mode" json:"payMode"`

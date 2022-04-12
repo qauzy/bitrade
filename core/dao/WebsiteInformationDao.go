@@ -4,12 +4,13 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
-	"github.com/qauzy/util/lists/arraylist"
+	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
 type WebsiteInformationDao interface {
 	Save(m *entity.WebsiteInformation) (result *entity.WebsiteInformation, err error)
 	FindById(id int64) (result *entity.WebsiteInformation, err error)
+	FetchOne() (result *entity.WebsiteInformation, err error)
 	DeleteById(id int64) (count int64, err error)
 	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.WebsiteInformation], err error)
 }
@@ -29,6 +30,11 @@ func (this *websiteInformationDao) FindById(id int64) (result *entity.WebsiteInf
 	err = this.DBRead().Where("id = ?", id).First(&result).Error
 	return
 }
+func (this *websiteInformationDao) FetchOne() (result *entity.WebsiteInformation, err error) {
+	err = this.DBRead().First(&result).Error
+	return
+}
+
 func (this *websiteInformationDao) DeleteById(id int64) (count int64, err error) {
 	d := this.DBRead().Where("id = ?", id).Delete(entity.WebsiteInformation{})
 	err = d.Error

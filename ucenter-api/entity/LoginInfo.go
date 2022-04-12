@@ -19,11 +19,11 @@ func (this *LoginInfo) SetLocation(Location *entity.Location) (result *LoginInfo
 func (this *LoginInfo) GetLocation() (Location *entity.Location) {
 	return this.Location
 }
-func (this *LoginInfo) SetMemberLevel(MemberLevel MemberLevelEnum.MemberLevelEnum) (result *LoginInfo) {
+func (this *LoginInfo) SetMemberLevel(MemberLevel *MemberLevelEnum.MemberLevelEnum) (result *LoginInfo) {
 	this.MemberLevel = MemberLevel
 	return this
 }
-func (this *LoginInfo) GetMemberLevel() (MemberLevel MemberLevelEnum.MemberLevelEnum) {
+func (this *LoginInfo) GetMemberLevel() (MemberLevel *MemberLevelEnum.MemberLevelEnum) {
 	return this.MemberLevel
 }
 func (this *LoginInfo) SetToken(Token string) (result *LoginInfo) {
@@ -124,26 +124,26 @@ func (this *LoginInfo) SetMobile(Mobile string) (result *LoginInfo) {
 func (this *LoginInfo) GetMobile() (Mobile string) {
 	return this.Mobile
 }
-func GetLoginInfo(member entity.Member, Token string, SignInActivity bool, prefix string) (result *LoginInfo) {
-	return new(LoginInfo).SetLocation(member.GetLocation()).SetMemberLevel(member.GetMemberLevel()).SetUsername(member.GetUsername()).SetToken(Token).SetRealName(member.GetRealName()).SetCountry(member.GetCountry()).SetAvatar(member.GetAvatar()).SetPromotionCode(member.GetPromotionCode()).SetId(member.GetId()).SetPromotionPrefix(prefix).SetSignInAbility(member.GetSignInAbility()).SetSignInActivity(SignInActivity).SetMemberGradeId(member.GetMemberGradeId()).SetGoogleState(member.GetGoogleState()).SetIntegration(member.GetIntegration()).SetKycStatus(member.GetKycStatus()).SetMobile(member.GetMobilePhone())
+func GetLoginInfo(member entity.Member, token string, signInActivity bool, prefix string) (result *LoginInfo) {
+	return new(LoginInfo).SetLocation(member.GetLocation()).SetMemberLevel(member.GetMemberLevel()).SetUsername(member.GetUsername()).SetToken(token).SetRealName(member.GetRealName()).SetCountry(member.GetCountry()).SetAvatar(member.GetAvatar()).SetPromotionCode(member.GetPromotionCode()).SetId(member.GetId()).SetPromotionPrefix(prefix).SetSignInAbility(member.GetSignInAbility()).SetSignInActivity(signInActivity).SetMemberGradeId(member.GetMemberGradeId()).SetGoogleState(member.GetGoogleState()).SetIntegration(member.GetIntegration()).SetKycStatus(member.GetKycStatus()).SetMobile(member.GetMobilePhone())
 }
 
 type LoginInfo struct {
-	Username        string                          `gorm:"column:username" json:"username"`
-	Location        *entity.Location                `gorm:"column:location" json:"location"`
-	MemberLevel     MemberLevelEnum.MemberLevelEnum `gorm:"column:member_level" json:"memberLevel"`
-	Token           string                          `gorm:"column:token" json:"token"`
-	RealName        string                          `gorm:"column:real_name" json:"realName"`
-	Country         *entity.Country                 `gorm:"column:country" json:"country"`
-	Avatar          string                          `gorm:"column:avatar" json:"avatar"`
-	PromotionCode   string                          `gorm:"column:promotion_code" json:"promotionCode"`
-	Id              int64                           `gorm:"column:id" json:"id"`
-	GoogleState     int                             `gorm:"column:google_state" json:"googleState"`
-	KycStatus       int                             `gorm:"column:kyc_status" json:"kycStatus"`
-	PromotionPrefix string                          `gorm:"column:promotion_prefix" json:"promotionPrefix"`
-	SignInAbility   bool                            `gorm:"column:sign_in_ability" json:"signInAbility"`
-	SignInActivity  bool                            `gorm:"column:sign_in_activity" json:"signInActivity"`
-	MemberGradeId   int64                           `gorm:"column:member_grade_id" json:"memberGradeId"`
-	Integration     int64                           `gorm:"column:integration" json:"integration"`
-	Mobile          string                          `gorm:"column:mobile" json:"mobile"`
+	Username        string                           `gorm:"column:username" json:"username"`
+	Location        *entity.Location                 `gorm:"column:location" json:"location"`
+	MemberLevel     *MemberLevelEnum.MemberLevelEnum `gorm:"column:member_level" json:"memberLevel"`
+	Token           string                           `gorm:"column:token" json:"token"`
+	RealName        string                           `gorm:"column:real_name" json:"realName"`
+	Country         *entity.Country                  `gorm:"column:country" json:"country"`
+	Avatar          string                           `gorm:"column:avatar" json:"avatar"`
+	PromotionCode   string                           `gorm:"column:promotion_code" json:"promotionCode"`
+	Id              int64                            `gorm:"column:id" json:"id"`
+	GoogleState     int                              `gorm:"column:google_state" json:"googleState"`
+	KycStatus       int                              `gorm:"column:kyc_status" json:"kycStatus"`
+	PromotionPrefix string                           `gorm:"column:promotion_prefix" json:"promotionPrefix"`
+	SignInAbility   bool                             `gorm:"column:sign_in_ability" json:"signInAbility"`
+	SignInActivity  bool                             `gorm:"column:sign_in_activity" json:"signInActivity"`
+	MemberGradeId   int64                            `gorm:"column:member_grade_id" json:"memberGradeId"`
+	Integration     int64                            `gorm:"column:integration" json:"integration"`
+	Mobile          string                           `gorm:"column:mobile" json:"mobile"`
 }

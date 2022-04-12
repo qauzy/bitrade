@@ -6,8 +6,8 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
-	"github.com/qauzy/util/lists/arraylist"
-	"github.com/qauzy/util/maps/hashmap"
+	"github.com/qauzy/chocolate/lists/arraylist"
+	"github.com/qauzy/chocolate/maps/hashmap"
 	"time"
 )
 

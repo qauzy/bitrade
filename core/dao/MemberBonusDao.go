@@ -4,13 +4,13 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/dto"
+	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
 )
 
 type MemberBonusDao interface {
 	GetBonusByMemberId(memberId int64) (result arraylist.List[dto.MemberBonusDTO], err error)
-	GetBonusAmountByMemberId(memberId int64) (result *math.BigDecimal, err error)
+	GetBonusAmountByMemberId(memberId int64) (result math.BigDecimal, err error)
 	Save(m *entity.MemberBonus) (result *entity.MemberBonus, err error)
 	FindById(id int64) (result *entity.MemberBonus, err error)
 	DeleteById(id int64) (count int64, err error)
@@ -29,7 +29,7 @@ func (this *memberBonusDao) GetBonusByMemberId(memberId int64) (result arraylist
 	err = eng.Error
 	return
 }
-func (this *memberBonusDao) GetBonusAmountByMemberId(memberId int64) (result *math.BigDecimal, err error) {
+func (this *memberBonusDao) GetBonusAmountByMemberId(memberId int64) (result math.BigDecimal, err error) {
 	eng := this.DBWrite().Table("member_bonus").Select("SUM(mem_bouns)").Where("member_id = ?", memberId).Find(&result)
 	err = eng.Error
 	return

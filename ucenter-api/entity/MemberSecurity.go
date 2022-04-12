@@ -3,7 +3,7 @@ package entity
 import (
 	"bitrade/core/constant/BooleanEnum"
 	"bitrade/core/constant/MemberLevelEnum"
-	"time"
+	"github.com/qauzy/chocolate/xtime"
 )
 
 func (this *MemberSecurity) SetUsername(Username string) (result *MemberSecurity) {
@@ -20,11 +20,11 @@ func (this *MemberSecurity) SetId(Id int64) (result *MemberSecurity) {
 func (this *MemberSecurity) GetId() (Id int64) {
 	return this.Id
 }
-func (this *MemberSecurity) SetCreateTime(CreateTime time.Time) (result *MemberSecurity) {
+func (this *MemberSecurity) SetCreateTime(CreateTime xtime.Xtime) (result *MemberSecurity) {
 	this.CreateTime = CreateTime
 	return this
 }
-func (this *MemberSecurity) GetCreateTime() (CreateTime time.Time) {
+func (this *MemberSecurity) GetCreateTime() (CreateTime xtime.Xtime) {
 	return this.CreateTime
 }
 func (this *MemberSecurity) SetRealVerified(RealVerified *BooleanEnum.BooleanEnum) (result *MemberSecurity) {
@@ -132,11 +132,11 @@ func (this *MemberSecurity) SetTransactions(Transactions int) (result *MemberSec
 func (this *MemberSecurity) GetTransactions() (Transactions int) {
 	return this.Transactions
 }
-func (this *MemberSecurity) SetTransactionTime(TransactionTime time.Time) (result *MemberSecurity) {
+func (this *MemberSecurity) SetTransactionTime(TransactionTime xtime.Xtime) (result *MemberSecurity) {
 	this.TransactionTime = TransactionTime
 	return this
 }
-func (this *MemberSecurity) GetTransactionTime() (TransactionTime time.Time) {
+func (this *MemberSecurity) GetTransactionTime() (TransactionTime xtime.Xtime) {
 	return this.TransactionTime
 }
 func (this *MemberSecurity) SetLevel(Level int) (result *MemberSecurity) {
@@ -185,7 +185,7 @@ func (this *MemberSecurity) GetMemberLevel() (MemberLevel *MemberLevelEnum.Membe
 type MemberSecurity struct {
 	Username             string                           `gorm:"column:username" json:"username"`
 	Id                   int64                            `gorm:"column:id" json:"id"`
-	CreateTime           time.Time                        `gorm:"column:create_time" json:"createTime"`
+	CreateTime           xtime.Xtime                      `gorm:"column:create_time" json:"createTime"`
 	RealVerified         *BooleanEnum.BooleanEnum         `gorm:"column:real_verified" json:"realVerified"`
 	EmailVerified        *BooleanEnum.BooleanEnum         `gorm:"column:email_verified" json:"emailVerified"`
 	PhoneVerified        *BooleanEnum.BooleanEnum         `gorm:"column:phone_verified" json:"phoneVerified"`
@@ -201,7 +201,7 @@ type MemberSecurity struct {
 	AccountVerified      *BooleanEnum.BooleanEnum         `gorm:"column:account_verified" json:"accountVerified"`
 	GoogleStatus         int                              `gorm:"column:google_status" json:"googleStatus"`
 	Transactions         int                              `gorm:"column:transactions" json:"transactions"`
-	TransactionTime      time.Time                        `gorm:"column:transaction_time" json:"transactionTime"`
+	TransactionTime      xtime.Xtime                      `gorm:"column:transaction_time" json:"transactionTime"`
 	Level                int                              `gorm:"column:level" json:"level"`
 	Integration          int64                            `gorm:"column:integration" json:"integration"`
 	KycStatus            int                              `gorm:"column:kyc_status" json:"kycStatus"`

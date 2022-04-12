@@ -6,8 +6,8 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
 	"time"
 )
 
@@ -17,13 +17,13 @@ type AdvertiseDao interface {
 	FindByIdAndMemberId(v1 int64, v2 int64) (result *entity.Advertise, err error)
 	UpdateAdvertiseStatus(status *AdvertiseControlStatus.AdvertiseControlStatus, id int64, mid int64, advertiseControlStatus *AdvertiseControlStatus.AdvertiseControlStatus) (result int, err error)
 	FindAllByMemberIdAndStatusAndAdvertiseType(var1 int64, status *AdvertiseControlStatus.AdvertiseControlStatus, oType *AdvertiseType.AdvertiseType) (result arraylist.List[entity.Advertise], err error)
-	UpdateAdvertiseAmount(status *AdvertiseControlStatus.AdvertiseControlStatus, id int64, amount *math.BigDecimal) (result int, err error)
-	UpdateAdvertiseDealAmount(id int64, amount *math.BigDecimal) (result int, err error)
-	PutOffAdvertise(id int64, amount *math.BigDecimal) (result int, err error)
+	UpdateAdvertiseAmount(status *AdvertiseControlStatus.AdvertiseControlStatus, id int64, amount math.BigDecimal) (result int, err error)
+	UpdateAdvertiseDealAmount(id int64, amount math.BigDecimal) (result int, err error)
+	PutOffAdvertise(id int64, amount math.BigDecimal) (result int, err error)
 	FindAllByMemberIdAndStatus(vari int64, status *AdvertiseControlStatus.AdvertiseControlStatus) (result arraylist.List[entity.Advertise], err error)
 	AlterStatusBatch(status *AdvertiseControlStatus.AdvertiseControlStatus, updateTime time.Time, ids []int64) (result int, err error)
 	GetAdvertiseNum(member *entity.Member) (result int64, err error)
-	UpdateAdvertiseDealAmountAndRemainAmount(id int64, amount *math.BigDecimal) (result int, err error)
+	UpdateAdvertiseDealAmountAndRemainAmount(id int64, amount math.BigDecimal) (result int, err error)
 	CountAllByMemberAndStatus(member *entity.Member, status *AdvertiseControlStatus.AdvertiseControlStatus) (result int, err error)
 	Save(m *entity.Advertise) (result *entity.Advertise, err error)
 	FindById(id int64) (result *entity.Advertise, err error)
@@ -61,21 +61,21 @@ func (this *advertiseDao) FindAllByMemberIdAndStatusAndAdvertiseType(var1 int64,
 	err = this.DBRead().Where("member_id = ?", var1).Where("status = ?", status).Where("advertise_type = ?", oType).Find(&result).Error
 	return
 }
-func (this *advertiseDao) UpdateAdvertiseAmount(status *AdvertiseControlStatus.AdvertiseControlStatus, id int64, amount *math.BigDecimal) (result int, err error) {
+func (this *advertiseDao) UpdateAdvertiseAmount(status *AdvertiseControlStatus.AdvertiseControlStatus, id int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update Advertise a set a.remainAmount=a.remainAmount-?,a.dealAmount=a.dealAmount+? where a.remainAmount>=? and a.status=:sta and a.id=?", status, id, amount)
 	err = eng.Error
 	return
 }
-func (this *advertiseDao) UpdateAdvertiseDealAmount(id int64, amount *math.BigDecimal) (result int, err error) {
+func (this *advertiseDao) UpdateAdvertiseDealAmount(id int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update Advertise a set a.dealAmount=a.dealAmount-? where a.dealAmount>=?  and a.id=?", id, amount)
 	err = eng.Error
 	return
 }
-func (this *advertiseDao) PutOffAdvertise(id int64, amount *math.BigDecimal) (result int, err error) {
+func (this *advertiseDao) PutOffAdvertise(id int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update Advertise a set a.status=1,a.remainAmount=0,a.number=0 where a.remainAmount=?  and a.id=? and a.status=0", id, amount)
@@ -98,7 +98,7 @@ func (this *advertiseDao) GetAdvertiseNum(member *entity.Member) (result int64, 
 	err = eng.Error
 	return
 }
-func (this *advertiseDao) UpdateAdvertiseDealAmountAndRemainAmount(id int64, amount *math.BigDecimal) (result int, err error) {
+func (this *advertiseDao) UpdateAdvertiseDealAmountAndRemainAmount(id int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update Advertise a set a.dealAmount=a.dealAmount-?,a.remainAmount=a.remainAmount+? where a.dealAmount>=?  and a.id=?", id, amount)

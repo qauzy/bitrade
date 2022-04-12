@@ -7,8 +7,8 @@ import (
 	"bitrade/core/dao/types"
 	"bitrade/core/dto"
 	"bitrade/core/entity"
+	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
 )
 
 type CoinDao interface {
@@ -22,8 +22,8 @@ type CoinDao interface {
 	FindAllCoinNameLegal() (result arraylist.List[string], err error)
 	FindAllRpcUnit() (result arraylist.List[string], err error)
 	FindAllByIsPlatformCoin(isPlatformCoin *BooleanEnum.BooleanEnum) (result arraylist.List[entity.Coin], err error)
-	SumBalance(coin *entity.Coin) (result *math.BigDecimal, err error)
-	GetBalanceByMemberIdAndCoinId(coin *entity.Coin, memberId int64) (result *math.BigDecimal, err error)
+	SumBalance(coin *entity.Coin) (result math.BigDecimal, err error)
+	GetBalanceByMemberIdAndCoinId(coin *entity.Coin, memberId int64) (result math.BigDecimal, err error)
 	FindAllOrderBySort() (result arraylist.List[entity.Coin], err error)
 	FindAllByStatus(status *CommonStatus.CommonStatus) (result arraylist.List[entity.Coin], err error)
 	FindByStatus(status *CommonStatus.CommonStatus) (result arraylist.List[entity.Coin], err error)
@@ -86,12 +86,12 @@ func (this *coinDao) FindAllByIsPlatformCoin(isPlatformCoin *BooleanEnum.Boolean
 	err = this.DBRead().Where("is_platform_coin = ?", isPlatformCoin).Find(&result).Error
 	return
 }
-func (this *coinDao) SumBalance(coin *entity.Coin) (result *math.BigDecimal, err error) {
+func (this *coinDao) SumBalance(coin *entity.Coin) (result math.BigDecimal, err error) {
 	eng := this.DBWrite().Table("MemberWallet as a").Select("sum(a.balance)").Where("a.coin = ?", coin).Find(&result)
 	err = eng.Error
 	return
 }
-func (this *coinDao) GetBalanceByMemberIdAndCoinId(coin *entity.Coin, memberId int64) (result *math.BigDecimal, err error) {
+func (this *coinDao) GetBalanceByMemberIdAndCoinId(coin *entity.Coin, memberId int64) (result math.BigDecimal, err error) {
 	eng := this.DBWrite().Table("MemberWallet as a").Select("a.balance").Where("a.coin = ? and a.memberId = ?", coin, memberId).Find(&result)
 	err = eng.Error
 	return

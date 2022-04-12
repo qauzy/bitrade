@@ -2,16 +2,15 @@ package dao
 
 import (
 	"bitrade/core/dao/db"
-	"bitrade/core/dao/types"
 	"bitrade/core/entity"
-	"github.com/qauzy/util/lists/arraylist"
+	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
 type AdminAccessLogDao interface {
 	Save(m *entity.AdminAccessLog) (result *entity.AdminAccessLog, err error)
 	FindById(id int64) (result *entity.AdminAccessLog, err error)
 	DeleteById(id int64) (count int64, err error)
-	FindAll(qp *types.QueryParam) (result arraylist.List[*entity.AdminAccessLog], err error)
+	FindAll() (result arraylist.List[*entity.AdminAccessLog], err error)
 }
 type adminAccessLogDao struct {
 	*db.DB
@@ -35,11 +34,8 @@ func (this *adminAccessLogDao) DeleteById(id int64) (count int64, err error) {
 	count = d.RowsAffected
 	return
 }
-func (this *adminAccessLogDao) FindAll(qp *types.QueryParam) (result arraylist.List[*entity.AdminAccessLog], err error) {
+func (this *adminAccessLogDao) FindAll() (result arraylist.List[*entity.AdminAccessLog], err error) {
 	d := this.DBRead()
-	if qp != nil {
-		d = qp.BuildQuery(d)
-	}
 	d = d.Find(&result)
 	err = d.Error
 	return

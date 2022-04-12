@@ -23,17 +23,17 @@ func (this *AssetExchangeCoin) SetToUnit(ToUnit string) (result *AssetExchangeCo
 func (this *AssetExchangeCoin) GetToUnit() (ToUnit string) {
 	return this.ToUnit
 }
-func (this *AssetExchangeCoin) SetExchangeRate(ExchangeRate *math.BigDecimal) (result *AssetExchangeCoin) {
+func (this *AssetExchangeCoin) SetExchangeRate(ExchangeRate math.BigDecimal) (result *AssetExchangeCoin) {
 	this.ExchangeRate = ExchangeRate
 	return this
 }
-func (this *AssetExchangeCoin) GetExchangeRate() (ExchangeRate *math.BigDecimal) {
+func (this *AssetExchangeCoin) GetExchangeRate() (ExchangeRate math.BigDecimal) {
 	return this.ExchangeRate
 }
 
 type AssetExchangeCoin struct {
-	Id           int64            `gorm:"column:id" json:"id"`
-	FromUnit     string           `gorm:"column:from_unit" json:"fromUnit"`
-	ToUnit       string           `gorm:"column:to_unit" json:"toUnit"`
-	ExchangeRate *math.BigDecimal `gorm:"column:exchange_rate" json:"exchangeRate"`
+	Id           int64           `gorm:"column:id" json:"id"`
+	FromUnit     string          `gorm:"column:from_unit" json:"fromUnit"`
+	ToUnit       string          `gorm:"column:to_unit" json:"toUnit"`
+	ExchangeRate math.BigDecimal `gorm:"column:exchange_rate" json:"exchangeRate"`
 }

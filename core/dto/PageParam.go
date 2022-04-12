@@ -2,7 +2,7 @@ package dto
 
 import (
 	"bitrade/core/constant/Direction"
-	"github.com/qauzy/util/lists/arraylist"
+	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
 func (this *PageParam) SetPageNo(PageNo int) (result *PageParam) {

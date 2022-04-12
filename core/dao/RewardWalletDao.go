@@ -4,16 +4,16 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
 )
 
 type RewardWalletDao interface {
 	FindRewardWalletByMemberId(memberId int64) (result *entity.RewardWallet, err error)
 	FindRewardWalletByMemberIdAndCoinUnit(memberId int64, unit string) (result *entity.RewardWallet, err error)
 	Save(rewardWallet *entity.RewardWallet) (result *entity.RewardWallet, err error)
-	IncreaseBalance(walletId int64, amount *math.BigDecimal) (result int, err error)
-	DecreaseBalance(walletId int64, amount *math.BigDecimal) (result int, err error)
+	IncreaseBalance(walletId int64, amount math.BigDecimal) (result int, err error)
+	DecreaseBalance(walletId int64, amount math.BigDecimal) (result int, err error)
 	FindAllByMemberId(memberId int64) (result arraylist.List[entity.RewardWallet], err error)
 	FindById(id int64) (result *entity.RewardWallet, err error)
 	DeleteById(id int64) (count int64, err error)
@@ -38,14 +38,14 @@ func (this *rewardWalletDao) FindRewardWalletByMemberIdAndCoinUnit(memberId int6
 func (this *rewardWalletDao) Save(rewardWallet *entity.RewardWallet) (result *entity.RewardWallet, err error) {
 	return
 }
-func (this *rewardWalletDao) IncreaseBalance(walletId int64, amount *math.BigDecimal) (result int, err error) {
+func (this *rewardWalletDao) IncreaseBalance(walletId int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update MemberWallet wallet set wallet.balance = wallet.balance + ? where wallet.id = ?", walletId, amount)
 	err = eng.Error
 	return
 }
-func (this *rewardWalletDao) DecreaseBalance(walletId int64, amount *math.BigDecimal) (result int, err error) {
+func (this *rewardWalletDao) DecreaseBalance(walletId int64, amount math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("update MemberWallet wallet set wallet.balance = wallet.balance - ? where wallet.id = ? and wallet.balance >= ?", walletId, amount)

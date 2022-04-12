@@ -4,7 +4,7 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
-	"github.com/qauzy/util/lists/arraylist"
+	"github.com/qauzy/chocolate/lists/arraylist"
 )
 
 type MemberDepositDao interface {

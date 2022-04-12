@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/qauzy/util/lists/arraylist"
+import "github.com/qauzy/chocolate/lists/arraylist"
 
 func (this *Pagenation[T]) SetPageParam(PageParam *PageParam) (result *Pagenation[T]) {
 	this.PageParam = PageParam

@@ -2,39 +2,39 @@ package controller
 
 import (
 	"bitrade/core/log"
-	"bitrade/core/util/MessageResult"
+	"bitrade/core/util"
 	"bitrade/core/util/RequestUtil"
 	"net/http"
 	"strings"
 )
 
-func (this *BaseController) Success() (result *MessageResult.MessageResult) {
-	return MessageResult.NewMessageResultV2(0, "SUCCESS")
+func (this *BaseController) Success() (result *util.MessageResult) {
+	return util.NewMessageResultV2(0, "SUCCESS")
 }
-func (this *BaseController) SuccessWithMsg(msg string) (result *MessageResult.MessageResult) {
-	return MessageResult.NewMessageResultV2(0, msg)
+func (this *BaseController) SuccessWithMsg(msg string) (result *util.MessageResult) {
+	return util.NewMessageResultV2(0, msg)
 }
-func (this *BaseController) SuccessWithMsgData(msg string, obj interface{}) (result *MessageResult.MessageResult) {
-	var mr = MessageResult.NewMessageResultV2(0, msg)
+func (this *BaseController) SuccessWithMsgData(msg string, obj interface{}) (result *util.MessageResult) {
+	var mr = util.NewMessageResultV2(0, msg)
 	mr.SetData(obj)
 	return mr
 }
-func (this *BaseController) SuccessDataAndTotal(object interface{}, total int64) (result *MessageResult.MessageResult) {
-	var mr = MessageResult.NewMessageResultV2(0, "SUCCESS")
+func (this *BaseController) SuccessDataAndTotal(object interface{}, total int64) (result *util.MessageResult) {
+	var mr = util.NewMessageResultV2(0, "SUCCESS")
 	mr.SetData(object)
 	mr.SetTotal(total)
 	return mr
 }
-func (this *BaseController) SuccessWithData(obj interface{}) (result *MessageResult.MessageResult) {
-	var mr = MessageResult.NewMessageResultV2(0, "SUCCESS")
+func (this *BaseController) SuccessWithData(obj interface{}) (result *util.MessageResult) {
+	var mr = util.NewMessageResultV2(0, "SUCCESS")
 	mr.SetData(obj)
 	return mr
 }
-func (this *BaseController) Error(msg string) (result *MessageResult.MessageResult) {
-	return MessageResult.NewMessageResultV2(500, msg)
+func (this *BaseController) Error(msg string) (result *util.MessageResult) {
+	return util.NewMessageResultV2(500, msg)
 }
-func (this *BaseController) ErrorWithCodeMsg(code int, msg string) (result *MessageResult.MessageResult) {
-	return MessageResult.NewMessageResultV2(code, msg)
+func (this *BaseController) ErrorWithCodeMsg(code int, msg string) (result *util.MessageResult) {
+	return util.NewMessageResultV2(code, msg)
 }
 func (this *BaseController) Request(Request *http.Request, name string) (result string) {
 	return strings.TrimSpace(Request.FormValue(name))

@@ -6,8 +6,8 @@ import (
 	"bitrade/core/dao/db"
 	"bitrade/core/dao/types"
 	"bitrade/core/entity"
+	"github.com/qauzy/chocolate/lists/arraylist"
 	"github.com/qauzy/math"
-	"github.com/qauzy/util/lists/arraylist"
 	"time"
 )
 
@@ -35,7 +35,7 @@ type MemberDao interface {
 	GetChannelCount(memberIds arraylist.List[int64]) (result arraylist.List[[]interface {
 	}], err error)
 	UpdateLoginLock(userName string, loginLock *BooleanEnum.BooleanEnum) (result int, err error)
-	SaveWallet(coinId string, memberId int64, balance *math.BigDecimal) (result int, err error)
+	SaveWallet(coinId string, memberId int64, balance math.BigDecimal) (result int, err error)
 	Save(m *entity.Member) (result *entity.Member, err error)
 	FindById(id int64) (result *entity.Member, err error)
 	DeleteById(id int64) (count int64, err error)
@@ -151,7 +151,7 @@ func (this *memberDao) UpdateLoginLock(userName string, loginLock *BooleanEnum.B
 	err = eng.Error
 	return
 }
-func (this *memberDao) SaveWallet(coinId string, memberId int64, balance *math.BigDecimal) (result int, err error) {
+func (this *memberDao) SaveWallet(coinId string, memberId int64, balance math.BigDecimal) (result int, err error) {
 
 	//FIXME 非原生sql,需要处理
 	eng := this.DBWrite().Exec("INSERT INTO member_wallet(coin_id,member_id,balance,version,frozen_balance) VALUES (?,?,?,0,0)", coinId, memberId, balance)
