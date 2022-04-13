@@ -33,8 +33,20 @@ type QueryParam struct {
 		predicate Predicate
 		value     interface{}
 	}
+	in []struct {
+		prefix string
+		values []interface{}
+	}
 	limit  int
 	offset int
+}
+
+func (q *QueryParam) In(prefix string, values []interface{}) *QueryParam {
+	q.in = append(q.in, struct {
+		prefix string
+		values []interface{}
+	}{prefix, values})
+	return q
 }
 
 func (qb *QueryParam) Offset(offset int) *QueryParam {
@@ -140,6 +152,10 @@ func (qb *QueryParam) BuildQuery(db *gorm.DB) *gorm.DB {
 	for _, where := range qb.where {
 		ret = ret.Where(where.prefix, where.value)
 	}
+	for _, in := range qb.in {
+		ret = ret.Where(in.prefix+" IN ", in.values)
+	}
+
 	for _, order := range qb.order {
 		ret = ret.Order(order)
 	}
