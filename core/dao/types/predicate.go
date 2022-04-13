@@ -8,15 +8,19 @@ import (
 // Predicate is a string that acts as a condition in the where clause
 type Predicate string
 
+func (p Predicate) String() string {
+	return string(p)
+}
+
 const (
-	InPredicate                 = Predicate("IN")
-	EqualPredicate              = Predicate("=")
-	NotEqualPredicate           = Predicate("<>")
-	GreaterThanPredicate        = Predicate(">")
-	GreaterThanOrEqualPredicate = Predicate(">=")
-	SmallerThanPredicate        = Predicate("<")
-	SmallerThanOrEqualPredicate = Predicate("<=")
-	LikePredicate               = Predicate("LIKE")
+	InPredicate                 = Predicate(" IN ?")
+	EqualPredicate              = Predicate(" = ?")
+	NotEqualPredicate           = Predicate(" <> ?")
+	GreaterThanPredicate        = Predicate(" > ?")
+	GreaterThanOrEqualPredicate = Predicate(" >= ?")
+	SmallerThanPredicate        = Predicate(" < ?")
+	SmallerThanOrEqualPredicate = Predicate(" <= ?")
+	LikePredicate               = Predicate(" LIKE ?")
 )
 
 func NewQueryParam() *QueryParam {
@@ -150,7 +154,7 @@ func (qb *QueryParam) Order(field string, direction Direction.Direction) *QueryP
 func (qb *QueryParam) BuildQuery(db *gorm.DB) *gorm.DB {
 	ret := db
 	for _, where := range qb.where {
-		ret = ret.Where(where.prefix, where.value)
+		ret = ret.Where(where.prefix+where.predicate.String(), where.value)
 	}
 	for _, in := range qb.in {
 		ret = ret.Where(in.prefix+" IN ", in.values)
