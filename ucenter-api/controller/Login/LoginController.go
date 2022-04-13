@@ -1,28 +1,35 @@
 package Login
 
 import (
+	"bitrade/core/constant/SysConstant"
 	"bitrade/core/controller"
+	"bitrade/core/entity"
 	"bitrade/core/entity/transform"
+	"bitrade/core/event"
 	"bitrade/core/log"
 	"bitrade/core/service"
 	"bitrade/core/util"
 	"bitrade/core/util/MessageResult"
 	"bitrade/core/util/RequestUtil"
+	"bitrade/libs/common-lang/StringUtils"
 	"github.com/gin-gonic/gin"
-	"github.com/qauzy/chocolate/sets/hashset"
+	"github.com/qauzy/chocolate/maps/hashmap"
 	"time"
 )
 
-func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRequest, username string, password string, code string, ticket string, randStr string) (result *MessageResult.MessageResult, err error) {
+func (this *LoginController) Login(ctx *gin.Context, username string, password string, code string, ticket string, randStr string) (result *MessageResult.MessageResult) {
 	if username == "" {
 		this.MessageSourceService.GetMessage("MISSING_USERNAME")
 	}
 	if password == "" {
 		this.MessageSourceService.GetMessage("MISSING_PASSWORD")
 	}
-	var ip = getRemoteIp(request)
-	var member = this.MemberService.FindByPhoneOrEmail(username)
-	var host = RequestUtil.RemoteIp(request)
+	var ip = this.GetRemoteIp(ctx.Request)
+	var member, err = this.MemberService.FindByPhoneOrEmail(username)
+	if err != nil {
+		return MessageResult.Error(err.Error())
+	}
+	var host = RequestUtil.RemoteIp(ctx.Request)
 	log.Info("host:" + host)
 	//防水验证
 	//        boolean result = TengXunWatherProofUtil.watherProof(ticket, randStr, ip);
@@ -30,7 +37,7 @@ func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRe
 	//            return error("验证失败");
 	//        }
 	if member == nil {
-		return error("用户不存在")
+		return MessageResult.Error("用户不存在")
 	}
 	if member.GetGoogleState() == 1 {
 		//谷歌验证
@@ -48,9 +55,9 @@ func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRe
 		}
 	}
 	//从session中获取userid
-	var userid = request.GetSession().GetAttribute("userid").(string)
+	var userid = ctx.Request.GetSession().GetAttribute("userid").(string)
 	//自定义参数,可选择添加
-	var param = hashset.New[string]()
+	var param = hashmap.New[string, string]()
 	param.Put("user_id", userid)
 	//网站用户id
 	param.Put("client_type", "web")
@@ -58,7 +65,7 @@ func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRe
 	param.Put("ip_address", ip)
 	//传输用户请求验证时所携带的IP
 	exception := func() (err error) {
-		var loginInfo = this.GetLoginInfo(username, password, ip, request)
+		var loginInfo = this.GetLoginInfo(ctx, username, password, ip)
 		return this.SuccessWithData(loginInfo)
 		return
 	}()
@@ -66,12 +73,12 @@ func (this *LoginController) Login(ctx *gin.Context, request *http.HttpServletRe
 		return error(e.GetMessage())
 	}
 }
-func (this *LoginController) GetLoginInfo(ctx *gin.Context, username string, password string, ip string, request *http.HttpServletRequest) (result *entity.LoginInfo, err error) {
+func (this *LoginController) GetLoginInfo(ctx *gin.Context, username string, password string, ip string) (result *entity.LoginInfo) {
 	var member = this.MemberService.Login(username, password)
 	if member == nil {
 		var key = SysConstant.LOGIN_LOCK + username
 		var code = this.RedisUtil.Get(key)
-		if code == nil {
+		if code == "" {
 			code = 0
 		}
 		var codeNum = code.(int)

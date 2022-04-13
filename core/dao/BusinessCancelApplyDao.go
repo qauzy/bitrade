@@ -11,7 +11,7 @@ import (
 type BusinessCancelApplyDao interface {
 	FindByMemberAndStatusOrderByIdDesc(member *entity.Member, status *CertifiedBusinessStatus.CertifiedBusinessStatus) (result arraylist.List[entity.BusinessCancelApply], err error)
 	FindByMemberOrderByIdDesc(member *entity.Member) (result arraylist.List[entity.BusinessCancelApply], err error)
-	CountAllByStatus(status *CertifiedBusinessStatus.CertifiedBusinessStatus) (result int64, err error)
+	CountAllByStatus(status CertifiedBusinessStatus.CertifiedBusinessStatus) (result int64, err error)
 	Save(m *entity.BusinessCancelApply) (result *entity.BusinessCancelApply, err error)
 	FindById(id int64) (result *entity.BusinessCancelApply, err error)
 	DeleteById(id int64) (count int64, err error)
@@ -33,7 +33,7 @@ func (this *businessCancelApplyDao) FindByMemberOrderByIdDesc(member *entity.Mem
 	err = this.DBRead().Where("id_desc = ?", member).First(&result).Error
 	return
 }
-func (this *businessCancelApplyDao) CountAllByStatus(status *CertifiedBusinessStatus.CertifiedBusinessStatus) (result int64, err error) {
+func (this *businessCancelApplyDao) CountAllByStatus(status CertifiedBusinessStatus.CertifiedBusinessStatus) (result int64, err error) {
 	return
 }
 func (this *businessCancelApplyDao) Save(m *entity.BusinessCancelApply) (result *entity.BusinessCancelApply, err error) {

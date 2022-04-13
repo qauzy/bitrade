@@ -511,7 +511,7 @@ func (this *ApproveController) ListBusinessAuthDepositList(ctx *gin.Context) (re
 	result.SetData(depositList)
 	return result
 }
-func (this *ApproveController) ChangePhone(ctx *gin.Context, request *http.HttpServletRequest, password string, phone string, code string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
+func (this *ApproveController) ChangePhone(ctx *gin.Context, password string, phone string, code string, user *transform.AuthMember) (result *MessageResult.MessageResult, err error) {
 	var member = this.MemberService.FindOne(user.GetId())
 	hasText(password, this.MsService.GetMessage("MISSING_LOGIN_PASSWORD"))
 	hasText(phone, this.MsService.GetMessage("MISSING_PHONE"))

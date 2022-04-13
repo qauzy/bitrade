@@ -6,6 +6,7 @@ import "github.com/jinzhu/gorm"
 type Predicate string
 
 const (
+	InPredicate                 = Predicate("IN")
 	EqualPredicate              = Predicate("=")
 	NotEqualPredicate           = Predicate("<>")
 	GreaterThanPredicate        = Predicate(">")
@@ -14,6 +15,13 @@ const (
 	SmallerThanOrEqualPredicate = Predicate("<=")
 	LikePredicate               = Predicate("LIKE")
 )
+
+func NewQueryParam() *QueryParam {
+	return &QueryParam{
+		limit:  10,
+		offset: 0,
+	}
+}
 
 type QueryParam struct {
 	order []string
@@ -24,6 +32,101 @@ type QueryParam struct {
 	}
 	limit  int
 	offset int
+}
+
+func (qb *QueryParam) Offset(offset int) *QueryParam {
+	qb.offset = offset
+	return qb
+}
+
+func (qb *QueryParam) Limit(limit int) *QueryParam {
+	qb.limit = limit
+	return qb
+}
+func (qb *QueryParam) Neq(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: NotEqualPredicate,
+		value:     value,
+	})
+	return qb
+}
+func (qb *QueryParam) Eq(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: EqualPredicate,
+		value:     value,
+	})
+	return qb
+}
+func (qb *QueryParam) Gt(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: GreaterThanPredicate,
+		value:     value,
+	})
+	return qb
+
+}
+func (qb *QueryParam) Gte(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: GreaterThanOrEqualPredicate,
+		value:     value,
+	})
+	return qb
+}
+func (qb *QueryParam) Lt(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: SmallerThanPredicate,
+		value:     value,
+	})
+	return qb
+}
+func (qb *QueryParam) Lte(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: SmallerThanOrEqualPredicate,
+		value:     value,
+	})
+	return qb
+}
+func (qb *QueryParam) Like(field string, value interface{}) *QueryParam {
+	qb.where = append(qb.where, struct {
+		prefix    string
+		predicate Predicate
+		value     interface{}
+	}{
+		prefix:    field,
+		predicate: LikePredicate,
+		value:     value,
+	})
+	return qb
 }
 
 func (qb *QueryParam) BuildQuery(db *gorm.DB) *gorm.DB {

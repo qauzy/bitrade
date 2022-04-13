@@ -9,6 +9,10 @@ import (
 	"bitrade/libs/common-lang/IntUtils"
 )
 
+func HasText(str string) bool {
+	return IsNotBlank(str)
+}
+
 func IsEmpty(str string) bool {
 	return len(str) <= 0
 }

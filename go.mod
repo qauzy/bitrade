@@ -9,7 +9,7 @@ require (
 	github.com/json-iterator/go v1.1.12
 	github.com/nacos-group/nacos-sdk-go v1.1.0
 	github.com/qauzy/fastjson v1.7.0
-	github.com/qauzy/math v1.3.3
+	github.com/qauzy/math v1.3.4
 	github.com/shopspring/decimal v1.3.1
 	github.com/stretchr/testify v1.7.0
 	github.com/tidwall/pretty v1.2.0
@@ -22,6 +22,7 @@ require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.18 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/gin-contrib/sessions v0.0.4 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.7.7 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
@@ -30,6 +31,9 @@ require (
 	github.com/go-playground/validator/v10 v10.10.1 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/gorilla/context v1.1.1 // indirect
+	github.com/gorilla/securecookie v1.1.1 // indirect
+	github.com/gorilla/sessions v1.2.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
