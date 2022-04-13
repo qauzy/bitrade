@@ -157,7 +157,7 @@ func (qb *QueryParam) BuildQuery(db *gorm.DB) *gorm.DB {
 		ret = ret.Where(where.prefix+where.predicate.String(), where.value)
 	}
 	for _, in := range qb.in {
-		ret = ret.Where(in.prefix+" IN ", in.values)
+		ret = ret.Where(in.prefix+InPredicate.String(), in.values)
 	}
 
 	for _, order := range qb.order {
