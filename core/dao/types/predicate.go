@@ -23,6 +23,7 @@ const (
 	LikePredicate               = Predicate(" LIKE ?")
 )
 
+//NewQueryParam is used to create a new QueryParam, which is used to build a query
 func NewQueryParam() *QueryParam {
 	return &QueryParam{
 		limit:  10,
@@ -30,6 +31,7 @@ func NewQueryParam() *QueryParam {
 	}
 }
 
+//QueryParam is used to build a query, it contains the condition and the order,	and the limit and offset
 type QueryParam struct {
 	order []string
 	where []struct {
@@ -45,6 +47,7 @@ type QueryParam struct {
 	offset int
 }
 
+//In is used to add a IN condition to the query
 func (q *QueryParam) In(prefix string, values []interface{}) *QueryParam {
 	q.in = append(q.in, struct {
 		prefix string
@@ -53,15 +56,19 @@ func (q *QueryParam) In(prefix string, values []interface{}) *QueryParam {
 	return q
 }
 
+//Offset is used to set the offset of the query
 func (qb *QueryParam) Offset(offset int) *QueryParam {
 	qb.offset = offset
 	return qb
 }
 
+//Limit is used to set the limit of the query
 func (qb *QueryParam) Limit(limit int) *QueryParam {
 	qb.limit = limit
 	return qb
 }
+
+//Neq is used to add a <> condition to the query
 func (qb *QueryParam) Neq(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -74,6 +81,8 @@ func (qb *QueryParam) Neq(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Eq is used to add a = condition to the query
 func (qb *QueryParam) Eq(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -86,6 +95,8 @@ func (qb *QueryParam) Eq(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Gt is used to add a > condition to the query
 func (qb *QueryParam) Gt(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -99,6 +110,8 @@ func (qb *QueryParam) Gt(field string, value interface{}) *QueryParam {
 	return qb
 
 }
+
+//Gte is used to add a >= condition to the query
 func (qb *QueryParam) Gte(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -111,6 +124,8 @@ func (qb *QueryParam) Gte(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Lt is used to add a < condition to the query
 func (qb *QueryParam) Lt(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -123,6 +138,8 @@ func (qb *QueryParam) Lt(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Lte is used to add a <= condition to the query
 func (qb *QueryParam) Lte(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -135,6 +152,8 @@ func (qb *QueryParam) Lte(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Like is used to add a LIKE condition to the query
 func (qb *QueryParam) Like(field string, value interface{}) *QueryParam {
 	qb.where = append(qb.where, struct {
 		prefix    string
@@ -147,6 +166,8 @@ func (qb *QueryParam) Like(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
+
+//Order is used to add an order to the query
 func (qb *QueryParam) Order(field string, direction Direction.Direction) *QueryParam {
 	qb.order = append(qb.order, field+" "+string(direction))
 	return qb
