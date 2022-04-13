@@ -1,6 +1,9 @@
 package types
 
-import "github.com/jinzhu/gorm"
+import (
+	"bitrade/core/dao/types/Direction"
+	"github.com/jinzhu/gorm"
+)
 
 // Predicate is a string that acts as a condition in the where clause
 type Predicate string
@@ -128,7 +131,10 @@ func (qb *QueryParam) Like(field string, value interface{}) *QueryParam {
 	})
 	return qb
 }
-
+func (qb *QueryParam) Order(field string, direction Direction.Direction) *QueryParam {
+	qb.order = append(qb.order, field+" "+string(direction))
+	return qb
+}
 func (qb *QueryParam) BuildQuery(db *gorm.DB) *gorm.DB {
 	ret := db
 	for _, where := range qb.where {
